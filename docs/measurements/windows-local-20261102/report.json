@@ -1,0 +1,392 @@
+{
+  "recorded_at_utc": "2026-11-02T18:20:33.9244232+00:00",
+  "runtime": ".NET 10.0.14",
+  "os": "Microsoft Windows 10.0.26300",
+  "architecture": "X64",
+  "logical_processors": 16,
+  "server_gc": false,
+  "environment_kind": "local",
+  "clock_frequency": 10000000,
+  "clock_is_high_resolution": true,
+  "clock_probe": {
+    "samples": 1000,
+    "p50_microseconds": 0,
+    "p95_microseconds": 0.1,
+    "p99_microseconds": 0.1,
+    "min_microseconds": 0,
+    "max_microseconds": 0.1
+  },
+  "warmup_runs_per_scenario": 2,
+  "measured_batches": 5,
+  "queue_capacity": 64,
+  "percentile_method": "nearest rank; each batch separately; no clock subtraction",
+  "scope": "Synthetic one-instrument long-only Reserve/Fill pairs. Direct event timings cover Apply only; channel timings cover SubmitAsync through observed result, including admission/wait/scheduling. Event construction excluded from event timing. Process allocation covers the batch after baseline state/timing-buffer initialization, including event construction, tasks, host and bookkeeping; it is not hot-path allocation. ID stores grow across this finite session. No transport, SDK, market data, venue latency or production performance claim.",
+  "source_sha256": {
+    "ExecutionLab/OrderGate.cs": "3af25caf02a216fa92b90cfc9f1cb89f54084c49fc37be03b42f50956a8ada3f",
+    "ExecutionLab.Hosting/SerializedExecutionSession.cs": "c31ab06ada1a67682a9031b2869fac703056ca982b9cd2e553843a49d4f6f196",
+    "ExecutionLab.Measurements/Program.cs": "a7757398b842d82e89aedb264457be2e6e83745bac26c3deaf256f31e95963fa",
+    "ExecutionLab.Tests/HostingTests.cs": "71d4d3762ce87cdef6867e3adf4a794cf8bb6489a2566c645c8db1347633f9d8"
+  },
+  "batches": [
+    {
+      "scenario": "direct-core",
+      "batch": 0,
+      "producers": 1,
+      "pairs": 1000,
+      "events": 2000,
+      "event_duration": {
+        "samples": 2000,
+        "p50_microseconds": 1.7,
+        "p95_microseconds": 4.9,
+        "p99_microseconds": 10.9,
+        "min_microseconds": 0.6,
+        "max_microseconds": 21.9
+      },
+      "process_allocated_bytes": 3592216,
+      "generation_collections": [
+        0,
+        0,
+        0
+      ],
+      "batch_elapsed_microseconds": 5162.7,
+      "verified_final_position": 1000,
+      "verified_final_pending": 0
+    },
+    {
+      "scenario": "direct-core",
+      "batch": 1,
+      "producers": 1,
+      "pairs": 1000,
+      "events": 2000,
+      "event_duration": {
+        "samples": 2000,
+        "p50_microseconds": 1.7,
+        "p95_microseconds": 4.5,
+        "p99_microseconds": 7.3,
+        "min_microseconds": 0.6,
+        "max_microseconds": 1327.2
+      },
+      "process_allocated_bytes": 3592760,
+      "generation_collections": [
+        1,
+        0,
+        0
+      ],
+      "batch_elapsed_microseconds": 6219.9,
+      "verified_final_position": 1000,
+      "verified_final_pending": 0
+    },
+    {
+      "scenario": "direct-core",
+      "batch": 2,
+      "producers": 1,
+      "pairs": 1000,
+      "events": 2000,
+      "event_duration": {
+        "samples": 2000,
+        "p50_microseconds": 1.7,
+        "p95_microseconds": 2.4,
+        "p99_microseconds": 4.8,
+        "min_microseconds": 0.7,
+        "max_microseconds": 16.2
+      },
+      "process_allocated_bytes": 3592216,
+      "generation_collections": [
+        0,
+        0,
+        0
+      ],
+      "batch_elapsed_microseconds": 9340.3,
+      "verified_final_position": 1000,
+      "verified_final_pending": 0
+    },
+    {
+      "scenario": "direct-core",
+      "batch": 3,
+      "producers": 1,
+      "pairs": 1000,
+      "events": 2000,
+      "event_duration": {
+        "samples": 2000,
+        "p50_microseconds": 1.7,
+        "p95_microseconds": 2.4,
+        "p99_microseconds": 4.8,
+        "min_microseconds": 0.7,
+        "max_microseconds": 18.2
+      },
+      "process_allocated_bytes": 3592216,
+      "generation_collections": [
+        0,
+        0,
+        0
+      ],
+      "batch_elapsed_microseconds": 4016.4,
+      "verified_final_position": 1000,
+      "verified_final_pending": 0
+    },
+    {
+      "scenario": "direct-core",
+      "batch": 4,
+      "producers": 1,
+      "pairs": 1000,
+      "events": 2000,
+      "event_duration": {
+        "samples": 2000,
+        "p50_microseconds": 1.7,
+        "p95_microseconds": 2.3,
+        "p99_microseconds": 3,
+        "min_microseconds": 0.6,
+        "max_microseconds": 14.1
+      },
+      "process_allocated_bytes": 3592552,
+      "generation_collections": [
+        0,
+        0,
+        0
+      ],
+      "batch_elapsed_microseconds": 3979.7,
+      "verified_final_position": 1000,
+      "verified_final_pending": 0
+    },
+    {
+      "scenario": "channel-1-producer",
+      "batch": 0,
+      "producers": 1,
+      "pairs": 1000,
+      "events": 2000,
+      "event_duration": {
+        "samples": 2000,
+        "p50_microseconds": 3.8,
+        "p95_microseconds": 6.9,
+        "p99_microseconds": 13,
+        "min_microseconds": 2.2,
+        "max_microseconds": 894.9
+      },
+      "process_allocated_bytes": 4156424,
+      "generation_collections": [
+        1,
+        0,
+        0
+      ],
+      "batch_elapsed_microseconds": 9947.3,
+      "verified_final_position": 1000,
+      "verified_final_pending": 0
+    },
+    {
+      "scenario": "channel-1-producer",
+      "batch": 1,
+      "producers": 1,
+      "pairs": 1000,
+      "events": 2000,
+      "event_duration": {
+        "samples": 2000,
+        "p50_microseconds": 4,
+        "p95_microseconds": 9.6,
+        "p99_microseconds": 14.1,
+        "min_microseconds": 2.5,
+        "max_microseconds": 79.5
+      },
+      "process_allocated_bytes": 4155072,
+      "generation_collections": [
+        0,
+        0,
+        0
+      ],
+      "batch_elapsed_microseconds": 9926.7,
+      "verified_final_position": 1000,
+      "verified_final_pending": 0
+    },
+    {
+      "scenario": "channel-1-producer",
+      "batch": 2,
+      "producers": 1,
+      "pairs": 1000,
+      "events": 2000,
+      "event_duration": {
+        "samples": 2000,
+        "p50_microseconds": 3.9,
+        "p95_microseconds": 9.4,
+        "p99_microseconds": 13.6,
+        "min_microseconds": 2.1,
+        "max_microseconds": 877.8
+      },
+      "process_allocated_bytes": 4155280,
+      "generation_collections": [
+        1,
+        0,
+        0
+      ],
+      "batch_elapsed_microseconds": 10466,
+      "verified_final_position": 1000,
+      "verified_final_pending": 0
+    },
+    {
+      "scenario": "channel-1-producer",
+      "batch": 3,
+      "producers": 1,
+      "pairs": 1000,
+      "events": 2000,
+      "event_duration": {
+        "samples": 2000,
+        "p50_microseconds": 4,
+        "p95_microseconds": 8.3,
+        "p99_microseconds": 13.9,
+        "min_microseconds": 2.3,
+        "max_microseconds": 302.5
+      },
+      "process_allocated_bytes": 4157200,
+      "generation_collections": [
+        0,
+        0,
+        0
+      ],
+      "batch_elapsed_microseconds": 10278.4,
+      "verified_final_position": 1000,
+      "verified_final_pending": 0
+    },
+    {
+      "scenario": "channel-1-producer",
+      "batch": 4,
+      "producers": 1,
+      "pairs": 1000,
+      "events": 2000,
+      "event_duration": {
+        "samples": 2000,
+        "p50_microseconds": 3.9,
+        "p95_microseconds": 10,
+        "p99_microseconds": 13.3,
+        "min_microseconds": 2.5,
+        "max_microseconds": 912.7
+      },
+      "process_allocated_bytes": 4155360,
+      "generation_collections": [
+        1,
+        1,
+        0
+      ],
+      "batch_elapsed_microseconds": 10491,
+      "verified_final_position": 1000,
+      "verified_final_pending": 0
+    },
+    {
+      "scenario": "channel-4-producers",
+      "batch": 0,
+      "producers": 4,
+      "pairs": 1000,
+      "events": 2000,
+      "event_duration": {
+        "samples": 2000,
+        "p50_microseconds": 10.3,
+        "p95_microseconds": 16.1,
+        "p99_microseconds": 22.7,
+        "min_microseconds": 4.5,
+        "max_microseconds": 113.2
+      },
+      "process_allocated_bytes": 4312224,
+      "generation_collections": [
+        0,
+        0,
+        0
+      ],
+      "batch_elapsed_microseconds": 5643,
+      "verified_final_position": 1000,
+      "verified_final_pending": 0
+    },
+    {
+      "scenario": "channel-4-producers",
+      "batch": 1,
+      "producers": 4,
+      "pairs": 1000,
+      "events": 2000,
+      "event_duration": {
+        "samples": 2000,
+        "p50_microseconds": 12.2,
+        "p95_microseconds": 20.8,
+        "p99_microseconds": 26.2,
+        "min_microseconds": 3.8,
+        "max_microseconds": 51.5
+      },
+      "process_allocated_bytes": 4312536,
+      "generation_collections": [
+        0,
+        0,
+        0
+      ],
+      "batch_elapsed_microseconds": 6847.9,
+      "verified_final_position": 1000,
+      "verified_final_pending": 0
+    },
+    {
+      "scenario": "channel-4-producers",
+      "batch": 2,
+      "producers": 4,
+      "pairs": 1000,
+      "events": 2000,
+      "event_duration": {
+        "samples": 2000,
+        "p50_microseconds": 10.8,
+        "p95_microseconds": 15.7,
+        "p99_microseconds": 22,
+        "min_microseconds": 4,
+        "max_microseconds": 1335.5
+      },
+      "process_allocated_bytes": 4311136,
+      "generation_collections": [
+        1,
+        0,
+        0
+      ],
+      "batch_elapsed_microseconds": 7039.7,
+      "verified_final_position": 1000,
+      "verified_final_pending": 0
+    },
+    {
+      "scenario": "channel-4-producers",
+      "batch": 3,
+      "producers": 4,
+      "pairs": 1000,
+      "events": 2000,
+      "event_duration": {
+        "samples": 2000,
+        "p50_microseconds": 11.4,
+        "p95_microseconds": 19.1,
+        "p99_microseconds": 23.8,
+        "min_microseconds": 5.6,
+        "max_microseconds": 37.8
+      },
+      "process_allocated_bytes": 4317560,
+      "generation_collections": [
+        0,
+        0,
+        0
+      ],
+      "batch_elapsed_microseconds": 6247.4,
+      "verified_final_position": 1000,
+      "verified_final_pending": 0
+    },
+    {
+      "scenario": "channel-4-producers",
+      "batch": 4,
+      "producers": 4,
+      "pairs": 1000,
+      "events": 2000,
+      "event_duration": {
+        "samples": 2000,
+        "p50_microseconds": 10.5,
+        "p95_microseconds": 14.9,
+        "p99_microseconds": 20,
+        "min_microseconds": 3.4,
+        "max_microseconds": 1248.8
+      },
+      "process_allocated_bytes": 4313600,
+      "generation_collections": [
+        1,
+        0,
+        0
+      ],
+      "batch_elapsed_microseconds": 6826.7,
+      "verified_final_position": 1000,
+      "verified_final_pending": 0
+    }
+  ]
+}

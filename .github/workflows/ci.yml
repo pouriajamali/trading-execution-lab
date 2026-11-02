@@ -18,3 +18,10 @@ jobs:
         with:
           dotnet-version: '10.0.x'
       - run: dotnet run --project ExecutionLab.Tests/ExecutionLab.Tests.csproj --configuration Release
+      - name: Reproduce bounded measurement contract
+        run: dotnet run --project ExecutionLab.Measurements/ExecutionLab.Measurements.csproj --configuration Release -- --output artifacts/measurement
+      - uses: actions/upload-artifact@v4
+        with:
+          name: measurement-${{ matrix.os }}
+          path: artifacts/measurement/
+          if-no-files-found: error
