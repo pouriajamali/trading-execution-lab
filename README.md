@@ -1,43 +1,63 @@
-# Trading Execution Lab - C# order state and reserved exposure
+# Trading Execution Lab — C# order state and reserved exposure
 
 [![C# synthetic invariants](https://github.com/pouriaquant91/trading-execution-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/pouriaquant91/trading-execution-lab/actions/workflows/ci.yml)
 
-Portfolio and reviewer guide: https://pouriajamali.site/work/engineering-evidence/
+[Reviewer guide](https://pouriajamali.site/work/engineering-evidence/) · [Source release v0.2.0](https://github.com/pouriaquant91/trading-execution-lab/releases/tag/v0.2.0) · [Model boundaries](SCOPE.md)
 
-New AI-assisted portfolio teaching material, created October 2026. Not employer code, a TT adapter, a reconstruction of a private project, or evidence of historic production incidents/performance. All data is synthetic. No SDK, credentials, account data, market data, network calls or order submission.
+A C# event/state model makes exposure reservations, cancellation races and
+recovery gates inspectable. Immutable state, typed events and 24 test cases let a
+reviewer trace why a command was accepted, denied or stopped for reconciliation.
+
+## Decisions worth inspecting
+
+- **Reserve before submission.** A new reservation is accepted only when filled
+  position plus outstanding quantity plus the proposed quantity does not exceed
+  the limit. Requesting cancellation keeps capacity reserved; confirmation
+  releases only the unfilled remainder. Fills arriving during cancellation count.
+- **Separate rejection from missing data.** A valid but risk-denied command
+  consumes its normalized envelope without reserving quantity. The next valid
+  event therefore does not create a false gap. Inspect
+  [`RiskDenialDoesNotCreateFalseSequenceGap`](https://github.com/pouriaquant91/trading-execution-lab/blob/v0.2.0/ExecutionLab.Tests/OrderGateTests.cs#L27):
+  sequence 3 is risk-denied; cancellation at sequence 4 still applies to the
+  reconciled state. Invalid envelopes and stale duplicates are not consumed.
+- **Deduplicate at two levels.** Envelope IDs and execution IDs serve different
+  purposes. A redelivered fill with a new envelope advances sequence without
+  double-counting quantity. Order IDs are not reused within an in-memory session.
+- **Recovery is an explicit gate.** A sequence gap, unknown fill, unsolicited
+  cancellation or arithmetic overflow blocks new reservations and requires a
+  fresh authoritative snapshot baseline followed by explicit resume. A snapshot
+  does not automatically restart trading.
+- **Keep external effects separate.** Disconnect/stop blocks local reservations;
+  it does not cancel broker orders or flatten a real position. Those operations
+  need adapters and confirmed responses. The model deliberately supplies neither.
 
 ## Run
 
-Requires the .NET 10 SDK (LTS). Tests use xUnit v3 4.0.2 from NuGet. The SDK includes the required .NET 10 runtime.
+Requires the **.NET 10 SDK (LTS)**, including the .NET 10 runtime. Tests use
+**xUnit v3 4.0.2** from NuGet; the library has no external package dependency.
 
 ```sh
 dotnet run --project ExecutionLab.Tests/ExecutionLab.Tests.csproj --configuration Release
 ```
 
-The library has no external package dependency. Only tests restore xUnit. The target framework is a reproducible sample target, not a claim that the author's employer used that version. No real TT/C++ SDK version is inferred.
+The target is a reproducible sample target, not historical employer runtime
+usage. No real TT or C++ SDK version is inferred. [SCOPE.md](SCOPE.md) records the
+single-stream model, retention limits and unimplemented adapter responsibilities.
 
-## Decisions worth inspecting
+## Verification and release history
 
-- Immutable state and typed events keep previous decisions inspectable; this is clarity-first, NOT a low-allocation or low-latency design.
-- Reserve before submission: filled position plus outstanding quantity must stay within the configured limit. A cancel request does not release exposure; confirmation releases only the unfilled remainder. A fill during cancellation still counts.
-- Envelope deduplication and execution-ID deduplication are distinct. Re-delivered fills with a new envelope consume the normalized sequence but do not double-count quantity. Order IDs are not reused during an in-memory session.
-- A sequence gap, unknown fill, unsolicited cancel or arithmetic overflow halts new reservations and requires an authoritative snapshot, followed by explicit resume. A snapshot never automatically resumes trading.
-- A valid but risk-denied command consumes its normalized envelope without reserving quantity, so rejection does not itself create a false sequence gap. Invalid envelopes/stale duplicates are not consumed. Halting anomalies require a fresh snapshot baseline.
-- Disconnect and stop do not pretend to cancel external orders or flatten a position. Those operations require adapters and confirmed responses, which are intentionally absent.
+- **v0.2.0:** source-only release; `net10.0` and SDK 10 on Ubuntu/Windows CI. Order
+  model and 24 cases unchanged. Historical local Windows check on 28 October 2026:
+  SDK 10.0.403 / runtime 10.0.14, all 24 cases passed, zero skips. Use the exact
+  release-commit workflow to assess cloud results; local success is separate.
+- **v0.1.0:** original .NET 8 sample, retained as a historical source release.
 
-## Assumptions and exclusions
+This documentation refresh changes no runtime code, tests, target or release.
+The suite checks the documented fixtures and assumptions, not production
+correctness. Separately labelled JavaScript portfolio examples remain educational.
 
-One instrument, one non-negative direction, integer lots, one serialized normalized input stream. Its sequence is NOT a TT/CME feed sequence; a real adapter must resolve independent channels, timestamps, reset boundaries and authoritative snapshots. Caller supplies trusted normalized facts. Execution-ID payload consistency is an adapter responsibility.
+## Attribution
 
-Excluded: shorts/netting, pricing, margin, multi-account aggregation, thread safety, persistence/crash recovery, bounded ID-store retention, durable outbox, broker rejection/replacement races, external cancel/close-out, exchange packet decoding and certification/conformance. Tests do not establish those properties. Stop-on-anomaly is a teaching policy, not a universal trading policy.
-
-No benchmark, p99 latency, "zero incidents", CME conformance or production-readiness claim is made. Independent human review and discussion are welcome; the owner should be able to explain every invariant before using this as interview evidence.
-
-## Publication
-
-Owner approved this new public repository. Release 0.2.0 is source-only and updates the sample target and both CI platforms to .NET 10 LTS; the order model and 24 test cases are unchanged. This target is not a claim of historical employer usage. The CI badge links to actual workflow results, not an assertion of production correctness. Existing JavaScript portfolio examples remain separately labelled educational material. A passed suite validates only the fixtures and documented assumptions above.
-
-## Release notes
-
-- 0.2.0: target `net10.0`, run CI with SDK 10 on Ubuntu and Windows, retain the same synthetic invariants and exclusions. Local Windows check: SDK 10.0.403 / runtime 10.0.14, all 24 cases passed, zero skips (28 October 2026). Check the release tag's exact-commit workflow for independent platform results; local success alone is not cloud CI evidence.
-- 0.1.0: original .NET 8 teaching sample; retained as an historical source release, not the recommended current target.
+Independent synthetic portfolio material created with AI assistance in October
+2026 for Pouria Jamali. No employer/private-project source, real account/market
+data or broker connection is included.
