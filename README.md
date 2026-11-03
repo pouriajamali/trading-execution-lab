@@ -8,8 +8,26 @@ A C# event/state model makes exposure reservations, cancellation races and
 recovery gates inspectable. Immutable state, typed events and 24 test cases let a
 reviewer trace why a command was accepted, denied or stopped for reconciliation.
 An additive bounded-channel host now demonstrates concurrent admission, single-writer
-state ownership and shutdown/cancellation contracts. The original 24 model cases
-remain intact, alongside 9 hosting cases (**33 total**).
+state ownership and shutdown/cancellation contracts. A transactional control-plane
+sample now adds real SQLite persistence and an ASP.NET Core API. The original 24
+model cases remain intact, alongside 9 hosting and 9 durability/API cases (**42 total**).
+
+## Inspect transactional delivery and API contracts
+
+- [DurableGate](ExecutionLab.Persistence/DurableGate.cs) commits returned state,
+  an idempotency receipt and an audit outbox row in one SQLite transaction.
+  Separate connections serialize competing reservations. Retrying the same key
+  returns its original receipt; changed content conflicts instead of reserving twice.
+- [API](ExecutionLab.Api/GateApi.cs) validates JWT signature, issuer, audience,
+  expiry and operator role before a bounded reservation request reaches storage.
+- [Integration tests](ExecutionLab.Tests/DurabilityTests.cs) run the actual HTTP
+  pipeline and a fresh on-disk database: reopen/retry, pre-commit rollback,
+  concurrent connections, conflicting keys, risk-denial persistence and audit
+  redelivery after consumer commit/before acknowledgement.
+- [Design decision and reproduction](docs/decisions/0002-transactional-control-plane.md)
+  explains transaction ownership, historical receipts, authentication choices and
+  the tradeoffs. The outbox contains **audit facts**, not exchange commands.
+  Its illustrative local inbox/counter is not a RabbitMQ transport.
 
 ## Inspect the new host and measurements
 
@@ -53,7 +71,8 @@ remain intact, alongside 9 hosting cases (**33 total**).
 ## Run
 
 Requires the **.NET 10 SDK (LTS)**, including the .NET 10 runtime. Tests use
-**xUnit v3 4.0.2** from NuGet; the library has no external package dependency.
+**xUnit v3 4.0.2** from NuGet. API, TestHost and SQLite use Microsoft packages
+**10.0.14**; the core library still has no external package dependency.
 
 ```sh
 dotnet run --project ExecutionLab.Tests/ExecutionLab.Tests.csproj --configuration Release
@@ -66,6 +85,10 @@ single-stream model, retention limits and unimplemented adapter responsibilities
 
 ## Verification and release history
 
+- **v0.4.0:** transactional state/receipt/audit outbox and inbox, JWT-protected
+  control-plane API, 9 new integration cases. No core/host behavior change.
+  Reproduction needs no account, cloud service, broker, network port or committed
+  secret: tests use TestServer, temporary SQLite files and random ephemeral keys.
 - **v0.3.0:** additive host/measurement projects and 9 hosting cases; core
   model and 24 original cases unchanged. Local Windows SDK 10.0.403/runtime 10.0.14:
   33 passed, 0 skips; finite measurement contract passed for all 15 batches. The CI

@@ -8,7 +8,9 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="xunit.v3" Version="4.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.TestHost" Version="10.0.14" />
     <ProjectReference Include="../ExecutionLab/ExecutionLab.csproj" />
     <ProjectReference Include="../ExecutionLab.Hosting/ExecutionLab.Hosting.csproj" />
+    <ProjectReference Include="../ExecutionLab.Api/ExecutionLab.Api.csproj" />
   </ItemGroup>
 </Project>
