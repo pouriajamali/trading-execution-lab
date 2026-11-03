@@ -134,7 +134,7 @@ public sealed class DurabilityTests : IDisposable
     public async Task HttpPipelineValidatesTokenRoleInputIdempotencyAndRiskDenial()
     {
         var store = Ready();
-        byte[] key = RandomNumberGenerator.GetBytes(32);
+        byte[] key = RandomNumberGenerator.GetBytes(64);
         var builder = WebApplication.CreateBuilder();
         builder.WebHost.UseTestServer();
         GateApi.Configure(builder, key);
@@ -150,19 +150,24 @@ public sealed class DurabilityTests : IDisposable
             request.Content = JsonContent.Create(new ReserveRequest("http-order", quantity));
             return await client.SendAsync(request, TestContext.Current.CancellationToken);
         }
-        string Token(string role, byte[] signingKey, string? audience = null, DateTime? expires = null)
+        string Token(string role, byte[] signingKey, string? audience = null, DateTime? expires = null,
+            string? issuer = null, bool includeSubject = true, string algorithm = SecurityAlgorithms.HmacSha256)
         {
             var end = expires ?? DateTime.UtcNow.AddMinutes(2);
-            var token = new JwtSecurityToken(GateApi.Issuer, audience ?? GateApi.Audience,
-                [new Claim("sub", "synthetic-operator"), new Claim("role", role)],
-                end.AddMinutes(-5), end, new SigningCredentials(new SymmetricSecurityKey(signingKey), SecurityAlgorithms.HmacSha256));
+            var claims = new List<Claim> { new("role", role) };
+            if (includeSubject) claims.Add(new("sub", "synthetic-operator"));
+            var token = new JwtSecurityToken(issuer ?? GateApi.Issuer, audience ?? GateApi.Audience,
+                claims, end.AddMinutes(-5), end, new SigningCredentials(new SymmetricSecurityKey(signingKey), algorithm));
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
         Assert.Equal(HttpStatusCode.Unauthorized, (await Send(null)).StatusCode);
         Assert.Equal(HttpStatusCode.Unauthorized, (await Send(Token("operator", RandomNumberGenerator.GetBytes(32)))).StatusCode);
         Assert.Equal(HttpStatusCode.Unauthorized, (await Send(Token("operator", key, "wrong-audience"))).StatusCode);
+        Assert.Equal(HttpStatusCode.Unauthorized, (await Send(Token("operator", key, issuer: "wrong-issuer"))).StatusCode);
+        Assert.Equal(HttpStatusCode.Unauthorized, (await Send(Token("operator", key, algorithm: SecurityAlgorithms.HmacSha384))).StatusCode);
         Assert.Equal(HttpStatusCode.Unauthorized, (await Send(Token("operator", key, expires: DateTime.UtcNow.AddMinutes(-1)))).StatusCode);
         Assert.Equal(HttpStatusCode.Forbidden, (await Send(Token("reader", key))).StatusCode);
+        Assert.Equal(HttpStatusCode.Forbidden, (await Send(Token("operator", key, includeSubject: false))).StatusCode);
         Assert.Equal(2, store.ReadState().Sequence);
         var valid = Token("operator", key);
         Assert.Equal(HttpStatusCode.BadRequest, (await Send(valid, quantity: 0)).StatusCode);
