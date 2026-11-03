@@ -1,8 +1,8 @@
 # Trading Execution Lab — C# order state and reserved exposure
 
-[![C# synthetic invariants](https://github.com/pouriaquant91/trading-execution-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/pouriaquant91/trading-execution-lab/actions/workflows/ci.yml)
+[![C# synthetic invariants](https://github.com/pouriajamali/trading-execution-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/pouriajamali/trading-execution-lab/actions/workflows/ci.yml)
 
-[Reviewer guide](https://pouriajamali.site/work/engineering-evidence/) · [Source releases](https://github.com/pouriaquant91/trading-execution-lab/releases) · [Model boundaries](SCOPE.md)
+[Reviewer guide](https://pouriajamali.site/work/engineering-evidence/) · [Source releases](https://github.com/pouriajamali/trading-execution-lab/releases) · [Model boundaries](SCOPE.md)
 
 A C# event/state model makes exposure reservations, cancellation races and
 recovery gates inspectable. Immutable state, typed events and 24 test cases let a
@@ -54,7 +54,7 @@ model cases remain intact, alongside 9 hosting and 9 durability/API cases (**42 
 - **Separate rejection from missing data.** A valid but risk-denied command
   consumes its normalized envelope without reserving quantity. The next valid
   event therefore does not create a false gap. Inspect
-  [`RiskDenialDoesNotCreateFalseSequenceGap`](https://github.com/pouriaquant91/trading-execution-lab/blob/v0.2.0/ExecutionLab.Tests/OrderGateTests.cs#L27):
+  [`RiskDenialDoesNotCreateFalseSequenceGap`](https://github.com/pouriajamali/trading-execution-lab/blob/v0.2.0/ExecutionLab.Tests/OrderGateTests.cs#L27):
   sequence 3 is risk-denied; cancellation at sequence 4 still applies to the
   reconciled state. Invalid envelopes and stale duplicates are not consumed.
 - **Deduplicate at two levels.** Envelope IDs and execution IDs serve different
