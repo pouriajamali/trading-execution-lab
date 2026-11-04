@@ -184,6 +184,44 @@ public sealed class DurabilityTests : IDisposable
         Assert.Equal(2, Store().ReadState().ReservedExposure);
     }
 
+    [Fact]
+    public async Task LocalPanelRequiresLoginAndReadsTheSameSyntheticGate()
+    {
+        var cancellation = TestContext.Current.CancellationToken;
+        var store = Ready();
+        var signingKey = RandomNumberGenerator.GetBytes(32);
+        var code = Convert.ToHexString(RandomNumberGenerator.GetBytes(16));
+        var builder = WebApplication.CreateBuilder();
+        builder.WebHost.UseTestServer();
+        GateApi.Configure(builder, signingKey);
+        PanelApi.Configure(builder);
+        await using var app = builder.Build();
+        PanelApi.Map(app, store, 10, signingKey, code);
+        GateApi.Map(app, store);
+        await app.StartAsync(cancellation);
+        using var client = app.GetTestClient();
+        Assert.Equal(HttpStatusCode.Unauthorized, (await client.GetAsync("/panel/api/state", cancellation)).StatusCode);
+        using var wrong = await client.PostAsJsonAsync("/panel/api/session", new OperatorLogin("wrong-operator-code"), cancellation);
+        Assert.Equal(HttpStatusCode.Unauthorized, wrong.StatusCode);
+        using var login = await client.PostAsJsonAsync("/panel/api/session", new OperatorLogin(code), cancellation);
+        Assert.Equal(HttpStatusCode.OK, login.StatusCode);
+        Assert.True(login.Headers.CacheControl?.NoStore);
+        using var loginJson = System.Text.Json.JsonDocument.Parse(await login.Content.ReadAsStringAsync(cancellation));
+        client.DefaultRequestHeaders.Authorization = new("Bearer", loginJson.RootElement.GetProperty("token").GetString());
+        using var request = new HttpRequestMessage(HttpMethod.Post, "/reservations");
+        request.Headers.Add("Idempotency-Key", "panel-test");
+        request.Content = JsonContent.Create(new ReserveRequest("sample", 3));
+        using var decision = await client.SendAsync(request, cancellation);
+        Assert.True((await decision.Content.ReadFromJsonAsync<DecisionResponse>(cancellation))!.Accepted);
+        using var state = await client.GetAsync("/panel/api/state", cancellation);
+        Assert.Equal(HttpStatusCode.OK, state.StatusCode);
+        Assert.True(state.Headers.CacheControl?.NoStore);
+        using var stateJson = System.Text.Json.JsonDocument.Parse(await state.Content.ReadAsStringAsync(cancellation));
+        Assert.Equal(3, stateJson.RootElement.GetProperty("exposure").GetInt64());
+        Assert.Equal(3, stateJson.RootElement.GetProperty("sequence").GetInt64());
+        Assert.Equal("sample", stateJson.RootElement.GetProperty("orders")[0].GetProperty("id").GetString());
+    }
+
     public void Dispose()
     {
         foreach (var suffix in new[] { "", "-journal", "-wal", "-shm" }) File.Delete(path + suffix);

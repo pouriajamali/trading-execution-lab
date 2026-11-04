@@ -17,7 +17,27 @@ jobs:
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '10.0.x'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: OperatorPanel/package-lock.json
+      - name: Test and build the operator UI
+        working-directory: OperatorPanel
+        run: |
+          npm ci
+          npm test
+          npm run build
       - run: dotnet run --project ExecutionLab.Tests/ExecutionLab.Tests.csproj --configuration Release
+      - name: Publish the local operator panel bundle
+        run: dotnet publish ExecutionLab.Api/ExecutionLab.Api.csproj --configuration Release --no-self-contained -p:UseAppHost=false -o artifacts/operator-panel
+      - uses: actions/upload-artifact@v4
+        with:
+          name: operator-panel-${{ matrix.os }}
+          path: |
+            artifacts/operator-panel/
+            scripts/Start-OperatorPanel.ps1
+          if-no-files-found: error
       - name: Reproduce bounded measurement contract
         run: dotnet run --project ExecutionLab.Measurements/ExecutionLab.Measurements.csproj --configuration Release -- --output artifacts/measurement
       - uses: actions/upload-artifact@v4

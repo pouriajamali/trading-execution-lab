@@ -10,7 +10,40 @@ reviewer trace why a command was accepted, denied or stopped for reconciliation.
 An additive bounded-channel host now demonstrates concurrent admission, single-writer
 state ownership and shutdown/cancellation contracts. A transactional control-plane
 sample now adds real SQLite persistence and an ASP.NET Core API. The original 24
-model cases remain intact, alongside 9 hosting and 9 durability/API cases (**42 total**).
+model cases remain intact, alongside 9 hosting and 10 durability/API cases (**43 total**).
+
+## Operator Panel preview
+
+The opt-in [React and TypeScript panel](OperatorPanel) uses the same .NET API
+and SQLite gate as the existing reservation sample. Sign in locally, read the
+current exposure and working orders, evaluate a synthetic reservation and replay
+the same request to inspect its original receipt. The live state and a receipt
+are shown separately because a historical replay can differ from current state.
+
+**Windows quick start.** Extract the operator-panel ZIP from the
+[preview release](https://github.com/pouriajamali/trading-execution-lab/releases/tag/v0.5.0-preview.1).
+With the ASP.NET Core .NET 10 runtime installed, run
+`pwsh -File Start-OperatorPanel.ps1` from the extracted directory. Choose an
+operator code for that run, then open <http://127.0.0.1:5087/panel/>. Use a new
+order ID and 2 lots to move from 7 to 9 lots. Replay the request, then use a new
+ID and 2 lots to observe a denial at the 10-lot limit. Stop the server with Ctrl+C.
+
+**Build from source.** With Node.js 24 and the .NET 10 SDK, run:
+
+```sh
+npm --prefix OperatorPanel ci
+npm --prefix OperatorPanel test
+npm --prefix OperatorPanel run build
+dotnet publish ExecutionLab.Api/ExecutionLab.Api.csproj -c Release --no-self-contained -p:UseAppHost=false -o artifacts/operator-panel
+pwsh -File scripts/Start-OperatorPanel.ps1 -PublishedDirectory artifacts/operator-panel
+```
+
+The launcher creates a fresh disposable SQLite file and a per-run signing key.
+The optional operator-code endpoint is rate limited and issues a 15-minute token
+held in browser memory. The API is loopback-only and keeps the default halted
+behavior unless a new, explicitly synthetic database is seeded. A saved database
+cannot be reseeded by the launcher. There are no exchange credentials, broker
+adapters or real-order controls.
 
 ## Inspect transactional delivery and API contracts
 

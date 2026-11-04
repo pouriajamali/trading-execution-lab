@@ -1,5 +1,12 @@
 # Changes
 
+## v0.5.0-preview.1 — 4 November 2026
+
+- Optional loopback React/TypeScript operator panel over the existing reservation API.
+- Rate-limited local operator sign-in, short-lived JWT, read-only exposure/order status and explicit exact-request replay.
+- Windows launcher with a fresh synthetic database. Static assets are built into the .NET publish bundle.
+- 43 .NET cases and two UI protocol tests. Browser checks cover login rejection, acceptance, replay and limit denial.
+
 ## v0.4.0 — 3 November 2026
 
 - Actual file-backed SQLite state, receipt and audit-outbox atomic commit.

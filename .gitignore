@@ -3,3 +3,5 @@
 TestResults/
 *.trx
 artifacts/
+OperatorPanel/node_modules/
+ExecutionLab.Api/wwwroot/panel/
