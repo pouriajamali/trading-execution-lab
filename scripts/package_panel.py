@@ -78,17 +78,18 @@ def main():
     assets = json.loads((ROOT / "ExecutionLab.Api/obj/project.assets.json").read_text())
     package_folders = [Path(folder) for folder in assets["packageFolders"]]
     dependencies = []
-    ns = {"n": "http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd"}
     for identity, entry in sorted(deps["libraries"].items()):
         if entry["type"] != "package": continue
         package_id, package_version = identity.split("/")
         directory = next(folder / package_id.lower() / package_version for folder in package_folders
                          if (folder / package_id.lower() / package_version).is_dir())
-        nuspec = ET.parse(next(directory.glob("*.nuspec"))).find("n:metadata", ns)
-        license_id = nuspec.findtext("n:license", namespaces=ns)
+        # Existing packages use more than one NuSpec schema namespace.
+        nuspec = ET.parse(next(directory.glob("*.nuspec"))).find("{*}metadata")
+        assert nuspec is not None, identity
+        license_id = nuspec.findtext("{*}license")
         assert license_id in {"MIT", "Apache-2.0"}, (identity, "Review this dependency's license before redistribution")
         dependencies.append({"package": package_id, "version": package_version, "license": license_id,
-                             "copyright": nuspec.findtext("n:copyright", default="", namespaces=ns)})
+                             "copyright": nuspec.findtext("{*}copyright", default="")})
         for notice in directory.iterdir():
             if notice.is_file() and (notice.name.upper().startswith("LICENSE") or notice.name.upper().startswith("THIRD-PARTY-NOTICES")):
                 shutil.copy2(notice, licenses / (package_id + "-" + notice.name))

@@ -34,7 +34,7 @@
     "scripts/check_launcher.py": "4b83a32c137b90fe847f06c694c93a5aadbd220ef7496f6141ab43e16de7ba83",
     "scripts/check_package.py": "6209441b44c2cadfd0e04783fb998f5686eb029bbc12741014749a8ab1b0e245",
     "scripts/check_release.py": "e8c79c6f72e9143217dc829abfdbc33fa0c593e7787f4ca98c0ed2393b0c80e4",
-    "scripts/package_panel.py": "d5fe438a2092d39765e0749c65fa342a21e3a24ca7ba9d388ea8e09a0f843c1d"
+    "scripts/package_panel.py": "768dc401dd180ba56152779f1b149e4b1833e1ca75c3628c71c822cd6e5ffc17"
   },
   "unchangedFromBaseline": {
     "ExecutionLab/OrderGate.cs": {
@@ -287,6 +287,10 @@
     "work/win-fdd-no-runtime-download-restore.txt": {
       "sha256": "4205ad6a16940d93a3e110a4f6f6ac460ff5e9795c14f99e6f02f1ce9a55ac9c",
       "bytes": 475
+    },
+    "work/candidate-package-build.txt": {
+      "sha256": "777aec38148970bcf929c103de1c03e95110e8b62d61eae7c11fe5f340230f83",
+      "bytes": 472
     }
   },
   "firstEnvironmentAndHarnessFailures": [
@@ -295,7 +299,8 @@
     "Launcher harness parser/relative-path/finally and redirected-secure-input limitations retained, not reported as product failures.",
     "First endpoint preference attempt still bound configured alternate loopback port; final guard rejects before DB creation.",
     "RID restore initially requested unnecessary runtime packs; FDD download switches resolved it without bundling/installing a runtime.",
-    "Old public archive download stopped at finite120s; partial retained and not executed or called verified."
+    "Old public archive download stopped at finite120s; partial retained and not executed or called verified.",
+    "First private package build stopped at license collection because NuSpec namespaces vary; no archive was created. Namespace-independent metadata lookup fixed the packaging helper."
   ],
   "releaseEvidence": "This file is a local snapshot. Exact source/tree/allowlist, signed candidate, archive hashes, matching-OS executed packages, CI and actual public downloads are separately required at publication.",
   "limits": "Single synthetic gate; no tenant isolation, live broker, account/market data, production/HFT/latency/profit/novelty or exactly-once/power-loss claim. No CV/profile/site/shared-private-source edits."
