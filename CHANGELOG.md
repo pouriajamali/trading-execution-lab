@@ -1,5 +1,11 @@
 # Changes
 
+## Documentation — 5 November 2026
+
+- Lead with a one-minute browser walkthrough and distinguish its JavaScript model from the downloadable .NET/SQLite operator panel.
+- Add the owner's approved MIT license for original public sample material and a contribution guide for synthetic, reproducible reports.
+- Application code, tests and existing release archives are unchanged.
+
 ## v0.5.0-preview.1 — 4 November 2026
 
 - Optional loopback React/TypeScript operator panel over the existing reservation API.

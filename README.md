@@ -2,15 +2,27 @@
 
 [![C# synthetic invariants](https://github.com/pouriajamali/trading-execution-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/pouriajamali/trading-execution-lab/actions/workflows/ci.yml)
 
-[Reviewer guide](https://pouriajamali.site/work/engineering-evidence/) · [Source releases](https://github.com/pouriajamali/trading-execution-lab/releases) · [Model boundaries](SCOPE.md)
+[Try the browser demo](https://pouriajamali.site/demo/operator-panel/) · [Download the local panel](https://github.com/pouriajamali/trading-execution-lab/releases/tag/v0.5.0-preview.1) · [Design decisions](docs/decisions) · [Scope](SCOPE.md)
 
-A C# event/state model makes exposure reservations, cancellation races and
-recovery gates inspectable. Immutable state, typed events and 24 test cases let a
-reviewer trace why a command was accepted, denied or stopped for reconciliation.
-An additive bounded-channel host now demonstrates concurrent admission, single-writer
-state ownership and shutdown/cancellation contracts. A transactional control-plane
-sample now adds real SQLite persistence and an ASP.NET Core API. The original 24
-model cases remain intact, alongside 9 hosting and 10 durability/API cases (**43 total**).
+Explore order-risk decisions and retry-safe request processing in C#/.NET.
+The sample combines an order-state model, a single-writer host and an ASP.NET Core
+API that commits SQLite state, an idempotency receipt and an audit outbox together.
+The current .NET suite has 43 cases; the original 24 model cases remain intact.
+
+## Try it in one minute
+
+Open the [browser demo](https://pouriajamali.site/demo/operator-panel/) with no
+installation or account. Start with 4 filled lots and 3 working lots against a
+10-lot limit:
+
+1. Reserve 2 lots: exposure becomes 9.
+2. Replay the same request: exposure stays at 9.
+3. Submit another 2 lots with a new order ID: the gate denies it.
+
+The browser demo uses a synthetic JavaScript model. The downloadable local panel
+below runs against the actual .NET API and SQLite sample; they are separate
+implementations. For the transaction and recovery decisions, follow the
+[reviewer guide](https://pouriajamali.site/work/engineering-evidence/).
 
 ## Operator Panel preview
 
@@ -137,6 +149,15 @@ The original v0.2.0 model remains available. The suite checks the documented fix
 and assumptions, not production correctness. The queue capacity bounds buffered
 entries; waiting producer tasks and session ID stores are not a bounded-memory claim.
 Separately labelled JavaScript portfolio examples remain educational.
+
+## Contributing and license
+
+Bug reports with a small synthetic reproduction are welcome. See
+[CONTRIBUTING.md](CONTRIBUTING.md) for setup, tests and useful report details.
+Original sample material is available under the [MIT license](LICENSE).
+Third-party dependencies retain their respective licenses. Existing tagged
+release archives are historical artifacts; this documentation update does not
+replace them or change the code inside those archives.
 
 ## Attribution
 
