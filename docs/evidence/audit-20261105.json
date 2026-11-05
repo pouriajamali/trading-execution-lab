@@ -6,7 +6,7 @@
   "aiAssistance": true,
   "sourceFingerprintMethod": "SHA256 of UTF-8 working source with CRLF normalized to LF; no self hash; exact candidate commit/tree is supplied separately for review and release.",
   "normalizedSourceSha256": {
-    ".github/workflows/ci.yml": "4fd7935060cd8b1754dff1477cc701d5b54d67e8ca03a87898ac32eda5cde801",
+    ".github/workflows/ci.yml": "3c1727ce19e4d3aaee0ec6f15bf75924a0e30fa43764ec4996ea0ed001b66dc2",
     "ExecutionLab.Api/ExecutionLab.Api.csproj": "9ed5d85970089baa13a828a93f17179c37292f908c07748c43b110c839ae7d03",
     "ExecutionLab.Api/GateApi.cs": "e853ef96f6b0337136fc5b0a4e6bea9e2acfc8eaf1b046bfa8e89e09a245c07a",
     "ExecutionLab.Api/PanelApi.cs": "e9ae0cab083aa2b7178baf174e886089149287c589f0f8fa1c54329a2c78caae",
@@ -303,5 +303,12 @@
     "First private package build stopped at license collection because NuSpec namespaces vary; no archive was created. Namespace-independent metadata lookup fixed the packaging helper."
   ],
   "releaseEvidence": "This file is a local snapshot. Exact source/tree/allowlist, signed candidate, archive hashes, matching-OS executed packages, CI and actual public downloads are separately required at publication.",
+  "firstPrivateSourceArchiveFailure": {
+    "candidate": "5865c8952f9470e9b473a1d12f0be6def64eabdf",
+    "archiveRetainedAs": "work/candidate-source.zip",
+    "sha256": "825d5b397ce15b26b3c1b911bdffca9276e3104da554db984d392bb7eee104ae",
+    "observation": "Coordinator byte comparison failed first at .github/workflows/ci.yml: Windows archive applied working-tree newline conversion.",
+    "fix": "Pin core.autocrlf=false and core.eol=lf in both private source archive and release workflow; compare every member byte-for-byte with Git blob before review. Original archive and coordinator first-failure receipt retained."
+  },
   "limits": "Single synthetic gate; no tenant isolation, live broker, account/market data, production/HFT/latency/profit/novelty or exactly-once/power-loss claim. No CV/profile/site/shared-private-source edits."
 }

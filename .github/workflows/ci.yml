@@ -96,7 +96,7 @@ jobs:
       - name: Archive source and checksum all three archives
         shell: bash
         run: |
-          git archive --format=zip --prefix="trading-execution-lab-${RELEASE_TAG}-source/" --output="artifacts/release/trading-execution-lab-${RELEASE_TAG}-source.zip" HEAD
+          git -c core.autocrlf=false -c core.eol=lf archive --format=zip --prefix="trading-execution-lab-${RELEASE_TAG}-source/" --output="artifacts/release/trading-execution-lab-${RELEASE_TAG}-source.zip" HEAD
           cd artifacts/release
           sha256sum *.zip *.tar.gz > SHA256SUMS.txt
       - name: Publish tested preview assets
