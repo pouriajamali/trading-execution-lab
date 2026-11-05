@@ -1,5 +1,10 @@
 # Changes
 
+## Unreleased - documentation
+
+- Clarify the source quick start and expected result, and link focused contribution guidance. Runtime behavior, release assets and recorded measurements are unchanged.
+
+
 ## Documentation — 5 November 2026
 
 - Lead with a one-minute browser walkthrough and distinguish its JavaScript model from the downloadable .NET/SQLite operator panel.
