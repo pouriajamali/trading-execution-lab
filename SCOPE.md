@@ -53,7 +53,7 @@ these assumptions. CI results remain separate from production correctness.
 Nine additional integration cases cover actual SQLite transactions and the JWT
 HTTP pipeline. One database owns one synthetic long-only gate and a fixed exposure
 limit; all authorized operators share it. There is no account/tenant isolation,
-external identity provider, OAuth authorization server, token-issuance endpoint,
+external identity provider or OAuth authorization server,
 broker dispatcher, schema-upgrade system, production SLO or HFT timing claim.
 The local HMAC key is supplied privately at runtime; tests generate random keys.
 
@@ -63,3 +63,27 @@ is not a current risk snapshot and cannot authorize new external execution.
 Persisting a previously reconciled model state does not reconcile a live account.
 Failure tests inject exceptions/omit acknowledgement; power-loss, disk corruption,
 cross-machine partitions and broker failure behavior have not been tested.
+
+## Audited local panel boundary (v0.5.1-preview.1)
+
+The opt-in local-code endpoint issues a short-lived token, not an external IdP.
+All operators share the same fictitious gate. There is no tenant/account order
+ownership. The total is 56 C# cases (24 original model,9 original host,
+23 transaction/API/boundary cases) plus 11 protocol tests.
+
+The React client verifies closed session/state/receipt shapes, at most 1MiB of
+actual UTF-8 response bytes, at most 10,000 active orders, <=64-code-unit IDs,
+safe nonnegative JavaScript integers, unique IDs and exact exposure sums.
+Unrepresentable Int64 values and inconsistent/unknown DTOs fail closed as
+unverified responses. This is a bounded display profile, not bounded store
+retention. A last request/key survives reauthentication only in the same tab;
+reload or closure loses it.
+
+Actual-package probes use installed ASP.NET Core runtimes, real loopback HTTP
+and disposable SQLite. Process reopen and a pre-commit exception are separate
+from power loss/crash-in-the-middle. The UI has no fill/cancel/resume controls;
+those invariants are exercised through typed local tests. Audit is at-least-once
+redelivery with deduplicated inbox effects, not exactly-once delivery.
+
+The current correctness workflow does not rerun profiling. Original raw
+measurements and their measured-source boundary are retained.

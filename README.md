@@ -2,12 +2,22 @@
 
 [![C# synthetic invariants](https://github.com/pouriajamali/trading-execution-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/pouriajamali/trading-execution-lab/actions/workflows/ci.yml)
 
-[Try the browser demo](https://pouriajamali.site/demo/operator-panel/) · [Download the local panel](https://github.com/pouriajamali/trading-execution-lab/releases/tag/v0.5.0-preview.1) · [Design decisions](docs/decisions) · [Scope](SCOPE.md)
+[Try the browser demo](https://pouriajamali.site/demo/operator-panel/) · [Download the local panel](https://github.com/pouriajamali/trading-execution-lab/releases/tag/v0.5.1-preview.1) · [Engineering proof](docs/CASE-STUDY.md) · [Scope](SCOPE.md)
 
 Explore order-risk decisions and retry-safe request processing in C#/.NET.
 The sample combines an order-state model, a single-writer host and an ASP.NET Core
 API that commits SQLite state, an idempotency receipt and an audit outbox together.
-The current .NET suite has 43 cases; the original 24 model cases remain intact.
+The current .NET suite has 56 cases; the original 24 model cases remain intact.
+
+## What this audit proves
+
+The [case study](docs/CASE-STUDY.md) maps decisions to source, named tests and
+exact-release package checks. A pre-commit exception rolls back state, receipt
+and audit together; a lost/unverifiable response is an **unknown receipt**.
+Same-key replay preserves the original result. The UI labels failed refreshes
+stale and blocks new requests until an unresolved receipt is checked. The
+signed-token policy rejects empty subjects. Historical measurements remain
+unchanged; no new profiling dataset was generated for this audit.
 
 ## Try it in one minute
 
@@ -32,13 +42,24 @@ current exposure and working orders, evaluate a synthetic reservation and replay
 the same request to inspect its original receipt. The live state and a receipt
 are shown separately because a historical replay can differ from current state.
 
-**Windows quick start.** Extract the operator-panel ZIP from the
-[preview release](https://github.com/pouriajamali/trading-execution-lab/releases/tag/v0.5.0-preview.1).
-With the ASP.NET Core .NET 10 runtime installed, run
-`pwsh -File Start-OperatorPanel.ps1` from the extracted directory. Choose an
-operator code for that run, then open <http://127.0.0.1:5087/panel/>. Use a new
-order ID and 2 lots to move from 7 to 9 lots. Replay the request, then use a new
-ID and 2 lots to observe a denial at the 10-lot limit. Stop the server with Ctrl+C.
+**Windows / Ubuntu quick start.** Download the matching x64 archive and checksums
+from [v0.5.1-preview.1](https://github.com/pouriajamali/trading-execution-lab/releases/tag/v0.5.1-preview.1):
+[Windows ZIP](https://github.com/pouriajamali/trading-execution-lab/releases/download/v0.5.1-preview.1/trading-execution-lab-v0.5.1-preview.1-win-x64.zip) ·
+[Ubuntu/glibc tar.gz](https://github.com/pouriajamali/trading-execution-lab/releases/download/v0.5.1-preview.1/trading-execution-lab-v0.5.1-preview.1-linux-x64.tar.gz) ·
+[SHA256SUMS](https://github.com/pouriajamali/trading-execution-lab/releases/download/v0.5.1-preview.1/SHA256SUMS.txt).
+Extract the whole folder. Install x64 **ASP.NET Core Runtime 10.0.14 or a later
+10.0 patch** and **PowerShell 7**; these packages are framework-dependent.
+No SDK, Node.js or Python is required to run the panel.
+
+Windows: `pwsh -NoProfile -File .\Start-OperatorPanel.ps1`
+
+Ubuntu: `pwsh -NoProfile -File ./Start-OperatorPanel.ps1`
+
+Choose a run-only operator code, then open <http://127.0.0.1:5087/panel/>.
+A new ID and 2 lots move 7→9; replay stays9; a different ID and2 lots are denied.
+Use Ctrl+C to stop. See [prerequisites and troubleshooting](docs/QUICKSTART.md).
+Unsigned developer preview; audited targets are Windows x64 and Ubuntu24.04/glibc
+x64. Other distributions, ARM, musl and macOS are unverified.
 
 **Build from source.** With Node.js 24 and the .NET 10 SDK, run:
 
@@ -54,7 +75,9 @@ The launcher creates a fresh disposable SQLite file and a per-run signing key.
 The optional operator-code endpoint is rate limited and issues a 15-minute token
 held in browser memory. The API is loopback-only and keeps the default halted
 behavior unless a new, explicitly synthetic database is seeded. A saved database
-cannot be reseeded by the launcher. There are no exchange credentials, broker
+cannot be reseeded. The launcher starts fresh each run and removes only its own
+temporary directory on normal/finally exit; forced termination can leave it behind.
+There are no exchange credentials, broker
 adapters or real-order controls.
 
 ## Inspect transactional delivery and API contracts
@@ -74,7 +97,7 @@ adapters or real-order controls.
   the tradeoffs. The outbox contains **audit facts**, not exchange commands.
   Its illustrative local inbox/counter is not a RabbitMQ transport.
 
-## Inspect the new host and measurements
+## Inspect the separate in-memory host and historical measurements
 
 - [SerializedExecutionSession](ExecutionLab.Hosting/SerializedExecutionSession.cs):
   multiple producers, one state owner, `FullMode.Wait`, admission-only cancellation
@@ -130,6 +153,12 @@ single-stream model, retention limits and unimplemented adapter responsibilities
 
 ## Verification and release history
 
+- **v0.5.1-preview.1:** stale/unknown receipt UI, bounded closed DTO validation,
+  handler-level form guard, nonblank JWT subject, loopback configuration guard
+  and launcher exit/environment/cleanup fixes.56 C# cases, 11 protocol tests
+  and matching-OS extracted-package HTTP/SQLite checks. See the
+  [claim/test map](docs/CASE-STUDY.md). API/UI share version 0.5.1-preview.1; original
+  core/host code and historical measurement bytes remain unchanged.
 - **v0.4.0:** transactional state/receipt/audit outbox and inbox, JWT-protected
   control-plane API, 9 new integration cases. No core/host behavior change.
   Reproduction needs no account, cloud service, broker, network port or committed
@@ -137,7 +166,8 @@ single-stream model, retention limits and unimplemented adapter responsibilities
 - **v0.3.0:** additive host/measurement projects and 9 hosting cases; core
   model and 24 original cases unchanged. Local Windows SDK 10.0.403/runtime 10.0.14:
   33 passed, 0 skips; finite measurement contract passed for all 15 batches. The CI
-  badge links to Windows/Linux correctness runs and per-run measurement artifacts.
+  badge links to Windows/Linux correctness runs. Historical v0.3 runs retain
+  their measurement artifacts; current CI checks actual packages without fresh profiling.
   Inspect the exact release commit and downloadable source when assessing delivery.
 - **v0.2.0:** source-only release; `net10.0` and SDK 10 on Ubuntu/Windows CI. Order
   model and 24 cases unchanged. Historical local Windows check on 28 October 2026:
@@ -161,6 +191,6 @@ replace them or change the code inside those archives.
 
 ## Attribution
 
-Independent synthetic portfolio material created with AI assistance in October
+Independent synthetic portfolio material created with AI assistance in October–November
 2026 for Pouria Jamali. No employer/private-project source, real account/market
 data or broker connection is included.

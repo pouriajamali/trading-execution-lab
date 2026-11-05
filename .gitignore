@@ -5,3 +5,4 @@ TestResults/
 artifacts/
 OperatorPanel/node_modules/
 ExecutionLab.Api/wwwroot/panel/
+**/__pycache__/

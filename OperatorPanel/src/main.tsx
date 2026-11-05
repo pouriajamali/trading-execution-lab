@@ -7,6 +7,8 @@ function App() {
   const [token, setToken] = useState('');
   const [code, setCode] = useState('');
   const [state, setState] = useState<Snapshot>();
+  const [fresh, setFresh] = useState(false);
+  const [unresolved, setUnresolved] = useState(false);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
   const [id, setId] = useState('sample-001');
@@ -16,9 +18,11 @@ function App() {
 
   function signOut() {
     setToken('');
+    setCode('');
     setState(undefined);
-    setLast(undefined);
-    setDecision(undefined);
+    setFresh(false);
+    // Preserve the in-memory exact retry across token expiry / reauthentication.
+    // It is not persisted across page reloads or browser closure.
     setError('');
   }
 
@@ -35,26 +39,33 @@ function App() {
 
   function login(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (busy) return;
     void action(async () => {
-      const session = await call<{ token: string }>('/panel/api/session', undefined, {
+      const session = await call('/panel/api/session', undefined, {
         method: 'POST', body: JSON.stringify({ code })
       });
       setCode('');
-      const snapshot = await call<Snapshot>('/panel/api/state', session.token);
+      const snapshot = await call('/panel/api/state', session.token);
       setToken(session.token);
       setState(snapshot);
+      setFresh(true);
     });
   }
 
   async function refresh(session: string) {
-    setState(await call<Snapshot>('/panel/api/state', session));
+    setFresh(false);
+    setState(await call('/panel/api/state', session));
+    setFresh(true);
   }
 
   async function submit(command: Command) {
     setLast(command);
+    setUnresolved(true);
+    setFresh(false);
     setDecision(undefined);
-    const result = await call<Decision>('/reservations', token, requestFor(command));
+    const result = await call('/reservations', token, requestFor(command));
     setDecision(result);
+    setUnresolved(false);
     // A denied command can still consume a cursor, and a replay is historical.
     // Always read current state separately from the receipt.
     await refresh(token);
@@ -62,6 +73,8 @@ function App() {
 
   function reserve(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    // Form/Enter submission must obey the same guard as the visible button.
+    if (busy || !fresh || unresolved || !state?.reconciled || state.stopped) return;
     void action(() => submit(commandFrom(crypto.randomUUID(), id, quantity)));
   }
 
@@ -83,11 +96,11 @@ function App() {
         <button disabled={busy} type="submit">{busy ? 'Connecting…' : 'Connect to local API'}</button>
       </form>
     </section> : state && <>
-      <section className="surface status" aria-label="Current gate status">
-        <div><p className="eyebrow">GATE STATUS</p><strong className={ready ? 'ok' : 'halt'}>{ready ? 'Ready' : 'Halted'}</strong><span className="sequence">Sequence {state.sequence}</span></div>
+      <section className="surface status" aria-label="Last fetched gate status">
+        <div><p className="eyebrow">GATE STATUS</p><strong className={fresh && ready ? 'ok' : 'halt'}>{fresh ? (ready ? 'Ready' : 'Halted') : 'Unknown · stale snapshot'}</strong><span className="sequence">Sequence {state.sequence}</span><p>{fresh ? 'Last successful fetch; refresh to observe later changes.' : 'Values below are last known, not a confirmed current state.'}</p></div>
         <div className="actions"><button className="secondary" disabled={busy} onClick={() => void action(() => refresh(token))}>Refresh state</button><button className="secondary" disabled={busy} onClick={signOut}>Sign out</button></div>
       </section>
-      <section className="metrics" aria-label="Exposure metrics">
+      <section className="metrics" aria-label={fresh ? 'Last fetched exposure metrics' : 'Stale exposure metrics'}>
         {[['Filled position', state.position], ['Working orders', state.pending], ['Reserved exposure', state.exposure], ['Exposure limit', state.limit]].map(([label, value]) =>
           <div className="surface metric" key={label}><p>{label}</p><strong>{value}</strong><span> lots</span></div>)}
       </section>
@@ -101,10 +114,11 @@ function App() {
         <section className="surface" aria-labelledby="reservation-title">
           <h2 id="reservation-title">Test a reservation</h2>
           <p>Only the local synthetic risk gate evaluates this request.</p>
+          {unresolved && <p className="notice" role="status">{busy ? 'Request pending. The API may commit before its response arrives.' : 'Receipt unknown. Replay the exact request before starting a new one. Signing out keeps this retry in the tab; reloading or closing the tab loses it.'}</p>}
           <form onSubmit={reserve}>
             <div className="fields"><div><label htmlFor="id">Order ID</label><input id="id" value={id} onChange={e => setId(e.target.value)} maxLength={64} required /></div>
             <div><label htmlFor="quantity">Lots</label><input id="quantity" value={quantity} onChange={e => setQuantity(e.target.value)} type="number" min={1} step={1} required /></div></div>
-            <div className="actions"><button disabled={busy} type="submit">Evaluate reservation</button>{last && <button type="button" className="secondary" disabled={busy} onClick={() => void action(() => submit(last))}>Replay last request</button>}</div>
+            <div className="actions"><button disabled={busy || !fresh || unresolved || !ready} type="submit">Evaluate reservation</button>{last && <button type="button" className="secondary" disabled={busy} onClick={() => void action(() => submit(last))}>Replay last request</button>}</div>
           </form>
           {decision && <div className="receipt" role="status">
             <strong className={decision.accepted ? 'ok' : 'halt'}>{decision.accepted ? 'Accepted' : 'Denied'}</strong> <span>{decision.replayed ? '· Replayed receipt' : '· New receipt'}</span>

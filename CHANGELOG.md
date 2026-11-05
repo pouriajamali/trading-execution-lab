@@ -1,5 +1,22 @@
 # Changes
 
+## v0.5.1-preview.1 — 5 November 2026
+
+- Label failed fetches stale; preserve unknown request/key across relogin;
+  block new reservations in the button and form handler until safe to send.
+- Verify bounded session/state/receipt DTOs, safe integer/exposure invariants
+  and known reasons. Never render raw malformed responses.
+- Reject signed operator JWTs with blank subjects and configured Kestrel
+  endpoints before DB creation; loopback/Host guards cover API-only mode too.
+- Propagate launcher child exit, restore environment and clean only its own
+  temporary data. Forced termination/cleanup failure remain explicit limits.
+- 56 C# cases, 11 protocol tests, launcher cases and 22 real HTTP/SQLite checks.
+- Matching Windows/Linux x64 framework-dependent packages, manifests,
+  dependency licenses and source/checksums, aggregated without rebuilding
+  tested archives. Installed ASP.NET Core 10.0.14+ (10.0 patch) and pwsh 7 required.
+- Add quickstart and claim/test case study. Preserve old tags and historical
+  measurement bytes; remove fresh profiling from correctness CI.
+
 ## Documentation — 5 November 2026
 
 - Lead with a one-minute browser walkthrough and distinguish its JavaScript model from the downloadable .NET/SQLite operator panel.

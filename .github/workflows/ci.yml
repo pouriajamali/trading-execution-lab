@@ -9,39 +9,97 @@ jobs:
   test:
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest]
+        include:
+          - os: ubuntu-24.04
+            rid: linux-x64
+          - os: windows-latest
+            rid: win-x64
     runs-on: ${{ matrix.os }}
-    timeout-minutes: 10
+    timeout-minutes: 12
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '10.0.x'
+          dotnet-version: '10.0.403'
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
           cache: npm
           cache-dependency-path: OperatorPanel/package-lock.json
-      - name: Test and build the operator UI
-        working-directory: OperatorPanel
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test the operator protocol and C# invariants
+        shell: pwsh
         run: |
-          npm ci
-          npm test
-          npm run build
-      - run: dotnet run --project ExecutionLab.Tests/ExecutionLab.Tests.csproj --configuration Release
-      - name: Publish the local operator panel bundle
-        run: dotnet publish ExecutionLab.Api/ExecutionLab.Api.csproj --configuration Release --no-self-contained -p:UseAppHost=false -o artifacts/operator-panel
+          npm --prefix OperatorPanel ci
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          npm --prefix OperatorPanel test
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          dotnet run --project ExecutionLab.Tests/ExecutionLab.Tests.csproj --configuration Release
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Check launcher exit, environment and owned cleanup
+        run: python scripts/check_launcher.py --work artifacts/launcher
+      - name: Build exact-commit framework-dependent package
+        run: python scripts/package_panel.py --work artifacts/build --out artifacts/delivery --rid ${{ matrix.rid }} --commit ${{ github.sha }}
+      - name: Extract actual archive to a path with spaces
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Path 'artifacts/extracted package' -ErrorAction Stop | Out-Null
+          $archive = Get-ChildItem -LiteralPath artifacts/delivery -File
+          if (@($archive).Count -ne 1) { throw 'One exact tested archive required.' }
+          if ($IsWindows) { Expand-Archive -LiteralPath $archive.FullName -DestinationPath 'artifacts/extracted package' }
+          else { tar -xzf $archive.FullName -C 'artifacts/extracted package'; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE } }
+      - name: Execute extracted package against real HTTP and SQLite
+        shell: pwsh
+        run: |
+          $package = Get-ChildItem -LiteralPath 'artifacts/extracted package' -Directory
+          if (@($package).Count -ne 1) { throw 'One package root required.' }
+          python scripts/check_package.py --package $package.FullName --work 'artifacts/runtime probe with spaces' --commit '${{ github.sha }}'
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
       - uses: actions/upload-artifact@v4
         with:
-          name: operator-panel-${{ matrix.os }}
+          name: tested-${{ matrix.rid }}
+          path: artifacts/delivery/*
+          if-no-files-found: error
+      - uses: actions/upload-artifact@v4
+        with:
+          name: proof-${{ matrix.rid }}
           path: |
-            artifacts/operator-panel/
-            scripts/Start-OperatorPanel.ps1
+            artifacts/build/archive.json
+            artifacts/runtime probe with spaces/receipt.json
+            artifacts/launcher/receipt.json
           if-no-files-found: error
-      - name: Reproduce bounded measurement contract
-        run: dotnet run --project ExecutionLab.Measurements/ExecutionLab.Measurements.csproj --configuration Release -- --output artifacts/measurement
-      - uses: actions/upload-artifact@v4
+
+  release:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: test
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    env:
+      RELEASE_TAG: ${{ github.ref_name }}
+      SOURCE_SHA: ${{ github.sha }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
-          name: measurement-${{ matrix.os }}
-          path: artifacts/measurement/
-          if-no-files-found: error
+          python-version: '3.12'
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: tested-*
+          merge-multiple: true
+          path: artifacts/release
+      - name: Verify the already-executed archives without rebuilding
+        run: python scripts/check_release.py --directory artifacts/release --commit "$SOURCE_SHA" --tag "$RELEASE_TAG"
+      - name: Archive source and checksum all three archives
+        shell: bash
+        run: |
+          git archive --format=zip --prefix="trading-execution-lab-${RELEASE_TAG}-source/" --output="artifacts/release/trading-execution-lab-${RELEASE_TAG}-source.zip" HEAD
+          cd artifacts/release
+          sha256sum *.zip *.tar.gz > SHA256SUMS.txt
+      - name: Publish tested preview assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "$RELEASE_TAG" artifacts/release/* --verify-tag --prerelease --title "$RELEASE_TAG — audited local operator panel" --notes-file docs/RELEASE-v0.5.1-preview.1.md

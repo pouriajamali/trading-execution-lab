@@ -1,4 +1,5 @@
 using System.Net;
+using Microsoft.AspNetCore.DataProtection;
 using ExecutionLab;
 using ExecutionLab.Api;
 using ExecutionLab.Persistence;
@@ -16,6 +17,11 @@ var operatorCode = panelEnabled
 if (panelEnabled && (operatorCode.Length is < 16 or > 128))
     throw new InvalidOperationException("Set an operator code of 16–128 characters for the local panel.");
 var builder = WebApplication.CreateBuilder(args);
+// Explicit Kestrel endpoints override Run(url). Reject them before creating a
+// database rather than allowing configuration to widen the loopback boundary.
+if (builder.Configuration.GetSection("Kestrel:Endpoints").GetChildren().Any())
+    throw new InvalidOperationException("Configured Kestrel endpoints are not permitted in this loopback sample.");
+builder.Services.AddDataProtection().UseEphemeralDataProtectionProvider();
 GateApi.Configure(builder, signingKey);
 if (panelEnabled) PanelApi.Configure(builder);
 var app = builder.Build();
@@ -31,20 +37,21 @@ if (seed)
     store.Apply("demo-snapshot", new Snapshot("demo-snapshot", 0, 4, [new("demo-working", 3)]));
     store.Apply("demo-resume", new Resume("demo-resume", 0));
 }
+// Applies to API-only mode as well as static assets and panel endpoints.
+app.Use(async (context, next) =>
+{
+    if (context.Connection.RemoteIpAddress is not { } remote || !IPAddress.IsLoopback(remote) ||
+        context.Request.Host.Host is not ("127.0.0.1" or "localhost"))
+    {
+        context.Response.StatusCode = StatusCodes.Status400BadRequest;
+        return;
+    }
+    context.Response.Headers.ContentSecurityPolicy = "default-src 'self'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'";
+    context.Response.Headers["Referrer-Policy"] = "no-referrer";
+    await next();
+});
 if (panelEnabled)
 {
-    app.Use(async (context, next) =>
-    {
-        if (context.Connection.RemoteIpAddress is not { } remote || !IPAddress.IsLoopback(remote) ||
-            context.Request.Host.Host is not ("127.0.0.1" or "localhost"))
-        {
-            context.Response.StatusCode = StatusCodes.Status400BadRequest;
-            return;
-        }
-        context.Response.Headers.ContentSecurityPolicy = "default-src 'self'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'";
-        context.Response.Headers["Referrer-Policy"] = "no-referrer";
-        await next();
-    });
     app.UseDefaultFiles();
     app.UseStaticFiles();
     PanelApi.Map(app, store, limit, signingKey, operatorCode);

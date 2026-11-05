@@ -11,6 +11,7 @@ if (!(Test-Path -LiteralPath $dll -PathType Leaf)) {
 $runtime = (Get-Command $Dotnet -CommandType Application -ErrorAction Stop).Source
 $secureCode = Read-Host 'Choose an operator code for this run (16–128 characters)' -AsSecureString
 if ($secureCode.Length -lt 16 -or $secureCode.Length -gt 128) {
+    $secureCode.Dispose()
     throw 'The local operator code must be 16–128 characters.'
 }
 $demoDirectory = Join-Path ([System.IO.Path]::GetTempPath()) ('execution-lab-' + [Guid]::NewGuid().ToString('N'))
@@ -22,6 +23,7 @@ $random.Dispose()
 $variables = @('EXECUTION_LAB_PANEL', 'EXECUTION_LAB_PANEL_SEED_NEW', 'EXECUTION_LAB_DB', 'EXECUTION_LAB_KEY_BASE64', 'EXECUTION_LAB_OPERATOR_CODE')
 $saved = @{}
 foreach ($variable in $variables) { $saved[$variable] = [Environment]::GetEnvironmentVariable($variable, 'Process') }
+$backendExit = 1
 Push-Location -LiteralPath $appDirectory
 try {
     $env:EXECUTION_LAB_PANEL = '1'
@@ -32,9 +34,20 @@ try {
     Write-Host 'Open http://127.0.0.1:5087/panel/ and enter the operator code for this run.'
     Write-Host "Disposable synthetic database: $env:EXECUTION_LAB_DB"
     & $runtime $dll
+    $backendExit = $LASTEXITCODE
 } finally {
     foreach ($variable in $variables) { [Environment]::SetEnvironmentVariable($variable, $saved[$variable], 'Process') }
     [Array]::Clear($key, 0, $key.Length)
     $secureCode.Dispose()
     Pop-Location
+    # Delete only this launcher's freshly created, generated directory. A caller's
+    # supplied database is never accepted by this launcher or removed here.
+    $temporaryRoot = [System.IO.Path]::GetFullPath([System.IO.Path]::GetTempPath())
+    $resolvedDemo = (Resolve-Path -LiteralPath $demoDirectory -ErrorAction Stop).Path
+    if ([System.IO.Path]::GetDirectoryName($resolvedDemo).TrimEnd([System.IO.Path]::DirectorySeparatorChar) -ne $temporaryRoot.TrimEnd([System.IO.Path]::DirectorySeparatorChar) -or
+        [System.IO.Path]::GetFileName($resolvedDemo) -notmatch '^execution-lab-[0-9a-f]{32}$') {
+        throw 'Refusing cleanup outside the owned temporary demo directory.'
+    }
+    Remove-Item -LiteralPath $resolvedDemo -Recurse -Force -ErrorAction Stop
 }
+exit $backendExit

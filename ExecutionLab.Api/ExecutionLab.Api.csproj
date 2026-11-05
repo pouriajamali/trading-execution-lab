@@ -4,6 +4,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <Version>0.5.1-preview.1</Version>
+    <UseAppHost>false</UseAppHost>
+    <RuntimeFrameworkVersion>10.0.14</RuntimeFrameworkVersion>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="10.0.14" />

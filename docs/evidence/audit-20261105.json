@@ -1,0 +1,302 @@
+{
+  "kind": "DATED_LOCAL_DEVELOPMENT_AUDIT_NOT_A_LIVE_CI_STATUS",
+  "date": "2026-11-05",
+  "baseline": "53b97511a0b51e2b5283a5c536e7ffe4edf40dd6",
+  "author": "Pouria Jamali",
+  "aiAssistance": true,
+  "sourceFingerprintMethod": "SHA256 of UTF-8 working source with CRLF normalized to LF; no self hash; exact candidate commit/tree is supplied separately for review and release.",
+  "normalizedSourceSha256": {
+    ".github/workflows/ci.yml": "4fd7935060cd8b1754dff1477cc701d5b54d67e8ca03a87898ac32eda5cde801",
+    "ExecutionLab.Api/ExecutionLab.Api.csproj": "9ed5d85970089baa13a828a93f17179c37292f908c07748c43b110c839ae7d03",
+    "ExecutionLab.Api/GateApi.cs": "e853ef96f6b0337136fc5b0a4e6bea9e2acfc8eaf1b046bfa8e89e09a245c07a",
+    "ExecutionLab.Api/PanelApi.cs": "e9ae0cab083aa2b7178baf174e886089149287c589f0f8fa1c54329a2c78caae",
+    "ExecutionLab.Api/Program.cs": "7d10ae18a8bdfb38a422664147c39b823417b49b50ef3e3875027fa1a5cbc075",
+    "ExecutionLab.Hosting/ExecutionLab.Hosting.csproj": "95f55cbb84f2d1e3e135f893789c380f9101fa2963b0d3be2025d951b4632047",
+    "ExecutionLab.Hosting/SerializedExecutionSession.cs": "c31ab06ada1a67682a9031b2869fac703056ca982b9cd2e553843a49d4f6f196",
+    "ExecutionLab.Persistence/AssemblyInfo.cs": "42abbc75e4c8a875b832a5fdac4339af227c3d537c4fc28d9f37d959d73cef91",
+    "ExecutionLab.Persistence/DurableGate.cs": "20cf640b7c5e1904a77c5a20296efe800f05254969a1bd31cb3c8817c2c42b0d",
+    "ExecutionLab.Persistence/ExecutionLab.Persistence.csproj": "72876dd837a8bc7d881d5aa8ec47fc530433c39c8d736c760b10ec7712c31593",
+    "ExecutionLab.Tests/BoundaryTests.cs": "eade34229c224c5ebf6ac996e5498cea8550328ffc8bf49d79b055f657c7a33f",
+    "ExecutionLab.Tests/DurabilityTests.cs": "63b7d8b74c0fd0277eb1adfbcf16ca8d53f1bcbd8db58f5b75867dbbb1d68ea7",
+    "ExecutionLab.Tests/ExecutionLab.Tests.csproj": "31654cb3d44a3d5d43405cf68ab78385f8d909aad6c9eb292ac7fd89671417be",
+    "ExecutionLab.Tests/HostingTests.cs": "77b762208ee6a73620797b7e84469db8ac20448569329281b12c19791f0425b9",
+    "ExecutionLab.Tests/OrderGateTests.cs": "6eb0ec2d62dfcca339d4ea1840fc7548f63ac05b0321b2a0a1e11d35b416c2d9",
+    "ExecutionLab/ExecutionLab.csproj": "9b8458580be4e786dd73ed606f80627ab81a4545fbe8834e205dc430a56e7544",
+    "ExecutionLab/OrderGate.cs": "3af25caf02a216fa92b90cfc9f1cb89f54084c49fc37be03b42f50956a8ada3f",
+    "OperatorPanel/package-lock.json": "a9a3aeba850f9205748fc5d2966c2eaee2c5f0d3633f323b1d01b6720547e5ae",
+    "OperatorPanel/package.json": "7f90f8abb3862b33580f34a727abd73d44efaaf00b41a3fb51c0bff2b0a26be0",
+    "OperatorPanel/src/main.tsx": "1a790b0f38a4f54ba27cc6ae0ebd92e54961bb2dcdf0f646ee44609bcf75a77e",
+    "OperatorPanel/src/protocol.test.mjs": "fe79d3aad9ade4ce5032293bfe311280d3f2cc72fb0954564ff155a74aaa28b8",
+    "OperatorPanel/src/protocol.ts": "0ba2c7f18fc798a39f49a6e7320fe9068a3f54b79bb0e099387ed452da8dde52",
+    "OperatorPanel/src/styles.css": "1dc542e9d889b90c39114a21ac46ffea610c2421cdb1d2220114d31889551d55",
+    "OperatorPanel/vite.config.mjs": "116f7277f962c5ea2f0b2540f5972c61da38d54fb433cadd11f561de163de4cf",
+    "scripts/Start-OperatorPanel.ps1": "49c7c505b9d082017ffaa97f53e1857c45ab9616343ea393b97fc1d0978cf988",
+    "scripts/check_launcher.py": "4b83a32c137b90fe847f06c694c93a5aadbd220ef7496f6141ab43e16de7ba83",
+    "scripts/check_package.py": "6209441b44c2cadfd0e04783fb998f5686eb029bbc12741014749a8ab1b0e245",
+    "scripts/check_release.py": "e8c79c6f72e9143217dc829abfdbc33fa0c593e7787f4ca98c0ed2393b0c80e4",
+    "scripts/package_panel.py": "d5fe438a2092d39765e0749c65fa342a21e3a24ca7ba9d388ea8e09a0f843c1d"
+  },
+  "unchangedFromBaseline": {
+    "ExecutionLab/OrderGate.cs": {
+      "baselineGitBlob": "2e8dc67ff026e4a5c52dd3c1fcfb390c164a81d2",
+      "normalizedSha256": "3af25caf02a216fa92b90cfc9f1cb89f54084c49fc37be03b42f50956a8ada3f"
+    },
+    "ExecutionLab/ExecutionLab.csproj": {
+      "baselineGitBlob": "da31edf4c722a648e4c3d277a818c48a15408025",
+      "normalizedSha256": "9b8458580be4e786dd73ed606f80627ab81a4545fbe8834e205dc430a56e7544"
+    },
+    "ExecutionLab.Hosting/SerializedExecutionSession.cs": {
+      "baselineGitBlob": "bc8e160911441cb5d72217053e74d48259aaa65b",
+      "normalizedSha256": "c31ab06ada1a67682a9031b2869fac703056ca982b9cd2e553843a49d4f6f196"
+    },
+    "ExecutionLab.Hosting/ExecutionLab.Hosting.csproj": {
+      "baselineGitBlob": "e282fb7dc1aa70cb88548746da8ef5db2defcacc",
+      "normalizedSha256": "95f55cbb84f2d1e3e135f893789c380f9101fa2963b0d3be2025d951b4632047"
+    },
+    "ExecutionLab.Measurements/Program.cs": {
+      "baselineGitBlob": "906a1dac7c0485f6382c027fb8ffdf95917a4c8a",
+      "normalizedSha256": "a7757398b842d82e89aedb264457be2e6e83745bac26c3deaf256f31e95963fa"
+    },
+    "ExecutionLab.Measurements/ExecutionLab.Measurements.csproj": {
+      "baselineGitBlob": "cae79a25b39742a15d822fdc4847fd31f836b497",
+      "normalizedSha256": "3d574cad8346ba0dfdb82fe6772702223e477783e35dd88f45909161144449b0"
+    },
+    "ExecutionLab.Tests/OrderGateTests.cs": {
+      "baselineGitBlob": "b22c5c984c7568592992a690447b1e9c1a94ed39",
+      "normalizedSha256": "6eb0ec2d62dfcca339d4ea1840fc7548f63ac05b0321b2a0a1e11d35b416c2d9"
+    },
+    "ExecutionLab.Tests/HostingTests.cs": {
+      "baselineGitBlob": "3588435ef274622d1498dd6e2dad32619d18e725",
+      "normalizedSha256": "77b762208ee6a73620797b7e84469db8ac20448569329281b12c19791f0425b9"
+    },
+    "ExecutionLab.Tests/DurabilityTests.cs": {
+      "baselineGitBlob": "ccd3e28cda2252cb7ed92b942106159f4a712c86",
+      "normalizedSha256": "63b7d8b74c0fd0277eb1adfbcf16ca8d53f1bcbd8db58f5b75867dbbb1d68ea7"
+    },
+    "ExecutionLab.Tests/ExecutionLab.Tests.csproj": {
+      "baselineGitBlob": "74879c1c37c12e8212ef4c93a0232d41c1fddce3",
+      "normalizedSha256": "31654cb3d44a3d5d43405cf68ab78385f8d909aad6c9eb292ac7fd89671417be"
+    },
+    "ExecutionLab.Persistence/DurableGate.cs": {
+      "baselineGitBlob": "9b62d38b070e180ea7b01abab117be30c4bb6f69",
+      "normalizedSha256": "20cf640b7c5e1904a77c5a20296efe800f05254969a1bd31cb3c8817c2c42b0d"
+    }
+  },
+  "historicalMeasurementsPreserved": {
+    "docs/measurements/windows-local-20261102/report.json": {
+      "baselineGitBlob": "3c01566b1c6a1b4d0a55539de4b5f0fe8011628d",
+      "baselineGitContentSha256": "1f2162b9efa1113740760d0629f922f53ce98fca5d6880fb46ec14f2d55621f4",
+      "workingBytesSha256": "8e31886d4e0d539f82498f28bc51acf0b7dcf2eef41811a8eeb293cb71edefe0",
+      "workingBytesUnchangedFromFirstCheckout": true
+    },
+    "docs/measurements/windows-local-20261102/events.csv": {
+      "baselineGitBlob": "a49701d1297dfe31406d00fda01a07596bb06281",
+      "baselineGitContentSha256": "02b5cefd896a44dbfa3692fb9777483ec935666404b55d16592966e52ce9722c",
+      "workingBytesSha256": "7c5049f8e6ee655a64cea8dd22c9b545cba6840d543d953d01ec61e9c901b371",
+      "workingBytesUnchangedFromFirstCheckout": true
+    }
+  },
+  "newProfilingDataset": false,
+  "tests": {
+    "baselineCSharp": 43,
+    "blankSubjectRed": {
+      "total": 2,
+      "failed": 2
+    },
+    "frozenBaselineMalformedDtoRed": {
+      "total": 1,
+      "failed": 1,
+      "observation": "Missing expected rejection"
+    },
+    "finalCSharp": {
+      "total": 56,
+      "failed": 0,
+      "skipped": 0,
+      "notRun": 0
+    },
+    "finalProtocol": {
+      "total": 11,
+      "failed": 0,
+      "skipped": 0
+    },
+    "launcherContract": {
+      "cases": 3,
+      "fakeChild": true,
+      "standalonePromptStub": "Only secure input acquisition replaced; baseline native exit17 returned0; fixed standalone returned17. Environment probe separately calls original script."
+    },
+    "privatePrototypeRealHttpSqlite": {
+      "checks": 22,
+      "ownedProcesses": 4,
+      "manifest": null,
+      "sourceAttestation": "NONE_MODIFIED_WORKTREE_PROTOTYPE_NOT_SHIPPED"
+    }
+  },
+  "browser": {
+    "implementation": "Actual .NET API and SQLite, not website JavaScript demo",
+    "desktopWidth": 1280,
+    "mobileWidth": 390,
+    "longWorkingIdCodeUnits": 64,
+    "documentHorizontalOverflowObserved": false,
+    "staleReadyRedThenUnknownGreen": true,
+    "truncatedJsonAfterCommittedDenial": {
+      "sequence": 5,
+      "exposure": 10
+    },
+    "validJsonMalformedDtoAfterAcceptedCommit": {
+      "sequence": 3,
+      "exposure": 9,
+      "receiptRemainedUnknown": true
+    },
+    "enterAdditionalPostsWhileUnresolved": 0,
+    "exactReplayAfterReloginAndFormEdits": true,
+    "requestKeys": "Synthetic/nonsecret; retained only in private raw harness receipt, not tokens or codes.",
+    "notEstablished": "The initial SQLite-lock timeout attempt did not establish response loss and is excluded."
+  },
+  "interactiveLauncher": {
+    "case": "Actual interactive secure prompt, real backend, Ctrl+C",
+    "terminalExit": 1,
+    "applicationShutdownObserved": true,
+    "scope": "Observed local Windows PTY; terminal Ctrl+C exit1 is distinct from injected native child exit17. Forced termination cleanup is not guaranteed.",
+    "promptMasked": true,
+    "ownedDirectoryRemoved": true
+  },
+  "privatePrototypeFingerprints": {
+    "apiDllSha256": "299ce8165f59646bf6ee5f21967763d7a712d999633687fd57befd561199c3a9",
+    "uiAssets": {
+      "index-CCawH9BN.js": "87e3272ee09f27a35494071141f7a3320c75a80ab61a9253372b1f071f49dc3a",
+      "index-CCawH9BN.js.br": "5f082ea6269b53c7c4063689e8df32dfa8ff690edb9f6aa4127d25d6ac9abbb0",
+      "index-CCawH9BN.js.gz": "331919156755ec3828961bd4c3b03ed15eb00be18f4ed8bb36a89c1349f745c6",
+      "index-Cn80KBQZ.css": "f04d1b368fd34c68c334f889ace0c14f4d0a816f7df23472391d683604cc3505",
+      "index-Cn80KBQZ.css.br": "0d9a1ebe0c94b84dcaf6335274f5183c3c3830c3aef7028db67aa9dd9dc47647",
+      "index-Cn80KBQZ.css.gz": "332a924829c4eb7ef8afe0e3d88987af38e0ad12f557c2821f14699c26667c67"
+    },
+    "sdk": "10.0.403",
+    "installedAspNetCoreRuntime": "10.0.14",
+    "node": "24.19.0",
+    "warning": "Embedded old HEAD revision is not an attestation of a dirty working tree. Prototype is not shipped; package builder requires clean HEAD and rebuilds before manifesting."
+  },
+  "rawPrivateReceipts": {
+    "work/baseline-dotnet.txt": {
+      "sha256": "ba1cfecb8264b376637d8412365e93d5606cf8bf51e282b498bf395c07af0e86",
+      "bytes": 497
+    },
+    "work/baseline-offline-restore.txt": {
+      "sha256": "cad5da27a19cb948461ad24d76cced8f69fb8e5386aab1cfda907fbee27fbee9",
+      "bytes": 771
+    },
+    "work/baseline-dotnet-offline.txt": {
+      "sha256": "a76121d89db9e55a46e635b73d1ff5428b07058923424b7057938bba5a6acab7",
+      "bytes": 23530
+    },
+    "work/baseline-panel-tests.txt": {
+      "sha256": "b2ee8f44768da79798fe8e63c547c3dfd7b5aa11f083cadad6e3c28f0f43425a",
+      "bytes": 379
+    },
+    "work/baseline-panel-build.txt": {
+      "sha256": "c98a33a251608be1c22c6e1ca0bcbfe944db9685909ca34269363779064aa66e",
+      "bytes": 533
+    },
+    "work/boundary-first-build-failure.txt": {
+      "sha256": "c934b0fae116a5c271b3ab81e707e69858878e3fa141e2a967b8111bcb519bf6",
+      "bytes": 971
+    },
+    "work/empty-subject-red.txt": {
+      "sha256": "f080f0a01229d5b911a23862fa6a18141ab7d1e93b42cee7c122fe357cc2e4ea",
+      "bytes": 3386
+    },
+    "work/boundary-green.txt": {
+      "sha256": "ea82ee3b4023a0f8673caa6b4c8aff6967cd94eebb83770fa0b6db2ab5b70ead",
+      "bytes": 37445
+    },
+    "work/final-dotnet-56.txt": {
+      "sha256": "75b316a973107d0c5e90ef238d9e96ba940a4fc9e35c99e5fcc518542c904035",
+      "bytes": 37446
+    },
+    "work/final-protocol-tests.txt": {
+      "sha256": "91affce5bb2e43c8c8551e78aca513faf295744fbc1dd9758bfdd5eeb3f0736a",
+      "bytes": 1216
+    },
+    "work/final-protocol-build.txt": {
+      "sha256": "3d6881aecaa133222cc306ba0b161ea7c51405edbac945b5d48532e5a7216a16",
+      "bytes": 533
+    },
+    "work/schema-baseline-red/result.txt": {
+      "sha256": "541bf1b6fa270a804fa62b525186736aafc5320e48d71cc931b47e4d5b00ee1f",
+      "bytes": 897
+    },
+    "work/launcher baseline standalone red/receipt.json": {
+      "sha256": "a7ca27e0e4a3c0f85ee5accf874b9a93898ce3fc587d374a198e91766b4c7b73",
+      "bytes": 751
+    },
+    "work/launcher green/first-harness-failure.json": {
+      "sha256": "4b7c1d4c97329717e675f264d3f1970e7bf6fd3311131d59bb45622da911682f",
+      "bytes": 411
+    },
+    "work/launcher green v2/clean/process.json": {
+      "sha256": "f98d0d96bce733dcaf758691bedf48b42bc725295d2174e82fdef91e81b36101",
+      "bytes": 1355
+    },
+    "work/launcher green v3/failure/process.json": {
+      "sha256": "79969125692f63a84758b9c567e1cda1317cf4c032fba7f1bb9266a85940bfb2",
+      "bytes": 328
+    },
+    "work/launcher green v4/failure/direct-process.json": {
+      "sha256": "e13458eccf851bba194e94bb208daa5b998dd719ed9cd242cce535096d5c1998",
+      "bytes": 328
+    },
+    "work/launcher green v7/receipt.json": {
+      "sha256": "26fadcf7feb5a8b24cfa0dadc7fab1c02ee56e88513ce6b8141c5bf19a720e0c",
+      "bytes": 973
+    },
+    "work/green-browser-host.txt": {
+      "sha256": "9629286e715c7f8d621fc52757fd5faace3448dcaaa993ab7e51c12df63efe9b",
+      "bytes": 835
+    },
+    "work/endpoint-guard-green.txt": {
+      "sha256": "6bb20faa6f1284810d853f6d9013344e8020336c90ce0efe06492ce32428f142",
+      "bytes": 166
+    },
+    "work/actual package win first/receipt.json": {
+      "sha256": "c6c0095c3a0dea690147a91b7b8a2e8c344e713cce8d7c4693ee83f93095cff5",
+      "bytes": 2686
+    },
+    "work/browser-truncated-response.json": {
+      "sha256": "c38b0849f60e24ba4cbcb6f247a5c5c39f48562a136847cb6364deaf119a785e",
+      "bytes": 320
+    },
+    "work/browser-schema-enter-negative.json": {
+      "sha256": "54dab537e61c841331794b989343201525b0e075d8acccde88cd299c49762994",
+      "bytes": 566
+    },
+    "work/browser-invalid-dto-requests.json": {
+      "sha256": "e21459ef1408a9f1a3f1b222f72dadcd8311cb7ac690f229353d2b3bf1f03172",
+      "bytes": 1437
+    },
+    "work/interactive-launcher-ctrlc.json": {
+      "sha256": "34023e384b5036d9ca666c72c51335870bc0cc54612152ea438fbd8f9883ea0a",
+      "bytes": 351
+    },
+    "work/win-rid-restore.txt": {
+      "sha256": "82e976f592a3ee12671f2537e34791cfb4821fef2a4073c238cef50adcd6d7d4",
+      "bytes": 5989
+    },
+    "work/win-fdd-restore.txt": {
+      "sha256": "61a57740279d7b092ecc13ba2d6808088255ded8fc15e3e3345f5443f1b7b1bd",
+      "bytes": 5989
+    },
+    "work/win-fdd-no-runtime-download-restore.txt": {
+      "sha256": "4205ad6a16940d93a3e110a4f6f6ac460ff5e9795c14f99e6f02f1ce9a55ac9c",
+      "bytes": 475
+    }
+  },
+  "firstEnvironmentAndHarnessFailures": [
+    "Cold network NuGet restore stopped without progress; cached public source restore passed.",
+    "First new test build hit xUnit analyzer errors; preserved and fixed before executable red.",
+    "Launcher harness parser/relative-path/finally and redirected-secure-input limitations retained, not reported as product failures.",
+    "First endpoint preference attempt still bound configured alternate loopback port; final guard rejects before DB creation.",
+    "RID restore initially requested unnecessary runtime packs; FDD download switches resolved it without bundling/installing a runtime.",
+    "Old public archive download stopped at finite120s; partial retained and not executed or called verified."
+  ],
+  "releaseEvidence": "This file is a local snapshot. Exact source/tree/allowlist, signed candidate, archive hashes, matching-OS executed packages, CI and actual public downloads are separately required at publication.",
+  "limits": "Single synthetic gate; no tenant isolation, live broker, account/market data, production/HFT/latency/profit/novelty or exactly-once/power-loss claim. No CV/profile/site/shared-private-source edits."
+}

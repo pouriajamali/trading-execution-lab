@@ -33,6 +33,24 @@ npm --prefix OperatorPanel test
 npm --prefix OperatorPanel run build
 ```
 
+For a release candidate, use a clean committed checkout. Python3.12 and
+PowerShell7 run the finite package/launcher checks; they are development tools,
+not prerequisites for the end-user panel. On the matching x64 OS:
+
+```sh
+python scripts/check_launcher.py --work artifacts/launcher
+python scripts/package_panel.py --rid win-x64 --commit <full-HEAD> --work artifacts/build --out artifacts/delivery
+```
+
+Use `linux-x64` on Ubuntu24.04. Extract the actual generated archive to a fresh
+directory, then run `scripts/check_package.py --package <extracted-root>
+--commit <full-HEAD> --work <fresh-probe-directory>` with an installed ASP.NET
+Core10.0.14+ runtime. Leave `127.0.0.1:5087` free. The runner refuses an occupied
+port and owns only its four child processes/disposable test DB.
+
+Existing measurements are historical evidence. The correctness workflow does
+not run profiling; do not relabel the retained results as measurements of a new build.
+
 Keep each change focused. Explain the behavior before and after it, add a
 regression case for a repaired invariant, and update the relevant design decision
 when a contract changes. Changes to exchange connectivity, strategy logic or

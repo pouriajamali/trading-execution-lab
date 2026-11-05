@@ -37,3 +37,10 @@ The retained Windows report was recorded on 2 November 2026 with runtime .NET 10
 It is one local observation, not a production baseline, TT SDK benchmark, exchange
 round trip, proof of HFT suitability, or corroboration of employer timing figures.
 Inspect the raw per-batch distributions instead of extrapolating a single p99.
+
+## v0.5.1 correctness audit
+
+No new profiling dataset was generated for the5 November correctness audit.
+Current CI runs correctness and actual packaged HTTP/SQLite checks without
+rerunning this workload. Historical raw files/source hashes are preserved;
+they do not measure the current API, React UI or release package.

@@ -28,7 +28,8 @@ public static class GateApi
             };
         });
         builder.Services.AddAuthorization(options => options.AddPolicy("operator", policy =>
-            policy.RequireAuthenticatedUser().RequireClaim("sub").RequireRole("operator")));
+            policy.RequireAuthenticatedUser().RequireRole("operator").RequireAssertion(context =>
+                context.User.FindAll("sub").Any(claim => !string.IsNullOrWhiteSpace(claim.Value)))));
     }
 
     public static void Map(WebApplication app, DurableGate store)

@@ -49,6 +49,7 @@ button:disabled { opacity: .55; cursor: wait; }
 table { border-collapse: collapse; width: 100%; text-align: left; }
 th, td { padding: 9px 6px; border-bottom: 1px solid var(--border); overflow-wrap: anywhere; }
 th { color: var(--muted); font-size: .83rem; }
+th:not(:first-child), td:not(:first-child) { white-space: nowrap; }
 footer { color: var(--muted); font-size: .85rem; margin-top: 24px; }
 @media (max-width: 680px) {
   main { padding: 18px 15px 26px; }
