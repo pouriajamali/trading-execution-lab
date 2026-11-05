@@ -16,6 +16,10 @@
   tested archives. Installed ASP.NET Core 10.0.14+ (10.0 patch) and pwsh 7 required.
 - Add quickstart and claim/test case study. Preserve old tags and historical
   measurement bytes; remove fresh profiling from correctness CI.
+## Documentation onboarding — 5 November 2026 (9a9b494)
+
+- Clarify the source quick start and expected result, and link focused contribution guidance. Runtime behavior, release assets and recorded measurements are unchanged.
+
 
 ## Documentation — 5 November 2026
 

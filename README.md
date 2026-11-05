@@ -34,6 +34,21 @@ below runs against the actual .NET API and SQLite sample; they are separate
 implementations. For the transaction and recovery decisions, follow the
 [reviewer guide](https://pouriajamali.site/work/engineering-evidence/).
 
+## Check the C# implementation
+
+With the .NET 10 SDK, run this from a fresh source checkout:
+
+```sh
+dotnet run --project ExecutionLab.Tests/ExecutionLab.Tests.csproj -c Release
+```
+
+**Expected result:** the verification runner exits successfully after checking
+order risk, host admission and durable API behavior. A repeated request returns
+its original receipt; it does not reserve exposure again. Start with
+[the transaction tests](ExecutionLab.Tests/DurabilityTests.cs) to inspect that
+boundary. For a reproducible issue or a focused change, see
+[Contributing](CONTRIBUTING.md).
+
 ## Operator Panel preview
 
 The opt-in [React and TypeScript panel](OperatorPanel) uses the same .NET API
