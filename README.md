@@ -211,6 +211,13 @@ Third-party dependencies retain their respective licenses. Existing tagged
 release archives are historical artifacts; this documentation update does not
 replace them or change the code inside those archives.
 
+## Verify release provenance
+
+See the [public key, expected fingerprint and POSIX/PowerShell verification guide](https://github.com/pouriajamali/trading-execution-lab/blob/main/PROVENANCE.md)
+before trusting release downloads. SSH checksum provenance is separate from OS
+binary signing and does not change the MIT license or prevent copying. This
+documentation update preserves existing release archives, tags and signatures.
+
 ## Attribution
 
 Independent synthetic portfolio material created with AI assistance in October–November
