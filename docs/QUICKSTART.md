@@ -1,4 +1,4 @@
-# Local operator panel — v0.5.1-preview.1
+# Local operator panel — v0.5.2-preview.1
 
 This is an independent **synthetic, loopback-only** C#/.NET sample. No broker,
 exchange, real account, market feed or real-order control is connected.
@@ -15,7 +15,7 @@ exchange, real account, market feed or real-order control is connected.
   macOS and other distributions are unverified. The preview is unsigned.
 
 Get the matching archive and `SHA256SUMS.txt` from the
-[preview release](https://github.com/pouriajamali/trading-execution-lab/releases/tag/v0.5.1-preview.1).
+[preview release](https://github.com/pouriajamali/trading-execution-lab/releases/tag/v0.5.2-preview.1).
 Check its SHA256 before extracting the **whole folder**, including native SQLite
 and `wwwroot` assets. `BUILD-MANIFEST.json` identifies its source commit and files.
 Git commit/tag and any detached checksum signatures use SSH provenance signing;
@@ -34,6 +34,12 @@ On Ubuntu:
 ```sh
 pwsh -NoProfile -File ./Start-OperatorPanel.ps1
 ```
+
+The launcher first inspects the selected `dotnet` host for x64 and stable
+Microsoft.AspNetCore.App / Microsoft.NETCore.App 10.0.14 or a later 10.0 patch.
+An incompatible or uninspectable host fails before the prompt, key and temporary
+database directory. Inspection temporarily uses English CLI output and restores
+the caller's language value. Nothing is installed or changed globally.
 
 Choose a run-only operator code of 16–128 characters at the secure prompt. Open
 <http://127.0.0.1:5087/panel/> and enter that code. Keep port 5087 free; a bind
@@ -62,13 +68,15 @@ Each new launch starts a **fresh** demo; it does not resume the previous demo DB
 
 ## Troubleshooting
 
-- Run `dotnet --list-runtimes`: both `Microsoft.NETCore.App 10.x` and
-  `Microsoft.AspNetCore.App 10.x` must be installed for this architecture.
+- Run the selected host's `--info` and `--list-runtimes`: the host must be x64,
+  and both `Microsoft.NETCore.App` and `Microsoft.AspNetCore.App` must include a
+  stable 10.0.14 or later 10.0 patch. The plain .NET Runtime, 10.0.13 or another
+  major version alone is insufficient.
 - `dotnet` and `pwsh` must be on PATH. For an explicit runtime host:
   `pwsh -File ./Start-OperatorPanel.ps1 -Dotnet /absolute/path/to/dotnet`.
 - Use `127.0.0.1`, not a LAN address or reverse-proxy/public hostname.
 - Keep keys/codes/tokens and non-synthetic data out of bug reports.
 
-See [the engineering case study](https://github.com/pouriajamali/trading-execution-lab/blob/v0.5.1-preview.1/docs/CASE-STUDY.md)
+See [the engineering case study](https://github.com/pouriajamali/trading-execution-lab/blob/v0.5.2-preview.1/docs/CASE-STUDY.md)
 for the claim-to-code/test mapping and evidence limits. The separately hosted
 JavaScript browser demo is a different implementation, not a .NET runtime test.

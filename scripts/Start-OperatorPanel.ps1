@@ -8,7 +8,34 @@ $dll = Join-Path $appDirectory 'ExecutionLab.Api.dll'
 if (!(Test-Path -LiteralPath $dll -PathType Leaf)) {
     throw 'Pass the directory containing the published ExecutionLab.Api.dll.'
 }
-$runtime = (Get-Command $Dotnet -CommandType Application -ErrorAction Stop).Source
+# Inspect this exact host, not another installation discoverable on PATH.
+# Keep the English CLI output local to these probes and restore the caller's value.
+$prerequisite = 'This panel requires x64 ASP.NET Core Runtime 10.0.14 or a later 10.0 patch (including Microsoft.NETCore.App). See https://github.com/pouriajamali/trading-execution-lab/blob/main/docs/QUICKSTART.md#install-prerequisites . No runtime or system setting was changed.'
+$savedLanguage = [Environment]::GetEnvironmentVariable('DOTNET_CLI_UI_LANGUAGE', 'Process')
+try {
+    $runtime = (Get-Command $Dotnet -CommandType Application -ErrorAction Stop).Source
+    $env:DOTNET_CLI_UI_LANGUAGE = 'en-US'
+    $hostInfo = @(& $runtime --info 2>&1)
+    $infoExit = $LASTEXITCODE
+    $frameworks = @(& $runtime --list-runtimes 2>&1)
+    $listExit = $LASTEXITCODE
+    if ($infoExit -ne 0 -or $listExit -ne 0) { throw 'Selected host inspection failed.' }
+    $hostSection = [regex]::Match(($hostInfo -join "`n") + "`n", '(?m)^Host:\s*\r?\n(?<details>(?:[ \t]+[^\r\n]*\r?\n|[ \t]*\r?\n)*)')
+    if (!$hostSection.Success -or $hostSection.Groups['details'].Value -notmatch '(?m)^[ \t]+Architecture:[ \t]+x64[ \t]*\r?$') {
+        throw 'The selected host is not x64 or its architecture could not be determined.'
+    }
+    foreach ($framework in @('Microsoft.NETCore.App', 'Microsoft.AspNetCore.App')) {
+        $compatible = @($frameworks | Where-Object {
+            $_ -match ('^' + [regex]::Escape($framework) + ' 10\.0\.(?<patch>[0-9]+) \[[^\r\n]+\]$') -and
+            [int]$Matches['patch'] -ge 14
+        })
+        if ($compatible.Count -eq 0) { throw "The selected host lacks a compatible $framework framework." }
+    }
+} catch {
+    throw "$prerequisite Selected host: '$Dotnet'. $($_.Exception.Message)"
+} finally {
+    [Environment]::SetEnvironmentVariable('DOTNET_CLI_UI_LANGUAGE', $savedLanguage, 'Process')
+}
 $secureCode = Read-Host 'Choose an operator code for this run (16–128 characters)' -AsSecureString
 if ($secureCode.Length -lt 16 -or $secureCode.Length -gt 128) {
     $secureCode.Dispose()

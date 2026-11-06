@@ -2,7 +2,7 @@
 
 [![C# synthetic invariants](https://github.com/pouriajamali/trading-execution-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/pouriajamali/trading-execution-lab/actions/workflows/ci.yml)
 
-[Try the browser demo](https://pouriajamali.site/demo/operator-panel/) · [Download the local panel](https://github.com/pouriajamali/trading-execution-lab/releases/tag/v0.5.1-preview.1) · [Engineering proof](docs/CASE-STUDY.md) · [Scope](SCOPE.md)
+[Try the browser demo](https://pouriajamali.site/demo/operator-panel/) · [Download the local panel](https://github.com/pouriajamali/trading-execution-lab/releases/tag/v0.5.2-preview.1) · [Engineering proof](docs/CASE-STUDY.md) · [Scope](SCOPE.md)
 
 Explore order-risk decisions and retry-safe request processing in C#/.NET.
 The sample combines an order-state model, a single-writer host and an ASP.NET Core
@@ -58,13 +58,16 @@ the same request to inspect its original receipt. The live state and a receipt
 are shown separately because a historical replay can differ from current state.
 
 **Windows / Ubuntu quick start.** Download the matching x64 archive and checksums
-from [v0.5.1-preview.1](https://github.com/pouriajamali/trading-execution-lab/releases/tag/v0.5.1-preview.1):
-[Windows ZIP](https://github.com/pouriajamali/trading-execution-lab/releases/download/v0.5.1-preview.1/trading-execution-lab-v0.5.1-preview.1-win-x64.zip) ·
-[Ubuntu/glibc tar.gz](https://github.com/pouriajamali/trading-execution-lab/releases/download/v0.5.1-preview.1/trading-execution-lab-v0.5.1-preview.1-linux-x64.tar.gz) ·
-[SHA256SUMS](https://github.com/pouriajamali/trading-execution-lab/releases/download/v0.5.1-preview.1/SHA256SUMS.txt).
+from [v0.5.2-preview.1](https://github.com/pouriajamali/trading-execution-lab/releases/tag/v0.5.2-preview.1):
+[Windows ZIP](https://github.com/pouriajamali/trading-execution-lab/releases/download/v0.5.2-preview.1/trading-execution-lab-v0.5.2-preview.1-win-x64.zip) ·
+[Ubuntu/glibc tar.gz](https://github.com/pouriajamali/trading-execution-lab/releases/download/v0.5.2-preview.1/trading-execution-lab-v0.5.2-preview.1-linux-x64.tar.gz) ·
+[SHA256SUMS](https://github.com/pouriajamali/trading-execution-lab/releases/download/v0.5.2-preview.1/SHA256SUMS.txt).
 Extract the whole folder. Install x64 **ASP.NET Core Runtime 10.0.14 or a later
 10.0 patch** and **PowerShell 7**; these packages are framework-dependent.
-No SDK, Node.js or Python is required to run the panel.
+No SDK, Node.js or Python is required to run the panel. Before asking for an
+operator code or creating temporary state, the launcher checks the selected
+`dotnet` host for x64 and the required stable 10.0.14-or-later 10.0 frameworks.
+A failure explains the prerequisite; it does not install software or change PATH.
 
 Windows: `pwsh -NoProfile -File .\Start-OperatorPanel.ps1`
 
@@ -168,6 +171,10 @@ single-stream model, retention limits and unimplemented adapter responsibilities
 
 ## Verification and release history
 
+- **v0.5.2-preview.1:** selected-host runtime preflight before prompt/key/temp;
+  16 controlled launcher cases plus existing actual-package Windows/Linux checks.
+  See [release notes](docs/RELEASE-v0.5.2-preview.1.md). Core/API behavior and
+  historical measurements are unchanged.
 - **v0.5.1-preview.1:** stale/unknown receipt UI, bounded closed DTO validation,
   handler-level form guard, nonblank JWT subject, loopback configuration guard
   and launcher exit/environment/cleanup fixes.56 C# cases, 11 protocol tests

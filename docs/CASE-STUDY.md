@@ -42,6 +42,7 @@ is another local transaction illustration, not a broker transport or order sende
 | API-only and panel modes reject foreign Host/peer; configured Kestrel endpoints cannot widen binding | `Program.cs` | actual extracted-package `check_package.py`: bad Host and reject-configured-endpoint/no-DB checks |
 | A response/schema error means an unknown receipt, not rollback; stale state is labelled and new requests blocked | `OperatorPanel/src/main.tsx`, `protocol.ts` | protocol lost/unreadable response tests; real-backend browser audit with one deliberately truncated response after actual commit |
 | Launcher propagates child failure, restores environment and deletes only its own temporary directory | `Start-OperatorPanel.ps1` | `check_launcher.py`, clean/exit17/invalid-code cases; standalone exit probe substitutes only secure input acquisition |
+| Selected-host x64 and 10.0.14-or-later 10.0 framework checks precede prompt/key/temp | `Start-OperatorPanel.ps1` | `check_launcher.py`: 16 controlled host cases, including missing/below-floor/prerelease/other-major/architecture and probe failures; no real runtime or browser claim from these stubs |
 
 The current local suite has **56 C# cases** (original 24 model and 9 hosting cases
 retained) and **11 JavaScript protocol tests**. The workflow builds the panel and
