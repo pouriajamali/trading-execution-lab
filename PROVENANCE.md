@@ -59,8 +59,10 @@ actual=$(ssh-keygen -lf SIGNING-PUBLIC-KEY.pub | awk '{print $2}')
 test "$actual" = "$expected" || { echo 'Signing-key fingerprint mismatch' >&2; exit 1; }
 printf 'pouriajamali %s\n' "$(cat SIGNING-PUBLIC-KEY.pub)" > allowed-signers
 ssh-keygen -Y verify -f allowed-signers -I pouriajamali -n file -s SHA256SUMS.txt.sig < SHA256SUMS.txt || exit 1
+entries=$(awk -v name="$archive" '$2 == name { count++ } END { print count + 0 }' SHA256SUMS.txt)
+test "$entries" -eq 1 || { echo 'Chosen archive missing or duplicated in signed checksums' >&2; exit 1; }
 test -f "$archive" || exit 1
-sha256sum --check --ignore-missing SHA256SUMS.txt || exit 1
+sha256sum --check --strict --ignore-missing SHA256SUMS.txt || exit 1
 ```
 
 The signature command should report a good `file` signature. The selected
@@ -85,8 +87,10 @@ Invoke-WebRequest -Uri "https://raw.githubusercontent.com/$repo/main/SIGNING-PUB
 
 ```powershell
 $expectedFingerprint = 'SHA256:AgU5bZlJSjUu0KsWMmVEEr+BfXpcMVNroTA33bHcQdU'
-$fingerprint = & ssh-keygen -lf ./SIGNING-PUBLIC-KEY.pub
-if ($LASTEXITCODE -ne 0 -or $fingerprint -notmatch [regex]::Escape($expectedFingerprint)) { throw 'Signing-key fingerprint mismatch' }
+$keyInfo = @(& ssh-keygen -lf ./SIGNING-PUBLIC-KEY.pub)
+if ($LASTEXITCODE -ne 0 -or $keyInfo.Count -ne 1) { throw 'Signing-key fingerprint mismatch' }
+$fields = $keyInfo[0].Trim() -split '\s+'
+if ($fields.Count -lt 2 -or $fields[1] -cne $expectedFingerprint) { throw 'Signing-key fingerprint mismatch' }
 $key = (Get-Content -LiteralPath ./SIGNING-PUBLIC-KEY.pub -Raw).Trim()
 [IO.File]::WriteAllText((Join-Path $PWD 'allowed-signers'), "pouriajamali $key`n", [Text.UTF8Encoding]::new($false))
 
