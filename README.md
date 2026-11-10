@@ -227,3 +227,5 @@ documentation update preserves existing release archives, tags and signatures.
 Independent synthetic portfolio material created with AI assistance in October–November
 2026 for Pouria Jamali. No employer/private-project source, real account/market
 data or broker connection is included.
+
+[CI resource policy](docs/CI-POLICY.md): documentation-only changes get real lightweight document/pipeline checks; source, tag and manual runs retain native validation. Published runtime tags and release assets remain unchanged.
