@@ -1,0 +1,124 @@
+{
+  "schema": "flagship-evidence/v1",
+  "documentationDate": "2026-11-10",
+  "project": "Trading Execution Lab",
+  "repository": "https://github.com/pouriajamali/trading-execution-lab",
+  "scope": "AI-assisted original synthetic local laboratory; documentation refresh, no runtime test or benchmark rerun",
+  "runtime": {
+    "tag": "v0.5.2-preview.1",
+    "commit": "779f654dec7efe07c0e106dba9c438c6b5775eb2",
+    "tree": "3870e428d42047b61f4e464e076e29c95f4c4ac2",
+    "signedTagObject": "88f1c08f1f98de02a389917c785b47348da25755"
+  },
+  "release": {
+    "id": 436743929,
+    "url": "https://github.com/pouriajamali/trading-execution-lab/releases/tag/v0.5.2-preview.1",
+    "prerelease": true,
+    "assets": [
+      {
+        "id": 717802568,
+        "name": "SHA256SUMS.txt",
+        "bytes": 355,
+        "sha256": "553aafb4ca97c50d5ad7cff6b7090afcd78dfde6182a7e44d26afb07b8ab3442",
+        "url": "https://github.com/pouriajamali/trading-execution-lab/releases/download/v0.5.2-preview.1/SHA256SUMS.txt"
+      },
+      {
+        "id": 717813916,
+        "name": "SHA256SUMS.txt.sig",
+        "bytes": 294,
+        "sha256": "d822c70ef5ffd1e4956d0bc82084320d3513bb5e8569385628321b82c83dae69",
+        "url": "https://github.com/pouriajamali/trading-execution-lab/releases/download/v0.5.2-preview.1/SHA256SUMS.txt.sig"
+      },
+      {
+        "id": 717813974,
+        "name": "SIGNING-PUBLIC-KEY.pub",
+        "bytes": 113,
+        "sha256": "cc7038b2d98f856af97b58eb06619ff441fbe9b178da5396f61d1ccdf7a65e7c",
+        "url": "https://github.com/pouriajamali/trading-execution-lab/releases/download/v0.5.2-preview.1/SIGNING-PUBLIC-KEY.pub"
+      },
+      {
+        "id": 717802567,
+        "name": "trading-execution-lab-v0.5.2-preview.1-linux-x64.tar.gz",
+        "bytes": 1463223,
+        "sha256": "95363c7cdc79f045288f1c74e4af30fab222dca0c18e114665b8a6bc0a420405",
+        "url": "https://github.com/pouriajamali/trading-execution-lab/releases/download/v0.5.2-preview.1/trading-execution-lab-v0.5.2-preview.1-linux-x64.tar.gz"
+      },
+      {
+        "id": 717802573,
+        "name": "trading-execution-lab-v0.5.2-preview.1-source.zip",
+        "bytes": 216548,
+        "sha256": "a33b2a585f0f0ee3a22afc6ba768dc4f395ffa39e1c583253bc23e7de1cc39fe",
+        "url": "https://github.com/pouriajamali/trading-execution-lab/releases/download/v0.5.2-preview.1/trading-execution-lab-v0.5.2-preview.1-source.zip"
+      },
+      {
+        "id": 717802570,
+        "name": "trading-execution-lab-v0.5.2-preview.1-win-x64.zip",
+        "bytes": 1842273,
+        "sha256": "2dec6257568f2ae859409a778b9eb01c697d1d5a745b7477ea0cf5526d226597",
+        "url": "https://github.com/pouriajamali/trading-execution-lab/releases/download/v0.5.2-preview.1/trading-execution-lab-v0.5.2-preview.1-win-x64.zip"
+      }
+    ]
+  },
+  "tagCi": {
+    "id": 42253983786,
+    "url": "https://github.com/pouriajamali/trading-execution-lab/actions/runs/42253983786",
+    "headSha": "779f654dec7efe07c0e106dba9c438c6b5775eb2",
+    "event": "push",
+    "headBranch": "v0.5.2-preview.1",
+    "conclusion": "success"
+  },
+  "signing": {
+    "trustedFingerprint": "SHA256:AgU5bZlJSjUu0KsWMmVEEr+BfXpcMVNroTA33bHcQdU",
+    "namespace": "file",
+    "guide": "../PROVENANCE.md",
+    "trustBoundary": "Key shipped beside bytes is not independent identity proof; SSH provenance is not OS code signing"
+  },
+  "sourceFilesComparedDuringDelivery": 51,
+  "observedTaggedEvidence": {
+    "unitsEachOs": 56,
+    "protocolTestsEachOs": 11,
+    "controlledLauncherScenariosEachOs": 16,
+    "actualExtractedHttpChecksEachOs": 22,
+    "countsScope": "Retained exact-release delivery receipt, separate from historical browser audit",
+    "sourceBranchCi": {
+      "id": 42253984080,
+      "url": "https://github.com/pouriajamali/trading-execution-lab/actions/runs/42253984080",
+      "role": "Separate branch-push run, not substituted for tag CI"
+    }
+  },
+  "namedSourceEvidence": [
+    {
+      "path": "ExecutionLab.Tests/DurabilityTests.cs",
+      "name": "FailureBeforeCommitRollsBackAllThreeWritesAndAllowsRetry",
+      "url": "https://github.com/pouriajamali/trading-execution-lab/blob/779f654dec7efe07c0e106dba9c438c6b5775eb2/ExecutionLab.Tests/DurabilityTests.cs"
+    },
+    {
+      "path": "ExecutionLab.Tests/DurabilityTests.cs",
+      "name": "ConcurrentSameKeyHasOneCommittedEffect",
+      "url": "https://github.com/pouriajamali/trading-execution-lab/blob/779f654dec7efe07c0e106dba9c438c6b5775eb2/ExecutionLab.Tests/DurabilityTests.cs"
+    },
+    {
+      "path": "ExecutionLab.Tests/DurabilityTests.cs",
+      "name": "HistoricalRetryDoesNotRollbackLaterCommittedState",
+      "url": "https://github.com/pouriajamali/trading-execution-lab/blob/779f654dec7efe07c0e106dba9c438c6b5775eb2/ExecutionLab.Tests/DurabilityTests.cs"
+    },
+    {
+      "path": "ExecutionLab.Tests/BoundaryTests.cs",
+      "name": "CancelFillOrderingsRetainCapacityOrExplicitlyRequireReconciliation",
+      "url": "https://github.com/pouriajamali/trading-execution-lab/blob/779f654dec7efe07c0e106dba9c438c6b5775eb2/ExecutionLab.Tests/BoundaryTests.cs"
+    },
+    {
+      "path": "ExecutionLab.Tests/BoundaryTests.cs",
+      "name": "EmptySubjectCannotAuthorizeAnOperator",
+      "url": "https://github.com/pouriajamali/trading-execution-lab/blob/779f654dec7efe07c0e106dba9c438c6b5775eb2/ExecutionLab.Tests/BoundaryTests.cs"
+    }
+  ],
+  "claimsNotEstablished": [
+    "Production or venue suitability",
+    "Live trading or profitability",
+    "Independent human authorship or individual mastery from CI alone",
+    "Real adoption or team-management history",
+    "Performance superiority"
+  ],
+  "reproductionBoundary": "Use exact runtime tag/source and fresh local outputs; CI artifact retention and timing reproducibility are not guaranteed; current documentation main can differ from runtime source"
+}

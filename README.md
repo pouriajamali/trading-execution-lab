@@ -9,6 +9,10 @@ The sample combines an order-state model, a single-writer host and an ASP.NET Co
 API that commits SQLite state, an idempotency receipt and an audit outbox together.
 The current .NET suite has 56 cases; the original 24 model cases remain intact.
 
+## Architecture review
+
+Read the [architecture case study](docs/ARCHITECTURE-CASE-STUDY.md) for the decision, rejected alternatives, failure examples, frozen-release evidence and short English/Persian introductions. Follow the [30-minute four-project review](https://github.com/pouriajamali/trading-execution-lab/blob/main/docs/FLAGSHIP-REVIEW.md) for a guided discussion. The [evidence index](docs/FLAGSHIP-EVIDENCE.json) separates runtime/tag CI from later documentation commits.
+
 ## What this audit proves
 
 The [case study](docs/CASE-STUDY.md) maps decisions to source, named tests and
