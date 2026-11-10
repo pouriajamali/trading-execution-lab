@@ -67,9 +67,15 @@ See the [literal state/receipt/audit oracle](docs/CASE-STUDY.md#source-regressio
 
 Local Windows validation on 10 November 2026 used SDK 10.0.404 and the actually
 executed .NET runtime 10.0.15: **57 passed, zero failed/skipped**. Repository
-package/runtime pins and CI's SDK 10.0.403 setting remain unchanged; exact-source
-hosted Windows/Linux CI for this change is a separate, pending delivery gate.
-This adds reproducible source evidence without a new runtime version or package.
+package/runtime pins and CI's SDK 10.0.403 setting remain unchanged. The automatic
+[exact-source CI](https://github.com/pouriajamali/trading-execution-lab/actions/runs/42876813842) for
+`90a608bba69608b6a1ab819d8b5e7ed296e238c5` passed on
+[Windows x64](https://github.com/pouriajamali/trading-execution-lab/actions/runs/42876813842/job/130042280261) and
+[Ubuntu 24.04 x64](https://github.com/pouriajamali/trading-execution-lab/actions/runs/42876813842/job/130042280408):
+each ran 57 C# cases, 11 protocol tests, 16 controlled launcher cases and 22
+extracted-package HTTP/SQLite checks. Proof manifests record SDK 10.0.403; both
+unit-runner logs report .NET 10.0.15. CI's temporary packages are separate from
+the immutable published runtime; no new runtime version or release was created.
 TestServer response suppression does not exercise TCP failure, process crashes,
 power loss, the browser UI or an exchange.
 

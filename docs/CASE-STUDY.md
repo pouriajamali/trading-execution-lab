@@ -96,12 +96,30 @@ and a changed-intent request accidentally sent under a replacement key. Those
 variants were restored, and the full 57-case source suite passed again.
 
 All runtime/project/package/lock/CI/scripts/UI/provenance bytes remain unchanged.
-CI still selects SDK **10.0.403**; its actual execution environment and exact-source
-Windows/Linux results must be read independently after authorized source delivery.
-No such hosted run, fresh runtime package or browser audit is claimed here.
-The earlier real-backend browser observations below and the immutable
-`v0.5.2-preview.1` 56-case evidence are preserved. This new in-memory transport
-experiment establishes neither a TCP failure nor a process/power-loss guarantee.
+The automatic [source CI run 42876813842](https://github.com/pouriajamali/trading-execution-lab/actions/runs/42876813842)
+completed successfully for the exact source commit
+`90a608bba69608b6a1ab819d8b5e7ed296e238c5` on 10 November 2026, attempt 1:
+
+| Native job | Actual source checks | Observed environment |
+| --- | --- | --- |
+| [Windows x64](https://github.com/pouriajamali/trading-execution-lab/actions/runs/42876813842/job/130042280261) | 57 C# cases, zero errors/failures/skips/not-run; 11 protocol tests; 16 controlled launcher cases; 22 extracted-package HTTP/SQLite checks in four owned processes | Proof manifest SDK 10.0.403; unit-runner log .NET 10.0.15 |
+| [Ubuntu 24.04 x64](https://github.com/pouriajamali/trading-execution-lab/actions/runs/42876813842/job/130042280408) | 57 C# cases, zero errors/failures/skips/not-run; 11 protocol tests; 16 controlled launcher cases; 22 extracted-package HTTP/SQLite checks in four owned processes | Proof manifest SDK 10.0.403; unit-runner log .NET 10.0.15 |
+
+Both downloaded proof ZIPs matched GitHub's artifact SHA256 digest and bind their
+package manifests/receipts to this source commit. Package runtime configuration
+still requests Microsoft.NETCore.App and Microsoft.AspNetCore.App **10.0.14**.
+The receipts list installed ASP.NET Core 10.0.14 and .NETCore 10.0.15 among other
+versions; that inventory does not directly trace the package's selected loaded
+frameworks. Unit-runner runtime 10.0.15 is observed separately in each job log.
+
+The unchanged workflow built and executed temporary matching-OS validation
+archives, skipped large native-archive uploads on this main push, and uploaded
+small proof receipts under the existing three-day retention policy. Its release
+job was skipped. These CI outputs do not replace published `v0.5.2-preview.1`
+assets or its historical 56-case evidence. No new runtime tag/release or browser
+audit is claimed. Earlier real-backend browser observations below remain dated
+evidence. In-memory response suppression establishes neither TCP failure nor
+process/power-loss guarantees.
 
 ## Genuine first failures and fixes
 

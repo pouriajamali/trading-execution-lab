@@ -97,10 +97,16 @@ first receives the actual completed API response and observes the commit, then
 withholds it from the caller. It does not simulate a TCP disconnect or kill.
 
 Runtime/API/UI, package and project pins, CI SDK 10.0.403, previous tag evidence
-and v0.5.2-preview.1 binary assets are unchanged. This Windows source result does
-not establish hosted exact-commit Windows/Linux CI; that gate remains pending.
-The earlier browser audit remains historical evidence; no new browser, native
-package, crash, power-loss or broker test is claimed for this source-only change.
+and v0.5.2-preview.1 published binary assets are unchanged.
+[Automatic exact-source CI](https://github.com/pouriajamali/trading-execution-lab/actions/runs/42876813842)
+for `90a608bba69608b6a1ab819d8b5e7ed296e238c5` passed on Windows x64 and
+Ubuntu 24.04 x64: each ran 57 C# cases, 11 protocol tests, 16 controlled launcher
+cases and 22 actual extracted-package HTTP/SQLite checks. Proof manifests record
+SDK 10.0.403; unit-runner logs report .NET 10.0.15. The package's framework floor
+remains 10.0.14; inventory/floor alone does not trace the package's loaded frameworks.
+CI built temporary validation packages and uploaded small proof receipts; it did
+not publish or replace a runtime release. The earlier browser audit remains
+historical evidence; no new browser, crash, power-loss or broker test is claimed.
 
 The current correctness workflow does not rerun profiling. Original raw
 measurements and their measured-source boundary are retained.

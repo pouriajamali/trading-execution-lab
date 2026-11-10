@@ -1,6 +1,6 @@
 # Changes
 
-## Source regression M1 — 10 November 2026 (unreleased)
+## Source regression M1 — 10 November 2026 (source only)
 
 - Add one actual-API TestServer case that withholds a completed response after
   observing its committed SQLite rows. Fresh read-only SQL checks the literal
@@ -10,10 +10,16 @@
   outbox and stored-decision checks; no production failpoint or behavior change.
 - Local Windows SDK 10.0.404 / actual runtime 10.0.15: 57 C# cases pass, zero
   failed/skipped. Three intentionally failing counterexamples were rejected and
-  restored before the full suite passed again. Exact-source hosted CI is pending.
+  restored before the full suite passed again.
+- [Automatic exact-source CI](https://github.com/pouriajamali/trading-execution-lab/actions/runs/42876813842)
+  for `90a608bba69608b6a1ab819d8b5e7ed296e238c5` passed on Windows x64 and
+  Ubuntu 24.04 x64: each ran 57 C# cases, 11 protocol tests, 16 controlled launcher
+  cases and 22 extracted-package HTTP/SQLite checks. Proof manifests record SDK
+  10.0.403; unit-runner logs report runtime 10.0.15. Temporary CI packages were
+  validated; the release job and large native-archive upload were skipped.
 - Preserve runtime/API/UI, project/package/lock/CI/scripts/provenance, historical
   evidence and v0.5.2-preview.1 binaries. CI retains SDK 10.0.403. Historical
-  runtime-tag counts remain 56; no new runtime version, tag or binary package.
+  runtime-tag counts remain 56; no new runtime version, tag or published binary package.
 
 ## v0.5.1-preview.1 — 5 November 2026
 
