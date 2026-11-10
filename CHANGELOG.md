@@ -1,5 +1,20 @@
 # Changes
 
+## Source regression M1 — 10 November 2026 (unreleased)
+
+- Add one actual-API TestServer case that withholds a completed response after
+  observing its committed SQLite rows. Fresh read-only SQL checks the literal
+  state/receipt/audit oracle, later state, reopen without reseed, three historical
+  replays and two valid changed-intent conflicts without repeated effects.
+- Strengthen the existing pre-commit rollback/retry case with target-key receipt,
+  outbox and stored-decision checks; no production failpoint or behavior change.
+- Local Windows SDK 10.0.404 / actual runtime 10.0.15: 57 C# cases pass, zero
+  failed/skipped. Three intentionally failing counterexamples were rejected and
+  restored before the full suite passed again. Exact-source hosted CI is pending.
+- Preserve runtime/API/UI, project/package/lock/CI/scripts/provenance, historical
+  evidence and v0.5.2-preview.1 binaries. CI retains SDK 10.0.403. Historical
+  runtime-tag counts remain 56; no new runtime version, tag or binary package.
+
 ## v0.5.1-preview.1 — 5 November 2026
 
 - Label failed fetches stale; preserve unknown request/key across relogin;

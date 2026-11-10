@@ -68,8 +68,8 @@ cross-machine partitions and broker failure behavior have not been tested.
 
 The opt-in local-code endpoint issues a short-lived token, not an external IdP.
 All operators share the same fictitious gate. There is no tenant/account order
-ownership. The total is 56 C# cases (24 original model,9 original host,
-23 transaction/API/boundary cases) plus 11 protocol tests.
+ownership. The audited runtime release retains 56 C# cases (24 original model,
+9 original host, 23 transaction/API/boundary cases) plus 11 protocol tests.
 
 The React client verifies closed session/state/receipt shapes, at most 1MiB of
 actual UTF-8 response bytes, at most 10,000 active orders, <=64-code-unit IDs,
@@ -84,6 +84,23 @@ and disposable SQLite. Process reopen and a pre-commit exception are separate
 from power loss/crash-in-the-middle. The UI has no fill/cancel/resume controls;
 those invariants are exercised through typed local tests. Audit is at-least-once
 redelivery with deduplicated inbox effects, not exactly-once delivery.
+
+## Source-only response-loss regression (10 November 2026)
+
+The source suite adds one TestServer response-suppression case and strengthens
+the existing pre-commit rollback case: 57 C# cases passed locally on Windows
+with SDK 10.0.404 / actual runtime 10.0.15, with zero failures or skips. Fresh
+read-only SQL checks literal state, target-key receipt and outbox payloads;
+reopening without reseeding and historical replay must preserve later state.
+Valid changed-intent requests must conflict without new effects. The handler
+first receives the actual completed API response and observes the commit, then
+withholds it from the caller. It does not simulate a TCP disconnect or kill.
+
+Runtime/API/UI, package and project pins, CI SDK 10.0.403, previous tag evidence
+and v0.5.2-preview.1 binary assets are unchanged. This Windows source result does
+not establish hosted exact-commit Windows/Linux CI; that gate remains pending.
+The earlier browser audit remains historical evidence; no new browser, native
+package, crash, power-loss or broker test is claimed for this source-only change.
 
 The current correctness workflow does not rerun profiling. Original raw
 measurements and their measured-source boundary are retained.

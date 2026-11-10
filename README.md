@@ -7,7 +7,8 @@
 Explore order-risk decisions and retry-safe request processing in C#/.NET.
 The sample combines an order-state model, a single-writer host and an ASP.NET Core
 API that commits SQLite state, an idempotency receipt and an audit outbox together.
-The current .NET suite has 56 cases; the original 24 model cases remain intact.
+The current source .NET suite has 57 cases; the original 24 model cases remain intact.
+The immutable v0.5.2-preview.1 runtime release retains its historical 56-case evidence.
 
 ## Architecture review
 
@@ -52,6 +53,25 @@ its original receipt; it does not reserve exposure again. Start with
 [the transaction tests](ExecutionLab.Tests/DurabilityTests.cs) to inspect that
 boundary. For a reproducible issue or a focused change, see
 [Contributing](CONTRIBUTING.md).
+
+## Source regression: a lost reply after commit
+
+`LostResponseAfterCommitReplaysOriginalReceiptWithoutChangingStateOrAudit` sends
+a reservation through the actual authenticated API in TestServer to a temporary
+SQLite file. A private test handler buffers the completed response, checks the
+committed rows through a fresh read-only connection, then suppresses the response.
+Exact-key replay, a later commit, reopening without reseeding and two valid
+changed-intent conflicts leave the original receipt and audit fact consistent.
+The existing pre-commit rollback test now also inspects the target-key rows.
+See the [literal state/receipt/audit oracle](docs/CASE-STUDY.md#source-regression--10-november-2026).
+
+Local Windows validation on 10 November 2026 used SDK 10.0.404 and the actually
+executed .NET runtime 10.0.15: **57 passed, zero failed/skipped**. Repository
+package/runtime pins and CI's SDK 10.0.403 setting remain unchanged; exact-source
+hosted Windows/Linux CI for this change is a separate, pending delivery gate.
+This adds reproducible source evidence without a new runtime version or package.
+TestServer response suppression does not exercise TCP failure, process crashes,
+power loss, the browser UI or an exchange.
 
 ## Operator Panel preview
 
