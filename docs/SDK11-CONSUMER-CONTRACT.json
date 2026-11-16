@@ -1,0 +1,45 @@
+{
+  "schema": "execution02-sdk11-consumer-route-contract/v1",
+  "state": "SOURCE_ONLY_NO_RUNTIME_AUTHORITY",
+  "projectId": "02",
+  "repository": "pouriajamali/trading-execution-lab",
+  "M0Sha256": "58e787ccf3e9e65b063d8bccd76d2b8332f106b9d4268cf66644a7af32f22a83",
+  "sharedInterfaceSha256": "7758af794c41c5caf6a567283e479a826b53b93511d1f6704fcd040121cb78a5",
+  "sharedCandidateSha256": "d76a111eb930f3bc5679ded826bd6626d69feae4700ec3b615272bd197546d82",
+  "frozenSchemaSha256": "63e04fa5d270c87b93e6e1f4c38bfbcf336b950b39fe1854dc4e514f0661f14c",
+  "consumerDefinition": "#/$defs/consumerAdmission",
+  "ownProfile": "tools/sdk11-own-profile.json",
+  "controller": "scripts/run_bounded.py",
+  "sourcePins": "tools/sdk11-own-source-pins.json",
+  "currentEvidenceBinding": "OWN_SUPERVISOR_BINDS_CURRENT_HELD_MAINPID_V1",
+  "currentInstanceId": "Actual RUNNER_NAME, matching the immutable shared implementation; RUNNER_TRACKING_ID remains separate metadata",
+  "budgets": {
+    "jobSeconds": 720,
+    "checkoutBootstrapSeconds": 60,
+    "controllerIncludingTerminalSeconds": 620,
+    "proofUploadSeconds": 40,
+    "nativeRows": 2,
+    "maxParallel": 1,
+    "newJobs": 0,
+    "newEvents": 0
+  },
+  "caps": {
+    "memoryBytes": 4294967296,
+    "tasks": 64,
+    "cpuCores": 2,
+    "swapBytes": 0,
+    "workspaceBytes": 8589934592,
+    "logBytes": 33554432,
+    "receiptBytes": 1048576
+  },
+  "preserved": "59 declared C# cases,11 JS,16 launcher,22 extracted/fourprocess checks perOS; all M1 scenarios, six committed locks, fresh audit, native prerequisites, notices and signed exact-commit release/download gates unchanged",
+  "linux": "757ab fact +0452 acceptance only within own exact source/profile/current held nonroot MainPID gate; original row deadline inherited including transport; no new runtime authority",
+  "windows": "DENIED_NO_ACCEPTED_PRODUCER_FACT; existing Job/control primitive preserved; no qualification replay",
+  "requiredBeforeUse": [
+    "Consolidated exact source/apply gate and expanded path/source allowance",
+    "Committed six real locks and regenerated/reviewed exact full HEAD source pin table",
+    "Immutable policy delivery and current-runtime/CI budget gate",
+    "Actual own MainPID/held pidfd/cgroup limits/bootstrap/source and terminal proof; unavailable or GCd unit/cgroup metadata is HOLD"
+  ],
+  "forbidden": "No SDK/acquisition/network/native/CI/public/apply in this task; no dependency/bootstrap or new clock; no host repair or root SDK"
+}

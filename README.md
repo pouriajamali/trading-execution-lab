@@ -7,7 +7,7 @@
 Explore order-risk decisions and retry-safe request processing in C#/.NET.
 The sample combines an order-state model, a single-writer host and an ASP.NET Core
 API that commits SQLite state, an idempotency receipt and an audit outbox together.
-The current source .NET suite has 57 cases; the original 24 model cases remain intact.
+The accepted .NET10 baseline has 57 cases; the original 24 model cases remain intact.
 The immutable v0.5.2-preview.1 runtime release retains its historical 56-case evidence.
 
 ## Architecture review
@@ -41,7 +41,7 @@ implementations. For the transaction and recovery decisions, follow the
 
 ## Check the C# implementation
 
-With the .NET 10 SDK, run this from a fresh source checkout:
+The candidate targets SDK11.0.100; execution waits for the reviewed SDK/control and lock gates below. After qualification, run from a fresh source checkout:
 
 ```sh
 dotnet run --project ExecutionLab.Tests/ExecutionLab.Tests.csproj -c Release
@@ -66,8 +66,8 @@ The existing pre-commit rollback test now also inspects the target-key rows.
 See the [literal state/receipt/audit oracle](docs/CASE-STUDY.md#source-regression--10-november-2026).
 
 Local Windows validation on 10 November 2026 used SDK 10.0.404 and the actually
-executed .NET runtime 10.0.15: **57 passed, zero failed/skipped**. Repository
-package/runtime pins and CI's SDK 10.0.403 setting remain unchanged. The automatic
+executed .NET runtime 10.0.15: **57 passed, zero failed/skipped**. That accepted baseline retained
+package/runtime pins and CI's SDK 10.0.403 setting. The automatic
 [exact-source CI](https://github.com/pouriajamali/trading-execution-lab/actions/runs/42876813842) for
 `90a608bba69608b6a1ab819d8b5e7ed296e238c5` passed on
 [Windows x64](https://github.com/pouriajamali/trading-execution-lab/actions/runs/42876813842/job/130042280261) and
@@ -186,9 +186,10 @@ adapters or real-order controls.
 
 ## Run
 
-Requires the **.NET 10 SDK (LTS)**, including the .NET 10 runtime. Tests use
-**xUnit v3 4.0.2** from NuGet. API, TestHost and SQLite use Microsoft packages
-**10.0.14**; the core library still has no external package dependency.
+Candidate source requires **SDK 11.0.100 / stable runtime 11.0.0 / C# 15.0**.
+Execution remains blocked until SDK/control admission, real locks and audit.
+Tests retain **xUnit v3 4.0.2**. JWT/TestHost target exact **11.0.0**;
+SQLite stays **10.0.14**. The core library has no external package dependency.
 
 ```sh
 dotnet run --project ExecutionLab.Tests/ExecutionLab.Tests.csproj --configuration Release
@@ -255,3 +256,42 @@ Independent synthetic portfolio material created with AI assistance in October�
 data or broker connection is included.
 
 [CI resource policy](docs/CI-POLICY.md): documentation-only changes get real lightweight document/pipeline checks; source, tag and manual runs retain native validation. Published runtime tags and release assets remain unchanged.
+
+## .NET 11 source candidate — not qualified
+
+Candidate 0.6.0-preview.1 targets SDK11.0.100/net11.0/C#15 and runtime11.0.0.
+Source preparation adds two literal compatibility tests; their expected total
+is59 and no candidate test/build has run. The accepted57-case and published56-case
+evidence above remains historical. SQLite/frontend pins and application behavior
+are preserved. [Candidate notes and technical gates](docs/RELEASE-v0.6.0-preview.1.md)
+identify the pending shared SDK, actual project02 controls, locks/audit, native
+qualification, signing and exact public-review gates. The download links still
+refer to the existing .NET10 release; no11 download is published. The independent
+public browser demo/site remains unchanged.
+
+
+## Shared SDK11 normal input — inert source wiring
+
+The private source candidate now binds the byte-identical producer04
+`transport(rid, directory, context)` / `inspect_sdk(rid, root, context)` API.
+Linux fact `757abf2d...` and acceptance `0452e1f3...` identify producer history;
+they grant no current Execution job admission. Windows normal input remains
+`DENIED_NO_ACCEPTED_PRODUCER_FACT` until its own accepted producer fact exists.
+
+[Own route contract](docs/SDK11-CONSUMER-CONTRACT.json) binds the tracked
+controller, profile and complete source-pin table. Linux's own stopped nonroot
+service MainPID, retained pidfd, kernel limits, bootstrap and original absolute
+deadline are observed by its supervisor before release. Frozen63e
+`consumerAdmission.currentExecution` records this current instance and its own
+caps digest; producer/current jobs may differ. No borrowed kernel evidence.
+The shared implementation uses `RUNNER_NAME` as instanceId; the tracking ID is
+retained separately. Missing/GCd terminal metadata yields HOLD.
+
+The existing two native rows,12-minute row timeout,max-parallel1, scenarios,
+six committed locks, fresh audit, native prerequisites, notices and signing
+remain required. The620-second controller allocation includes input transport,
+product work and teardown; it receives no new540/900-second outer clock.
+The source-pin table must be regenerated and re-reviewed after real lock files
+and the final consolidated source commit are available. This inert overlay
+has no exact final HEAD, runtime admission, execution or publication authority.
+Existing .NET10 downloads above remain the available release.

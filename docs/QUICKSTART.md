@@ -1,20 +1,26 @@
-# Local operator panel — v0.5.2-preview.1
+# Local operator panel — v0.6.0-preview.1 candidate
+
+Source preparation only: candidate0.6.0-preview.1 has not been built or tested.
+No11 archive is published. The prerequisites/run recipe below describe the intended
+new package after qualification. The old preview link requires its original
+.NET10 runtime, as recorded in [its release notes](RELEASE-v0.5.2-preview.1.md).
+See [candidate gates](RELEASE-v0.6.0-preview.1.md) before attempting this source.
 
 This is an independent **synthetic, loopback-only** C#/.NET sample. No broker,
 exchange, real account, market feed or real-order control is connected.
 
 ## Install prerequisites
 
-- Install the matching x64 **ASP.NET Core Runtime 10.0.14 or a later 10.0 patch** from the
-  [official .NET downloads](https://dotnet.microsoft.com/en-us/download/dotnet/10.0).
+- Install the matching x64 **ASP.NET Core Runtime 11.0.0 or a later 11.0 patch** from the
+  [official .NET downloads](https://dotnet.microsoft.com/en-us/download/dotnet/11.0).
   The plain .NET Runtime alone does not include `Microsoft.AspNetCore.App`.
 - Install [PowerShell 7](https://learn.microsoft.com/powershell/scripting/install/installing-powershell).
 - Packages are **framework-dependent**, not self-contained. An SDK, Node.js and
   Python are unnecessary to run the panel. Native OS prerequisites still apply.
-  Audited targets are Windows x64 and Ubuntu 24.04/glibc x64. Alpine/musl, ARM,
+  Intended targets are Windows x64 and Ubuntu 24.04/glibc x64; candidate11 is unqualified. Alpine/musl, ARM,
   macOS and other distributions are unverified. The preview is unsigned.
 
-Get the matching archive and `SHA256SUMS.txt` from the
+The existing published .NET10 archive and `SHA256SUMS.txt` remain at the
 [preview release](https://github.com/pouriajamali/trading-execution-lab/releases/tag/v0.5.2-preview.1).
 Check its SHA256 before extracting the **whole folder**, including native SQLite
 and `wwwroot` assets. `BUILD-MANIFEST.json` identifies its source commit and files.
@@ -36,7 +42,7 @@ pwsh -NoProfile -File ./Start-OperatorPanel.ps1
 ```
 
 The launcher first inspects the selected `dotnet` host for x64 and stable
-Microsoft.AspNetCore.App / Microsoft.NETCore.App 10.0.14 or a later 10.0 patch.
+Microsoft.AspNetCore.App / Microsoft.NETCore.App 11.0.0 or a later 11.0 patch.
 An incompatible or uninspectable host fails before the prompt, key and temporary
 database directory. Inspection temporarily uses English CLI output and restores
 the caller's language value. Nothing is installed or changed globally.
@@ -70,7 +76,7 @@ Each new launch starts a **fresh** demo; it does not resume the previous demo DB
 
 - Run the selected host's `--info` and `--list-runtimes`: the host must be x64,
   and both `Microsoft.NETCore.App` and `Microsoft.AspNetCore.App` must include a
-  stable 10.0.14 or later 10.0 patch. The plain .NET Runtime, 10.0.13 or another
+  stable 11.0.0 or later 11.0 patch. The plain .NET Runtime, a 10.0 runtime or another
   major version alone is insufficient.
 - `dotnet` and `pwsh` must be on PATH. For an explicit runtime host:
   `pwsh -File ./Start-OperatorPanel.ps1 -Dotnet /absolute/path/to/dotnet`.

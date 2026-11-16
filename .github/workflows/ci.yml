@@ -35,58 +35,30 @@ jobs:
       - name: Check actual workflow syntax and expressions
         run: python3 .github/ci/policy.py lint
   test:
+    name: Execution02 native (${{ matrix.rid }})
     needs: ci_policy
     if: needs.ci_policy.outputs.native == 'true'
     strategy:
       max-parallel: 1
+      fail-fast: false
       matrix:
         include:
           - os: ubuntu-24.04
             rid: linux-x64
-          - os: windows-latest
+          - os: windows-2025
             rid: win-x64
     runs-on: ${{ matrix.os }}
     timeout-minutes: 12
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: '10.0.403'
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '24'
-          cache: npm
-          cache-dependency-path: OperatorPanel/package-lock.json
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-      - name: Test the operator protocol and C# invariants
+      # Exact real manager policy/fact/input delivery is a REQUIRED next-gate attachment.
+      # No setup-dotnet/tool install or ambient SDK. Missing admission fails before SDK.
+      - name: Own typed CI host and bounded native row
         shell: pwsh
+        env:
+          EXE02_CI_POLICY_SHA256: ${{ vars.EXE02_CI_POLICY_SHA256 }}
         run: |
-          npm --prefix OperatorPanel ci
-          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-          npm --prefix OperatorPanel test
-          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-          dotnet run --project ExecutionLab.Tests/ExecutionLab.Tests.csproj --configuration Release
-          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-      - name: Check launcher exit, environment and owned cleanup
-        run: python scripts/check_launcher.py --work artifacts/launcher
-      - name: Build exact-commit framework-dependent package
-        run: python scripts/package_panel.py --work artifacts/build --out artifacts/delivery --rid ${{ matrix.rid }} --commit ${{ github.sha }}
-      - name: Extract actual archive to a path with spaces
-        shell: pwsh
-        run: |
-          New-Item -ItemType Directory -Path 'artifacts/extracted package' -ErrorAction Stop | Out-Null
-          $archive = Get-ChildItem -LiteralPath artifacts/delivery -File
-          if (@($archive).Count -ne 1) { throw 'One exact tested archive required.' }
-          if ($IsWindows) { Expand-Archive -LiteralPath $archive.FullName -DestinationPath 'artifacts/extracted package' }
-          else { tar -xzf $archive.FullName -C 'artifacts/extracted package'; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE } }
-      - name: Execute extracted package against real HTTP and SQLite
-        shell: pwsh
-        run: |
-          $package = Get-ChildItem -LiteralPath 'artifacts/extracted package' -Directory
-          if (@($package).Count -ne 1) { throw 'One package root required.' }
-          python scripts/check_package.py --package $package.FullName --work 'artifacts/runtime probe with spaces' --commit '${{ github.sha }}'
+          python -I -B scripts/run_bounded.py --ci --ci-rid '${{ matrix.rid }}' --ci-policy 'artifacts/ci-inputs/${{ matrix.rid }}/manager-admission.json' --ci-policy-sha256 "$env:EXE02_CI_POLICY_SHA256"
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
       - uses: actions/upload-artifact@v4
         if: startsWith(github.ref, 'refs/tags/') || github.event_name == 'workflow_dispatch'
@@ -96,6 +68,7 @@ jobs:
           path: artifacts/delivery/*
           if-no-files-found: error
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
           retention-days: ${{ (startsWith(github.ref, 'refs/tags/') || github.event_name == 'workflow_dispatch') && 7 || 3 }}
           name: proof-${{ matrix.rid }}
@@ -103,6 +76,15 @@ jobs:
             artifacts/build/archive.json
             artifacts/runtime probe with spaces/receipt.json
             artifacts/launcher/receipt.json
+            ${{ runner.temp }}/execution02-*/consumer-terminal.json
+            ${{ runner.temp }}/execution02-*/containment.json
+            ${{ runner.temp }}/execution02-*/context.json
+            ${{ runner.temp }}/execution02-*/host-handshake.json
+            ${{ runner.temp }}/execution02-*/root-terminal.json
+            ${{ runner.temp }}/execution02-*/own-caps.json
+            ${{ runner.temp }}/execution02-*/consumer-admission.json
+            ${{ runner.temp }}/execution02-*/normal-context.json
+            ${{ runner.temp }}/execution02-*/normal-input.json
           if-no-files-found: error
 
   release:
@@ -133,7 +115,7 @@ jobs:
           git -c core.autocrlf=false -c core.eol=lf archive --format=zip --prefix="trading-execution-lab-${RELEASE_TAG}-source/" --output="artifacts/release/trading-execution-lab-${RELEASE_TAG}-source.zip" HEAD
           cd artifacts/release
           sha256sum *.zip *.tar.gz > SHA256SUMS.txt
-      - name: Publish tested preview assets
+      - name: Stage tested preview assets in a draft (operator signing required)
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh release create "$RELEASE_TAG" artifacts/release/* --verify-tag --prerelease --title "$RELEASE_TAG — runtime-preflight local operator panel" --notes-file docs/RELEASE-v0.5.2-preview.1.md
+        run: gh release create "$RELEASE_TAG" artifacts/release/* --verify-tag --draft --prerelease --title "$RELEASE_TAG — .NET 11 local operator panel" --notes-file docs/RELEASE-v0.6.0-preview.1.md

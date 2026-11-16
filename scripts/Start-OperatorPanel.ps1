@@ -10,7 +10,7 @@ if (!(Test-Path -LiteralPath $dll -PathType Leaf)) {
 }
 # Inspect this exact host, not another installation discoverable on PATH.
 # Keep the English CLI output local to these probes and restore the caller's value.
-$prerequisite = 'This panel requires x64 ASP.NET Core Runtime 10.0.14 or a later 10.0 patch (including Microsoft.NETCore.App). See https://github.com/pouriajamali/trading-execution-lab/blob/main/docs/QUICKSTART.md#install-prerequisites . No runtime or system setting was changed.'
+$prerequisite = '[EXECUTION_LAB_RUNTIME_DENIED] This panel requires x64 ASP.NET Core Runtime 11.0.0 or a later 11.0 patch (including Microsoft.NETCore.App). See https://github.com/pouriajamali/trading-execution-lab/blob/main/docs/QUICKSTART.md#install-prerequisites . No runtime or system setting was changed.'
 $savedLanguage = [Environment]::GetEnvironmentVariable('DOTNET_CLI_UI_LANGUAGE', 'Process')
 try {
     $runtime = (Get-Command $Dotnet -CommandType Application -ErrorAction Stop).Source
@@ -26,8 +26,8 @@ try {
     }
     foreach ($framework in @('Microsoft.NETCore.App', 'Microsoft.AspNetCore.App')) {
         $compatible = @($frameworks | Where-Object {
-            $_ -match ('^' + [regex]::Escape($framework) + ' 10\.0\.(?<patch>[0-9]+) \[[^\r\n]+\]$') -and
-            [int]$Matches['patch'] -ge 14
+            $_ -match ('^' + [regex]::Escape($framework) + ' 11\.0\.(?<patch>[0-9]+) \[[^\r\n]+\]$') -and
+            [int]$Matches['patch'] -ge 0
         })
         if ($compatible.Count -eq 0) { throw "The selected host lacks a compatible $framework framework." }
     }

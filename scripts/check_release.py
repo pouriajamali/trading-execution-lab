@@ -26,6 +26,7 @@ def inspect_archive(path, commit, version, rid):
                     payload[info.name] = archive.extractfile(info).read()
     assert len(payload) <= 256 and sum(map(len, payload.values())) <= 64 * 1024 * 1024
     for name in payload:
+        assert "\\" not in name and ":" not in name
         assert not PurePosixPath(name).is_absolute() and ".." not in PurePosixPath(name).parts
     roots = {PurePosixPath(name).parts[0] for name in payload}
     assert len(roots) == 1
@@ -38,6 +39,11 @@ def inspect_archive(path, commit, version, rid):
     for item in manifest["files"]:
         raw = files[item["path"]]
         assert len(raw) == item["bytes"] and hashlib.sha256(raw).hexdigest() == item["sha256"]
+    config = json.loads(files["ExecutionLab.Api.runtimeconfig.json"])["runtimeOptions"]
+    assert {f["name"] for f in config["frameworks"]} == {"Microsoft.NETCore.App", "Microsoft.AspNetCore.App"}
+    assert all(f["version"] == "11.0.0" for f in config["frameworks"])
+    assert config["rollForward"] == "LatestPatch" and "includedFrameworks" not in config
+    assert manifest["sdk"] == "11.0.100"
     assert commit.encode("ascii") in files["ExecutionLab.Api.dll"]
     assert {"LICENSE", "README.md", "Start-OperatorPanel.ps1", "THIRD-PARTY-DEPENDENCIES.json"}.issubset(files)
     assert not any(name.lower().endswith((".pdb", ".sqlite")) for name in files)

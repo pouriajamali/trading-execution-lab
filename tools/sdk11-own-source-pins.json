@@ -1,0 +1,388 @@
+{
+  "schema": "sdk11-own-source-pins/v1",
+  "state": "EXACT_SOURCE_REVIEWED",
+  "projectId": "02",
+  "repository": "pouriajamali/trading-execution-lab",
+  "sourcePins": [
+    {
+      "path": ".github/ci/policy.py",
+      "mode": "100644",
+      "gitBlob": "098fd3461ee76c12c245ea58dc9d8be9d1af9508"
+    },
+    {
+      "path": ".github/ci/test_policy.py",
+      "mode": "100644",
+      "gitBlob": "f4ffb99cbcb59d0dafe05db17d1ef8d6df364bda"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "mode": "100644",
+      "gitBlob": "90d5fe71cd61d75b799d1863e4d01fd3d697cb95"
+    },
+    {
+      "path": ".gitignore",
+      "mode": "100644",
+      "gitBlob": "883de0b3f76d3aeb736a27dca468c59bb454b2c1"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "mode": "100644",
+      "gitBlob": "4c5242e900ce8ae84684b384fb99b6c9e8464701"
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "mode": "100644",
+      "gitBlob": "f861359a25628396c09e5851034d24e68b89c516"
+    },
+    {
+      "path": "Directory.Build.props",
+      "mode": "100644",
+      "gitBlob": "ffa92dcf0525082c9a44ae2298ce8dcaf20b5fde"
+    },
+    {
+      "path": "ExecutionLab.Api/ExecutionLab.Api.csproj",
+      "mode": "100644",
+      "gitBlob": "8f29260b28974304f16c3e59f6fe957739bbf4b1"
+    },
+    {
+      "path": "ExecutionLab.Api/GateApi.cs",
+      "mode": "100644",
+      "gitBlob": "8c7d0f84ced0260c447336358badded577e1ba34"
+    },
+    {
+      "path": "ExecutionLab.Api/PanelApi.cs",
+      "mode": "100644",
+      "gitBlob": "1def9e3e391569709db593686e286f28f5a2eb51"
+    },
+    {
+      "path": "ExecutionLab.Api/Program.cs",
+      "mode": "100644",
+      "gitBlob": "9b26ba3bdc86fa281759632a3acd9af53898b3e8"
+    },
+    {
+      "path": "ExecutionLab.Hosting/ExecutionLab.Hosting.csproj",
+      "mode": "100644",
+      "gitBlob": "448564cb2fec9ad9a57648dcf92586937be619a7"
+    },
+    {
+      "path": "ExecutionLab.Hosting/SerializedExecutionSession.cs",
+      "mode": "100644",
+      "gitBlob": "bc8e160911441cb5d72217053e74d48259aaa65b"
+    },
+    {
+      "path": "ExecutionLab.Measurements/ExecutionLab.Measurements.csproj",
+      "mode": "100644",
+      "gitBlob": "87e467ba0bb7c9ea31b1d2fb0f688f6ecc157df1"
+    },
+    {
+      "path": "ExecutionLab.Measurements/Program.cs",
+      "mode": "100644",
+      "gitBlob": "906a1dac7c0485f6382c027fb8ffdf95917a4c8a"
+    },
+    {
+      "path": "ExecutionLab.Persistence/AssemblyInfo.cs",
+      "mode": "100644",
+      "gitBlob": "ea863f3803bee49dfab95d39530dd68d57a8f49b"
+    },
+    {
+      "path": "ExecutionLab.Persistence/DurableGate.cs",
+      "mode": "100644",
+      "gitBlob": "9b62d38b070e180ea7b01abab117be30c4bb6f69"
+    },
+    {
+      "path": "ExecutionLab.Persistence/ExecutionLab.Persistence.csproj",
+      "mode": "100644",
+      "gitBlob": "5764dbe52abd7c0be6670d3dc7c8b03293ff8f50"
+    },
+    {
+      "path": "ExecutionLab.Tests/BoundaryTests.cs",
+      "mode": "100644",
+      "gitBlob": "ced729f2398cd1f4a42f93ab70fbfd241093aec1"
+    },
+    {
+      "path": "ExecutionLab.Tests/DurabilityTests.cs",
+      "mode": "100644",
+      "gitBlob": "eb58c508790efb9b3caf2f29e2e078645cb91665"
+    },
+    {
+      "path": "ExecutionLab.Tests/ExecutionLab.Tests.csproj",
+      "mode": "100644",
+      "gitBlob": "686c6256f131c22adbef057d4eaeffa22222ae14"
+    },
+    {
+      "path": "ExecutionLab.Tests/HostingTests.cs",
+      "mode": "100644",
+      "gitBlob": "3588435ef274622d1498dd6e2dad32619d18e725"
+    },
+    {
+      "path": "ExecutionLab.Tests/OrderGateTests.cs",
+      "mode": "100644",
+      "gitBlob": "b22c5c984c7568592992a690447b1e9c1a94ed39"
+    },
+    {
+      "path": "ExecutionLab.Tests/TechRefreshCompatibilityTests.cs",
+      "mode": "100644",
+      "gitBlob": "814a92fbfb6a340d5f0cfcf3dcada333ebc3573d"
+    },
+    {
+      "path": "ExecutionLab/ExecutionLab.csproj",
+      "mode": "100644",
+      "gitBlob": "d5770ef791f87521037d4460c184637d5ea43978"
+    },
+    {
+      "path": "ExecutionLab/OrderGate.cs",
+      "mode": "100644",
+      "gitBlob": "2e8dc67ff026e4a5c52dd3c1fcfb390c164a81d2"
+    },
+    {
+      "path": "LICENSE",
+      "mode": "100644",
+      "gitBlob": "e67e64a5ab7fcec5def82845d73fc7f96f82c9ba"
+    },
+    {
+      "path": "OperatorPanel/index.html",
+      "mode": "100644",
+      "gitBlob": "e9d9eccbf41613a2dbad2e3f0516eea9f9cdb2ae"
+    },
+    {
+      "path": "OperatorPanel/package-lock.json",
+      "mode": "100644",
+      "gitBlob": "584f60b64834a89e77e093f08048d7cf9b5d8ca1"
+    },
+    {
+      "path": "OperatorPanel/package.json",
+      "mode": "100644",
+      "gitBlob": "82cc29cf11b09583c98c0141fe997f199b9bf828"
+    },
+    {
+      "path": "OperatorPanel/src/main.tsx",
+      "mode": "100644",
+      "gitBlob": "bfe0eced7153b51f0da111b99663e241f7a4b1c7"
+    },
+    {
+      "path": "OperatorPanel/src/protocol.test.mjs",
+      "mode": "100644",
+      "gitBlob": "44b764bad7a67672342b39eabf88e8b1cfb9a963"
+    },
+    {
+      "path": "OperatorPanel/src/protocol.ts",
+      "mode": "100644",
+      "gitBlob": "261e088a757fae3f40c46e6c77ab98de2cdd1a4b"
+    },
+    {
+      "path": "OperatorPanel/src/styles.css",
+      "mode": "100644",
+      "gitBlob": "e54095a1a32f4f407b455de27582c90e4ff9f5a2"
+    },
+    {
+      "path": "OperatorPanel/tsconfig.json",
+      "mode": "100644",
+      "gitBlob": "817e950ece17b6351747c74af0da44ab7462bdbf"
+    },
+    {
+      "path": "OperatorPanel/vite.config.mjs",
+      "mode": "100644",
+      "gitBlob": "60decb130a67a81c921a6bd97f06580ba70afb5c"
+    },
+    {
+      "path": "PROVENANCE.md",
+      "mode": "100644",
+      "gitBlob": "8ae2a09dd0086125a07413844e2e726cde7f0e3e"
+    },
+    {
+      "path": "README.md",
+      "mode": "100644",
+      "gitBlob": "408ecb05de9d678b67f155f7878c4896760b9484"
+    },
+    {
+      "path": "SCOPE.md",
+      "mode": "100644",
+      "gitBlob": "f0dd8f03e70063d258cea90c1b58a386253f86dc"
+    },
+    {
+      "path": "SIGNING-PUBLIC-KEY.pub",
+      "mode": "100644",
+      "gitBlob": "260690d2d8ede6631c0792fe61d2883c383f5466"
+    },
+    {
+      "path": "docs/ARCHITECTURE-CASE-STUDY.md",
+      "mode": "100644",
+      "gitBlob": "7e4271e6d19c597a9f67418ce180ee84294603ba"
+    },
+    {
+      "path": "docs/CASE-STUDY.md",
+      "mode": "100644",
+      "gitBlob": "40d1fca2ff3422f15fd4af6aeadfba44714c43a9"
+    },
+    {
+      "path": "docs/CI-POLICY.md",
+      "mode": "100644",
+      "gitBlob": "70ac836e7c3a55ab63bf6fff19687c7dc2ef6f4c"
+    },
+    {
+      "path": "docs/FLAGSHIP-EVIDENCE.json",
+      "mode": "100644",
+      "gitBlob": "a133467ebd09ec35a8251d8c8b3cc509f5bf8549"
+    },
+    {
+      "path": "docs/FLAGSHIP-REVIEW.md",
+      "mode": "100644",
+      "gitBlob": "72c506709485f1010465214a11ad99c3e37a67ab"
+    },
+    {
+      "path": "docs/MEASUREMENTS.md",
+      "mode": "100644",
+      "gitBlob": "186137c99c5ce9d70cd056179202e7ab9dff7451"
+    },
+    {
+      "path": "docs/QUICKSTART.md",
+      "mode": "100644",
+      "gitBlob": "deb4ada4ea41887c8b8d2528c03d2b457818226d"
+    },
+    {
+      "path": "docs/RELEASE-v0.5.1-preview.1.md",
+      "mode": "100644",
+      "gitBlob": "e391e447f7aba824895f2650a9fdb728c67746bd"
+    },
+    {
+      "path": "docs/RELEASE-v0.5.2-preview.1.md",
+      "mode": "100644",
+      "gitBlob": "8569180c25fe62c3006087f44dc29cbbd4012352"
+    },
+    {
+      "path": "docs/RELEASE-v0.6.0-preview.1.md",
+      "mode": "100644",
+      "gitBlob": "bafb10a77297e1f6c23e802d09b446606ddee380"
+    },
+    {
+      "path": "docs/SDK11-CONSUMER-CONTRACT.json",
+      "mode": "100644",
+      "gitBlob": "cab81fc6e05595ebf33d74c19e66c5981a2c8c49"
+    },
+    {
+      "path": "docs/decisions/0001-single-writer.md",
+      "mode": "100644",
+      "gitBlob": "946cbcbfafa60a454896c98da760e8fb1b98a6e7"
+    },
+    {
+      "path": "docs/decisions/0002-transactional-control-plane.md",
+      "mode": "100644",
+      "gitBlob": "3ca8918e4885f17e1b2fc3fbc72a0e5594f3a6df"
+    },
+    {
+      "path": "docs/evidence/audit-20261105.json",
+      "mode": "100644",
+      "gitBlob": "8c04202aa9a149a2617d014ae5dd17d9343ba24d"
+    },
+    {
+      "path": "docs/licenses/Apache-2.0.txt",
+      "mode": "100644",
+      "gitBlob": "d645695673349e3947e8e5ae42332d0ac3164cd7"
+    },
+    {
+      "path": "docs/licenses/Microsoft-MIT.txt",
+      "mode": "100644",
+      "gitBlob": "984713a49622a96da110443c15477613bc12656b"
+    },
+    {
+      "path": "docs/measurements/windows-local-20261102/events.csv",
+      "mode": "100644",
+      "gitBlob": "a49701d1297dfe31406d00fda01a07596bb06281"
+    },
+    {
+      "path": "docs/measurements/windows-local-20261102/report.json",
+      "mode": "100644",
+      "gitBlob": "3c01566b1c6a1b4d0a55539de4b5f0fe8011628d"
+    },
+    {
+      "path": "global.json",
+      "mode": "100644",
+      "gitBlob": "1ab7a3c415aabd88d676657c9d092a938f7b87d4"
+    },
+    {
+      "path": "scripts/Start-OperatorPanel.ps1",
+      "mode": "100644",
+      "gitBlob": "f0994079221fb47d0106dea7bbd2809fde638b77"
+    },
+    {
+      "path": "scripts/check_launcher.py",
+      "mode": "100644",
+      "gitBlob": "0d96578acc2929e0d7213200da487d6fa896905b"
+    },
+    {
+      "path": "scripts/check_package.py",
+      "mode": "100644",
+      "gitBlob": "ce8ce0c8d88d51490bef02c24630b085f4117105"
+    },
+    {
+      "path": "scripts/check_release.py",
+      "mode": "100644",
+      "gitBlob": "b0e9fa9cc887f37214cdd031dc795e673c583cee"
+    },
+    {
+      "path": "scripts/check_tech_refresh.py",
+      "mode": "100644",
+      "gitBlob": "7d80297698822f4f3a82650ec6a308e40f92ed82"
+    },
+    {
+      "path": "scripts/package_panel.py",
+      "mode": "100644",
+      "gitBlob": "aa563b979de6f4cc2ec333b633f53de65ca49b3e"
+    },
+    {
+      "path": "scripts/qualify_tech_refresh.py",
+      "mode": "100644",
+      "gitBlob": "b6eccdda6f02435c8b15405493cf2a1072ba3593"
+    },
+    {
+      "path": "scripts/run_bounded.py",
+      "mode": "100644",
+      "gitBlob": "b95172656016c4ce1fb119df64ac68559eeb564e"
+    },
+    {
+      "path": "tools/check_dotnet11.py",
+      "mode": "100644",
+      "gitBlob": "313e6978edca571d32e1092d222f3aae54c40b27"
+    },
+    {
+      "path": "tools/dotnet11-host-qualification.schema.json",
+      "mode": "100644",
+      "gitBlob": "4c505869b03dbf79c194bf8c7ca7b376ceee0223"
+    },
+    {
+      "path": "tools/materialize_qualification_linux.py",
+      "mode": "100644",
+      "gitBlob": "16e4e7ef7b2e7747a17714e4f6a551c40c9a4829"
+    },
+    {
+      "path": "tools/qualification_input_guard.py",
+      "mode": "100644",
+      "gitBlob": "ebc36eade0d00b3d419aa995f4913117ba64abd6"
+    },
+    {
+      "path": "tools/sdk11-normal-inputs.lock.json",
+      "mode": "100644",
+      "gitBlob": "67eed2c29e0b11a3cc4b405994dfe41e7808f45d"
+    },
+    {
+      "path": "tools/sdk11-normal/.gitattributes",
+      "mode": "100644",
+      "gitBlob": "bbd7984e8d8399fecf37567807fd2c32c7489081"
+    },
+    {
+      "path": "tools/sdk11-normal/accepted-linux-acceptance.json",
+      "mode": "100644",
+      "gitBlob": "9ed6ac75a97db595caa5c6d9b84e03b7f21e7f2e"
+    },
+    {
+      "path": "tools/sdk11-normal/accepted-linux-fact.json",
+      "mode": "100644",
+      "gitBlob": "391173426f2a48f2fb9797d70cc7cb618bd5ffaf"
+    },
+    {
+      "path": "tools/sdk11-own-profile.json",
+      "mode": "100644",
+      "gitBlob": "cc1a934c1f9ef65b6acf3a7a32128da6db3139cb"
+    }
+  ]
+}

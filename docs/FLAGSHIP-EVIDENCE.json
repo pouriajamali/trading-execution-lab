@@ -120,5 +120,20 @@
     "Real adoption or team-management history",
     "Performance superiority"
   ],
-  "reproductionBoundary": "Use exact runtime tag/source and fresh local outputs; CI artifact retention and timing reproducibility are not guaranteed; current documentation main can differ from runtime source"
+  "reproductionBoundary": "Use exact runtime tag/source and fresh local outputs; CI artifact retention and timing reproducibility are not guaranteed; current documentation main can differ from runtime source",
+  "technologyMaintenance": {
+    "date": "2026-11-14",
+    "version": "0.6.0-preview.1",
+    "status": "SOURCE_PREPARATION_ONLY_NOT_QUALIFIED",
+    "sdk": "11.0.100",
+    "framework": "net11.0",
+    "runtimeFloor": "11.0.0",
+    "language": "15.0",
+    "newLiteralTests": 2,
+    "expectedCandidateCases": 59,
+    "executionEvidence": "NONE",
+    "locks": "NOT_GENERATED",
+    "consumerControl": "NOT_BOUND",
+    "notes": "docs/RELEASE-v0.6.0-preview.1.md"
+  }
 }

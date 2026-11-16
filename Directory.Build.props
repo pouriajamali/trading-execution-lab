@@ -1,0 +1,12 @@
+<Project>
+  <PropertyGroup>
+    <LangVersion>15.0</LangVersion>
+    <RuntimeFrameworkVersion>11.0.0</RuntimeFrameworkVersion>
+    <RollForward>LatestPatch</RollForward>
+    <RuntimeIdentifiers>win-x64;linux-x64</RuntimeIdentifiers>
+    <UseAppHost>false</UseAppHost>
+    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+    <PublishAot>false</PublishAot>
+    <PublishReadyToRun>false</PublishReadyToRun>
+  </PropertyGroup>
+</Project>

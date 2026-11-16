@@ -110,3 +110,14 @@ historical evidence; no new browser, crash, power-loss or broker test is claimed
 
 The current correctness workflow does not rerun profiling. Original raw
 measurements and their measured-source boundary are retained.
+
+## 14 November 2026 source-only technology preparation
+
+The isolated0.6.0-preview.1 candidate changes framework/compiler/runtime metadata,
+selected version/preflight checks and adds two literal compatibility tests.
+Existing application/test sources, wire/schema, risk policy and fixtures remain
+unchanged. Old57/56 evidence is not .NET11 evidence. Actual controls, native SDK
+and SQLite compatibility, Linux native path, locks/audit and full execution are
+pending; the E/DrvFS SQLITE_BUSY observation is still unresolved. No throughput,
+latency, safety, production or trading claim follows from the version change.
+See [candidate boundaries](docs/RELEASE-v0.6.0-preview.1.md).

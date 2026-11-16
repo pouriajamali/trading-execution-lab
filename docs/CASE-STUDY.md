@@ -188,3 +188,16 @@ is excluded from that claim.
 
 See [ADR 0001](decisions/0001-single-writer.md),
 [ADR 0002](decisions/0002-transactional-control-plane.md) and [scope](../SCOPE.md).
+
+## .NET 11 candidate source preparation — 14 November 2026
+
+Two new source-authored literal tests are in
+[TechRefreshCompatibilityTests.cs](../ExecutionLab.Tests/TechRefreshCompatibilityTests.cs).
+They compare legacy-shaped receipt/fingerprint bytes and exact public response
+shape, table columns and no-effect replay/conflicts across reopening. They are
+unexecuted, not captured historical runtime fixtures. The existing57 tests and
+M1 oracle remain unchanged. Runtime11, native SQLite, actual caps and matching-OS
+compatibility remain UNKNOWN. The historical E/DrvFS contention failure is not
+relabelled as resolved. [Candidate notes](RELEASE-v0.6.0-preview.1.md) bind the
+remaining SDK/control/lock/audit, CI and signed-download obligations. No benchmark
+or public-site change is part of this candidate.

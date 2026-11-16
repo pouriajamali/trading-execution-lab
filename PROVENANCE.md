@@ -121,3 +121,14 @@ Do not normalize/edit the downloaded checksum file before verification. A valid
 signature over different bytes or a matching hash for another filename does not
 verify the chosen archive. Preserve failures and obtain a trusted copy rather
 than skipping a failed signature or fingerprint check.
+
+## Pending .NET 11 candidate
+
+Candidate0.6.0-preview.1 is source preparation only; it has no new signed commit,
+tag, archive or downloadable release. Existing examples above continue to verify
+the immutable .NET10 preview. The new tag workflow must first create a private
+draft. The authorized existing key holder signs the actual draft's checksum file,
+verifies it using the independent fingerprint above, then obtains the exact
+public gate before publishing. The three archives, sums, signature and public key
+must all be downloaded and verified after publication. No unsigned public release
+followed by a signature patch is allowed. See [the exact candidate route](docs/RELEASE-v0.6.0-preview.1.md).

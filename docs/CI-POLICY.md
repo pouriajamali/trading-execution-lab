@@ -14,3 +14,15 @@ This workflow policy separates documentation checks from unchanged runtime build
 - New retention does not delete old artifacts or logs. No artifact/cache deletion, paid capacity, self-hosted runner, account permission or budget change is performed by this policy. Any historical cleanup requires a separately reviewed inventory and explicit authorization.
 
 The lightweight job uses only the standard Ubuntu runner, Python's standard library, and actionlint 1.7.12 downloaded from its official release with an exact archive SHA256. It does not claim optional external ShellCheck/Pyflakes results. Current account storage usage is not inferred from one repository's artifact byte count.
+
+## Pending .NET 11 maintenance candidate
+
+The candidate selects SDK11.0.100 and creates draft previews using the new release
+notes. Source preparation does not authorize any workflow event. The SDK11 producer
+handoff and02 consumer/wrapper/actual hosted containment wiring are not bound yet;
+this source snapshot is not CI-ready. Keep the existing fail-closed classification,
+triggers, permissions, concurrency, matching-native checks and retention limits.
+No native change can use docs-only validation. Six real locks and fresh audit
+remain required before execution; offline-source NuGetAudit=false is never audit
+proof. The finite proposed source+tag allowance and signed-draft public route are
+in [candidate notes](RELEASE-v0.6.0-preview.1.md); old Wave2 budget grants no new run.

@@ -1,6 +1,6 @@
 """Bounded, real loopback ASP.NET Core + SQLite checks on an extracted package.
 
-Needs the matching installed ASP.NET Core .NET 10 runtime, Python and an idle
+Needs the matching installed ASP.NET Core .NET 11 runtime, Python and an idle
 127.0.0.1:5087. Never contacts a broker or uses user/market data. No benchmark.
 """
 import argparse
@@ -51,7 +51,8 @@ def main():
     config = json.loads((package / "ExecutionLab.Api.runtimeconfig.json").read_text())["runtimeOptions"]
     assert "includedFrameworks" not in config
     assert {f["name"] for f in config["frameworks"]} == {"Microsoft.NETCore.App", "Microsoft.AspNetCore.App"}
-    assert all(f["version"].startswith("10.") for f in config["frameworks"])
+    assert all(f["version"] == "11.0.0" for f in config["frameworks"])
+    assert config["rollForward"] == "LatestPatch"
     with socket.socket() as check:
         check.bind(("127.0.0.1", 5087))  # Refuse to disturb an existing service.
     key = secrets.token_bytes(32)
@@ -106,6 +107,15 @@ def main():
         process.wait(timeout=12)
         log.flush()
         assert process.returncode != 0, name
+        # Only a completed managed rejection with its named cause is a negative.
+        # Loader/ABI failures, unrelated exceptions and timeouts cannot pass.
+        text = (work / (name + ".log")).read_text(encoding="utf-8", errors="replace")
+        required = {
+            "refuse-existing-seed": ("System.IO.IOException", "already exists", database.name),
+            "refuse-configured-endpoint": ("System.InvalidOperationException",
+                "Configured Kestrel endpoints are not permitted in this loopback sample.")
+        }[name]
+        assert all(marker in text for marker in required), (name, "not the expected completed denial")
         return process
 
     def stop(process):

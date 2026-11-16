@@ -74,3 +74,13 @@ Existing source release and raw measurements remain available.
 
 Typed immutable order/risk model and 24 cases; v0.2.0 moved the public target to
 .NET10. Older source tags remain unchanged.
+
+## 0.6.0-preview.1 — source preparation only, 2026-11-14
+
+Retargeted candidate source to net11.0/C#15 with SDK11.0.100 and stable11.0.0
+framework floor; pinned JWT/TestHost11.0.0, retaining SQLite/xUnit/frontend pins.
+Added two unexecuted literal compatibility tests, strict11 launcher fixtures and
+archive checks, and changed the tag publication step to create a draft for later
+known-key signing. No locks generated, SDK/helper execution, tests/build/package,
+remote changes or release occurred. See [remaining technical and delivery gates](docs/RELEASE-v0.6.0-preview.1.md).
+Historical releases and measurements are immutable.

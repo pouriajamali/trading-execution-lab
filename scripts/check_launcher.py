@@ -30,7 +30,7 @@ args=sys.argv[1:]
 with open(os.environ['LAUNCHER_PROBE_SEQUENCE'],'a',encoding='utf-8') as f:
  f.write(json.dumps({'args':args,'language':os.environ.get('DOTNET_CLI_UI_LANGUAGE')})+'\\n')
 if args==['--info']:
- print('Host:\\n  Version: 10.0.14\\n  Architecture: '+os.environ['LAUNCHER_PROBE_ARCH']+'\\n\\nOther architectures found:\\n  x64')
+ print('Host:\\n  Version: 11.0.0\\n  Architecture: '+os.environ['LAUNCHER_PROBE_ARCH']+'\\n\\nOther architectures found:\\n  x64')
  sys.exit(int(os.environ.get('LAUNCHER_PROBE_INFO_EXIT','0')))
 if args==['--list-runtimes']:
  print(os.environ['LAUNCHER_PROBE_FRAMEWORKS'])
@@ -61,24 +61,24 @@ try {
 }
 exit $observedExit
 ''', encoding="utf-8")
-    core = "Microsoft.NETCore.App 10.0.14 [controlled path with spaces]"
+    core = "Microsoft.NETCore.App 11.0.0 [controlled path with spaces]"
     def asp(patch):
-        return f"Microsoft.AspNetCore.App 10.0.{patch} [controlled path with spaces]"
-    good = core + "\n" + asp(14)
+        return f"Microsoft.AspNetCore.App 11.0.{patch} [controlled path with spaces]"
+    good = core + "\n" + asp(0)
     cases = [
         ("clean", good, "x64", True, 0, "valid", {}),
         ("failure", good, "x64", True, 17, "valid", {}),
         ("invalid-code", good, "x64", True, 0, "short", {}),
         ("missing-asp", core, "x64", False, 0, "valid", {}),
-        ("below-floor", core+"\n"+asp(13), "x64", False, 0, "valid", {}),
-        ("later-patch", core+"\n"+asp(15), "x64", True, 0, "valid", {}),
-        ("other-major", core+"\nMicrosoft.AspNetCore.App 11.0.14 [path]", "x64", False, 0, "valid", {}),
-        ("other-minor", core+"\nMicrosoft.AspNetCore.App 10.1.14 [path]", "x64", False, 0, "valid", {}),
-        ("prerelease", core+"\n"+asp("14-preview.1"), "x64", False, 0, "valid", {}),
+        ("wrong-major-asp", core+"\n"+"Microsoft.AspNetCore.App 10.0.15 [path]", "x64", False, 0, "valid", {}),
+        ("later-patch", core+"\n"+asp(1), "x64", True, 0, "valid", {}),
+        ("other-major", core+"\nMicrosoft.AspNetCore.App 12.0.0 [path]", "x64", False, 0, "valid", {}),
+        ("other-minor", core+"\nMicrosoft.AspNetCore.App 11.1.0 [path]", "x64", False, 0, "valid", {}),
+        ("prerelease", core+"\n"+asp("0-preview.1"), "x64", False, 0, "valid", {}),
         ("x86-host", good, "x86", False, 0, "valid", {}),
         ("arm-host", good, "arm64", False, 0, "valid", {}),
-        ("missing-core", asp(14), "x64", False, 0, "valid", {}),
-        ("core-below-floor", "Microsoft.NETCore.App 10.0.13 [path]\n"+asp(14), "x64", False, 0, "valid", {}),
+        ("missing-core", asp(0), "x64", False, 0, "valid", {}),
+        ("wrong-major-core", "Microsoft.NETCore.App 10.0.15 [path]\n"+asp(0), "x64", False, 0, "valid", {}),
         ("info-failure", good, "x64", False, 0, "valid", {"LAUNCHER_PROBE_INFO_EXIT":"9"}),
         ("list-failure", good, "x64", False, 0, "valid", {"LAUNCHER_PROBE_LIST_EXIT":"9"}),
         ("missing-host", good, "x64", False, 0, "valid", {"LAUNCHER_PROBE_RUNTIME":str(root/"absent host")}),
@@ -113,7 +113,12 @@ sys.exit(int(os.environ['LAUNCHER_PROBE_EXIT']))
             else:
                 env["DOTNET_CLI_UI_LANGUAGE"]="original-test-value"
                 command=["pwsh","-NoProfile","-File",str(direct),"-PublishedDirectory",str(published),"-Dotnet",env["LAUNCHER_PROBE_RUNTIME"]]
-            result=subprocess.run(command,env=env,capture_output=True,text=True,timeout=20)
+            try:
+                result=subprocess.run(command,env=env,capture_output=True,text=True,timeout=20)
+            except (OSError, subprocess.TimeoutExpired) as failure:
+                (root/"receipt.json").write_text(json.dumps({"status":"INCOMPLETE",
+                    "case":name,"mode":mode,"reason":type(failure).__name__}),encoding="utf-8")
+                raise
             (work/(mode+".json")).write_text(json.dumps({"command":command,"exit":result.returncode,
                 "stdout":result.stdout.replace(code,"<redacted-test-code>"),
                 "stderr":result.stderr.replace(code,"<redacted-test-code>")},indent=2),encoding="utf-8")
@@ -121,11 +126,11 @@ sys.exit(int(os.environ['LAUNCHER_PROBE_EXIT']))
             if mode == "harness":
                 assert json.loads(restored.read_text()) is True, (name,"environment not restored")
             if not compatible:
-                assert result.returncode != 0 and not prompted.exists() and not trace.exists(), (name,mode,"preflight must fail before prompt/child")
+                assert result.returncode == 1 and not prompted.exists() and not trace.exists(), (name,mode,"preflight must fail before prompt/child")
                 assert not list(temp.iterdir()), (name,"temporary state before failed preflight")
-                assert all(x in result.stderr for x in ("ASP.NET Core","10.0.14","x64")), (name,"actionable prerequisite message")
+                assert all(x in result.stderr for x in ("[EXECUTION_LAB_RUNTIME_DENIED]","ASP.NET Core","11.0.0","x64")), (name,"actionable prerequisite message")
             elif code_kind == "short":
-                assert result.returncode != 0 and prompted.exists() and not trace.exists()
+                assert result.returncode == 1 and prompted.exists() and not trace.exists()
                 assert not list(temp.iterdir())
             else:
                 assert result.returncode == child_exit, (name,mode,result.stderr)
@@ -134,7 +139,8 @@ sys.exit(int(os.environ['LAUNCHER_PROBE_EXIT']))
         if sequence.exists():
             probes=[json.loads(line) for line in sequence.read_text().splitlines()]
             assert all(p["language"]=="en-US" for p in probes if p["args"][0].startswith("--")), name
-        observations.append({"case":name,"compatible":compatible,"bothModesPassed":True})
+        observations.append({"case":name,"compatible":compatible,"bothModesPassed":True,
+            "completion":"COMPLETED_ACCEPTANCE" if compatible else "COMPLETED_CONTROLLED_DENIAL"})
     receipt={"status":"LAUNCHER_PREFLIGHT_EXIT_ENVIRONMENT_AND_OWNED_CLEANUP_PASS","cases":observations,
         "launcherSha256":hashlib.sha256(launcher.read_bytes()).hexdigest(),
         "scope":"Controlled local host outputs, synthetic child and mocked secure input. Standalone copy replaces input only. No real runtime compatibility, interactive console or browser proof."}

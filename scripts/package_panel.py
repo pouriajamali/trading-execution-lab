@@ -52,7 +52,7 @@ def main():
     assert npm
     run("panel-build", [npm, "--prefix", "OperatorPanel", "run", "build"])
     switches = ["-p:SelfContained=false", "-p:EnableRuntimePackDownload=false", "-p:DisableTransitiveFrameworkReferenceDownloads=true"]
-    restore = [args.dotnet, "restore", "ExecutionLab.Api/ExecutionLab.Api.csproj", "--runtime", args.rid, *switches]
+    restore = [args.dotnet, "restore", "ExecutionLab.Api/ExecutionLab.Api.csproj", "--locked-mode", "--runtime", args.rid, *switches]
     if args.nuget_source: restore.extend(["--source", args.nuget_source, "-p:NuGetAudit=false"])
     run("restore", restore)
     published = work / "publish"
@@ -96,7 +96,7 @@ def main():
     (package / "THIRD-PARTY-DEPENDENCIES.json").write_text(json.dumps({"nuget": dependencies,
         "browser": [{"package": x, "version": json.loads((ROOT / f"OperatorPanel/node_modules/{x}/package.json").read_text())["version"], "license": "MIT"} for x in ["react", "react-dom"]],
         "nativeSqlite": "SQLite is public domain; SQLitePCLRaw wrappers are Apache-2.0, Copyright 2014-2024 SourceGear, LLC.",
-        "externalRuntime": "Not bundled. Installed ASP.NET Core .NET10 runtime and PowerShell retain their own licenses."}, indent=2) + "\n", encoding="utf-8")
+        "externalRuntime": "Not bundled. Installed ASP.NET Core .NET11 runtime and PowerShell retain their own licenses."}, indent=2) + "\n", encoding="utf-8")
     inventory = []
     for path in sorted(package.rglob("*")):
         assert not path.is_symlink()
