@@ -17,7 +17,7 @@
     {
       "path": ".github/workflows/ci.yml",
       "mode": "100644",
-      "gitBlob": "90d5fe71cd61d75b799d1863e4d01fd3d697cb95"
+      "gitBlob": "0b36000d39e46197a44765812137417389b33bae"
     },
     {
       "path": ".gitignore",
@@ -192,7 +192,7 @@
     {
       "path": "README.md",
       "mode": "100644",
-      "gitBlob": "408ecb05de9d678b67f155f7878c4896760b9484"
+      "gitBlob": "b140b5b7711ea8f1c2cdd1ea7fb1f1f39bac7aac"
     },
     {
       "path": "SCOPE.md",
@@ -252,12 +252,17 @@
     {
       "path": "docs/RELEASE-v0.6.0-preview.1.md",
       "mode": "100644",
-      "gitBlob": "50c7b7e438e3d88b4bff7f4b0220a74f071ddaba"
+      "gitBlob": "4a3666524d63a06ddb8de9fa435acba7ff508e74"
     },
     {
       "path": "docs/SDK11-CONSUMER-CONTRACT.json",
       "mode": "100644",
-      "gitBlob": "cab81fc6e05595ebf33d74c19e66c5981a2c8c49"
+      "gitBlob": "b2aca6d4ebfbc564641650482043f04fc769a764"
+    },
+    {
+      "path": "docs/SDK11_SHARED_INPUT_INTERFACE.json",
+      "mode": "100644",
+      "gitBlob": "e91c2e10f17b4bd37ec2b53129ca56a34780aabd"
     },
     {
       "path": "docs/decisions/0001-single-writer.md",
@@ -312,7 +317,7 @@
     {
       "path": "scripts/check_package.py",
       "mode": "100644",
-      "gitBlob": "ce8ce0c8d88d51490bef02c24630b085f4117105"
+      "gitBlob": "77dd4be1d058cc36406a7780cdfa12377662fbc1"
     },
     {
       "path": "scripts/check_release.py",
@@ -327,22 +332,22 @@
     {
       "path": "scripts/package_panel.py",
       "mode": "100644",
-      "gitBlob": "aa563b979de6f4cc2ec333b633f53de65ca49b3e"
+      "gitBlob": "3e617d438eefad199dc4c205ea78cd5089807ecf"
     },
     {
       "path": "scripts/qualify_tech_refresh.py",
       "mode": "100644",
-      "gitBlob": "6ddc76dcf9931afe4dc24eb0b7efb26ad72a2204"
+      "gitBlob": "29a16af7d7563c769ea553736547d6f51999ae5a"
     },
     {
       "path": "scripts/run_bounded.py",
       "mode": "100644",
-      "gitBlob": "b95172656016c4ce1fb119df64ac68559eeb564e"
+      "gitBlob": "aeb64f110e8aa421c5869b1d517753e0c3bcf0a6"
     },
     {
       "path": "tools/check_dotnet11.py",
       "mode": "100644",
-      "gitBlob": "313e6978edca571d32e1092d222f3aae54c40b27"
+      "gitBlob": "7ba2720e65558250706197e8deae108bfda987c0"
     },
     {
       "path": "tools/dotnet11-host-qualification.schema.json",
@@ -355,19 +360,34 @@
       "gitBlob": "16e4e7ef7b2e7747a17714e4f6a551c40c9a4829"
     },
     {
+      "path": "tools/normal_windows_input.py",
+      "mode": "100644",
+      "gitBlob": "e299a97d1675b376422b4fde89bf8ca3889acb8d"
+    },
+    {
       "path": "tools/qualification_input_guard.py",
       "mode": "100644",
       "gitBlob": "ebc36eade0d00b3d419aa995f4913117ba64abd6"
     },
     {
+      "path": "tools/sdk11-native-inputs.lock.json",
+      "mode": "100644",
+      "gitBlob": "e685329708f4c1395b1bbac026f1de08850a1296"
+    },
+    {
       "path": "tools/sdk11-normal-inputs.lock.json",
       "mode": "100644",
-      "gitBlob": "67eed2c29e0b11a3cc4b405994dfe41e7808f45d"
+      "gitBlob": "2c8ba9d70f9ba0cbd7d52dd1cd9463e384af8a35"
+    },
+    {
+      "path": "tools/sdk11-normal-windows-admission.json",
+      "mode": "100644",
+      "gitBlob": "9b1b715567ac517100acdaf302ce25f75ea12fe1"
     },
     {
       "path": "tools/sdk11-normal/.gitattributes",
       "mode": "100644",
-      "gitBlob": "bbd7984e8d8399fecf37567807fd2c32c7489081"
+      "gitBlob": "d56fde8267e5be8ab28db96e59c548b16e5dc58f"
     },
     {
       "path": "tools/sdk11-normal/accepted-linux-acceptance.json",
@@ -380,9 +400,264 @@
       "gitBlob": "391173426f2a48f2fb9797d70cc7cb618bd5ffaf"
     },
     {
+      "path": "tools/sdk11-normal/accepted-windows-acceptance.json",
+      "mode": "100644",
+      "gitBlob": "cc193e041bcd13a024374e23df11c1cb850203a9"
+    },
+    {
+      "path": "tools/sdk11-normal/accepted-windows-fact.json",
+      "mode": "100644",
+      "gitBlob": "ac16ecce10590289223afcdaa9da2b815bb76493"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/FINAL-CANDIDATE.json",
+      "mode": "100644",
+      "gitBlob": "d499de9bd11e22c4829ae2ea0e6bca2937536a4e"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/cleanup-terminal.json",
+      "mode": "100644",
+      "gitBlob": "721708c5f74330131aaaa6439aa70279e1e0a328"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/curation-current-network-deny.json",
+      "mode": "100644",
+      "gitBlob": "098a071d174c2710653e826b70532b559b5ea633"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/curation-worker.json",
+      "mode": "100644",
+      "gitBlob": "a68f3acaf9effe53133716d2fa083e24690b2660"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/members-0.ndjson",
+      "mode": "100644",
+      "gitBlob": "6ebceaeee4091014c340afb88ab793b82c747532"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/members-1.ndjson",
+      "mode": "100644",
+      "gitBlob": "99f2f8a9736814ce120be650fcfdfbd62549a145"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/members-2.ndjson",
+      "mode": "100644",
+      "gitBlob": "20925537fb397eac9c447f5b967de2ae0d600290"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/metadata/pki-0.der",
+      "mode": "100644",
+      "gitBlob": "391ffc14d3d58e371d34cb61b6f6d7e875022792"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/metadata/pki-1.der",
+      "mode": "100644",
+      "gitBlob": "da8e7a1f2081f703dea8be1cded9a53557db2af7"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/metadata/pki-2.der",
+      "mode": "100644",
+      "gitBlob": "e50ccf14ab1db256d73d6651e82e0ea949e25b64"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/metadata/pki-3.der",
+      "mode": "100644",
+      "gitBlob": "99bcc84b7e68b5b28e4444f6fa21bc7c2baf497d"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/metadata/pki-4.der",
+      "mode": "100644",
+      "gitBlob": "073e296fb681b769ca85f4a27037a6b2523b01c0"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/metadata/pki-5.der",
+      "mode": "100644",
+      "gitBlob": "7a55fa2951435b36e2c9beebb226d0c9d7b0e656"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/metadata/pki-6.der",
+      "mode": "100644",
+      "gitBlob": "da77258e90f16a320cbb0d16f0983c29f2e82dde"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/metadata/pki-7.der",
+      "mode": "100644",
+      "gitBlob": "db9a2660e3e1e35144337440411c7ea3fd647e7a"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/metadata/pki-8.der",
+      "mode": "100644",
+      "gitBlob": "7a55fa2951435b36e2c9beebb226d0c9d7b0e656"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/metadata/repository.json",
+      "mode": "100644",
+      "gitBlob": "6e702dc6ac043750782c6c9bf40e8b068309df03"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/metadata/repository.json.wire",
+      "mode": "100644",
+      "gitBlob": "e983a8bb7ac4b8bad3a711b7775bdd5d9a8f7331"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/metadata/service.json",
+      "mode": "100644",
+      "gitBlob": "68b99b784a8e42e1f273bf6ba62e34e7efe27f70"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/metadata/service.json.wire",
+      "mode": "100644",
+      "gitBlob": "859ed2a7643711b1a0074b3b1533394dd381816d"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/metadata/servicing.json",
+      "mode": "100644",
+      "gitBlob": "75e9fed9290f8ebfa7789a1b79e1beb8e5d693c7"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/metadata/servicing.json.wire",
+      "mode": "100644",
+      "gitBlob": "27f0e48f76dd746fca275e68ee4e34c1363f4838"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/metadata/vulnerability-index.json",
+      "mode": "100644",
+      "gitBlob": "e91f67563e0c8ff7e41e0c45615aa7af767e8b6e"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/metadata/vulnerability-index.json.wire",
+      "mode": "100644",
+      "gitBlob": "d6d9109b6de94794c2e6b37c0a08dce1b06304f1"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/metadata/vulnerability-page-0.json",
+      "mode": "100644",
+      "gitBlob": "a25426420f6fe6c7c6495a8784263ec32ff2b287"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/metadata/vulnerability-page-0.json.wire",
+      "mode": "100644",
+      "gitBlob": "66508b3833883b8dcfd08ea9d8f42304daed50b8"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/metadata/vulnerability-page-1.json",
+      "mode": "100644",
+      "gitBlob": "9e26dfeeb6e641a33dae4961196235bdb965b21b"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/metadata/vulnerability-page-1.json.wire",
+      "mode": "100644",
+      "gitBlob": "0a605d047cb89c0aff875aac08a49f82d8601e2c"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/nuget-0.log",
+      "mode": "100644",
+      "gitBlob": "6b3fd602bbc950fac4111e7a79d732119ccd21c1"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/nuget-1.log",
+      "mode": "100644",
+      "gitBlob": "15cff2ff8b24e2576d8d39a48794010549167e11"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/nuget-2.log",
+      "mode": "100644",
+      "gitBlob": "3af711bf3f06bb7792fdfafb871f2a5ebd3a9115"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/original-0-1.data",
+      "mode": "100644",
+      "gitBlob": "29e2479fd95da85624fdd8ce263ed2398f96715e"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/original-0-143.data",
+      "mode": "100644",
+      "gitBlob": "b6b9e77710e7fcc07969db9e4beea1fd53c8aed2"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/original-0-2.data",
+      "mode": "100644",
+      "gitBlob": "b2aedf608ecc0167572a00788e232b0bb344cb41"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/original-0-4.data",
+      "mode": "100644",
+      "gitBlob": "984713a49622a96da110443c15477613bc12656b"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/original-1-1.data",
+      "mode": "100644",
+      "gitBlob": "9bb765984b573ee066f4e634acce10daeacfb4c7"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/original-1-18.data",
+      "mode": "100644",
+      "gitBlob": "05c8bc27e5f265f154daa9533eea51aa6c37ae71"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/original-1-4.data",
+      "mode": "100644",
+      "gitBlob": "984713a49622a96da110443c15477613bc12656b"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/original-1-6.data",
+      "mode": "100644",
+      "gitBlob": "ca41ed84ced12bc3d9979c31df6ad456a4c8ac2f"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/original-2-1.data",
+      "mode": "100644",
+      "gitBlob": "b5dffdffb04e1aec41b299c6174aa65e5535132c"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/original-2-210.data",
+      "mode": "100644",
+      "gitBlob": "84830d0e28db82acf52273b041315fd851631af9"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/original-2-4.data",
+      "mode": "100644",
+      "gitBlob": "984713a49622a96da110443c15477613bc12656b"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/original-2-6.data",
+      "mode": "100644",
+      "gitBlob": "ca41ed84ced12bc3d9979c31df6ad456a4c8ac2f"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/public-original-input-receipt.json",
+      "mode": "100644",
+      "gitBlob": "4b479a672e72bf291f523b630fe46d9edbf64c71"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/recovered-metadata-0.json",
+      "mode": "100644",
+      "gitBlob": "d049e0018a4f5e3dae9c21324d902ee4cf8e9265"
+    },
+    {
+      "path": "tools/sdk11-normal/native-linux/recovered-metadata-1.json",
+      "mode": "100644",
+      "gitBlob": "58f63c9fb8faadd9931a812a3307b80622eb39ea"
+    },
+    {
       "path": "tools/sdk11-own-profile.json",
       "mode": "100644",
       "gitBlob": "cc1a934c1f9ef65b6acf3a7a32128da6db3139cb"
+    },
+    {
+      "path": "tools/sdk11-own-windows-profile.json",
+      "mode": "100644",
+      "gitBlob": "3bd82788bec7938752725c21bb7a5e80c7f7aceb"
+    },
+    {
+      "path": "tools/sdk11_ci_facts.py",
+      "mode": "100644",
+      "gitBlob": "dac0d7ae19e453d172790a9b16c54e4fa92c8d91"
+    },
+    {
+      "path": "tools/test_shared_normal_windows_delta.py",
+      "mode": "100644",
+      "gitBlob": "b6ce435e968eb0f3588f6dd34ddd77a52dbf6d68"
     }
   ]
 }

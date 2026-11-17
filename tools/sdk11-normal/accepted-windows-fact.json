@@ -1,0 +1,1168 @@
+{
+  "toolchain": {
+    "sdk": "11.0.100",
+    "runtime": "11.0.0",
+    "framework": "net11.0",
+    "language": "15.0"
+  },
+  "schema": "sdk11-host-qualification/v1",
+  "factType": "WindowsCIServer2025RID",
+  "outcome": "NATIVE_HOST_QUALIFICATION_OBSERVED",
+  "qualifiedOn": {
+    "hostClass": "GitHubHostedWindowsServer2025x64",
+    "rid": "win-x64",
+    "imageOS": "win25-vs2026",
+    "imageVersion": "20261103.298.1",
+    "runId": "44083510897",
+    "job": "verify",
+    "attempt": "1",
+    "repository": "pouriajamali/data-admission-gate",
+    "architecture": "x64",
+    "instanceId": "GitHub Actions 1000002386",
+    "osVersion": "Windows Server 2025 Datacenter",
+    "kernelBuild": "26100.33674",
+    "uid": null,
+    "gid": null
+  },
+  "source": {
+    "commit": "86dcda2c2eb314e4ddc146a992256638fd63c825",
+    "tree": "d796a0d63d098b78686b7da73cf4841659f60489",
+    "ref": "refs/heads/codex/frl-required-windows-20261117",
+    "workflowSha256": "f498cb8c4ef75ffe245ef0e9c697c6d6e124bc8ab34a49cd2def20e862f8adfe",
+    "controllerSha256": "d1584058b07f53b57860ad5bdd67dc3a9dd464292ff6707626ff45a8d594ea7e",
+    "helperSha256": "0959e7cb097bb17d774ed0824bb7b9e95e1b94112d968d343fb9fca0fb5166ce",
+    "schemaSha256": "63e04fa5d270c87b93e6e1f4c38bfbcf336b950b39fe1854dc4e514f0661f14c",
+    "catalogSha256": "f87ecbf9ffebd4bcb6cd435739a070042e8c20299f63882e0277803478b54c7a",
+    "normalGuardSha256": "4786dae59cb9b0cef0d71d75d895dbdce63568844a547da3f80555a82bf2b1b6"
+  },
+  "bootstrap": {
+    "boundary": "TRUSTED_HOSTED_IMAGE_SHELL_PYTHON_BEFORE_CAPS_NO_SDK_OR_ACQUISITION",
+    "pythonVersion": "3.12.10",
+    "pythonExeSha256": "4d6f5f81a4bca11191c4c7c6b43632694d0a4ce74e068619d8fdc161d469859a",
+    "stdlibClosureSha256": "5bc9039ea5534239639bb5e660beb41f7c41c4d05e8aaf73f0273a6e112655ef",
+    "stdlibModules": [
+      {
+        "relative": "PYTHON/DLLs/_asyncio.pyd",
+        "bytes": 74096,
+        "sha256": "c77de90cad749087a0c5dc5e19d78d24f6ef44e7e5ac19b8420cfc0cea62395d"
+      },
+      {
+        "relative": "PYTHON/DLLs/_bz2.pyd",
+        "bytes": 86896,
+        "sha256": "65f610646d10d5babea080e060d244b546ec52c54012e5e937dc72dcc2e2e7bc"
+      },
+      {
+        "relative": "PYTHON/DLLs/_ctypes.pyd",
+        "bytes": 127480,
+        "sha256": "0e56107a891100535f2da79d85a5ae65ff1227b4765bd108f8593ac1a1110d81"
+      },
+      {
+        "relative": "PYTHON/DLLs/_ctypes_test.pyd",
+        "bytes": 38392,
+        "sha256": "dceb02afc2055f55f4944497c739eb0deeb1cfee4132ae802eb424e6ede1d01f"
+      },
+      {
+        "relative": "PYTHON/DLLs/_decimal.pyd",
+        "bytes": 262000,
+        "sha256": "aeacfead2befcc0768063a037bb64bd32109ae09cb144e5f571b04dd7965db9d"
+      },
+      {
+        "relative": "PYTHON/DLLs/_elementtree.pyd",
+        "bytes": 135160,
+        "sha256": "5009a9a53c03ef8387443b5cf6ce08e5c3a79727466a0b931c5bbca915bf89ca"
+      },
+      {
+        "relative": "PYTHON/DLLs/_hashlib.pyd",
+        "bytes": 68976,
+        "sha256": "03d233dbace599168eaffec823de6ed7beec8c2a4ebfe9b8a3d8e042a59af3ba"
+      },
+      {
+        "relative": "PYTHON/DLLs/_lzma.pyd",
+        "bytes": 161136,
+        "sha256": "e3deecc1f59a3b811c608861decd84de1e8df8bafd5e2b39188861318c5a38cf"
+      },
+      {
+        "relative": "PYTHON/DLLs/_msi.pyd",
+        "bytes": 46584,
+        "sha256": "b49332bae154ebdd8c3d5e7ddfdde336d9c47f91ba028dc67bafb2420b3dbb5c"
+      },
+      {
+        "relative": "PYTHON/DLLs/_multiprocessing.pyd",
+        "bytes": 37368,
+        "sha256": "2c636df7059cb0dd7e978dd735c7c5c8ddb09cf94754cf9e232296b96c5c545a"
+      },
+      {
+        "relative": "PYTHON/DLLs/_overlapped.pyd",
+        "bytes": 57336,
+        "sha256": "662126ff80c3a1b4cedf74074029c12ae4743e6d3b37376e39ac70aacb7d4d3c"
+      },
+      {
+        "relative": "PYTHON/DLLs/_queue.pyd",
+        "bytes": 33784,
+        "sha256": "48e76e0ad63f6932b4a77b5819f41c1e7595636ca8d9e824f0943a14b8bb5035"
+      },
+      {
+        "relative": "PYTHON/DLLs/_socket.pyd",
+        "bytes": 85496,
+        "sha256": "3efa4636cf9e350856f6927d67a4c2564bf9bd2758a00bbf17d3aece5b60016d"
+      },
+      {
+        "relative": "PYTHON/DLLs/_sqlite3.pyd",
+        "bytes": 126184,
+        "sha256": "64b51df2805c58b023a875e8ae3be7ac7f61ef664f32ca6c90f6315da47ef0bc"
+      },
+      {
+        "relative": "PYTHON/DLLs/_ssl.pyd",
+        "bytes": 179432,
+        "sha256": "0bc527d2dbc50009f43b2ed5d5982c4f63f4b647647ffa9eda612dcda80f6040"
+      },
+      {
+        "relative": "PYTHON/DLLs/_testbuffer.pyd",
+        "bytes": 58216,
+        "sha256": "282730e6d724b1bbd5cb1ae4bf7bca8c926300f8ea407bb0ea3c290ec18171d1"
+      },
+      {
+        "relative": "PYTHON/DLLs/_testcapi.pyd",
+        "bytes": 307192,
+        "sha256": "a9ef0d24868b88ef85030166f341ac3cb3a7c246c6fc3eeb7b8364ccdd965786"
+      },
+      {
+        "relative": "PYTHON/DLLs/_testclinic.pyd",
+        "bytes": 68840,
+        "sha256": "fe057479c5a0725c86955d32c3144189febf4bd9b465020f50c2b9d1b0bf4807"
+      },
+      {
+        "relative": "PYTHON/DLLs/_testconsole.pyd",
+        "bytes": 30064,
+        "sha256": "f594bd798abf4f1fefbf785b81238dd812b5ff5f34597493a5cfd5246bf713fd"
+      },
+      {
+        "relative": "PYTHON/DLLs/_testimportmultiple.pyd",
+        "bytes": 27504,
+        "sha256": "8fbd69ecd8ad56e6ef68cb34df4cf264a65de0494a8f044fda56224680664c1f"
+      },
+      {
+        "relative": "PYTHON/DLLs/_testinternalcapi.pyd",
+        "bytes": 52728,
+        "sha256": "1e81a0f036d8c6538d6eb980807258afdca22aa01535164ec0f2c46dfaea4c22"
+      },
+      {
+        "relative": "PYTHON/DLLs/_testmultiphase.pyd",
+        "bytes": 41840,
+        "sha256": "69c8896d1a21b0d8711f9b327875d23d037f884e7f9fbe305840cd1f0c943538"
+      },
+      {
+        "relative": "PYTHON/DLLs/_testsinglephase.pyd",
+        "bytes": 32624,
+        "sha256": "65ade81cba80c618eaa47c2ac2b5eb0028d3a45c0349a6f2fb4fc79bfc0275f5"
+      },
+      {
+        "relative": "PYTHON/DLLs/_tkinter.pyd",
+        "bytes": 68600,
+        "sha256": "ed2f7b2c9984032cfb046923b45bb745f6e819730c086e559777665b45e8390e"
+      },
+      {
+        "relative": "PYTHON/DLLs/_uuid.pyd",
+        "bytes": 27128,
+        "sha256": "acce4f281d7ffb2dec0997527faf25b1df62ad7bd3032c568ddcf65c90edc867"
+      },
+      {
+        "relative": "PYTHON/DLLs/_wmi.pyd",
+        "bytes": 40304,
+        "sha256": "a980f1e7a29842bd946863fc2693fbeb555a9dc0f9e1630dfed9a2fcdef3ece2"
+      },
+      {
+        "relative": "PYTHON/DLLs/_zoneinfo.pyd",
+        "bytes": 49656,
+        "sha256": "76f1439cda82ab6976df6ba505c4079444703f6d44d8b0259ce59c0ff4279fb4"
+      },
+      {
+        "relative": "PYTHON/DLLs/libcrypto-3.dll",
+        "bytes": 5231472,
+        "sha256": "ccfffddcd3defb8d899026298af9af43bc186130f8483d77e97c93233d5f27d7"
+      },
+      {
+        "relative": "PYTHON/DLLs/libffi-8.dll",
+        "bytes": 39696,
+        "sha256": "eff52743773eb550fcc6ce3efc37c85724502233b6b002a35496d828bd7b280a"
+      },
+      {
+        "relative": "PYTHON/DLLs/libssl-3.dll",
+        "bytes": 794992,
+        "sha256": "007142039f04d04e0ed607bda53de095e5bc6a8a10d26ecedde94ea7d2d7eefe"
+      },
+      {
+        "relative": "PYTHON/DLLs/pyexpat.pyd",
+        "bytes": 205304,
+        "sha256": "d615e193d1affcdbfe504e90d3621cbdcff94bf72b79d899126534507fd6d27a"
+      },
+      {
+        "relative": "PYTHON/DLLs/select.pyd",
+        "bytes": 33136,
+        "sha256": "d4d7181b11db0bd22a6cd5cda6f8583d1f5c77615fd0a6ca33350619d6e0438a"
+      },
+      {
+        "relative": "PYTHON/DLLs/sqlite3.dll",
+        "bytes": 1583608,
+        "sha256": "8daa45684bf6688fca28d956b2e8942f2fa98f656675ce68e6d61dd869848a7a"
+      },
+      {
+        "relative": "PYTHON/DLLs/tcl86t.dll",
+        "bytes": 1841896,
+        "sha256": "b894e0c9a7d2b56f9f202de5044221cfc0938cbd9ffaca6b6793bba486e28081"
+      },
+      {
+        "relative": "PYTHON/DLLs/tk86t.dll",
+        "bytes": 1590776,
+        "sha256": "3883976d6270c44cf43b0f4e3b925259a36c42f586680a93dfe6a3fdfb5b4939"
+      },
+      {
+        "relative": "PYTHON/DLLs/unicodedata.pyd",
+        "bytes": 1140592,
+        "sha256": "208ee1cd3cbad0828433ca7246b05be2b1ff5569983d27d296c0b38888585488"
+      },
+      {
+        "relative": "PYTHON/DLLs/winsound.pyd",
+        "bytes": 31736,
+        "sha256": "100e8d676777603c7258daf9b2f23ef001f09f1596d8708de359326fff72bddd"
+      },
+      {
+        "relative": "PYTHON/DLLs/zlib1.dll",
+        "bytes": 148336,
+        "sha256": "a3a9487dd7a27be0296731513a5c1d9005bd3acf5861ccbe0aabca3984f51c4f"
+      },
+      {
+        "relative": "PYTHON/Lib/__future__.py",
+        "bytes": 5365,
+        "sha256": "bf11d13b6c9b2b8706be425addf399965738622bb4cc553217be16399c51d51a"
+      },
+      {
+        "relative": "PYTHON/Lib/_collections_abc.py",
+        "bytes": 33262,
+        "sha256": "d0c7b4810d0d6e22968223599e2051aa2148c8ce435cad8798644e7b682a9147"
+      },
+      {
+        "relative": "PYTHON/Lib/_compression.py",
+        "bytes": 5843,
+        "sha256": "a10cf1a317374641bcdb8252499e9cb9d4d6e774ac724edfdddd0433ead771d9"
+      },
+      {
+        "relative": "PYTHON/Lib/_weakrefset.py",
+        "bytes": 6098,
+        "sha256": "cf8031a6e21150438f3d2964c4152615b91a03894616d5b6930e0f14f44dabda"
+      },
+      {
+        "relative": "PYTHON/Lib/abc.py",
+        "bytes": 6726,
+        "sha256": "d51c54428495cd62a5da4360315fa84f692b5aa9db21be986b3e14a83f7cf288"
+      },
+      {
+        "relative": "PYTHON/Lib/argparse.py",
+        "bytes": 103805,
+        "sha256": "8cfce14fba1859a653fc093f396d6789fa32c7b502d78703507429d1d7adf862"
+      },
+      {
+        "relative": "PYTHON/Lib/base64.py",
+        "bytes": 21221,
+        "sha256": "366e287224862a59d1416aa17b2259827d46a55c8406ae3f178f9ee7dc3c6f5a"
+      },
+      {
+        "relative": "PYTHON/Lib/bisect.py",
+        "bytes": 3541,
+        "sha256": "085dad54dd1a00d68aaa5361031c0c4bff5efbd281d1a02ddc8f317c519e540b"
+      },
+      {
+        "relative": "PYTHON/Lib/bz2.py",
+        "bytes": 12191,
+        "sha256": "a539fc503737c53d5a45272e33a435b8a6b7a8559ba6a425002978038096bd66"
+      },
+      {
+        "relative": "PYTHON/Lib/calendar.py",
+        "bytes": 26672,
+        "sha256": "62daccf4fb85d106301547021d89c2fd25697d21d60a7f6526976114daf93ed9"
+      },
+      {
+        "relative": "PYTHON/Lib/codecs.py",
+        "bytes": 37999,
+        "sha256": "000cf1d683c677ed3de6d8e284376f81def4b91f93d68ee41bdf07c4e04cea77"
+      },
+      {
+        "relative": "PYTHON/Lib/collections/__init__.py",
+        "bytes": 53970,
+        "sha256": "58d1f234b7845ff280f8a195a795f206bc62ce42732caecaf06e6a133ddd6f15"
+      },
+      {
+        "relative": "PYTHON/Lib/collections/abc.py",
+        "bytes": 122,
+        "sha256": "7ad86878712fc6682863f12208f4ced5daf2dd82b6ff5ed58207de29d0efa410"
+      },
+      {
+        "relative": "PYTHON/Lib/contextlib.py",
+        "bytes": 28437,
+        "sha256": "a53b1db774f19c6b1e4320c2bc64058c49e3fba58b20b9c1158e5a8d02069890"
+      },
+      {
+        "relative": "PYTHON/Lib/copy.py",
+        "bytes": 8704,
+        "sha256": "4a28a8fae74106d128ddeed0b59ef38deab2f7b8b9d3bd006130c3cf75b42d34"
+      },
+      {
+        "relative": "PYTHON/Lib/copyreg.py",
+        "bytes": 7831,
+        "sha256": "ea2363638fe83e8e5b007013a821841371a615d99414b3c2f8f19152ca109a07"
+      },
+      {
+        "relative": "PYTHON/Lib/ctypes/__init__.py",
+        "bytes": 18789,
+        "sha256": "8fc533f8ae18a7ca06dce88fc8dca5eae61f2a4198ceb9d4b4b5a69862aa42ee"
+      },
+      {
+        "relative": "PYTHON/Lib/ctypes/_endian.py",
+        "bytes": 2613,
+        "sha256": "8c5b9ac7306dcf98856c9b815a5fc604ba0f47acab15ac47ad858499c6981579"
+      },
+      {
+        "relative": "PYTHON/Lib/ctypes/wintypes.py",
+        "bytes": 5831,
+        "sha256": "4d9150e8603bd922e9dbee8a5e9cf1379cf599a382b09a5cbf09bed520f6c459"
+      },
+      {
+        "relative": "PYTHON/Lib/datetime.py",
+        "bytes": 277,
+        "sha256": "5068c4ed2c79bfb4b9ae426675112ca8c89ca27aa40b33dabe6cd313ab22dd73"
+      },
+      {
+        "relative": "PYTHON/Lib/email/__init__.py",
+        "bytes": 1825,
+        "sha256": "f4b71b7b51a7eebc46bbb6470cf6da746cbb5e9548a6bc2a57b84f451efd9769"
+      },
+      {
+        "relative": "PYTHON/Lib/email/_encoded_words.py",
+        "bytes": 8774,
+        "sha256": "154f585498454ca829dcd44bb89355ff8c7965b1b6692d1ac0293e7553dbbabd"
+      },
+      {
+        "relative": "PYTHON/Lib/email/_parseaddr.py",
+        "bytes": 18378,
+        "sha256": "4960c31f0039780f316149a3773367a3aeec3bb17d360776334d9b9e688da908"
+      },
+      {
+        "relative": "PYTHON/Lib/email/_policybase.py",
+        "bytes": 15917,
+        "sha256": "38abfd204b970f1e3b86013c8448146a885228699e018d3bb81b7903c0513817"
+      },
+      {
+        "relative": "PYTHON/Lib/email/base64mime.py",
+        "bytes": 3666,
+        "sha256": "043629c09e865afef486ed9a922e954dd8266d6e3b4757c10a1cfd63f8415806"
+      },
+      {
+        "relative": "PYTHON/Lib/email/charset.py",
+        "bytes": 17461,
+        "sha256": "ca7ca0a12b96d6fa8a4a5f687cd70a58ecfd93df13374c414927d4939ad50be6"
+      },
+      {
+        "relative": "PYTHON/Lib/email/encoders.py",
+        "bytes": 1843,
+        "sha256": "dd657fcb0df3e102145d620648baa274e7e53681370568c31ea37a97090710a9"
+      },
+      {
+        "relative": "PYTHON/Lib/email/errors.py",
+        "bytes": 3931,
+        "sha256": "2c5b15ef0e67a5a2371aa74adc83708a7597ca6b4e8e43422a9f0e972b1fc42c"
+      },
+      {
+        "relative": "PYTHON/Lib/email/feedparser.py",
+        "bytes": 23330,
+        "sha256": "507df585ff50ac6ad26721ce27398b26bb8ffb516b2f7fbd77d41939067966b3"
+      },
+      {
+        "relative": "PYTHON/Lib/email/header.py",
+        "bytes": 24665,
+        "sha256": "dde02246b4ac6eb9af2b8487de8207aa221d42026559c31f732ec4c9f78118cc"
+      },
+      {
+        "relative": "PYTHON/Lib/email/iterators.py",
+        "bytes": 2197,
+        "sha256": "60f5e1c2f9503e1bd052a6cc46a086d5e31657c7d83a12ebadb734ff8240f46c"
+      },
+      {
+        "relative": "PYTHON/Lib/email/message.py",
+        "bytes": 49424,
+        "sha256": "d0380e04f952e956b37bbf4f01680cda6da91f5969ef34ae23f9d70be7934dbd"
+      },
+      {
+        "relative": "PYTHON/Lib/email/parser.py",
+        "bytes": 5102,
+        "sha256": "afba51fc27b46872a69836b24f803089153ec68632dffa0c9f8146999e44222d"
+      },
+      {
+        "relative": "PYTHON/Lib/email/quoprimime.py",
+        "bytes": 10164,
+        "sha256": "6c5c673d41d65e1b39779c9de4907c8b1ed04216b4472593def0eab904e8d237"
+      },
+      {
+        "relative": "PYTHON/Lib/email/utils.py",
+        "bytes": 16557,
+        "sha256": "1f9b11216bc579bb7442505ed4d56af150931fa7bb1cd6c586c8f23fa9602dd6"
+      },
+      {
+        "relative": "PYTHON/Lib/encodings/__init__.py",
+        "bytes": 6058,
+        "sha256": "8b997e9f7beef09de01c34ac34191866d3ab25e17164e08f411940b070bc3e74"
+      },
+      {
+        "relative": "PYTHON/Lib/encodings/aliases.py",
+        "bytes": 16228,
+        "sha256": "1893cfb597bc5eafd38ef03ac85d8874620112514eb42660408811929cc0d6f8"
+      },
+      {
+        "relative": "PYTHON/Lib/encodings/cp1252.py",
+        "bytes": 13818,
+        "sha256": "7acb7b80c29d9ffda0fe79540509439537216df3a259973d54e1fb23c34e7519"
+      },
+      {
+        "relative": "PYTHON/Lib/encodings/cp437.py",
+        "bytes": 35262,
+        "sha256": "7b0a9ae2e74d370354cc60cbcfb77af970364818be2e2a446187dcccf9e28acc"
+      },
+      {
+        "relative": "PYTHON/Lib/encodings/idna.py",
+        "bytes": 10027,
+        "sha256": "0c2181970f9ed35031700453022ee123069dc207200bb2f74c340cc1b71ba0de"
+      },
+      {
+        "relative": "PYTHON/Lib/encodings/utf_8.py",
+        "bytes": 1047,
+        "sha256": "9c54c7db8ce0722ca4ddb5f45d4e170357e37991afb3fcdc091721bf6c09257e"
+      },
+      {
+        "relative": "PYTHON/Lib/encodings/utf_8_sig.py",
+        "bytes": 4263,
+        "sha256": "21a95bb95448f2f064f08aa2c89e843b87a20a5a13c45c6c47c288f2be5219a4"
+      },
+      {
+        "relative": "PYTHON/Lib/enum.py",
+        "bytes": 83648,
+        "sha256": "5f6126ee55609a8fc27be206803703597e2efdcaad1fb80ab975ecd0e63cd6aa"
+      },
+      {
+        "relative": "PYTHON/Lib/fnmatch.py",
+        "bytes": 6184,
+        "sha256": "146d27a2853cd14c95ee49cc6130b9f84e2a56618dd1be695cddb20489460425"
+      },
+      {
+        "relative": "PYTHON/Lib/functools.py",
+        "bytes": 38949,
+        "sha256": "f0ca5dd563498f8971e410fe9f37083cfcff2052a0f48efcfbe07d6975754864"
+      },
+      {
+        "relative": "PYTHON/Lib/genericpath.py",
+        "bytes": 5468,
+        "sha256": "c540a28c560234d4d00d3451dfdde05b404f81a38bde87086ce8773021e1cc1b"
+      },
+      {
+        "relative": "PYTHON/Lib/gettext.py",
+        "bytes": 21966,
+        "sha256": "da55e22f51bb369819fe4cc1201459c8f18ca948b6ca00137e6dfd7012814d83"
+      },
+      {
+        "relative": "PYTHON/Lib/gzip.py",
+        "bytes": 26113,
+        "sha256": "45c193ecaa370e6a6a536884e9a856ed0de4979aad4e40ade81ce93e96fc6bb8"
+      },
+      {
+        "relative": "PYTHON/Lib/hashlib.py",
+        "bytes": 9602,
+        "sha256": "f0c8900585062c567a283cb782c3c867f86c38516e30f1f98a04ffa775b9a013"
+      },
+      {
+        "relative": "PYTHON/Lib/http/__init__.py",
+        "bytes": 8508,
+        "sha256": "420e7f74a3b5062b7cd1eb820962980fcca3cdea512c1fd6b641326f70a54f4e"
+      },
+      {
+        "relative": "PYTHON/Lib/http/client.py",
+        "bytes": 58854,
+        "sha256": "b30d95f3598f14fcc9666bcb9f9c31f35bcf0cbed363fe800a18d4fa84f9286c"
+      },
+      {
+        "relative": "PYTHON/Lib/importlib/__init__.py",
+        "bytes": 4922,
+        "sha256": "80ca1730bd367f664ae4bafbe73326bdcaa60fa1029033a9210a355a5168c0fa"
+      },
+      {
+        "relative": "PYTHON/Lib/importlib/_abc.py",
+        "bytes": 1393,
+        "sha256": "795157b91862d662ae681c0521daa1311b34b763b955e01505a27c865d848eae"
+      },
+      {
+        "relative": "PYTHON/Lib/importlib/_bootstrap.py",
+        "bytes": 58608,
+        "sha256": "b9b30c578a34f70508768eeac35fab4a0095e369a7f5d7d3275c310e605d4313"
+      },
+      {
+        "relative": "PYTHON/Lib/importlib/_bootstrap_external.py",
+        "bytes": 71155,
+        "sha256": "255750f5267b487dbb99b1deed48b50a4524f4dbba38d40aa0f9cd5a063f7c62"
+      },
+      {
+        "relative": "PYTHON/Lib/importlib/util.py",
+        "bytes": 11264,
+        "sha256": "5adb3c86ff7b800c60cc78ea5a892ae8fc08f90d97208a7e447e77beb9d50360"
+      },
+      {
+        "relative": "PYTHON/Lib/io.py",
+        "bytes": 3681,
+        "sha256": "d70646d9c063dd0ac4293591639de75a100731d9f091f916fbca4857cd8a044e"
+      },
+      {
+        "relative": "PYTHON/Lib/ipaddress.py",
+        "bytes": 81504,
+        "sha256": "98e5d9e9235c4381265d84d3b4d8125822cbfbe352e747190c8be877f6cec2d5"
+      },
+      {
+        "relative": "PYTHON/Lib/json/__init__.py",
+        "bytes": 14379,
+        "sha256": "feb17670e443e5db2723f217727dcc5d5e155c40e4e6935b16061c88542f24e7"
+      },
+      {
+        "relative": "PYTHON/Lib/json/decoder.py",
+        "bytes": 12882,
+        "sha256": "9f4cc83197bf1b13fee3ce71a044a4b4987a7eeecd8768206abd31a78e0a3d16"
+      },
+      {
+        "relative": "PYTHON/Lib/json/encoder.py",
+        "bytes": 16518,
+        "sha256": "497cc84d2b3936f2a25ec6e561a9a3266c4bc4c9661f5841c3b6ec31eaa0edb9"
+      },
+      {
+        "relative": "PYTHON/Lib/json/scanner.py",
+        "bytes": 2507,
+        "sha256": "b2577f9db9f69a0a27f251776349238b17b8b214a01128e7477b0f7d8e24a186"
+      },
+      {
+        "relative": "PYTHON/Lib/keyword.py",
+        "bytes": 1137,
+        "sha256": "1f28f509383273238ad86eda04a96343fa0dc10eeaf3189439959d75cdac0a0b"
+      },
+      {
+        "relative": "PYTHON/Lib/locale.py",
+        "bytes": 80378,
+        "sha256": "f2a5793c0d629730c9f60ef11509484e04a92697ce603b30b7e9f1137cc48742"
+      },
+      {
+        "relative": "PYTHON/Lib/lzma.py",
+        "bytes": 13633,
+        "sha256": "da46fa7c6c554a0705cf9a7318279b56fd5f62f71a55ac28e9579616f11129d6"
+      },
+      {
+        "relative": "PYTHON/Lib/ntpath.py",
+        "bytes": 32762,
+        "sha256": "e62526627fe0129120e452f99b05b84965a57451e5ad8d29f0d5f3276cc2c489"
+      },
+      {
+        "relative": "PYTHON/Lib/nturl2path.py",
+        "bytes": 2443,
+        "sha256": "9f654a3e0c24a4df05364349a532240a5f5eca651b170818b04e535940399d3e"
+      },
+      {
+        "relative": "PYTHON/Lib/operator.py",
+        "bytes": 11432,
+        "sha256": "c57b6816cfddfa6e4a126583fca0a2563234018daec2cfb9b5142d855546955c"
+      },
+      {
+        "relative": "PYTHON/Lib/os.py",
+        "bytes": 41980,
+        "sha256": "c1549bf7ce4acf22f760f5076149afa5250faf24bcab9515890f590ee78d927b"
+      },
+      {
+        "relative": "PYTHON/Lib/pathlib.py",
+        "bytes": 52487,
+        "sha256": "cd1557dedcaa1be0459cd59760c5ebac83a3e412e0e1b5bc0b1a82a19563a090"
+      },
+      {
+        "relative": "PYTHON/Lib/platform.py",
+        "bytes": 44747,
+        "sha256": "2ba439e96bd5962b3c1f3569b5ac6dc37fbf4920fca2cfd447140de14dbb81b3"
+      },
+      {
+        "relative": "PYTHON/Lib/posixpath.py",
+        "bytes": 17870,
+        "sha256": "4a50991174a61362a0d612b86d05230b05c7ae282291733e32c87699168c857b"
+      },
+      {
+        "relative": "PYTHON/Lib/quopri.py",
+        "bytes": 7421,
+        "sha256": "c0f509a538cf50cfd5f2e821568bfb726d35ea9ba56ceb1e1f522cd7f2177cd5"
+      },
+      {
+        "relative": "PYTHON/Lib/random.py",
+        "bytes": 35685,
+        "sha256": "4d415e54bdf94a270ca54e8ad27ef1019a22147b162a6023253858725882be38"
+      },
+      {
+        "relative": "PYTHON/Lib/re/__init__.py",
+        "bytes": 16700,
+        "sha256": "778cdca1fe51cddb7671d7a158c6bdecee1b7967e9f4a0ddf41cfb5320568c42"
+      },
+      {
+        "relative": "PYTHON/Lib/re/_casefix.py",
+        "bytes": 5550,
+        "sha256": "b0dee234e5f8096fc9c1b035ec52d0b1b50cc1f3aea20b360b8be902e53ac752"
+      },
+      {
+        "relative": "PYTHON/Lib/re/_compiler.py",
+        "bytes": 27169,
+        "sha256": "618f17add086b1dc5314a4e68e9b02a7072cbfb0a401791fd5963dabcd03098c"
+      },
+      {
+        "relative": "PYTHON/Lib/re/_constants.py",
+        "bytes": 6150,
+        "sha256": "8df304954ca75dcd98b9f1f5e3cb5347adc6eaccfc461a94ab914e1b0085e9ab"
+      },
+      {
+        "relative": "PYTHON/Lib/re/_parser.py",
+        "bytes": 42281,
+        "sha256": "bcc84f06d54e2d28506350a60bc1aaaa0efda4221f4ceeb05b2d0f48c712c479"
+      },
+      {
+        "relative": "PYTHON/Lib/reprlib.py",
+        "bytes": 7362,
+        "sha256": "53c0c775acd2c7ea3405271e2b8619a5fdc0567a63f263199d594626616184cd"
+      },
+      {
+        "relative": "PYTHON/Lib/selectors.py",
+        "bytes": 20294,
+        "sha256": "c33ae11c98b22294d106d21c60f853025eef0fbe86f4b534d35761dfa0b825cf"
+      },
+      {
+        "relative": "PYTHON/Lib/shutil.py",
+        "bytes": 58328,
+        "sha256": "de2f5819114464949b55229b137ac9deed85ce16955ead2dc725e45805ba098c"
+      },
+      {
+        "relative": "PYTHON/Lib/signal.py",
+        "bytes": 2589,
+        "sha256": "0b7e3d3d39a120142dbf4875d7d79579cad8fee662add30c2375a797f0d2386e"
+      },
+      {
+        "relative": "PYTHON/Lib/socket.py",
+        "bytes": 38798,
+        "sha256": "423c823130b3e26ebf5bd5645cf1d263d5e3e23c1ffcd02ddd54acb60eb7d6b5"
+      },
+      {
+        "relative": "PYTHON/Lib/ssl.py",
+        "bytes": 52380,
+        "sha256": "a009473631ff4e7ccab5023866747ccf28ad9c8b3ac8a7bb299895b34a7c23b2"
+      },
+      {
+        "relative": "PYTHON/Lib/stat.py",
+        "bytes": 5680,
+        "sha256": "e514fd41e2933dd1f06be315fb42a62e67b33d04571435a4815a18f490e0f6ce"
+      },
+      {
+        "relative": "PYTHON/Lib/string.py",
+        "bytes": 12095,
+        "sha256": "c5f415046d856b81bf227a605a410e7a9f250f477a8ba2418689159e2ef4d70b"
+      },
+      {
+        "relative": "PYTHON/Lib/stringprep.py",
+        "bytes": 13189,
+        "sha256": "fe08a5c09b78e5037f7ccb95b9014c5f4cc2b3968c9001f321d4788e0adb45eb"
+      },
+      {
+        "relative": "PYTHON/Lib/struct.py",
+        "bytes": 272,
+        "sha256": "eadbcc540c3b6496e52449e712eca3694e31e1d935af0f1e26cff0e3cc370945"
+      },
+      {
+        "relative": "PYTHON/Lib/subprocess.py",
+        "bytes": 90963,
+        "sha256": "e9886605ccac88bcfe2330a1b4cd8f132cbaf97ebb6834b1dcb5a69b127b8d5b"
+      },
+      {
+        "relative": "PYTHON/Lib/tarfile.py",
+        "bytes": 111421,
+        "sha256": "55675faee7fbe4d3c081c9018b297921a5197982e415c2df53b31dc29b9c4ae9"
+      },
+      {
+        "relative": "PYTHON/Lib/tempfile.py",
+        "bytes": 33342,
+        "sha256": "561adb9a999bfe6a98af76c7acb41d3e811d5a0bafbf86e78899548e00479d4b"
+      },
+      {
+        "relative": "PYTHON/Lib/threading.py",
+        "bytes": 61908,
+        "sha256": "feb12e11fd550b71869a8960d6e8c0151e3b1fdc7a2df08a4bf5900affc11c8a"
+      },
+      {
+        "relative": "PYTHON/Lib/types.py",
+        "bytes": 11326,
+        "sha256": "d7ce485ecd8d4d1531d8f710e538b4d1a49378afacb6ff9231e48c645a9fa95e"
+      },
+      {
+        "relative": "PYTHON/Lib/urllib/__init__.py",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "relative": "PYTHON/Lib/urllib/error.py",
+        "bytes": 2489,
+        "sha256": "17e896a26ff42405f58189de81a531b17630398cfbc7c9e2b72ed1ac472acf01"
+      },
+      {
+        "relative": "PYTHON/Lib/urllib/parse.py",
+        "bytes": 46938,
+        "sha256": "8e1026b2de5fb7ef9265bf512b6ba11923c3a8bfa48a8b2158475c07c255e1a1"
+      },
+      {
+        "relative": "PYTHON/Lib/urllib/request.py",
+        "bytes": 106326,
+        "sha256": "b732a8436aa661928334f032fb27f557167c9d1dc17e0f42df101b10ac6d5b2c"
+      },
+      {
+        "relative": "PYTHON/Lib/urllib/response.py",
+        "bytes": 2445,
+        "sha256": "3b79834fb777bcc3601b05c8a2bbfab1a72bf99b10e5a5d2c20a7c3a4583d0cf"
+      },
+      {
+        "relative": "PYTHON/Lib/uuid.py",
+        "bytes": 30449,
+        "sha256": "328e41c4eed0877be1dd3af10bc93ca54ff6d9a49b4fcbcb27dab47a7c3ae424"
+      },
+      {
+        "relative": "PYTHON/Lib/warnings.py",
+        "bytes": 22507,
+        "sha256": "0cdd7709b5f38f2a3a1d84893d5d652eaaffd96fb1182e953513998ed09a2e34"
+      },
+      {
+        "relative": "PYTHON/Lib/weakref.py",
+        "bytes": 22187,
+        "sha256": "6721c34ba3c404bf4a443890ed374b546a870c958935a6aa4fdf634876a5a980"
+      },
+      {
+        "relative": "PYTHON/Lib/zipfile/__init__.py",
+        "bytes": 90666,
+        "sha256": "80cf964f4288847c4c73d1f379115b55c21d047f2316ca3a995155e8d6a86169"
+      },
+      {
+        "relative": "PYTHON/Lib/zipfile/_path/__init__.py",
+        "bytes": 11272,
+        "sha256": "7ff42211f19e1712654b0c8e4ad6fa2180b7504f690f39d50b218ae9a035aa03"
+      },
+      {
+        "relative": "PYTHON/Lib/zipfile/_path/glob.py",
+        "bytes": 1211,
+        "sha256": "84fbd258e5c2afca113eb73339148578607bcd147f3c71a10335b162b53fae5f"
+      },
+      {
+        "relative": "PYTHON/Lib/zipimport.py",
+        "bytes": 28552,
+        "sha256": "6e3d94c0d4e0622a6a034e8212e41be78aa702d6e18100e2769c05413fbf7e7a"
+      },
+      {
+        "relative": "PYTHON/python3.dll",
+        "bytes": 70376,
+        "sha256": "fb975a606e7fbf74f64260e3f60c3490b4f74a183c0926fd6ed1ac4c52ac7b1c"
+      },
+      {
+        "relative": "PYTHON/python312.dll",
+        "bytes": 6945272,
+        "sha256": "9a0e3435aaa680d868150f87ab3e388ad2eebc22f87e036155c7b4eda8cd2120"
+      },
+      {
+        "relative": "PYTHON/vcruntime140.dll",
+        "bytes": 120400,
+        "sha256": "052ad6a20d375957e82aa6a3c441ea548d89be0981516ca7eb306e063d5027f4"
+      },
+      {
+        "relative": "PYTHON/vcruntime140_1.dll",
+        "bytes": 49776,
+        "sha256": "6a99bc0128e0c7d6cbbf615fcc26909565e17d4ca3451b97f8987f9c6acbc6c8"
+      },
+      {
+        "relative": "REPO/tools/qualification_input_guard.py",
+        "bytes": 10157,
+        "sha256": "7420b08d78d3b1476be41385d179a42212a2a7e1a965a8d8ea3b67bb14da7925"
+      },
+      {
+        "relative": "REPO/tools/qualify_dotnet11_windows.py",
+        "bytes": 4527,
+        "sha256": "d1584058b07f53b57860ad5bdd67dc3a9dd464292ff6707626ff45a8d594ea7e"
+      },
+      {
+        "relative": "REPO/tools/sdk11_ci_facts.py",
+        "bytes": 7901,
+        "sha256": "6bb0fe5199377dfdb0caed76cf274bcef631205648d9dbf0d67e1f43433e9a7e"
+      },
+      {
+        "relative": "REPO/tools/sdk11_ci_runtime.py",
+        "bytes": 49614,
+        "sha256": "7420a8d64bc031ca3ab6cbdaf997083c51693efaedb59f9fe9ede642d1c59685"
+      },
+      {
+        "relative": "REPO/tools/windows_qualification_job.py",
+        "bytes": 13768,
+        "sha256": "0959e7cb097bb17d774ed0824bb7b9e95e1b94112d968d343fb9fca0fb5166ce"
+      }
+    ],
+    "nativeTools": [
+      {
+        "name": "kernel32",
+        "sha256": "601aaacb3bdcbea24aec832d08a2f12ec7046183b6f40d18d61458d5e7008991",
+        "version": "UNKNOWN_NOT_QUERIED_USE_MEASURED_BINARY_IDENTITY",
+        "provenance": "ExistingGitHubhostedimage; no acquisition/install; SHA is measuredidentity not independentpublisherverification."
+      },
+      {
+        "name": "ntdll",
+        "sha256": "160ef9b82e2895ef48fa031cb1cf683a8b123febf7cf7d5590cd3104864424b3",
+        "version": "UNKNOWN_NOT_QUERIED_USE_MEASURED_BINARY_IDENTITY",
+        "provenance": "ExistingGitHubhostedimage; no acquisition/install; SHA is measuredidentity not independentpublisherverification."
+      },
+      {
+        "name": "git",
+        "sha256": "20d0dde30a65afb6e5810a883700a94dcd77fbf3b44b32868d45bf7c9b30137c",
+        "version": "UNKNOWN_NOT_QUERIED_USE_MEASURED_BINARY_IDENTITY",
+        "provenance": "ExistingGitHubhostedimage; no acquisition/install; SHA is measuredidentity not independentpublisherverification."
+      },
+      {
+        "name": "existing-pwsh-bootstrap",
+        "sha256": "2a6769a3330dc1084d0154bfde7d164ab750ca7f700f313f9d417c1be78b2233",
+        "version": "7.6.9",
+        "provenance": "Trustedhostedimage shell beforeJob; noSDKtarget/acquisition; actualbinary hash."
+      },
+      {
+        "name": "python312.dll",
+        "sha256": "9a0e3435aaa680d868150f87ab3e388ad2eebc22f87e036155c7b4eda8cd2120",
+        "version": "3.12.10",
+        "provenance": "ValidPythonSoftwareFoundationWithTimestamp"
+      }
+    ]
+  },
+  "cpu": {
+    "method": "FIXED_CPUID_PER_ALLOWED_LOGICAL_PROCESSOR",
+    "processorCount": 4,
+    "evidenceSha256": "3937c1d65899b4f4088eda6d2fa34609062416289a7d6ca0ec7b478b35a0a590",
+    "features": [
+      "CX16",
+      "LAHF_SAHF",
+      "POPCNT",
+      "SSE3",
+      "SSSE3",
+      "SSE4_1",
+      "SSE4_2"
+    ]
+  },
+  "archive": {
+    "url": "https://builds.dotnet.microsoft.com/dotnet/Sdk/11.0.100/dotnet-sdk-11.0.100-win-x64.zip",
+    "bytes": 337835326,
+    "sha512": "5cdd9122c84873f090038548ebe8a4786e5c50a6b1b9792ca2c6dab82fd74a0d7f1d6cdf59e7dcd25e4903dd44f37af5d7ed73ecd3bca4d0cce948b5572452c3",
+    "httpStatus": 200,
+    "contentLength": 337835326,
+    "redirects": 0,
+    "contentEncoding": "identity"
+  },
+  "tree": {
+    "memberManifestSha256": "7eb452d5eaa748773eb0b12d1abc8da1a9f1c192b06444dc88c6511de56b63c3",
+    "members": 5480,
+    "outputFiles": 5480,
+    "outputDirectories": 0,
+    "expandedFileBytes": 888661156,
+    "criticalMembers": [
+      {
+        "path": "dotnet.exe",
+        "type": "file",
+        "bytes": 146728,
+        "mode": 0,
+        "sha256": "56428a0bbb054f1b4a9d4fb221aa3c008b1a7579090d14a246294107f05acb66"
+      },
+      {
+        "path": "sdk/11.0.100/dotnet.dll",
+        "type": "file",
+        "bytes": 4912936,
+        "mode": 0,
+        "sha256": "08f0d5d389cbb5d84093bf1283ccc446bdb8809031fb3e69708c123f05f3e6e3"
+      },
+      {
+        "path": "host/fxr/11.0.0/hostfxr.dll",
+        "type": "file",
+        "bytes": 369448,
+        "mode": 0,
+        "sha256": "be21f1cb81f19454f7e5f5d599e69bc240e8087e3c527a453b2caf2af96814d2"
+      },
+      {
+        "path": "shared/Microsoft.NETCore.App/11.0.0/clrjit.dll",
+        "type": "file",
+        "bytes": 2417960,
+        "mode": 0,
+        "sha256": "3fb61e948095c5cae6e3e11bd9b726e20d98ececc87cb516f48bf56be321595e"
+      },
+      {
+        "path": "shared/Microsoft.NETCore.App/11.0.0/coreclr.dll",
+        "type": "file",
+        "bytes": 4892456,
+        "mode": 0,
+        "sha256": "606465533979071e8a38855ca5a7cb581dd02c810b77879857920250b063ac7b"
+      },
+      {
+        "path": "sdk/11.0.100/Roslyn/bincore/csc.dll",
+        "type": "file",
+        "bytes": 153384,
+        "mode": 0,
+        "sha256": "f468d8dc285bccf5ea3b7fbb415aa6d8b42a6bf80be9a91d5e91530a40f274eb"
+      }
+    ],
+    "notices": [
+      {
+        "path": "LICENSE.txt",
+        "type": "file",
+        "bytes": 9519,
+        "mode": 0,
+        "sha256": "7f6839a61ce892b79c6549e2dc5a81fdbd240a0b260f8881216b45b7fda8b45d"
+      },
+      {
+        "path": "ThirdPartyNotices.txt",
+        "type": "file",
+        "bytes": 79619,
+        "mode": 0,
+        "sha256": "5e8ef9298926626681f96ec65baa4a7a5cb79d3651aef9357e2f118fd4d6b301"
+      },
+      {
+        "path": "sdk/11.0.100/Sdks/Microsoft.Build.Tasks.Git/LICENSE.txt",
+        "type": "file",
+        "bytes": 1137,
+        "mode": 0,
+        "sha256": "a89886665765362eb77e0f8e26602c924520041d1711b2eedc136434fe4d01ab"
+      },
+      {
+        "path": "sdk/11.0.100/Sdks/Microsoft.NET.Sdk.WindowsDesktop/LICENSE.TXT",
+        "type": "file",
+        "bytes": 1137,
+        "mode": 0,
+        "sha256": "a89886665765362eb77e0f8e26602c924520041d1711b2eedc136434fe4d01ab"
+      },
+      {
+        "path": "sdk/11.0.100/Sdks/Microsoft.NET.Sdk.WindowsDesktop/THIRD-PARTY-NOTICES.TXT",
+        "type": "file",
+        "bytes": 2765,
+        "mode": 0,
+        "sha256": "d9d14b48bbeaf60d2b528d8c086af1baaab70f2ebbaaf1ccb11c1c16a08bdaeb"
+      },
+      {
+        "path": "sdk/11.0.100/Sdks/Microsoft.SourceLink.AzureRepos.Git/LICENSE.txt",
+        "type": "file",
+        "bytes": 1137,
+        "mode": 0,
+        "sha256": "a89886665765362eb77e0f8e26602c924520041d1711b2eedc136434fe4d01ab"
+      },
+      {
+        "path": "sdk/11.0.100/Sdks/Microsoft.SourceLink.Bitbucket.Git/LICENSE.txt",
+        "type": "file",
+        "bytes": 1137,
+        "mode": 0,
+        "sha256": "a89886665765362eb77e0f8e26602c924520041d1711b2eedc136434fe4d01ab"
+      },
+      {
+        "path": "sdk/11.0.100/Sdks/Microsoft.SourceLink.Common/LICENSE.txt",
+        "type": "file",
+        "bytes": 1137,
+        "mode": 0,
+        "sha256": "a89886665765362eb77e0f8e26602c924520041d1711b2eedc136434fe4d01ab"
+      },
+      {
+        "path": "sdk/11.0.100/Sdks/Microsoft.SourceLink.GitHub/LICENSE.txt",
+        "type": "file",
+        "bytes": 1137,
+        "mode": 0,
+        "sha256": "a89886665765362eb77e0f8e26602c924520041d1711b2eedc136434fe4d01ab"
+      },
+      {
+        "path": "sdk/11.0.100/Sdks/Microsoft.SourceLink.GitLab/LICENSE.txt",
+        "type": "file",
+        "bytes": 1137,
+        "mode": 0,
+        "sha256": "a89886665765362eb77e0f8e26602c924520041d1711b2eedc136434fe4d01ab"
+      }
+    ]
+  },
+  "caps": {
+    "kind": "actual-Windows-Job",
+    "memoryMax": 4294967296,
+    "tasksMax": 64,
+    "effectiveCpuCores": 2.0,
+    "swapMax": null,
+    "membershipBeforeExec": true,
+    "heldChildIdentityBeforeExec": true,
+    "uid": null,
+    "gid": null,
+    "kernelReadbackSha256": "91c8e1fa85f09eeaaf0a0f40e2ccaf055334825add3bc0113b7a311975d4605e",
+    "peakMemoryBytes": 299532288
+  },
+  "commands": [
+    {
+      "name": "version",
+      "exitCode": 0,
+      "outputSha256": "ce0ed33fa65d926bf35a4b5fa3e9bd13266a9931237db41d283edcc123ecb9ff",
+      "outputPreview": "11.0.100\n",
+      "membershipBeforeExec": true,
+      "pid": 7432,
+      "processStartIdentity": "FILETIME:134393922029382445",
+      "terminal": true,
+      "evidenceSha256": "bf88d2afa80fa070c6a4d4543940446460cb1add17eb09bed77fc59cf5543998",
+      "seconds": 0.0619999999999834
+    },
+    {
+      "name": "info",
+      "exitCode": 0,
+      "outputSha256": "677e8f179b6d6bf7b02d2ee22b0f5338d20cee2fbde527665c3a294d65e5565f",
+      "outputPreview": ".NET SDK:\n Version:           11.0.100\n Commit:            297acf930f\n Workload version:  11.0.100-manifests.08e30c08\n MSBuild version:   18.12.2-1.26529.118+297acf930\n\nRuntime Environment:\n OS Name:     Windows\n OS Version:  10.0.26100\n OS Platform: Windows\n RID:         win-x64\n Base Path:   <PRIVATE_WORK>\\sdk\\sdk\\11.0.100\n\n.NET workloads installed:\nThere are no installed workloads to display.\nConfigured to use workload sets when installing new manifests.\nNo workload sets are installed. Run \"dotnet workload restore\" to install a workload set.\n\nHost:\n  Version:      11.0.0\n  Architecture: x64\n  Commit:       297acf930f\n\n.NET SDKs installed:\n  11.0.100 [<PRIVATE_WORK>\\sdk\\sdk]\n\n.NET runtimes installed:\n  Microsoft.AspNetCore.App 11.0.0 [<PRIVATE_WORK>\\sdk\\shared\\Microsoft.AspNetCore.App]\n  Microsoft.NETCore.App 11.0.0 [<PRIVATE_WORK>\\sdk\\shared\\Microsoft.NETCore.App]\n  Microsoft.WindowsDesktop.App 11.0.0 [<PRIVATE_WORK>\\sdk\\shared\\Microsoft.WindowsDesktop.App]\n\nOther architectures found:\n  x86   [C:\\Program Files (x86)\\dotnet]\n    registered at [HKLM\\SOFTWARE\\dotnet\\Setup\\InstalledVersions\\x86\\InstallLocation]\n\nEnvironment variables:\n  DOTNET_CLI_DO_NOT_USE_MSBUILD_SERVER     [1]\n  DOTNET_CLI_HOME                          [<PRIVATE_WORK>\\cli-home]\n  DOTNET_CLI_TELEMETRY_OPTOUT              [1]\n  DOTNET_CLI_USE_MSBUILD_SERVER            [0]\n  DOTNET_CLI_WORKLOAD_UPDATE_NOTIFY_DISABLE [true]\n  DOTNET_GENERATE_ASPNET_CERTIFICATE       [false]\n  DOTNET_HOST_PATH                         [<PRIVATE_WORK>\\sdk\\dotnet.exe]\n  DOTNET_MULTILEVEL_LOOKUP                 [0]\n  DOTNET_PROCESSOR_COUNT                   [2]\n  DOTNET_ROOT                              [<PRIVATE_WORK>\\sdk]\n  DOTNET_ROOT_X64                          [<PRIVATE_WORK>\\sdk]\n  DOTNET_SKIP_FIRST_TIME_EXPERIENCE        [1]\n\nglobal.json file:\n  <PRIVATE_WORK>\\qualification\\global.json\n\nLearn more:\n  https://aka.ms/dotnet/info\n\nDownload .NET:\n  https://aka.ms/dotnet/download\n",
+      "membershipBeforeExec": true,
+      "pid": 6868,
+      "processStartIdentity": "FILETIME:134393922030549473",
+      "terminal": true,
+      "evidenceSha256": "c2505e08b1dba75664c3a3d154e28d7908c2fdd5bdb5d382e5bd868d47b8c7fb",
+      "seconds": 0.07799999999997453
+    },
+    {
+      "name": "list-sdks",
+      "exitCode": 0,
+      "outputSha256": "73ed4f2624085a667fc0e418b8a356d96feb8c3bfa6e54d82deaf0b93d7d63ac",
+      "outputPreview": "11.0.100 [<PRIVATE_WORK>\\sdk\\sdk]\n",
+      "membershipBeforeExec": true,
+      "pid": 7868,
+      "processStartIdentity": "FILETIME:134393922031803978",
+      "terminal": true,
+      "evidenceSha256": "ef3ea5accb55386fd2395bf41463080a35613eed68e28ca3fb367552ef0a6e5c",
+      "seconds": 0.125
+    },
+    {
+      "name": "list-runtimes",
+      "exitCode": 0,
+      "outputSha256": "9c4300010ab12d723016c7ff7160a226894e7a5145030773c39e88febe27dec0",
+      "outputPreview": "Microsoft.AspNetCore.App 11.0.0 [<PRIVATE_WORK>\\sdk\\shared\\Microsoft.AspNetCore.App]\nMicrosoft.NETCore.App 11.0.0 [<PRIVATE_WORK>\\sdk\\shared\\Microsoft.NETCore.App]\nMicrosoft.WindowsDesktop.App 11.0.0 [<PRIVATE_WORK>\\sdk\\shared\\Microsoft.WindowsDesktop.App]\n",
+      "membershipBeforeExec": true,
+      "pid": 5264,
+      "processStartIdentity": "FILETIME:134393922033485356",
+      "terminal": true,
+      "evidenceSha256": "bb72043c38bfc5e028bc4d7956448700c42264642381ce07915fd2ef5c259c0c",
+      "seconds": 0.10899999999998045
+    },
+    {
+      "name": "compiler",
+      "exitCode": 0,
+      "outputSha256": "d5d4f906a76637504f516974eb81790702a3fb9ed9c7b2ee565b64688f11c0ae",
+      "outputPreview": "5.12.0-1.26529.118 (297acf930fb0f5c07fd4e51d78e521b4ad2e5d1f)\n",
+      "membershipBeforeExec": true,
+      "pid": 5260,
+      "processStartIdentity": "FILETIME:134393922035177415",
+      "terminal": true,
+      "evidenceSha256": "43c54071072ec687e29736363b925cc68b931a9f2d228fae1ce7ee52ffcc1c2a",
+      "seconds": 0.125
+    },
+    {
+      "name": "restore",
+      "exitCode": 0,
+      "outputSha256": "7d58235442b8454d2a7825b8216bfb7962bc95be7fbee708b431078fa98848f8",
+      "outputPreview": "  Determining projects to restore...\n  Restored <PRIVATE_WORK>\\qualification\\qualification.csproj (in 104 ms).\n",
+      "membershipBeforeExec": true,
+      "pid": 7852,
+      "processStartIdentity": "FILETIME:134393922036954504",
+      "terminal": true,
+      "evidenceSha256": "90e2cf1d00fcddd43c15e023b7d2b2fc5705ebb9b2ac5381a9603a991960b2e3",
+      "seconds": 1.031000000000006
+    },
+    {
+      "name": "build",
+      "exitCode": 0,
+      "outputSha256": "dec8926122d41bd24747d08041e28395c699ba061b64e5ee32fe8ccd615e7dc8",
+      "outputPreview": "  qualification -> <PRIVATE_WORK>\\qualification\\bin\\Release\\net11.0\\qualification.dll\n\nBuild succeeded.\n    0 Warning(s)\n    0 Error(s)\n\nTime Elapsed 00:00:02.44\n",
+      "membershipBeforeExec": true,
+      "pid": 2216,
+      "processStartIdentity": "FILETIME:134393922047753164",
+      "terminal": true,
+      "evidenceSha256": "bbc987a4beabc78797c5b1899d0f5023f6f68ecef70195f58e65e81c4d3d4374",
+      "seconds": 2.7339999999999804
+    },
+    {
+      "name": "hello",
+      "exitCode": 0,
+      "outputSha256": "530e0d1da6d3b82fca735d4e2c9a6e2605f8ae34a34b1662032252bcdbc9f61b",
+      "outputPreview": "SDK11_QUALIFIED_TOKEN\n.NET 11.0.0\n",
+      "membershipBeforeExec": true,
+      "pid": 3420,
+      "processStartIdentity": "FILETIME:134393922075652504",
+      "terminal": true,
+      "evidenceSha256": "34df4006d5885654cb4cdd4e29b48627d4119faf61fe7a432b69dba449f58e03",
+      "seconds": 0.0619999999999834
+    }
+  ],
+  "denials": [
+    {
+      "mode": "normal",
+      "optimize": 0,
+      "count": 12,
+      "candidateSpawns": 0,
+      "networkAttempts": 0,
+      "receiptSha256": "e624f5f83673e98ff980d3345527faadeabbed093156e39b9b8ffb1ab5f2d7c9"
+    },
+    {
+      "mode": "O",
+      "optimize": 1,
+      "count": 12,
+      "candidateSpawns": 0,
+      "networkAttempts": 0,
+      "receiptSha256": "2e3d32ee01cf2ad411eaf12da46db47c28eb4de477cceafa7ec544b0aefef6ff"
+    },
+    {
+      "mode": "env2",
+      "optimize": 2,
+      "count": 12,
+      "candidateSpawns": 0,
+      "networkAttempts": 0,
+      "receiptSha256": "45d95fcac14439d82bbff683a73067ddf3593f812e9ef4ad0db51bdb58544278"
+    }
+  ],
+  "publisherAndNative": [
+    {
+      "name": "dotnet.exe",
+      "kind": "WindowsAuthenticode",
+      "status": "Valid; signer=CN=.NET, O=Microsoft Corporation, L=Redmond, S=Washington, C=US; signerThumbprint=BB793DB742624269BB5F4515BBE9A3DF418F588D; timestampThumbprint=75ADB9859334BBA802B539ABF4F0052785B34852",
+      "evidenceSha256": "6726aa2fadfdcfb1a9bc2afe7cbba6f163e10c12391a1d8702d56af3eb6d5232"
+    },
+    {
+      "name": "hostfxr.dll",
+      "kind": "WindowsAuthenticode",
+      "status": "Valid; signer=CN=.NET, O=Microsoft Corporation, L=Redmond, S=Washington, C=US; signerThumbprint=BB793DB742624269BB5F4515BBE9A3DF418F588D; timestampThumbprint=4B20C8353FBB0DB825E999B1F62174F6B5778410",
+      "evidenceSha256": "6726aa2fadfdcfb1a9bc2afe7cbba6f163e10c12391a1d8702d56af3eb6d5232"
+    },
+    {
+      "name": "coreclr.dll",
+      "kind": "WindowsAuthenticode",
+      "status": "Valid; signer=CN=.NET, O=Microsoft Corporation, L=Redmond, S=Washington, C=US; signerThumbprint=BB793DB742624269BB5F4515BBE9A3DF418F588D; timestampThumbprint=09AC3F74CA41E9A3FD0019BEE59B0BEC0ADA9139",
+      "evidenceSha256": "6726aa2fadfdcfb1a9bc2afe7cbba6f163e10c12391a1d8702d56af3eb6d5232"
+    },
+    {
+      "name": "clrjit.dll",
+      "kind": "WindowsAuthenticode",
+      "status": "Valid; signer=CN=.NET, O=Microsoft Corporation, L=Redmond, S=Washington, C=US; signerThumbprint=BB793DB742624269BB5F4515BBE9A3DF418F588D; timestampThumbprint=A608F1DB9AC78049F7BFFDB1AD5FD7901BED3EE3",
+      "evidenceSha256": "6726aa2fadfdcfb1a9bc2afe7cbba6f163e10c12391a1d8702d56af3eb6d5232"
+    }
+  ],
+  "boundaries": [
+    "ORIGINAL_GLOBAL_SDK_READY_REMAINS_FALSE",
+    "LOCAL_R3_STOP_UNQUALIFIED",
+    "LOCAL_WINDOWS26H2_UNKNOWN_EXCLUDED",
+    "QUALIFIED_ON_IS_IMMUTABLE_PRODUCER_HISTORY",
+    "CONSUMER_ADMITTED_FOR_HOST_CLASS_IS_SEPARATE",
+    "NO_PRODUCT_COMPATIBILITY_OR_PERFORMANCE_PROOF",
+    "INDEPENDENT_GITHUB_RUN_JOB_SOURCE_READBACK_STILL_REQUIRED"
+  ],
+  "terminal": {
+    "workerExitCode": 0,
+    "ownedPopulation": 0,
+    "supervisorObservedTerminal": true,
+    "typedStopResult": "success",
+    "terminalEvidenceSha256": "5eae05e4bbe6f1503022232f19ac283fac4368e75a0257e0a6c341f13279a6e8"
+  }
+}

@@ -1,6 +1,6 @@
 {
   "schema": "execution02-sdk11-consumer-route-contract/v1",
-  "state": "SOURCE_ONLY_NO_RUNTIME_AUTHORITY",
+  "state": "SOURCE_AND_SINGLE_SHARED_INPUT_WIRING_IMPLEMENTED_OWN_PRODUCT_GATE_PENDING",
   "projectId": "02",
   "repository": "pouriajamali/trading-execution-lab",
   "M0Sha256": "58e787ccf3e9e65b063d8bccd76d2b8332f106b9d4268cf66644a7af32f22a83",
@@ -34,12 +34,20 @@
   },
   "preserved": "59 declared C# cases,11 JS,16 launcher,22 extracted/fourprocess checks perOS; all M1 scenarios, six committed locks, fresh audit, native prerequisites, notices and signed exact-commit release/download gates unchanged",
   "linux": "757ab fact +0452 acceptance only within own exact source/profile/current held nonroot MainPID gate; original row deadline inherited including transport; no new runtime authority",
-  "windows": "DENIED_NO_ACCEPTED_PRODUCER_FACT; existing Job/control primitive preserved; no qualification replay",
+  "windows": "Actual accepted producer history ec8e/9713 reused; own current named Job/source/parent/held/caps/original deadline and ordinary package closure remain mandatory, not global or product admission.",
   "requiredBeforeUse": [
-    "Consolidated exact source/apply gate and expanded path/source allowance",
-    "Committed six real locks and regenerated/reviewed exact full HEAD source pin table",
-    "Immutable policy delivery and current-runtime/CI budget gate",
-    "Actual own MainPID/held pidfd/cgroup limits/bootstrap/source and terminal proof; unavailable or GCd unit/cgroup metadata is HOLD"
+    "Actual admitted ordinary02 package closure, six real locks and applicable current advisory evidence; no implicit package downloads",
+    "Exact known-key signed own HEAD, complete source table and immutable shared-source pins",
+    "Own supported host, current held worker, actual kernel limits, original deadline and durable terminal proof",
+    "Full preserved per-OS product checks, exact-commit CI, known-key signed checksums, public downloads and current delivery pages"
   ],
-  "forbidden": "No SDK/acquisition/network/native/CI/public/apply in this task; no dependency/bootstrap or new clock; no host repair or root SDK"
+  "forbidden": "No broker/live/account/feed/order actions, global SDK configuration, security or host repair, new qualification/bootstrap framework, expanded caps or new milestone.",
+  "sharedInterface": "docs/SDK11_SHARED_INPUT_INTERFACE.json",
+  "sharedSourceHEAD": "4dab824c2b0b6fe00858f648d07fd8e9df9fafe1",
+  "sharedHandoffSha256": "a5b406c91efacb40420e7549a2cc308db85b8e164bae4ba0b9d9b9dcd673ac13",
+  "ownProfiles": {
+    "linux-x64": "tools/sdk11-own-profile.json",
+    "win-x64": "tools/sdk11-own-windows-profile.json"
+  },
+  "authority": "Direct owner authorized completion of existing02upgrade through tests and preview publication, within existing caps. Shared facts remain historical input proof; no coordinator approval or product PASS is fabricated."
 }

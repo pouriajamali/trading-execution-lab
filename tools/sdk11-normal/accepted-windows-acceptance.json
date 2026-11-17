@@ -1,0 +1,250 @@
+{
+  "runId": 44083510897,
+  "observedAt": "2026-11-17T12:32:03.796950+00:00",
+  "jobs": [
+    {
+      "check_run_url": "https://api.github.com/repos/pouriajamali/data-admission-gate/check-runs/134039871625",
+      "completed_at": "2026-11-17T12:30:16Z",
+      "conclusion": "success",
+      "created_at": "2026-11-17T12:28:51Z",
+      "head_branch": "codex/frl-required-windows-20261117",
+      "head_sha": "86dcda2c2eb314e4ddc146a992256638fd63c825",
+      "html_url": "https://github.com/pouriajamali/data-admission-gate/actions/runs/44083510897/job/134039871625",
+      "id": 134039871625,
+      "labels": [
+        "windows-2025"
+      ],
+      "name": "verify (windows-2025, win-x64)",
+      "node_id": "CR_kwDOVn_PJM8AAAAfNWYgiQ",
+      "run_attempt": 1,
+      "run_id": 44083510897,
+      "run_url": "https://api.github.com/repos/pouriajamali/data-admission-gate/actions/runs/44083510897",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions",
+      "runner_id": 1000002386,
+      "runner_name": "GitHub Actions 1000002386",
+      "started_at": "2026-11-17T12:28:54Z",
+      "status": "completed",
+      "steps": [
+        {
+          "completed_at": "2026-11-17T12:28:56Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "started_at": "2026-11-17T12:28:55Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-17T12:28:57Z",
+          "conclusion": "success",
+          "name": "Existing Windows Python and outer clock only",
+          "number": 2,
+          "started_at": "2026-11-17T12:28:56Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-17T12:28:57Z",
+          "conclusion": "skipped",
+          "name": "Existing Ubuntu Python and outer clock only",
+          "number": 3,
+          "started_at": "2026-11-17T12:28:57Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-17T12:29:05Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "number": 4,
+          "started_at": "2026-11-17T12:28:57Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-17T12:30:10Z",
+          "conclusion": "success",
+          "name": "Fixed Windows qualifier or own consumer04 controller",
+          "number": 5,
+          "started_at": "2026-11-17T12:29:05Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-17T12:30:10Z",
+          "conclusion": "skipped",
+          "name": "Fixed Ubuntu qualifier or own consumer04 controller",
+          "number": 6,
+          "started_at": "2026-11-17T12:30:10Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-17T12:30:10Z",
+          "conclusion": "skipped",
+          "name": "Locked offline admission regressions",
+          "number": 7,
+          "started_at": "2026-11-17T12:30:10Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-17T12:30:10Z",
+          "conclusion": "skipped",
+          "name": "Build clean exact-commit distributable",
+          "number": 8,
+          "started_at": "2026-11-17T12:30:10Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-17T12:30:10Z",
+          "conclusion": "skipped",
+          "name": "Extract the actual archive",
+          "number": 9,
+          "started_at": "2026-11-17T12:30:10Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-17T12:30:10Z",
+          "conclusion": "skipped",
+          "name": "Execute own extracted apphost with synthetic bundles",
+          "number": 10,
+          "started_at": "2026-11-17T12:30:10Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-17T12:30:10Z",
+          "conclusion": "skipped",
+          "name": "Compare four frozen semantic and wire oracles",
+          "number": 11,
+          "started_at": "2026-11-17T12:30:10Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-17T12:30:10Z",
+          "conclusion": "skipped",
+          "name": "Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9",
+          "number": 12,
+          "started_at": "2026-11-17T12:30:10Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-17T12:30:10Z",
+          "conclusion": "skipped",
+          "name": "Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9",
+          "number": 13,
+          "started_at": "2026-11-17T12:30:10Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-17T12:30:10Z",
+          "conclusion": "skipped",
+          "name": "Preserve bounded qualification failure when controller proof is unavailable",
+          "number": 14,
+          "started_at": "2026-11-17T12:30:10Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-17T12:30:12Z",
+          "conclusion": "success",
+          "name": "Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9",
+          "number": 15,
+          "started_at": "2026-11-17T12:30:10Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-17T12:30:14Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "number": 30,
+          "started_at": "2026-11-17T12:30:12Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-11-17T12:30:14Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 31,
+          "started_at": "2026-11-17T12:30:14Z",
+          "status": "completed"
+        }
+      ],
+      "url": "https://api.github.com/repos/pouriajamali/data-admission-gate/actions/jobs/134039871625",
+      "workflow_name": "Windows and Ubuntu offline admission verification"
+    },
+    {
+      "check_run_url": "https://api.github.com/repos/pouriajamali/data-admission-gate/check-runs/134039873219",
+      "completed_at": "2026-11-17T12:28:51Z",
+      "conclusion": "skipped",
+      "created_at": "2026-11-17T12:28:51Z",
+      "head_branch": "codex/frl-required-windows-20261117",
+      "head_sha": "86dcda2c2eb314e4ddc146a992256638fd63c825",
+      "html_url": "https://github.com/pouriajamali/data-admission-gate/actions/runs/44083510897/job/134039873219",
+      "id": 134039873219,
+      "labels": [
+        "windows-2025"
+      ],
+      "name": "Changed files and documentation policy",
+      "node_id": "CR_kwDOVn_PJM8AAAAfNWYmww",
+      "run_attempt": 1,
+      "run_id": 44083510897,
+      "run_url": "https://api.github.com/repos/pouriajamali/data-admission-gate/actions/runs/44083510897",
+      "runner_group_id": null,
+      "runner_group_name": null,
+      "runner_id": null,
+      "runner_name": null,
+      "started_at": "2026-11-17T12:28:51Z",
+      "status": "completed",
+      "steps": [],
+      "url": "https://api.github.com/repos/pouriajamali/data-admission-gate/actions/jobs/134039873219",
+      "workflow_name": "Windows and Ubuntu offline admission verification"
+    },
+    {
+      "check_run_url": "https://api.github.com/repos/pouriajamali/data-admission-gate/check-runs/134040637591",
+      "completed_at": "2026-11-17T12:30:16Z",
+      "conclusion": "skipped",
+      "created_at": "2026-11-17T12:30:17Z",
+      "head_branch": "codex/frl-required-windows-20261117",
+      "head_sha": "86dcda2c2eb314e4ddc146a992256638fd63c825",
+      "html_url": "https://github.com/pouriajamali/data-admission-gate/actions/runs/44083510897/job/134040637591",
+      "id": 134040637591,
+      "labels": [
+        "ubuntu-24.04"
+      ],
+      "name": "release",
+      "node_id": "CR_kwDOVn_PJM8AAAAfNXHQlw",
+      "run_attempt": 1,
+      "run_id": 44083510897,
+      "run_url": "https://api.github.com/repos/pouriajamali/data-admission-gate/actions/runs/44083510897",
+      "runner_group_id": null,
+      "runner_group_name": null,
+      "runner_id": null,
+      "runner_name": null,
+      "started_at": "2026-11-17T12:30:17Z",
+      "status": "completed",
+      "steps": [],
+      "url": "https://api.github.com/repos/pouriajamali/data-admission-gate/actions/jobs/134040637591",
+      "workflow_name": "Windows and Ubuntu offline admission verification"
+    }
+  ],
+  "artifacts": [
+    {
+      "archive_download_url": "https://api.github.com/repos/pouriajamali/data-admission-gate/actions/artifacts/14329025376/zip",
+      "created_at": "2026-11-17T12:30:12Z",
+      "digest": "sha256:1371ac1dd7439d12eb0263da2c9e791723754919ff6c7e65b709f917bf1bb000",
+      "expired": false,
+      "expires_at": "2026-11-20T12:30:10Z",
+      "id": 14329025376,
+      "name": "proof-win-x64",
+      "node_id": "MDg6QXJ0aWZhY3QxNDMyOTAyNTM3Ng==",
+      "size_in_bytes": 14005,
+      "updated_at": "2026-11-17T12:30:12Z",
+      "url": "https://api.github.com/repos/pouriajamali/data-admission-gate/actions/artifacts/14329025376",
+      "workflow_run": {
+        "head_branch": "codex/frl-required-windows-20261117",
+        "head_repository_id": 1451216676,
+        "head_sha": "86dcda2c2eb314e4ddc146a992256638fd63c825",
+        "id": 44083510897,
+        "repository_id": 1451216676
+      }
+    }
+  ],
+  "rootReview": {
+    "state": "ACTUAL_JOB_SOURCE_SCHEMA_COMMAND_AND_TERMINAL_VERIFIED_BY_OWNER01",
+    "scope": "Windows producer host qualification only; not owner01 product caps, locks, tests, release or global readiness"
+  }
+}

@@ -1,0 +1,126 @@
+{
+  "schema": "sdk11-shared-normal-input-interface/v2",
+  "API": {
+    "module": "tools/check_dotnet11.py",
+    "transport": "transport(rid, directory, context) -> (Path, receipt)",
+    "inspect": "inspect_sdk(rid, root, context) -> receipt",
+    "rids": [
+      "linux-x64",
+      "win-x64"
+    ],
+    "SDKExecutions": 0
+  },
+  "commonSourceSHA256": "c37e2f48ee21ef1f02e4afb2bb1cd0af397781e487265c31e43fe06ea182befd",
+  "normalCatalogSHA256": "8995a4d296afbfcdf8e267e1923a4de5365b7fa1ef58457add433dfb6df33e23",
+  "nativeCatalogSHA256": "1f24dedfc1ff63c19948a3a9786431a3a3b888defbcff70fd3c4e8c827b3cdf4",
+  "contextKeys": [
+    "projectId",
+    "repository",
+    "checkout",
+    "controller",
+    "contract",
+    "profile",
+    "sourcePins",
+    "admission",
+    "capsEvidence",
+    "expectedSourceCommit",
+    "expectedSourceTree",
+    "rowStartedMonotonicNs",
+    "deadlineMonotonicNs",
+    "supervisorPID",
+    "supervisorStartIdentity"
+  ],
+  "sourceFields": "controller/contract/profile/sourcePins are tracked own-source files; admission/capsEvidence are fresh files under own RUNNER_TEMP; no callbacks or untrusted approval flags. sourcePins lists every tracked source file except its own table.",
+  "admissionSchema": "Frozen dotnet11-host-qualification.schema.json sha63e04fa5d270c87b93e6e1f4c38bfbcf336b950b39fe1854dc4e514f0661f14c #/$defs/consumerAdmission, unchanged",
+  "profileCommon": {
+    "schema": "sdk11-own-normal-input-profile/v1",
+    "state": "ADMITTED_SOURCE_PROFILE",
+    "fields": [
+      "projectId",
+      "repository",
+      "rowSeconds",
+      "memoryMaxBytes",
+      "tasksMax"
+    ],
+    "originalRowsSeconds": {
+      "01": 900,
+      "02": 720,
+      "03": 1200,
+      "04": 900,
+      "05": 1200,
+      "06": 900
+    },
+    "executionScopeNow": [
+      "01",
+      "02",
+      "03"
+    ],
+    "rule": "Every cap comes from the own previously approved source/profile, never from producer04 history."
+  },
+  "WindowsProfileAdditional": {
+    "rid": "win-x64",
+    "fields": [
+      "cpuCores",
+      "scratchMaxBytes"
+    ],
+    "swapMaxBytes": null,
+    "cpuCoresMax": 2,
+    "memoryTasksRule": "Exact own Job readback: e.g. approved01 2GiB/32 processes is accepted without borrowing4GiB/64. No cap increases."
+  },
+  "WindowsCapsEvidence": {
+    "schema": "sdk11-own-current-cap-evidence/v1",
+    "sameIdentityFields": [
+      "projectId",
+      "repository",
+      "sourceCommit",
+      "sourceTree",
+      "profileSha256",
+      "controllerSha256",
+      "rowStartedMonotonicNs",
+      "deadlineMonotonicNs"
+    ],
+    "bootstrapKeys": [
+      "pythonVersion",
+      "pythonExeSha256",
+      "gitSha256"
+    ],
+    "workerAndHeldKeys": [
+      "pid",
+      "processStartIdentity",
+      "jobName",
+      "memoryMaxBytes",
+      "tasksMax",
+      "cpuRate",
+      "logicalHostCpu"
+    ],
+    "heldAdditional": {
+      "state": "SUSPENDED",
+      "membershipBeforeRelease": true,
+      "retainedStartHandle": true
+    },
+    "supervisorKeys": [
+      "pid",
+      "processStartIdentity",
+      "deadlineMonotonicNs"
+    ],
+    "runtimeObservations": "Dedicated named Job contains the current main worker only; live actual parent/start retained. QueryInformationJobObject reads exact memory/process/CPU cap, no breakaway and kill-on-close. Native deadline waiter terminates only that own Job on original timeout or parent death; no extension. Each consumer own supervisor remains responsible for final descendant terminal proof.",
+    "cpu": "Fixed existing per-allowed-processor x64-v2 measurement only; no SDK bootstrap.",
+    "scope": "GitHub-hosted Windows Server2025/kernel26100, Python3.12.10, approved ImageOS. Local Windows/WSL never admitted."
+  },
+  "LinuxInterface": "Original Linux context/profile/caps/current service/absolute alarm/raw7055-header/1830-regular-alias path unchanged; only the shared catalog identity and Windows history row are extended.",
+  "nativeInputs": {
+    "file": "tools/sdk11-native-inputs.lock.json",
+    "accepted": "Only three actual Linux11.0.0 nupkgs; raw signed SHA512 and normalized NuGet contentHash distinct. Full signed ZIP member inventories and original CMS/nuspec/license/notices plus captured metadata/evidence are portable source data.",
+    "windows": "SDK host qualification does not admit native Windows nupkgs.",
+    "currentSnapshot": "CRL/advisory provenance is the captured run; each consumer enforces current freshness, complete low+ advisory and exact needed dependency closure."
+  },
+  "consumerInstructions": {
+    "01": "Copy identical listed shared files at the signed common commit; compose own frozen63e admission/source profile and retain2GiB/CPU2/Windows32/Linux64/swap0Linux and original900s; use accepted Windows history and Linux native facts, no new qualification. Continue own locks/tests/package/release gates.",
+    "02": "Copy exactly the same shared files. Retain720s/4GiB/CPU2/64/swap0Linux and300s existing curation subbudget. Six-project13-command draft and ordinary NuGet/SQLite/xunit closure remain a separate input gate; do not claim these three native facts close it. No implicit feed/SDK-pack download or cap/job increase.",
+    "03": "Copy the same shared files and preserve own original source/profile/row/caps. Reuse accepted Windows history and Linux native facts; own graph/native/runtime/package tests remain required. No competing common writer."
+  },
+  "noHealthyReplay": true,
+  "noKeys": true,
+  "SDK_READY": false,
+  "consumerRuntimeAdmission": false
+}

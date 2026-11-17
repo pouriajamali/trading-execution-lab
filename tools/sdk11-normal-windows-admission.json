@@ -1,0 +1,41 @@
+{
+  "schema": "sdk11-shared-normal-windows-admission/v1",
+  "state": "ACTUAL_ACCEPTED_PRODUCER_HISTORY_OWN_CONSUMER_REQUIRED",
+  "baseContractSha256": "e092c4e8911c2b25f70fda3608d2c04212d3d81f6aaa1214688eea236cfbb089",
+  "authority": "Direct owner authorizes final common input for Wave1 01/02/03 and their existing release work. No product04/05/06, new framework/key/SDK qualification or healthy replay.",
+  "frozen63e": "63e04fa5d270c87b93e6e1f4c38bfbcf336b950b39fe1854dc4e514f0661f14c",
+  "windowsProducer": {
+    "sourceHEAD": "86dcda2c2eb314e4ddc146a992256638fd63c825",
+    "tree": "d796a0d63d098b78686b7da73cf4841659f60489",
+    "runId": 44083510897,
+    "runURL": "https://github.com/pouriajamali/data-admission-gate/actions/runs/44083510897",
+    "fact": {
+      "file": "sdk11-normal/accepted-windows-fact.json",
+      "bytes": 44432,
+      "sha256": "ec8e9b405ca74bd7bbc748575265de2555056d84ff5780a8979bbb01cbd27c48"
+    },
+    "acceptance": {
+      "file": "sdk11-normal/accepted-windows-acceptance.json",
+      "bytes": 9624,
+      "sha256": "9713a70f809ac7f50a1c73650fc6d3390bccda109e7a2d15c9be581ff91dc8f6"
+    }
+  },
+  "linuxProducerFactSha256": "757abf2d3dde65d10cd895cfc97eaeccb7fc11e8685b94ad046e6a8ec8829007",
+  "linuxNativeInputFacts": {
+    "file": "INPUT-FACTS.json",
+    "bytes": 41211,
+    "sha256": "b94a8d74cd6290b17c2e063d0d15ddab04c086f5a9b41120e5c53ee01c7671df",
+    "runId": 44082565011,
+    "availability": "Separate immutable producer handoff; not embedded SDK host qualification"
+  },
+  "catalogRule": "Derived distinct normal catalog promotes only exact fact+acceptance+source+raw+full member identities. Frozen qualification catalogs and original e092 contract remain byte-identical.",
+  "sameAPI": [
+    "transport(rid, directory, context) -> (sdk_path, receipt)",
+    "inspect_sdk(rid, root, context) -> receipt"
+  ],
+  "windowsDelta": "Source-pinned Windows adapter behind the same module. Reuse frozen ZIP extractor/full verifier and fixed per-processor CPU code. Direct current own Job/parent/process/source/profile/held-cap checks, no breakaway, own original deadline watchdog. No SDK invocation/export/cache.",
+  "ownCaps": "Each consumer source-reviewed profile provides exact memory/tasks/CPU/scratch/original row. No transfer of producer04 4GiB/64 authority. Windows has no swap cap; Linux remains swap0.",
+  "runtimeBoundary": "The accepted Windows qualification and Linux curation are real previous runs. This common Windows adapter has source fixtures only until each consumer proves its own runtime binding; no transferable global ready.",
+  "SDK_READY": false,
+  "newSDKOrRestoreOrQualification": 0
+}

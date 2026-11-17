@@ -10,20 +10,6 @@ API that commits SQLite state, an idempotency receipt and an audit outbox togeth
 The accepted .NET10 baseline has 57 cases; the original 24 model cases remain intact.
 The immutable v0.5.2-preview.1 runtime release retains its historical 56-case evidence.
 
-## Architecture review
-
-Read the [architecture case study](docs/ARCHITECTURE-CASE-STUDY.md) for the decision, rejected alternatives, failure examples, frozen-release evidence and short English/Persian introductions. Follow the [30-minute four-project review](https://github.com/pouriajamali/trading-execution-lab/blob/main/docs/FLAGSHIP-REVIEW.md) for a guided discussion. The [evidence index](docs/FLAGSHIP-EVIDENCE.json) separates runtime/tag CI from later documentation commits.
-
-## What this audit proves
-
-The [case study](docs/CASE-STUDY.md) maps decisions to source, named tests and
-exact-release package checks. A pre-commit exception rolls back state, receipt
-and audit together; a lost/unverifiable response is an **unknown receipt**.
-Same-key replay preserves the original result. The UI labels failed refreshes
-stale and blocks new requests until an unresolved receipt is checked. The
-signed-token policy rejects empty subjects. Historical measurements remain
-unchanged; no new profiling dataset was generated for this audit.
-
 ## Try it in one minute
 
 Open the [browser demo](https://pouriajamali.site/demo/operator-panel/) with no
@@ -37,7 +23,7 @@ installation or account. Start with 4 filled lots and 3 working lots against a
 The browser demo uses a synthetic JavaScript model. The downloadable local panel
 below runs against the actual .NET API and SQLite sample; they are separate
 implementations. For the transaction and recovery decisions, follow the
-[reviewer guide](https://pouriajamali.site/work/engineering-evidence/).
+[reviewer guide](https://pouriajamali.site/work/execution-lab/).
 
 ## Check the C# implementation
 
@@ -53,31 +39,6 @@ its original receipt; it does not reserve exposure again. Start with
 [the transaction tests](ExecutionLab.Tests/DurabilityTests.cs) to inspect that
 boundary. For a reproducible issue or a focused change, see
 [Contributing](CONTRIBUTING.md).
-
-## Source regression: a lost reply after commit
-
-`LostResponseAfterCommitReplaysOriginalReceiptWithoutChangingStateOrAudit` sends
-a reservation through the actual authenticated API in TestServer to a temporary
-SQLite file. A private test handler buffers the completed response, checks the
-committed rows through a fresh read-only connection, then suppresses the response.
-Exact-key replay, a later commit, reopening without reseeding and two valid
-changed-intent conflicts leave the original receipt and audit fact consistent.
-The existing pre-commit rollback test now also inspects the target-key rows.
-See the [literal state/receipt/audit oracle](docs/CASE-STUDY.md#source-regression--10-november-2026).
-
-Local Windows validation on 10 November 2026 used SDK 10.0.404 and the actually
-executed .NET runtime 10.0.15: **57 passed, zero failed/skipped**. That accepted baseline retained
-package/runtime pins and CI's SDK 10.0.403 setting. The automatic
-[exact-source CI](https://github.com/pouriajamali/trading-execution-lab/actions/runs/42876813842) for
-`90a608bba69608b6a1ab819d8b5e7ed296e238c5` passed on
-[Windows x64](https://github.com/pouriajamali/trading-execution-lab/actions/runs/42876813842/job/130042280261) and
-[Ubuntu 24.04 x64](https://github.com/pouriajamali/trading-execution-lab/actions/runs/42876813842/job/130042280408):
-each ran 57 C# cases, 11 protocol tests, 16 controlled launcher cases and 22
-extracted-package HTTP/SQLite checks. Proof manifests record SDK 10.0.403; both
-unit-runner logs report .NET 10.0.15. CI's temporary packages are separate from
-the immutable published runtime; no new runtime version or release was created.
-TestServer response suppression does not exercise TCP failure, process crashes,
-power loss, the browser UI or an exchange.
 
 ## Operator Panel preview
 
@@ -200,6 +161,45 @@ The target is a reproducible sample target, not historical employer runtime
 usage. No real TT or C++ SDK version is inferred. [SCOPE.md](SCOPE.md) records the
 single-stream model, retention limits and unimplemented adapter responsibilities.
 
+## Architecture review
+
+Read the [architecture case study](docs/ARCHITECTURE-CASE-STUDY.md) for the decision, rejected alternatives, failure examples, frozen-release evidence and short English/Persian introductions. Follow the [30-minute four-project review](https://github.com/pouriajamali/trading-execution-lab/blob/main/docs/FLAGSHIP-REVIEW.md) for a guided discussion. The [evidence index](docs/FLAGSHIP-EVIDENCE.json) separates runtime/tag CI from later documentation commits.
+
+## What this audit proves
+
+The [case study](docs/CASE-STUDY.md) maps decisions to source, named tests and
+exact-release package checks. A pre-commit exception rolls back state, receipt
+and audit together; a lost/unverifiable response is an **unknown receipt**.
+Same-key replay preserves the original result. The UI labels failed refreshes
+stale and blocks new requests until an unresolved receipt is checked. The
+signed-token policy rejects empty subjects. Historical measurements remain
+unchanged; no new profiling dataset was generated for this audit.
+
+## Source regression: a lost reply after commit
+
+`LostResponseAfterCommitReplaysOriginalReceiptWithoutChangingStateOrAudit` sends
+a reservation through the actual authenticated API in TestServer to a temporary
+SQLite file. A private test handler buffers the completed response, checks the
+committed rows through a fresh read-only connection, then suppresses the response.
+Exact-key replay, a later commit, reopening without reseeding and two valid
+changed-intent conflicts leave the original receipt and audit fact consistent.
+The existing pre-commit rollback test now also inspects the target-key rows.
+See the [literal state/receipt/audit oracle](docs/CASE-STUDY.md#source-regression--10-november-2026).
+
+Local Windows validation on 10 November 2026 used SDK 10.0.404 and the actually
+executed .NET runtime 10.0.15: **57 passed, zero failed/skipped**. That accepted baseline retained
+package/runtime pins and CI's SDK 10.0.403 setting. The automatic
+[exact-source CI](https://github.com/pouriajamali/trading-execution-lab/actions/runs/42876813842) for
+`90a608bba69608b6a1ab819d8b5e7ed296e238c5` passed on
+[Windows x64](https://github.com/pouriajamali/trading-execution-lab/actions/runs/42876813842/job/130042280261) and
+[Ubuntu 24.04 x64](https://github.com/pouriajamali/trading-execution-lab/actions/runs/42876813842/job/130042280408):
+each ran 57 C# cases, 11 protocol tests, 16 controlled launcher cases and 22
+extracted-package HTTP/SQLite checks. Proof manifests record SDK 10.0.403; both
+unit-runner logs report .NET 10.0.15. CI's temporary packages are separate from
+the immutable published runtime; no new runtime version or release was created.
+TestServer response suppression does not exercise TCP failure, process crashes,
+power loss, the browser UI or an exchange.
+
 ## Verification and release history
 
 - **v0.5.2-preview.1:** selected-host runtime preflight before prompt/key/temp;
@@ -270,28 +270,25 @@ refer to the existing .NET10 release; no11 download is published. The independen
 public browser demo/site remains unchanged.
 
 
-## Shared SDK11 normal input — inert source wiring
+## Shared SDK11 input and current consumer gates
 
-The private source candidate now binds the byte-identical producer04
-`transport(rid, directory, context)` / `inspect_sdk(rid, root, context)` API.
-Linux fact `757abf2d...` and acceptance `0452e1f3...` identify producer history;
-they grant no current Execution job admission. Windows normal input remains
-`DENIED_NO_ACCEPTED_PRODUCER_FACT` until its own accepted producer fact exists.
+The candidate uses the single signed producer04 shared source
+[4dab824](https://github.com/pouriajamali/data-admission-gate/tree/4dab824c2b0b6fe00858f648d07fd8e9df9fafe1).
+Its unchanged API is `transport(rid, directory, context)` and
+`inspect_sdk(rid, root, context)`. Accepted Linux and Windows Server2025 producer
+histories establish input eligibility; they do not establish this product's
+current host, controls, dependencies or runtime acceptance.
 
-[Own route contract](docs/SDK11-CONSUMER-CONTRACT.json) binds the tracked
-controller, profile and complete source-pin table. Linux's own stopped nonroot
-service MainPID, retained pidfd, kernel limits, bootstrap and original absolute
-deadline are observed by its supervisor before release. Frozen63e
-`consumerAdmission.currentExecution` records this current instance and its own
-caps digest; producer/current jobs may differ. No borrowed kernel evidence.
-The shared implementation uses `RUNNER_NAME` as instanceId; the tracking ID is
-retained separately. Missing/GCd terminal metadata yields HOLD.
+The [own route contract](docs/SDK11-CONSUMER-CONTRACT.json) binds the current
+signed source, full source table, per-RID profile and independently observed
+held worker. Linux retains its nonroot service MainPID and pidfd; Windows uses
+its own named, capped Job and retained creation handles. Each caller preserves
+the original720-second row,4GiB/CPU2/64-process limits and its original clock.
+The shared adapter executes no SDK commands and installs no global tools.
 
-The existing two native rows,12-minute row timeout,max-parallel1, scenarios,
-six committed locks, fresh audit, native prerequisites, notices and signing
-remain required. The620-second controller allocation includes input transport,
-product work and teardown; it receives no new540/900-second outer clock.
-The source-pin table must be regenerated and re-reviewed after real lock files
-and the final consolidated source commit are available. This inert overlay
-has no exact final HEAD, runtime admission, execution or publication authority.
-Existing .NET10 downloads above remain the available release.
+Three Linux framework nupkgs have real producer evidence. The additional
+SQLite/JWT/TestHost/xUnit graph, six real net11/RID locks, complete signature,
+notice and current advisory checks remain a separate Execution input gate.
+The source correction checks are metadata evidence; actual product tests and
+both native packages remain pending. Existing .NET10 downloads above remain
+the available release until the candidate passes its full delivery gates.

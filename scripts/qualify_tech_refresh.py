@@ -87,7 +87,7 @@ def main():
     elif a.phase == "csharp":
         need(all(x.is_file() for x in locks), "real locks required")
         run([dotnet, "run", "--project", "ExecutionLab.Tests/ExecutionLab.Tests.csproj",
-             "--configuration", "Release", "--no-restore"])
+             "--configuration", "Release", "--no-restore","-p:UseSharedCompilation=false"])
     elif a.phase == "frontend":
         npm = [tool("node"), tool("npmCli"), "--prefix", "OperatorPanel"]
         for action in (["ci"], ["test"], ["run", "build"]):
@@ -176,25 +176,33 @@ def ci_products(args, wrapper_binding, work, normal=None):
     handshake = guard.supported_ci_handshake(policy,fact,context,own)
     locks = [root/p/"packages.lock.json" for p in PROJECTS]
     need(all(p.is_file() for p in locks), "committed six locks required; no hidden CI lock transition")
-    need(context["rid"] == "linux-x64" and normal is not None, "normal Windows denied; own main worker context required")
+    need(normal is not None and context["rid"] in ("linux-x64", "win-x64"), "own admitted main worker context required")
     transport, call_context, sdk_directory = normal
     sdk_root, sdk_receipt = transport.transport(context["rid"], sdk_directory, call_context)
     need(sdk_receipt["memberManifestSha256"] == fact["tree"]["memberManifestSha256"]
          and sdk_receipt["producerFactSha256"] == fact_ref["sha256"]
          and sdk_receipt["SDKExecutions"] == 0, "exact data-only normal receipt")
-    dotnet = sdk_root / "dotnet"
+    dotnet = sdk_root / ("dotnet.exe" if context["rid"] == "win-x64" else "dotnet")
     need(dotnet.resolve().is_relative_to(Path(sdk_directory).resolve()), "exact private SDK entry")
     with (work/"normal-input.json").open("x") as receipt:
         json.dump(sdk_receipt, receipt)
     for row in policy["tools"].values():
         need(digest(row["path"]) == row["sha256"], "preinstalled tool identity; never install/fallback")
+    node_version = subprocess.check_output([policy["tools"]["node"]["path"],"--version"],text=True,timeout=5).strip()
+    import re
+    need(re.fullmatch(r"v24\.[0-9]+\.[0-9]+",node_version), "actual preinstalled Node24 required")
+    (work/"tool-versions.json").write_text(json.dumps({"node":node_version,"tools":policy["tools"]})+"\n")
     os.environ["DOTNET_ROOT"] = str(sdk_root)
     os.environ["DOTNET_MULTILEVEL_LOOKUP"] = "0"
-    os.environ["PATH"] = os.pathsep.join(policy["toolDirectories"])
+    os.environ["DOTNET_ROOT_X64"] = str(sdk_root)
+    os.environ["DOTNET_HOST_PATH"] = str(dotnet)
+    os.environ.update(MSBUILDDISABLENODEREUSE="1", DOTNET_CLI_USE_MSBUILD_SERVER="0", DOTNET_CLI_DO_NOT_USE_MSBUILD_SERVER="1")
+    os.environ.update(DOTNET_EnableDiagnostics="0", DOTNET_NOLOGO="1")
+    os.environ["PATH"] = os.pathsep.join([str(sdk_root),*policy["toolDirectories"]])
     def run(argv):
         subprocess.run([str(x) for x in argv],cwd=root,check=True,timeout=180)
     for project in PROJECTS:
-        run([dotnet,"restore",f"{project}/{project}.csproj","--locked-mode","--source","https://api.nuget.org/v3/index.json","-warnaserror","-p:NuGetAudit=true","-p:NuGetAuditMode=all"])
+        run([dotnet,"restore",f"{project}/{project}.csproj","--locked-mode","--source","https://api.nuget.org/v3/index.json","-warnaserror","-p:NuGetAudit=true","-p:NuGetAuditMode=all","-p:UseSharedCompilation=false"])
     audit = work/"audit.json"
     with audit.open("xb") as stream:
         subprocess.run([str(dotnet),"list","ExecutionLab.Tests/ExecutionLab.Tests.csproj","package","--vulnerable","--include-transitive","--format","json"],
@@ -206,8 +214,8 @@ def ci_products(args, wrapper_binding, work, normal=None):
     npm = [policy["tools"]["node"]["path"],policy["tools"]["npmCli"]["path"],"--prefix","OperatorPanel"]
     run(npm+["ci"])
     run(npm+["test"])
-    run([dotnet,"run","--project","ExecutionLab.Tests/ExecutionLab.Tests.csproj","-c","Release","--no-restore"])
-    run([dotnet,"build","ExecutionLab.Measurements/ExecutionLab.Measurements.csproj","-c","Release","--no-restore"])
+    run([dotnet,"run","--project","ExecutionLab.Tests/ExecutionLab.Tests.csproj","-c","Release","--no-restore","-p:UseSharedCompilation=false"])
+    run([dotnet,"build","ExecutionLab.Measurements/ExecutionLab.Measurements.csproj","-c","Release","--no-restore","-p:UseSharedCompilation=false"])
     run([sys.executable,"-I","-B","scripts/check_launcher.py","--work","artifacts/launcher"])
     run([sys.executable,"-I","-B","scripts/package_panel.py","--work","artifacts/build","--out","artifacts/delivery",
          "--rid",context["rid"],"--commit",context["source"]["commit"],"--dotnet",dotnet])

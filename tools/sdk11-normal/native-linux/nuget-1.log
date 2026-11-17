@@ -1,0 +1,99 @@
+X.509 certificate chain validation will use the fallback certificate bundle at '${RUNNER_TEMP}/sdk11-normal-04-44082565011-1-curation/sdk/sdk/11.0.100/trustedroots/codesignctl.pem'.
+X.509 certificate chain validation will use the fallback certificate bundle at '${RUNNER_TEMP}/sdk11-normal-04-44082565011-1-curation/sdk/sdk/11.0.100/trustedroots/timestampctl.pem'.
+
+Verifying Microsoft.NETCore.App.Host.linux-x64.11.0.0
+Content hash: TDrPTaVbpOUJI6n1tFlcPsFrvRAasdzJB9ZrkVQ6yNqc1FazgwbzxSFZlB2xjZPen3chGd8zWYB63QSNfF9vbQ==
+${OWN_PRIVATE_ROOT}/curation/raw/microsoft.netcore.app.host.linux-x64.11.0.0.nupkg
+Signature Hash Algorithm: SHA256
+
+Signature type: Author
+Verifying the author primary signature with certificate: 
+  Subject Name: CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US
+  SHA1 hash: 80A3561749D46D67F4548F4B5416925C5195A03E
+  SHA256 hash: 9A1B131BEE0605433056A4EA3815478A8E177961A968C6C0027C1093D1FEB630
+  Issued by: CN=DigiCert Trusted G4 Code Signing RSA4096 SHA384 2021 CA1, O="DigiCert, Inc.", C=US
+  Valid from: 09/08/2026 00:00:00 to 12/03/2027 23:59:59
+  CRL URL: http://crl3.digicert.com/DigiCertTrustedG4CodeSigningRSA4096SHA3842021CA1.crl
+  CRL URL: http://crl4.digicert.com/DigiCertTrustedG4CodeSigningRSA4096SHA3842021CA1.crl
+  OCSP URL: http://ocsp.digicert.com
+trace:       Subject Name: CN=DigiCert Trusted G4 Code Signing RSA4096 SHA384 2021 CA1, O="DigiCert, Inc.", C=US
+trace:       SHA1 hash: 7B0F360B775F76C94A12CA48445AA2D2A875701C
+trace:       SHA256 hash: 46011EDE1C147EB2BC731A539B7C047B7EE93E48B9D3C3BA710CE132BBDFAC6B
+trace:       Issued by: CN=DigiCert Trusted Root G4, OU=www.digicert.com, O=DigiCert Inc, C=US
+trace:       Valid from: 04/29/2021 00:00:00 to 04/28/2036 23:59:59
+trace:       CRL URL: http://crl3.digicert.com/DigiCertTrustedRootG4.crl
+trace:       OCSP URL: http://ocsp.digicert.com
+trace:             Subject Name: CN=DigiCert Trusted Root G4, OU=www.digicert.com, O=DigiCert Inc, C=US
+trace:             SHA1 hash: DDFB16CD4931C973A2037D3FC83A4D7D775D05E4
+trace:             SHA256 hash: 552F7BDCF1A7AF9E6CE672017F4F12ABF77240C78E761AC203D1D9D20AC89988
+trace:             Issued by: CN=DigiCert Trusted Root G4, OU=www.digicert.com, O=DigiCert Inc, C=US
+trace:             Valid from: 08/01/2013 12:00:00 to 01/15/2038 12:00:00
+Timestamp: 10/30/2026 03:17:43
+Verifying author primary signature's timestamp with timestamping service certificate: 
+  Subject Name: CN=DigiCert SHA256 RSA4096 Timestamp Responder 2026 1, O="DigiCert, Inc.", C=US
+  SHA1 hash: 51D9ABDA034973D84F4266ACA48248E6B369C439
+  SHA256 hash: 2DA09DA7F4131F9FE72DB6C5E6E9C9656755AF043F1EA742CC0D2120E141EBFC
+  Issued by: CN=DigiCert Trusted G4 TimeStamping RSA4096 SHA256 2025 CA1, O="DigiCert, Inc.", C=US
+  Valid from: 08/05/2026 00:00:00 to 11/04/2037 23:59:59
+  CRL URL: http://crl3.digicert.com/DigiCertTrustedG4TimeStampingRSA4096SHA2562025CA1.crl
+  OCSP URL: http://ocsp.digicert.com
+trace:       Subject Name: CN=DigiCert Trusted G4 TimeStamping RSA4096 SHA256 2025 CA1, O="DigiCert, Inc.", C=US
+trace:       SHA1 hash: 07894D00FC194A17DB273AEB5CF8FACEF14423A4
+trace:       SHA256 hash: CA0B1554ECD901EA19DCAD8749E9F2648C8D6DFCEA1ADD9D2C2109415BB82CCD
+trace:       Issued by: CN=DigiCert Trusted Root G4, OU=www.digicert.com, O=DigiCert Inc, C=US
+trace:       Valid from: 05/07/2025 00:00:00 to 01/14/2038 23:59:59
+trace:       CRL URL: http://crl3.digicert.com/DigiCertTrustedRootG4.crl
+trace:       OCSP URL: http://ocsp.digicert.com
+trace:             Subject Name: CN=DigiCert Trusted Root G4, OU=www.digicert.com, O=DigiCert Inc, C=US
+trace:             SHA1 hash: DDFB16CD4931C973A2037D3FC83A4D7D775D05E4
+trace:             SHA256 hash: 552F7BDCF1A7AF9E6CE672017F4F12ABF77240C78E761AC203D1D9D20AC89988
+trace:             Issued by: CN=DigiCert Trusted Root G4, OU=www.digicert.com, O=DigiCert Inc, C=US
+trace:             Valid from: 08/01/2013 12:00:00 to 01/15/2038 12:00:00
+
+Signature type: Repository
+Service index: https://api.nuget.org/v3/index.json
+Owners: dotnetframework, Microsoft
+Verifying the repository countersignature with certificate: 
+  Subject Name: CN=NuGet.org Repository by Microsoft, O=NuGet.org Repository by Microsoft, L=Redmond, S=Washington, C=US
+  SHA1 hash: C72FE7739A9EECB8EC1E4F596DB3BB74039B1DE2
+  SHA256 hash: 1F4B311D9ACC115C8DC8018B5A49E00FCE6DA8E2855F9F014CA6F34570BC482D
+  Issued by: CN=DigiCert Trusted G4 Code Signing RSA4096 SHA384 2021 CA1, O="DigiCert, Inc.", C=US
+  Valid from: 02/23/2024 00:00:00 to 05/18/2027 23:59:59
+  CRL URL: http://crl3.digicert.com/DigiCertTrustedG4CodeSigningRSA4096SHA3842021CA1.crl
+  CRL URL: http://crl4.digicert.com/DigiCertTrustedG4CodeSigningRSA4096SHA3842021CA1.crl
+  OCSP URL: http://ocsp.digicert.com
+trace:       Subject Name: CN=DigiCert Trusted G4 Code Signing RSA4096 SHA384 2021 CA1, O="DigiCert, Inc.", C=US
+trace:       SHA1 hash: 7B0F360B775F76C94A12CA48445AA2D2A875701C
+trace:       SHA256 hash: 46011EDE1C147EB2BC731A539B7C047B7EE93E48B9D3C3BA710CE132BBDFAC6B
+trace:       Issued by: CN=DigiCert Trusted Root G4, OU=www.digicert.com, O=DigiCert Inc, C=US
+trace:       Valid from: 04/29/2021 00:00:00 to 04/28/2036 23:59:59
+trace:       CRL URL: http://crl3.digicert.com/DigiCertTrustedRootG4.crl
+trace:       OCSP URL: http://ocsp.digicert.com
+trace:             Subject Name: CN=DigiCert Trusted Root G4, OU=www.digicert.com, O=DigiCert Inc, C=US
+trace:             SHA1 hash: DDFB16CD4931C973A2037D3FC83A4D7D775D05E4
+trace:             SHA256 hash: 552F7BDCF1A7AF9E6CE672017F4F12ABF77240C78E761AC203D1D9D20AC89988
+trace:             Issued by: CN=DigiCert Trusted Root G4, OU=www.digicert.com, O=DigiCert Inc, C=US
+trace:             Valid from: 08/01/2013 12:00:00 to 01/15/2038 12:00:00
+Timestamp: 11/10/2026 13:59:57
+Verifying repository countersignature's timestamp with timestamping service certificate: 
+  Subject Name: CN=DigiCert SHA256 RSA4096 Timestamp Responder 2026 1, O="DigiCert, Inc.", C=US
+  SHA1 hash: 51D9ABDA034973D84F4266ACA48248E6B369C439
+  SHA256 hash: 2DA09DA7F4131F9FE72DB6C5E6E9C9656755AF043F1EA742CC0D2120E141EBFC
+  Issued by: CN=DigiCert Trusted G4 TimeStamping RSA4096 SHA256 2025 CA1, O="DigiCert, Inc.", C=US
+  Valid from: 08/05/2026 00:00:00 to 11/04/2037 23:59:59
+  CRL URL: http://crl3.digicert.com/DigiCertTrustedG4TimeStampingRSA4096SHA2562025CA1.crl
+  OCSP URL: http://ocsp.digicert.com
+trace:       Subject Name: CN=DigiCert Trusted G4 TimeStamping RSA4096 SHA256 2025 CA1, O="DigiCert, Inc.", C=US
+trace:       SHA1 hash: 07894D00FC194A17DB273AEB5CF8FACEF14423A4
+trace:       SHA256 hash: CA0B1554ECD901EA19DCAD8749E9F2648C8D6DFCEA1ADD9D2C2109415BB82CCD
+trace:       Issued by: CN=DigiCert Trusted Root G4, OU=www.digicert.com, O=DigiCert Inc, C=US
+trace:       Valid from: 05/07/2025 00:00:00 to 01/14/2038 23:59:59
+trace:       CRL URL: http://crl3.digicert.com/DigiCertTrustedRootG4.crl
+trace:       OCSP URL: http://ocsp.digicert.com
+trace:             Subject Name: CN=DigiCert Trusted Root G4, OU=www.digicert.com, O=DigiCert Inc, C=US
+trace:             SHA1 hash: DDFB16CD4931C973A2037D3FC83A4D7D775D05E4
+trace:             SHA256 hash: 552F7BDCF1A7AF9E6CE672017F4F12ABF77240C78E761AC203D1D9D20AC89988
+trace:             Issued by: CN=DigiCert Trusted Root G4, OU=www.digicert.com, O=DigiCert Inc, C=US
+trace:             Valid from: 08/01/2013 12:00:00 to 01/15/2038 12:00:00
+
+Successfully verified package 'Microsoft.NETCore.App.Host.linux-x64.11.0.0'.

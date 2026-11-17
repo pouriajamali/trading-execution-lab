@@ -1,0 +1,29 @@
+{
+  "state": "OWN_CURRENT_KERNEL_DENY_AND_LOOPBACK_WITNESSED",
+  "errno": 1,
+  "peerIP": "150.171.110.149",
+  "peerPort": 443,
+  "current": {
+    "pid": 2245,
+    "start": "7423",
+    "state": "R",
+    "uid": 1001,
+    "gid": 1001,
+    "cgroup": "/system.slice/admission04-sdk11-ci-cfd1cbad603d44d39179ce24ba1f2c42.service",
+    "limits": {
+      "memory.max": "4294967296",
+      "memory.swap.max": "0",
+      "pids.max": "64",
+      "cpu.max": "200000 100000"
+    },
+    "bootID": "1e7433d0-b67c-4d56-9589-b599f44d8285"
+  },
+  "kernelAttachment": {
+    "ingress": [
+      84
+    ],
+    "egress": [
+      83
+    ]
+  }
+}

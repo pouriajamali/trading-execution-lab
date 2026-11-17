@@ -1,0 +1,1271 @@
+{
+  "state": "LINUX_CURATED_INPUT_GRAPH_CANDIDATE_NOT_PRODUCT_ADMITTED",
+  "source": {
+    "commit": "793ec500b49f7358025b0e99d27d26746f18c91e",
+    "tree": "48996a06ca9619dc4651a5d1e3a1b45ca4cac676",
+    "ref": "refs/heads/codex/own04-normal-binding-private-20261116",
+    "workflowSha256": "70a213cb612b52a81badc7306ec120bd4a79a5799a46f57495dcf98f8fb92578",
+    "controllerSha256": "353d66842608936ab776a1d3b020461c864e72d3881d7708866e651a9644df7c",
+    "helperSha256": "0d63594368cb6839145d4b1798730fe8fab05f6a94d86834f3a82d52475e7227",
+    "schemaSha256": "63e04fa5d270c87b93e6e1f4c38bfbcf336b950b39fe1854dc4e514f0661f14c",
+    "catalogSha256": "",
+    "normalGuardSha256": "d9c690d8c82825b018c04089c279036829d3baf2534c2634bba84910c415a37d"
+  },
+  "SDKInputReceiptSHA256": "b2a2134b91e1ae3e872b34c9eb827799bdef2c486c1f8beccc014bdb9f1674ae",
+  "version": {
+    "family": "OpenSSL3",
+    "reportSHA256": "54668ea977da3703d07ac46186e7c727c114a5243657f46b69a83c69ec005f34"
+  },
+  "currentCRLSupplement": {
+    "state": "ACTUAL_SUPPLEMENTAL_CURRENT_CRL_COVERAGE_PASS",
+    "results": [
+      {
+        "state": "ACTUAL_NATIVE_CURRENT_CRL_CHAIN_VERIFY_PASS",
+        "logSHA256": "8abdbe625f785676104cdd9ee3e59a6de527799cd9fad8e26bedc11d84d8ecab",
+        "leafSHA256": [
+          "9a1b131bee0605433056a4ea3815478a8e177961a968c6c0027c1093d1feb630",
+          "1f4b311d9acc115c8dc8018b5a49e00fce6da8e2855f9f014ca6f34570bc482d"
+        ]
+      },
+      {
+        "state": "ACTUAL_NATIVE_CURRENT_CRL_CHAIN_VERIFY_PASS",
+        "logSHA256": "41a0e53cd9a3936884f59ff716ca9b5d2ecade267aec0794a0264dff3fd748e0",
+        "leafSHA256": [
+          "2da09da7f4131f9fe72db6c5e6e9c9656755af043f1ea742cc0d2120e141ebfc"
+        ]
+      }
+    ],
+    "reports": [
+      {
+        "argvSHA256": "6d5134be6636755f9cacbc2ebabd1165bdc34387e87e401e55229c3ee69ab0d0",
+        "exitCode": 0,
+        "seconds": 0.006574284999999236,
+        "held": {
+          "pid": 2260,
+          "processStartIdentity": "8881",
+          "stateBeforeExec": "T",
+          "cgroup": "0::/system.slice/admission04-sdk11-ci-cfd1cbad603d44d39179ce24ba1f2c42.service",
+          "kernelLimitsBeforeExec": {
+            "memory.max": "4294967296",
+            "memory.swap.max": "0",
+            "pids.max": "64",
+            "cpu.max": "200000 100000"
+          }
+        },
+        "currentCgroup": "/system.slice/admission04-sdk11-ci-cfd1cbad603d44d39179ce24ba1f2c42.service",
+        "binaryAndLibcrypto": [
+          {
+            "path": "/usr/bin/openssl",
+            "sha256": "b4f547c0f16272d1cc7f870330a6f2c243710c335e7a99c734ff7a0c6fdb2503",
+            "device": 64512,
+            "inode": 1830,
+            "bytes": 1005368,
+            "stableAfter": true
+          },
+          {
+            "path": "/usr/lib/x86_64-linux-gnu/libcrypto.so.3",
+            "sha256": "6866ed711dab8927e1bf82bf1cd30e828bdfc34f3cc1e83b1c9eb01ce6c37d9a",
+            "device": 64512,
+            "inode": 6180,
+            "bytes": 5309400,
+            "stableAfter": true
+          }
+        ],
+        "libcryptoMappingObserved": true,
+        "stdoutSHA256": "54668ea977da3703d07ac46186e7c727c114a5243657f46b69a83c69ec005f34",
+        "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "reportBytes": 65
+      },
+      {
+        "argvSHA256": "f39c7d13c5cf2b613aba0815dc24e790675b4fa948ac3eee59bbf72bb7ec3b35",
+        "exitCode": 0,
+        "seconds": 0.04403786700000012,
+        "held": {
+          "pid": 2282,
+          "processStartIdentity": "9143",
+          "stateBeforeExec": "T",
+          "cgroup": "0::/system.slice/admission04-sdk11-ci-cfd1cbad603d44d39179ce24ba1f2c42.service",
+          "kernelLimitsBeforeExec": {
+            "memory.max": "4294967296",
+            "memory.swap.max": "0",
+            "pids.max": "64",
+            "cpu.max": "200000 100000"
+          }
+        },
+        "currentCgroup": "/system.slice/admission04-sdk11-ci-cfd1cbad603d44d39179ce24ba1f2c42.service",
+        "binaryAndLibcrypto": [
+          {
+            "path": "/usr/bin/openssl",
+            "sha256": "b4f547c0f16272d1cc7f870330a6f2c243710c335e7a99c734ff7a0c6fdb2503",
+            "device": 64512,
+            "inode": 1830,
+            "bytes": 1005368,
+            "stableAfter": true
+          },
+          {
+            "path": "/usr/lib/x86_64-linux-gnu/libcrypto.so.3",
+            "sha256": "6866ed711dab8927e1bf82bf1cd30e828bdfc34f3cc1e83b1c9eb01ce6c37d9a",
+            "device": 64512,
+            "inode": 6180,
+            "bytes": 5309400,
+            "stableAfter": true
+          }
+        ],
+        "libcryptoMappingObserved": true,
+        "stdoutSHA256": "8abdbe625f785676104cdd9ee3e59a6de527799cd9fad8e26bedc11d84d8ecab",
+        "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "reportBytes": 966
+      },
+      {
+        "argvSHA256": "24446e8bf6d258db2e99b6fd73d12fb0fd1c71dd4c97b64f5ad8de256c1056a1",
+        "exitCode": 0,
+        "seconds": 0.042877562000001035,
+        "held": {
+          "pid": 2283,
+          "processStartIdentity": "9147",
+          "stateBeforeExec": "T",
+          "cgroup": "0::/system.slice/admission04-sdk11-ci-cfd1cbad603d44d39179ce24ba1f2c42.service",
+          "kernelLimitsBeforeExec": {
+            "memory.max": "4294967296",
+            "memory.swap.max": "0",
+            "pids.max": "64",
+            "cpu.max": "200000 100000"
+          }
+        },
+        "currentCgroup": "/system.slice/admission04-sdk11-ci-cfd1cbad603d44d39179ce24ba1f2c42.service",
+        "binaryAndLibcrypto": [
+          {
+            "path": "/usr/bin/openssl",
+            "sha256": "b4f547c0f16272d1cc7f870330a6f2c243710c335e7a99c734ff7a0c6fdb2503",
+            "device": 64512,
+            "inode": 1830,
+            "bytes": 1005368,
+            "stableAfter": true
+          },
+          {
+            "path": "/usr/lib/x86_64-linux-gnu/libcrypto.so.3",
+            "sha256": "6866ed711dab8927e1bf82bf1cd30e828bdfc34f3cc1e83b1c9eb01ce6c37d9a",
+            "device": 64512,
+            "inode": 6180,
+            "bytes": 5309400,
+            "stableAfter": true
+          }
+        ],
+        "libcryptoMappingObserved": true,
+        "stdoutSHA256": "41a0e53cd9a3936884f59ff716ca9b5d2ecade267aec0794a0264dff3fd748e0",
+        "stderrSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "reportBytes": 465
+      }
+    ],
+    "authority": "Current X509/CRL supplement only; NuGet CMS/RFC3161/Content hash still required"
+  },
+  "chainInputProof": {
+    "state": "EXACT_ROLE_CURRENT_CRL_DATA_NATIVE_RESULTS_PENDING",
+    "roles": [
+      {
+        "author": [
+          "9a1b131bee0605433056a4ea3815478a8e177961a968c6c0027c1093d1feb630"
+        ],
+        "repository": [
+          "1f4b311d9acc115c8dc8018b5a49e00fce6da8e2855f9f014ca6f34570bc482d"
+        ],
+        "timestamp": [
+          "2da09da7f4131f9fe72db6c5e6e9c9656755af043f1ea742cc0d2120e141ebfc"
+        ]
+      },
+      {
+        "author": [
+          "9a1b131bee0605433056a4ea3815478a8e177961a968c6c0027c1093d1feb630"
+        ],
+        "repository": [
+          "1f4b311d9acc115c8dc8018b5a49e00fce6da8e2855f9f014ca6f34570bc482d"
+        ],
+        "timestamp": [
+          "2da09da7f4131f9fe72db6c5e6e9c9656755af043f1ea742cc0d2120e141ebfc"
+        ]
+      },
+      {
+        "author": [
+          "9a1b131bee0605433056a4ea3815478a8e177961a968c6c0027c1093d1feb630"
+        ],
+        "repository": [
+          "1f4b311d9acc115c8dc8018b5a49e00fce6da8e2855f9f014ca6f34570bc482d"
+        ],
+        "timestamp": [
+          "2da09da7f4131f9fe72db6c5e6e9c9656755af043f1ea742cc0d2120e141ebfc"
+        ]
+      }
+    ],
+    "codeCoverage": {
+      "chains": {
+        "9a1b131bee0605433056a4ea3815478a8e177961a968c6c0027c1093d1feb630": [
+          "9a1b131bee0605433056a4ea3815478a8e177961a968c6c0027c1093d1feb630",
+          "46011ede1c147eb2bc731a539b7c047b7ee93e48b9d3c3ba710ce132bbdfac6b",
+          "552f7bdcf1a7af9e6ce672017f4f12abf77240c78e761ac203d1d9d20ac89988"
+        ],
+        "1f4b311d9acc115c8dc8018b5a49e00fce6da8e2855f9f014ca6f34570bc482d": [
+          "1f4b311d9acc115c8dc8018b5a49e00fce6da8e2855f9f014ca6f34570bc482d",
+          "46011ede1c147eb2bc731a539b7c047b7ee93e48b9d3c3ba710ce132bbdfac6b",
+          "552f7bdcf1a7af9e6ce672017f4f12abf77240c78e761ac203d1d9d20ac89988"
+        ]
+      },
+      "certificateToCRLSHA256": {
+        "9a1b131bee0605433056a4ea3815478a8e177961a968c6c0027c1093d1feb630": "f46d22f778b465fcfaeface615e2e8a359af42a000246d6a420671ef654bf800",
+        "46011ede1c147eb2bc731a539b7c047b7ee93e48b9d3c3ba710ce132bbdfac6b": "057cf252d73ef58e8188da588da4eccc7e7aa2b7708b9455da6e7b42c8c1c594",
+        "1f4b311d9acc115c8dc8018b5a49e00fce6da8e2855f9f014ca6f34570bc482d": "f46d22f778b465fcfaeface615e2e8a359af42a000246d6a420671ef654bf800"
+      },
+      "state": "STRUCTURAL_CURRENT_COVERAGE_NATIVE_SIGNATURES_REQUIRED"
+    },
+    "timestampCoverage": {
+      "chains": {
+        "2da09da7f4131f9fe72db6c5e6e9c9656755af043f1ea742cc0d2120e141ebfc": [
+          "2da09da7f4131f9fe72db6c5e6e9c9656755af043f1ea742cc0d2120e141ebfc",
+          "ca0b1554ecd901ea19dcad8749e9f2648c8d6dfcea1add9d2c2109415bb82ccd",
+          "552f7bdcf1a7af9e6ce672017f4f12abf77240c78e761ac203d1d9d20ac89988"
+        ]
+      },
+      "certificateToCRLSHA256": {
+        "2da09da7f4131f9fe72db6c5e6e9c9656755af043f1ea742cc0d2120e141ebfc": "41e687c3f7c0316762c0933d2475e7b5256e478042e87592d1fcfe926342f244",
+        "ca0b1554ecd901ea19dcad8749e9f2648c8d6dfcea1add9d2c2109415bb82ccd": "057cf252d73ef58e8188da588da4eccc7e7aa2b7708b9455da6e7b42c8c1c594"
+      },
+      "state": "STRUCTURAL_CURRENT_COVERAGE_NATIVE_SIGNATURES_REQUIRED"
+    },
+    "fixedCurrentUnixTime": 1794918196,
+    "bundleSHA256": {
+      "code": "77f5a5ab1d70964e0efabe14840decbd87a909990c48f55be2dda42702a17018",
+      "timestamp": "42188f73a3ddf2c10a24827def3a2ee004a4672851103c5a8fb3571e7e41760e"
+    },
+    "inputCRLs": [
+      {
+        "sha256": "ec80f6afd1fd52e7b59eedbaf07a24c33c622e208e4a7c3c21636962d30c62e9",
+        "AKI": "45eba2aff492cb82312d518ba7a7219df36dc80f",
+        "issuerDER_SHA256": "ca022c70a9410a6af9e797acde44619a47b3aa2f308dd95262ff5020ad62426d",
+        "thisUpdate": 1794527240,
+        "nextUpdate": 1796341640
+      },
+      {
+        "sha256": "f46d22f778b465fcfaeface615e2e8a359af42a000246d6a420671ef654bf800",
+        "AKI": "6837e0ebb63bf85f1186fbfe617b088865f44e42",
+        "issuerDER_SHA256": "2d55ef75a192662f27804a15e26972b21ed1c57664beed97ebf0e4b069ea157d",
+        "thisUpdate": 1794883696,
+        "nextUpdate": 1795488496
+      },
+      {
+        "sha256": "41e687c3f7c0316762c0933d2475e7b5256e478042e87592d1fcfe926342f244",
+        "AKI": "ef6f534ae9e4067c7acae29056f62fd449eccb4e",
+        "issuerDER_SHA256": "b98f7ad614bcbb12d3f828cead63975906782470985b7cf42a6590feffb05c46",
+        "thisUpdate": 1794415226,
+        "nextUpdate": 1796229626
+      },
+      {
+        "sha256": "057cf252d73ef58e8188da588da4eccc7e7aa2b7708b9455da6e7b42c8c1c594",
+        "AKI": "ecd7e382d2715d644cdf2e673fe7ba98ae1c0f4f",
+        "issuerDER_SHA256": "88a9c037ef37d041b8e82ecfdef270b51c412937a7e05cb9e15a4fef53d5d297",
+        "thisUpdate": 1794591755,
+        "nextUpdate": 1796406155
+      },
+      {
+        "sha256": "f46d22f778b465fcfaeface615e2e8a359af42a000246d6a420671ef654bf800",
+        "AKI": "6837e0ebb63bf85f1186fbfe617b088865f44e42",
+        "issuerDER_SHA256": "2d55ef75a192662f27804a15e26972b21ed1c57664beed97ebf0e4b069ea157d",
+        "thisUpdate": 1794883696,
+        "nextUpdate": 1795488496
+      }
+    ],
+    "fileSHA256": {
+      "codeRoots": "77f5a5ab1d70964e0efabe14840decbd87a909990c48f55be2dda42702a17018",
+      "timestampRoots": "42188f73a3ddf2c10a24827def3a2ee004a4672851103c5a8fb3571e7e41760e",
+      "author": "c9346f7e08ca4e6248a9e28753a0624a13c88f5234c1133adadfba8173edba95",
+      "repository": "9d3788c7527ba2176797d22afda55f71df1d4a57d03a24a5ddfa0bc6c959154e",
+      "intermediates": "6d08779e719138b2499d03c8a73645fc8b749313e88aea552bb0ad955cbc1a15",
+      "crls": "9a6333ba3cbb723403a1a4b4731927952adc33f70f8da8bd81bcf9945a279228"
+    }
+  },
+  "network": {
+    "state": "OWN_CURRENT_KERNEL_DENY_AND_LOOPBACK_WITNESSED",
+    "errno": 1,
+    "peerIP": "150.171.110.149",
+    "peerPort": 443,
+    "current": {
+      "pid": 2245,
+      "start": "7423",
+      "state": "R",
+      "uid": 1001,
+      "gid": 1001,
+      "cgroup": "/system.slice/admission04-sdk11-ci-cfd1cbad603d44d39179ce24ba1f2c42.service",
+      "limits": {
+        "memory.max": "4294967296",
+        "memory.swap.max": "0",
+        "pids.max": "64",
+        "cpu.max": "200000 100000"
+      },
+      "bootID": "1e7433d0-b67c-4d56-9589-b599f44d8285"
+    },
+    "kernelAttachment": {
+      "ingress": [
+        84
+      ],
+      "egress": [
+        83
+      ]
+    }
+  },
+  "commands": [
+    {
+      "id": "cms-Microsoft.AspNetCore.App.Runtime.linux-x64",
+      "exitCode": 0,
+      "processReceiptSHA256": "ad6ecb4e54484fafb0897e2a921d85c4a1ba3f424ec6be0758f21e4c12a4fb00",
+      "argvSHA256": "1f85fa6c49f2b83196b1e1ce08a86ccd70cf31b9b6049b05a81856de9d1e56f7",
+      "normalized": {
+        "id": "Microsoft.AspNetCore.App.Runtime.linux-x64",
+        "version": "11.0.0",
+        "rawSHA256": "3f4bdd1255f9ccf02a3ad22656e165bd86e9f0179f18d88cf0fc7de02b230593",
+        "normalizedNuGetContentHash": "yakDdyyMIIXJfCuuaGDt3lFQ/0J0SCISfvmZNQ0StQvG1scXFzfstv/JMFbeQgTM7xHbxAAwMeXz7gWI4s49YA==",
+        "algorithm": "NuGet SDK GetContentHash via same verify command; no local formula",
+        "logSHA256": "38f3c4cf816d3b8368c0144e7a797b401433270860588edae79e5f221e9c47f0",
+        "cryptographicAdmission": false,
+        "revocationCoverage": "UNKNOWN_REQUIRES_SEPARATE_METHOD"
+      }
+    },
+    {
+      "id": "cms-Microsoft.NETCore.App.Host.linux-x64",
+      "exitCode": 0,
+      "processReceiptSHA256": "e4058e040793be84ca545b8529f8b93f9b0b81b17152c37443d4a7df038e5aa9",
+      "argvSHA256": "446c3c43a6b10e9604edbba65c1b9abfdfd0cf9acc2b4a360358560eb90f1925",
+      "normalized": {
+        "id": "Microsoft.NETCore.App.Host.linux-x64",
+        "version": "11.0.0",
+        "rawSHA256": "a152b2d7ebb7fb9431ab96490e4c35c86af564419c20d81745e71760a4465469",
+        "normalizedNuGetContentHash": "TDrPTaVbpOUJI6n1tFlcPsFrvRAasdzJB9ZrkVQ6yNqc1FazgwbzxSFZlB2xjZPen3chGd8zWYB63QSNfF9vbQ==",
+        "algorithm": "NuGet SDK GetContentHash via same verify command; no local formula",
+        "logSHA256": "ca7182c5197f9fcfadbd17edc3bba02594de3661624e4a668f27240768486d45",
+        "cryptographicAdmission": false,
+        "revocationCoverage": "UNKNOWN_REQUIRES_SEPARATE_METHOD"
+      }
+    },
+    {
+      "id": "cms-Microsoft.NETCore.App.Runtime.linux-x64",
+      "exitCode": 0,
+      "processReceiptSHA256": "6d2829ad1ce17fd2a13b498b8ae637e10941628fe3708ce5545f1d7496913a85",
+      "argvSHA256": "b1e75c91ed6985c2b1e5bb9861ef433f94ce8a09f13f4127cd460c015eba0179",
+      "normalized": {
+        "id": "Microsoft.NETCore.App.Runtime.linux-x64",
+        "version": "11.0.0",
+        "rawSHA256": "458f0a7e0de107e4c08b3f375b920cd9427bbb5463870187b5f8afff0eb8664f",
+        "normalizedNuGetContentHash": "WTqFNKlUfzbporrlDrd4zKoddHECrKAh1I5Ms54ksoq/H6A5bfedZVefcRYrFiAlF0FBaOf0RCxSyuWmaNcq2w==",
+        "algorithm": "NuGet SDK GetContentHash via same verify command; no local formula",
+        "logSHA256": "ef70f49160c615015ade07b42e00802882f2ad6223d3492ccb958318e4f1f115",
+        "cryptographicAdmission": false,
+        "revocationCoverage": "UNKNOWN_REQUIRES_SEPARATE_METHOD"
+      }
+    },
+    {
+      "id": "graph-Admission-net11",
+      "exitCode": 0,
+      "processReceiptSHA256": "c2ce62148d9d1401ae4624a83df495ab9fb307beaac6f341c77651fc65194efb",
+      "argvSHA256": "d8c1bc62f1a49158a25ad2672744cc1a7f76e5faaf635641443da466fa3d67a3"
+    },
+    {
+      "id": "graph-Admission.Tests-net11",
+      "exitCode": 0,
+      "processReceiptSHA256": "1e1695140e42828c103b3015b425b60663a34704a5e1daf61afbafb7db612f01",
+      "argvSHA256": "c7e25419dfee32bb2f9b7956c75c36fa51fb40d6e219b6000cbd4e8ac859c0ec"
+    },
+    {
+      "id": "graph-Admission-linux-x64",
+      "exitCode": 0,
+      "processReceiptSHA256": "97320f59a45e1fa1951b54bbfa163f4ed8ec9bebcf0419490690eabfa541f77f",
+      "argvSHA256": "0781e8913a9555dd7d38fcc33049533103d9876542b18cb5d3cb9cb61bcd5016"
+    },
+    {
+      "id": "graph-Admission.Tests-linux-x64",
+      "exitCode": 0,
+      "processReceiptSHA256": "3578bebf56029aa8bfa9251b622bf1706622671ad0ffc71840cc8e23162f0df3",
+      "argvSHA256": "848a9ef7de879baefc3d97eafe0afe02fcfb96d68c2c041502467a84a327a126"
+    }
+  ],
+  "locks": [
+    {
+      "lockSHA256": "b3c5e4a8ca8e8e9b867124355fd997226d6a45ef7924fb06460bf389050392c5",
+      "identity": {
+        "state": "APPLICABLE_CONTENT_IDENTITIES_MATCH",
+        "packages": [],
+        "auditConsumption": "NOT_ESTABLISHED_BY_LOCK",
+        "productAdmission": false
+      }
+    },
+    {
+      "lockSHA256": "40195e386b0d8a9ef619d7606374bb06c7f9ecef9c3160c72d4f60b649d84019",
+      "identity": {
+        "state": "APPLICABLE_CONTENT_IDENTITIES_MATCH",
+        "packages": [],
+        "auditConsumption": "NOT_ESTABLISHED_BY_LOCK",
+        "productAdmission": false
+      }
+    },
+    {
+      "lockSHA256": "e8a638a8bd4fe2cc0c23d4d2ffdf8ec3154972930b28610c468fac6a3e94cd57",
+      "identity": {
+        "state": "APPLICABLE_CONTENT_IDENTITIES_MATCH",
+        "packages": [],
+        "auditConsumption": "NOT_ESTABLISHED_BY_LOCK",
+        "productAdmission": false
+      }
+    },
+    {
+      "lockSHA256": "69d703cdf831f39c85d736ebc5672a78323904030d3831c6095b97dec182b192",
+      "identity": {
+        "state": "APPLICABLE_CONTENT_IDENTITIES_MATCH",
+        "packages": [],
+        "auditConsumption": "NOT_ESTABLISHED_BY_LOCK",
+        "productAdmission": false
+      }
+    }
+  ],
+  "durableInputs": {
+    "curation/nuget.audit.sources.config": {
+      "path": "curation/nuget.audit.sources.config",
+      "bytes": 895,
+      "sha256": "51c5d14b96184055188a5b7fb5ca078c4c7222521d183b244526bc569219063e",
+      "device": 64512,
+      "inode": 4544097,
+      "mtimeNs": 1794918197461072346
+    },
+    "curation/config/curation.net11.props": {
+      "path": "curation/config/curation.net11.props",
+      "bytes": 616,
+      "sha256": "59f137fececa9d658d2b8986ca4c00ce0773ccaa6b595cb1621f642ebb4122d1",
+      "device": 64512,
+      "inode": 4744664,
+      "mtimeNs": 1794918209597742728
+    },
+    "curation/config/curation.linux-x64.props": {
+      "path": "curation/config/curation.linux-x64.props",
+      "bytes": 624,
+      "sha256": "8097ce7279dc0e1a6f016c365a69c2a7bef44992dd24968d4d56ace86b322d71",
+      "device": 64512,
+      "inode": 4744665,
+      "mtimeNs": 1794918209598882011
+    },
+    "curation/locks/Admission.net11.lock.json": {
+      "path": "curation/locks/Admission.net11.lock.json",
+      "bytes": 61,
+      "sha256": "b3c5e4a8ca8e8e9b867124355fd997226d6a45ef7924fb06460bf389050392c5",
+      "device": 64512,
+      "inode": 4744683,
+      "mtimeNs": 1794918213684269086
+    },
+    "curation/locks/Admission.Tests.net11.lock.json": {
+      "path": "curation/locks/Admission.Tests.net11.lock.json",
+      "bytes": 121,
+      "sha256": "40195e386b0d8a9ef619d7606374bb06c7f9ecef9c3160c72d4f60b649d84019",
+      "device": 64512,
+      "inode": 4744697,
+      "mtimeNs": 1794918217945392882
+    },
+    "curation/locks/Admission.linux-x64.lock.json": {
+      "path": "curation/locks/Admission.linux-x64.lock.json",
+      "bytes": 90,
+      "sha256": "e8a638a8bd4fe2cc0c23d4d2ffdf8ec3154972930b28610c468fac6a3e94cd57",
+      "device": 64512,
+      "inode": 4745096,
+      "mtimeNs": 1794918223097896351
+    },
+    "curation/packages/microsoft.aspnetcore.app.runtime.linux-x64/11.0.0/.nupkg.metadata": {
+      "path": "curation/packages/microsoft.aspnetcore.app.runtime.linux-x64/11.0.0/.nupkg.metadata",
+      "bytes": 217,
+      "sha256": "31971d09fd6c58f9ebb0c70d2cc04e319405cf01a10671789c28fff18f144227",
+      "device": 64512,
+      "inode": 4745077,
+      "mtimeNs": 1794918222986488081
+    },
+    "curation/packages/microsoft.netcore.app.runtime.linux-x64/11.0.0/.nupkg.metadata": {
+      "path": "curation/packages/microsoft.netcore.app.runtime.linux-x64/11.0.0/.nupkg.metadata",
+      "bytes": 217,
+      "sha256": "e08766fa5d8bd82ce74b2f31b9a1a128c3650f5a97fe304d0f2e95ed4bd9cc99",
+      "device": 64512,
+      "inode": 4744925,
+      "mtimeNs": 1794918222810486453
+    },
+    "curation/locks/Admission.Tests.linux-x64.lock.json": {
+      "path": "curation/locks/Admission.Tests.linux-x64.lock.json",
+      "bytes": 150,
+      "sha256": "69d703cdf831f39c85d736ebc5672a78323904030d3831c6095b97dec182b192",
+      "device": 64512,
+      "inode": 4745110,
+      "mtimeNs": 1794918227410774241
+    }
+  },
+  "nativeAdvisory": {
+    "state": "NO_SELECTED_NUGET_ADVISORY_MATCH",
+    "selected": {
+      "microsoft.aspnetcore.app.runtime.linux-x64": "11.0.0",
+      "microsoft.netcore.app.host.linux-x64": "11.0.0",
+      "microsoft.netcore.app.runtime.linux-x64": "11.0.0"
+    },
+    "pageURLs": [
+      "https://api.nuget.org/v3-vulnerabilities/2026.11.14.05.29.55/vulnerability.base.json",
+      "https://api.nuget.org/v3-vulnerabilities/2026.11.14.05.29.55/2026.11.16.23.30.08/vulnerability.update.json"
+    ],
+    "completePageHashes": {
+      "https://api.nuget.org/v3-vulnerabilities/2026.11.14.05.29.55/vulnerability.base.json": "18260cc9c1e94e3ef4c6157d6159016e5e0377bff5cab8f4285e5b7aca93accb",
+      "https://api.nuget.org/v3-vulnerabilities/2026.11.14.05.29.55/2026.11.16.23.30.08/vulnerability.update.json": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    "scope": "All matching low+ native/actual graph dependencies; not OS/general security certification",
+    "sourceHandoffSHA256": "c49f46dde2e3e0b36e0cf8c50c882f60a8434d9f6ed8a0cb378dd7c6df2701ca"
+  },
+  "SDKAuditConsumption": "CONSUMED_COMPLETE_OWN_STATIC_SNAPSHOT",
+  "metadata": [
+    {
+      "url": "https://api.nuget.org/v3/index.json",
+      "rawBytes": 1262,
+      "state": "JSON_PARSED_NOT_ADMITTED",
+      "framing": {
+        "observationState": "OBSERVED",
+        "actualStatus": 200,
+        "responseURLMatchesExpected": true,
+        "contentLengthHeaderCount": 0,
+        "contentLengthShape": "ABSENT",
+        "declaredContentLength": "UNKNOWN",
+        "transferEncodingHeaderCount": 1,
+        "transferEncodingCategory": "CHUNKED",
+        "contentEncodingHeaderCount": 1,
+        "contentEncodingCategory": "GZIP",
+        "statusAllowed": true,
+        "urlAllowed": true,
+        "noTransferEncoding": false,
+        "headerCountsAllowed": true,
+        "applicationBodyBytesRead": 1262,
+        "primaryCode": "NONE",
+        "sourceOperation": "METADATA_GET",
+        "currentRequestIndex": 0,
+        "elapsedNs": 75379755
+      },
+      "operation": "SAVE",
+      "peerIP": "150.171.110.149",
+      "peerPort": 443,
+      "chunkFraming": {
+        "chunkCount": 2,
+        "framingBytesRead": 12,
+        "declaredDataBytes": 1262,
+        "terminated": true
+      },
+      "rawSHA256": "d9c396850421800c9cbd379aab5ce69cdaff9a36aeab75b1ad5dbe63036071af",
+      "encoding": "gzip",
+      "date": "Tue, 17 Nov 2026 12:23:15 GMT",
+      "lastModified": "Fri, 13 Nov 2026 23:47:00 GMT",
+      "cacheControl": "max-age=21600, must-revalidate",
+      "ownedHTTP": {
+        "deadlineMonotonicNs": 98819995047,
+        "workDeadlineMonotonicNs": 98619995047,
+        "terminalReserveWithin10Ns": 200000000,
+        "originalStageDeadlineMonotonicNs": 487567000000,
+        "processReceiptSHA256": "67c80a817750d7141644492dc20d9c79fb945f2aeb72e0b82fbc39e177bb9857",
+        "resultSHA256": "beb740caa5d849c4085ad5bfcb296650a5fd64f80bc736297d7ba97dc31afe1d",
+        "sourceSHA256": "1e6c0de6defcd72f948bad758b587566610cee5eb1ab3272e0a44b5415074d86",
+        "sameCgroup": "/system.slice/admission04-sdk11-ci-cfd1cbad603d44d39179ce24ba1f2c42.service"
+      },
+      "decodedBytes": 9431,
+      "decodedSHA256": "5e763505b0587d013ddda3ddb24e80d3c6590ac6ce60916d4278fb9df018e07f",
+      "phase": "service-index"
+    },
+    {
+      "url": "https://api.nuget.org/v3-index/repository-signatures/5.0.0/index.json",
+      "rawBytes": 596,
+      "state": "JSON_PARSED_NOT_ADMITTED",
+      "framing": {
+        "observationState": "OBSERVED",
+        "actualStatus": 200,
+        "responseURLMatchesExpected": true,
+        "contentLengthHeaderCount": 0,
+        "contentLengthShape": "ABSENT",
+        "declaredContentLength": "UNKNOWN",
+        "transferEncodingHeaderCount": 1,
+        "transferEncodingCategory": "CHUNKED",
+        "contentEncodingHeaderCount": 1,
+        "contentEncodingCategory": "GZIP",
+        "statusAllowed": true,
+        "urlAllowed": true,
+        "noTransferEncoding": false,
+        "headerCountsAllowed": true,
+        "applicationBodyBytesRead": 596,
+        "primaryCode": "NONE",
+        "sourceOperation": "METADATA_GET",
+        "currentRequestIndex": 1,
+        "elapsedNs": 73439732
+      },
+      "operation": "SAVE",
+      "peerIP": "150.171.110.149",
+      "peerPort": 443,
+      "chunkFraming": {
+        "chunkCount": 2,
+        "framingBytesRead": 12,
+        "declaredDataBytes": 596,
+        "terminated": true
+      },
+      "rawSHA256": "c572b43f8bf2e880ae6d20b4dcc6cbd9bf0579de129d7a72ca97bcdbf6619c00",
+      "encoding": "gzip",
+      "date": "Tue, 17 Nov 2026 12:23:15 GMT",
+      "lastModified": "Fri, 13 Nov 2026 23:47:00 GMT",
+      "cacheControl": "max-age=21600, must-revalidate",
+      "ownedHTTP": {
+        "deadlineMonotonicNs": 98973976838,
+        "workDeadlineMonotonicNs": 98773976838,
+        "terminalReserveWithin10Ns": 200000000,
+        "originalStageDeadlineMonotonicNs": 487567000000,
+        "processReceiptSHA256": "d85e2ecc751408b5c5d917ccb90423768f63f99d6f911233ce0944c54403412b",
+        "resultSHA256": "e67ad1f43de1e6d490e2401b023c1198e9c78374bb9e2ffc88fc92f81fcd5a28",
+        "sourceSHA256": "1e6c0de6defcd72f948bad758b587566610cee5eb1ab3272e0a44b5415074d86",
+        "sameCgroup": "/system.slice/admission04-sdk11-ci-cfd1cbad603d44d39179ce24ba1f2c42.service"
+      },
+      "decodedBytes": 2007,
+      "decodedSHA256": "5f45cbf2d7f8a4b57fea6e43bb603d29a0682058a71eb61d900db74860d210b0",
+      "phase": "repository-index"
+    },
+    {
+      "url": "https://api.nuget.org/v3/vulnerabilities/index.json",
+      "rawBytes": 266,
+      "state": "JSON_PARSED_NOT_ADMITTED",
+      "framing": {
+        "observationState": "OBSERVED",
+        "actualStatus": 200,
+        "responseURLMatchesExpected": true,
+        "contentLengthHeaderCount": 1,
+        "contentLengthShape": "DECIMAL",
+        "declaredContentLength": 266,
+        "transferEncodingHeaderCount": 0,
+        "transferEncodingCategory": "ABSENT",
+        "contentEncodingHeaderCount": 1,
+        "contentEncodingCategory": "GZIP",
+        "statusAllowed": true,
+        "urlAllowed": true,
+        "noTransferEncoding": true,
+        "headerCountsAllowed": true,
+        "applicationBodyBytesRead": 266,
+        "primaryCode": "NONE",
+        "sourceOperation": "METADATA_GET",
+        "currentRequestIndex": 2,
+        "elapsedNs": 72661375
+      },
+      "operation": "SAVE",
+      "peerIP": "150.171.110.149",
+      "peerPort": 443,
+      "rawSHA256": "7b840b6e9ce6f7d328e9a57115a5aaf54478ac6dace0d084fb6e8d5b35b55321",
+      "encoding": "gzip",
+      "date": "Tue, 17 Nov 2026 12:23:15 GMT",
+      "lastModified": "Mon, 16 Nov 2026 23:30:08 GMT",
+      "cacheControl": "max-age=21600, must-revalidate",
+      "ownedHTTP": {
+        "deadlineMonotonicNs": 99127612564,
+        "workDeadlineMonotonicNs": 98927612564,
+        "terminalReserveWithin10Ns": 200000000,
+        "originalStageDeadlineMonotonicNs": 487567000000,
+        "processReceiptSHA256": "c51f5260f02924c27a14626438967630f63f22a4a15f2d023c9700f60d662a67",
+        "resultSHA256": "6e6ae8c958821fd6342a41c6d532ecdf54a2d28bde4ade40484644ef78c230c7",
+        "sourceSHA256": "1e6c0de6defcd72f948bad758b587566610cee5eb1ab3272e0a44b5415074d86",
+        "sameCgroup": "/system.slice/admission04-sdk11-ci-cfd1cbad603d44d39179ce24ba1f2c42.service"
+      },
+      "decodedBytes": 505,
+      "decodedSHA256": "32aedfc995e5b6d37916e22401dbf70a11c5f320c9488c26753fcf4ae9d92558",
+      "phase": "vulnerability-index"
+    },
+    {
+      "url": "https://api.nuget.org/v3-vulnerabilities/2026.11.14.05.29.55/vulnerability.base.json",
+      "rawBytes": 42711,
+      "state": "JSON_PARSED_NOT_ADMITTED",
+      "framing": {
+        "observationState": "OBSERVED",
+        "actualStatus": 200,
+        "responseURLMatchesExpected": true,
+        "contentLengthHeaderCount": 1,
+        "contentLengthShape": "DECIMAL",
+        "declaredContentLength": 42711,
+        "transferEncodingHeaderCount": 0,
+        "transferEncodingCategory": "ABSENT",
+        "contentEncodingHeaderCount": 1,
+        "contentEncodingCategory": "GZIP",
+        "statusAllowed": true,
+        "urlAllowed": true,
+        "noTransferEncoding": true,
+        "headerCountsAllowed": true,
+        "applicationBodyBytesRead": 42711,
+        "primaryCode": "NONE",
+        "sourceOperation": "METADATA_GET",
+        "currentRequestIndex": 3,
+        "elapsedNs": 91746740
+      },
+      "operation": "SAVE",
+      "peerIP": "150.171.110.149",
+      "peerPort": 443,
+      "rawSHA256": "84e9938010713e92d67961adce10c5f8a24cb9b9d0807df849e98094198ffdac",
+      "encoding": "gzip",
+      "date": "Tue, 17 Nov 2026 12:23:15 GMT",
+      "lastModified": "Sat, 14 Nov 2026 05:29:55 GMT",
+      "cacheControl": "max-age=604800, must-revalidate",
+      "ownedHTTP": {
+        "deadlineMonotonicNs": 99281732487,
+        "workDeadlineMonotonicNs": 99081732487,
+        "terminalReserveWithin10Ns": 200000000,
+        "originalStageDeadlineMonotonicNs": 487567000000,
+        "processReceiptSHA256": "7a6f10c5b2d9675552b20d6e920fb1ad2cfd1fc493b9cb568391c85ada549337",
+        "resultSHA256": "886deb987213e0fccdb83a75c6983894553d8e25599a4656c66610f13b15cc22",
+        "sourceSHA256": "1e6c0de6defcd72f948bad758b587566610cee5eb1ab3272e0a44b5415074d86",
+        "sameCgroup": "/system.slice/admission04-sdk11-ci-cfd1cbad603d44d39179ce24ba1f2c42.service"
+      },
+      "decodedBytes": 842176,
+      "decodedSHA256": "290f263aff7519b36e1beb86c315334f3dadb4783152b91c360d17164c4a628b",
+      "phase": "vulnerability-page-0"
+    },
+    {
+      "url": "https://api.nuget.org/v3-vulnerabilities/2026.11.14.05.29.55/2026.11.16.23.30.08/vulnerability.update.json",
+      "rawBytes": 22,
+      "state": "JSON_PARSED_NOT_ADMITTED",
+      "framing": {
+        "observationState": "OBSERVED",
+        "actualStatus": 200,
+        "responseURLMatchesExpected": true,
+        "contentLengthHeaderCount": 1,
+        "contentLengthShape": "DECIMAL",
+        "declaredContentLength": 22,
+        "transferEncodingHeaderCount": 0,
+        "transferEncodingCategory": "ABSENT",
+        "contentEncodingHeaderCount": 1,
+        "contentEncodingCategory": "GZIP",
+        "statusAllowed": true,
+        "urlAllowed": true,
+        "noTransferEncoding": true,
+        "headerCountsAllowed": true,
+        "applicationBodyBytesRead": 22,
+        "primaryCode": "NONE",
+        "sourceOperation": "METADATA_GET",
+        "currentRequestIndex": 4,
+        "elapsedNs": 76517752
+      },
+      "operation": "SAVE",
+      "peerIP": "150.171.110.149",
+      "peerPort": 443,
+      "rawSHA256": "ca1436826f77887edb26d32b6a5853d0c83578cab2d0892484d8d99f95e138f1",
+      "encoding": "gzip",
+      "date": "Tue, 17 Nov 2026 12:23:15 GMT",
+      "lastModified": "Mon, 16 Nov 2026 23:30:08 GMT",
+      "cacheControl": "max-age=604800, must-revalidate",
+      "ownedHTTP": {
+        "deadlineMonotonicNs": 99444234181,
+        "workDeadlineMonotonicNs": 99244234181,
+        "terminalReserveWithin10Ns": 200000000,
+        "originalStageDeadlineMonotonicNs": 487567000000,
+        "processReceiptSHA256": "05549a569464534d92f7a7edaba555d112ef6c5a058c9e75a366469dd39c0f72",
+        "resultSHA256": "d4588658f840f176d245517d9d1f5e5737deac71b2ff479021effd0d3fda67a1",
+        "sourceSHA256": "1e6c0de6defcd72f948bad758b587566610cee5eb1ab3272e0a44b5415074d86",
+        "sameCgroup": "/system.slice/admission04-sdk11-ci-cfd1cbad603d44d39179ce24ba1f2c42.service"
+      },
+      "decodedBytes": 2,
+      "decodedSHA256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "phase": "vulnerability-page-1"
+    },
+    {
+      "url": "https://builds.dotnet.microsoft.com/dotnet/release-metadata/11.0/releases.json",
+      "rawBytes": 111610,
+      "state": "JSON_PARSED_NOT_ADMITTED",
+      "framing": {
+        "observationState": "OBSERVED",
+        "actualStatus": 200,
+        "responseURLMatchesExpected": true,
+        "contentLengthHeaderCount": 1,
+        "contentLengthShape": "DECIMAL",
+        "declaredContentLength": 111610,
+        "transferEncodingHeaderCount": 0,
+        "transferEncodingCategory": "ABSENT",
+        "contentEncodingHeaderCount": 1,
+        "contentEncodingCategory": "GZIP",
+        "statusAllowed": true,
+        "urlAllowed": true,
+        "noTransferEncoding": true,
+        "headerCountsAllowed": true,
+        "applicationBodyBytesRead": 111610,
+        "primaryCode": "NONE",
+        "sourceOperation": "METADATA_GET",
+        "currentRequestIndex": 5,
+        "elapsedNs": 131087736
+      },
+      "operation": "SAVE",
+      "peerIP": "23.11.232.116",
+      "peerPort": 443,
+      "rawSHA256": "894599ee4bcbe2766da9403a35f6b8af10931f8a190eac2a9c9b40709b20cccd",
+      "encoding": "gzip",
+      "date": "Tue, 17 Nov 2026 12:23:15 GMT",
+      "lastModified": "Tue, 10 Nov 2026 16:31:28 GMT",
+      "cacheControl": "public, max-age=50",
+      "ownedHTTP": {
+        "deadlineMonotonicNs": 99597879898,
+        "workDeadlineMonotonicNs": 99397879898,
+        "terminalReserveWithin10Ns": 200000000,
+        "originalStageDeadlineMonotonicNs": 487567000000,
+        "processReceiptSHA256": "8406678e3f59aef4c7761b3cc2f7299bd08d98db826eeeb004656c3bc11a7fa5",
+        "resultSHA256": "1b8091a96e69bdeb7e60453701c30a816e0972eef11e22271864d2d64122dd7b",
+        "sourceSHA256": "1e6c0de6defcd72f948bad758b587566610cee5eb1ab3272e0a44b5415074d86",
+        "sameCgroup": "/system.slice/admission04-sdk11-ci-cfd1cbad603d44d39179ce24ba1f2c42.service"
+      },
+      "decodedBytes": 594221,
+      "decodedSHA256": "5c40c300da0264784179b299169e8c15cb02f8a1e0363dede2a4f5046de1fcc0",
+      "phase": "servicing"
+    },
+    {
+      "url": "http://cacerts.digicert.com/DigiCertAssuredIDRootCA.crt",
+      "rawBytes": 955,
+      "state": "RAW_COMPLETE",
+      "framing": {
+        "observationState": "OBSERVED",
+        "actualStatus": 200,
+        "responseURLMatchesExpected": true,
+        "contentLengthHeaderCount": 1,
+        "contentLengthShape": "DECIMAL",
+        "declaredContentLength": 955,
+        "transferEncodingHeaderCount": 0,
+        "transferEncodingCategory": "ABSENT",
+        "contentEncodingHeaderCount": 0,
+        "contentEncodingCategory": "ABSENT",
+        "statusAllowed": true,
+        "urlAllowed": true,
+        "noTransferEncoding": true,
+        "headerCountsAllowed": true,
+        "applicationBodyBytesRead": 955,
+        "primaryCode": "NONE",
+        "sourceOperation": "METADATA_GET",
+        "currentRequestIndex": 6,
+        "elapsedNs": 32072294
+      },
+      "operation": "SAVE",
+      "peerIP": "162.159.142.9",
+      "peerPort": 80,
+      "rawSHA256": "3e9099b5015e8f486c00bcea9d111ee721faba355a89bcf1df69561e3dc6325c",
+      "encoding": "identity",
+      "date": "Tue, 17 Nov 2026 12:23:15 GMT",
+      "lastModified": "Wed, 06 Dec 2017 21:41:42 GMT",
+      "cacheControl": "max-age=172800",
+      "ownedHTTP": {
+        "deadlineMonotonicNs": 99806604756,
+        "workDeadlineMonotonicNs": 99606604756,
+        "terminalReserveWithin10Ns": 200000000,
+        "originalStageDeadlineMonotonicNs": 487567000000,
+        "processReceiptSHA256": "575c5f83c6b75470abce91542111db203afc305f16fde0fe1ac1833688c17d46",
+        "resultSHA256": "8c90ee064bb40d37b6fa7064ab030885d8f01e942ded2ffd0013e4131129e6b6",
+        "sourceSHA256": "1e6c0de6defcd72f948bad758b587566610cee5eb1ab3272e0a44b5415074d86",
+        "sameCgroup": "/system.slice/admission04-sdk11-ci-cfd1cbad603d44d39179ce24ba1f2c42.service"
+      }
+    },
+    {
+      "url": "http://cacerts.digicert.com/DigiCertTrustedG4CodeSigningRSA4096SHA3842021CA1.crt",
+      "rawBytes": 1716,
+      "state": "RAW_COMPLETE",
+      "framing": {
+        "observationState": "OBSERVED",
+        "actualStatus": 200,
+        "responseURLMatchesExpected": true,
+        "contentLengthHeaderCount": 1,
+        "contentLengthShape": "DECIMAL",
+        "declaredContentLength": 1716,
+        "transferEncodingHeaderCount": 0,
+        "transferEncodingCategory": "ABSENT",
+        "contentEncodingHeaderCount": 0,
+        "contentEncodingCategory": "ABSENT",
+        "statusAllowed": true,
+        "urlAllowed": true,
+        "noTransferEncoding": true,
+        "headerCountsAllowed": true,
+        "applicationBodyBytesRead": 1716,
+        "primaryCode": "NONE",
+        "sourceOperation": "METADATA_GET",
+        "currentRequestIndex": 7,
+        "elapsedNs": 34639589
+      },
+      "operation": "SAVE",
+      "peerIP": "23.11.32.159",
+      "peerPort": 80,
+      "rawSHA256": "46011ede1c147eb2bc731a539b7c047b7ee93e48b9d3c3ba710ce132bbdfac6b",
+      "encoding": "identity",
+      "date": "Tue, 17 Nov 2026 12:23:16 GMT",
+      "lastModified": "Mon, 03 May 2021 17:17:22 GMT",
+      "cacheControl": "public, max-age=1278",
+      "ownedHTTP": {
+        "deadlineMonotonicNs": 99910091654,
+        "workDeadlineMonotonicNs": 99710091654,
+        "terminalReserveWithin10Ns": 200000000,
+        "originalStageDeadlineMonotonicNs": 487567000000,
+        "processReceiptSHA256": "ed359f23b8953e015a3fea1e73fcc74f9137124aaf8dd1c0f1a2c85cefa32c3f",
+        "resultSHA256": "106f4332bf6972c08b82bd0a10c81811b1e53061f9a60b0ab3ec880ce40fc6c6",
+        "sourceSHA256": "1e6c0de6defcd72f948bad758b587566610cee5eb1ab3272e0a44b5415074d86",
+        "sameCgroup": "/system.slice/admission04-sdk11-ci-cfd1cbad603d44d39179ce24ba1f2c42.service"
+      }
+    },
+    {
+      "url": "http://cacerts.digicert.com/DigiCertTrustedG4TimeStampingRSA4096SHA2562025CA1.crt",
+      "rawBytes": 1720,
+      "state": "RAW_COMPLETE",
+      "framing": {
+        "observationState": "OBSERVED",
+        "actualStatus": 200,
+        "responseURLMatchesExpected": true,
+        "contentLengthHeaderCount": 1,
+        "contentLengthShape": "DECIMAL",
+        "declaredContentLength": 1720,
+        "transferEncodingHeaderCount": 0,
+        "transferEncodingCategory": "ABSENT",
+        "contentEncodingHeaderCount": 0,
+        "contentEncodingCategory": "ABSENT",
+        "statusAllowed": true,
+        "urlAllowed": true,
+        "noTransferEncoding": true,
+        "headerCountsAllowed": true,
+        "applicationBodyBytesRead": 1720,
+        "primaryCode": "NONE",
+        "sourceOperation": "METADATA_GET",
+        "currentRequestIndex": 8,
+        "elapsedNs": 33364081
+      },
+      "operation": "SAVE",
+      "peerIP": "23.11.32.159",
+      "peerPort": 80,
+      "rawSHA256": "ca0b1554ecd901ea19dcad8749e9f2648c8d6dfcea1add9d2c2109415bb82ccd",
+      "encoding": "identity",
+      "date": "Tue, 17 Nov 2026 12:23:16 GMT",
+      "lastModified": "Thu, 08 May 2025 21:23:43 GMT",
+      "cacheControl": "public, max-age=499",
+      "ownedHTTP": {
+        "deadlineMonotonicNs": 100013524211,
+        "workDeadlineMonotonicNs": 99813524211,
+        "terminalReserveWithin10Ns": 200000000,
+        "originalStageDeadlineMonotonicNs": 487567000000,
+        "processReceiptSHA256": "fe562e861eb20c58ae13fe0722fc502c4fc83267c7fe4ee441ec062e75365bf2",
+        "resultSHA256": "ad4cf18ddbdda2e3b84185f528389a49791ad0dde1659fc8f20f5c49d25d75c2",
+        "sourceSHA256": "1e6c0de6defcd72f948bad758b587566610cee5eb1ab3272e0a44b5415074d86",
+        "sameCgroup": "/system.slice/admission04-sdk11-ci-cfd1cbad603d44d39179ce24ba1f2c42.service"
+      }
+    },
+    {
+      "url": "http://cacerts.digicert.com/DigiCertTrustedRootG4.crt",
+      "rawBytes": 1428,
+      "state": "RAW_COMPLETE",
+      "framing": {
+        "observationState": "OBSERVED",
+        "actualStatus": 200,
+        "responseURLMatchesExpected": true,
+        "contentLengthHeaderCount": 1,
+        "contentLengthShape": "DECIMAL",
+        "declaredContentLength": 1428,
+        "transferEncodingHeaderCount": 0,
+        "transferEncodingCategory": "ABSENT",
+        "contentEncodingHeaderCount": 0,
+        "contentEncodingCategory": "ABSENT",
+        "statusAllowed": true,
+        "urlAllowed": true,
+        "noTransferEncoding": true,
+        "headerCountsAllowed": true,
+        "applicationBodyBytesRead": 1428,
+        "primaryCode": "NONE",
+        "sourceOperation": "METADATA_GET",
+        "currentRequestIndex": 9,
+        "elapsedNs": 33729405
+      },
+      "operation": "SAVE",
+      "peerIP": "23.11.32.159",
+      "peerPort": 80,
+      "rawSHA256": "552f7bdcf1a7af9e6ce672017f4f12abf77240c78e761ac203d1d9d20ac89988",
+      "encoding": "identity",
+      "date": "Tue, 17 Nov 2026 12:23:16 GMT",
+      "lastModified": "Wed, 06 Dec 2017 21:41:43 GMT",
+      "cacheControl": "public, max-age=1386",
+      "ownedHTTP": {
+        "deadlineMonotonicNs": 100116705913,
+        "workDeadlineMonotonicNs": 99916705913,
+        "terminalReserveWithin10Ns": 200000000,
+        "originalStageDeadlineMonotonicNs": 487567000000,
+        "processReceiptSHA256": "f701f6087128a55319c37a4b685576f6b047b3304d73811098cd62e3c6af0129",
+        "resultSHA256": "f133a5b55d715d6335e2acfe1a8d4be382a6932483440afcaebcac4a8706c5ce",
+        "sourceSHA256": "1e6c0de6defcd72f948bad758b587566610cee5eb1ab3272e0a44b5415074d86",
+        "sameCgroup": "/system.slice/admission04-sdk11-ci-cfd1cbad603d44d39179ce24ba1f2c42.service"
+      }
+    },
+    {
+      "url": "http://crl3.digicert.com/DigiCertAssuredIDRootCA.crl",
+      "rawBytes": 1126,
+      "state": "RAW_COMPLETE",
+      "framing": {
+        "observationState": "OBSERVED",
+        "actualStatus": 200,
+        "responseURLMatchesExpected": true,
+        "contentLengthHeaderCount": 1,
+        "contentLengthShape": "DECIMAL",
+        "declaredContentLength": 1126,
+        "transferEncodingHeaderCount": 0,
+        "transferEncodingCategory": "ABSENT",
+        "contentEncodingHeaderCount": 0,
+        "contentEncodingCategory": "ABSENT",
+        "statusAllowed": true,
+        "urlAllowed": true,
+        "noTransferEncoding": true,
+        "headerCountsAllowed": true,
+        "applicationBodyBytesRead": 1126,
+        "primaryCode": "NONE",
+        "sourceOperation": "METADATA_GET",
+        "currentRequestIndex": 10,
+        "elapsedNs": 37738576
+      },
+      "operation": "SAVE",
+      "peerIP": "23.11.32.159",
+      "peerPort": 80,
+      "rawSHA256": "ec80f6afd1fd52e7b59eedbaf07a24c33c622e208e4a7c3c21636962d30c62e9",
+      "encoding": "identity",
+      "date": "Tue, 17 Nov 2026 12:23:16 GMT",
+      "lastModified": "Fri, 13 Nov 2026 00:50:10 GMT",
+      "cacheControl": "public, max-age=573",
+      "ownedHTTP": {
+        "deadlineMonotonicNs": 100219987343,
+        "workDeadlineMonotonicNs": 100019987343,
+        "terminalReserveWithin10Ns": 200000000,
+        "originalStageDeadlineMonotonicNs": 487567000000,
+        "processReceiptSHA256": "ced6f9e8343ff2e35df98bc2f4b7a5ead56a47e103e81ebfa5a863494a728fda",
+        "resultSHA256": "177736e034beb5eb0d9fcec9913064ea4bb69150874fdb89d5dcc46e81c5359b",
+        "sourceSHA256": "1e6c0de6defcd72f948bad758b587566610cee5eb1ab3272e0a44b5415074d86",
+        "sameCgroup": "/system.slice/admission04-sdk11-ci-cfd1cbad603d44d39179ce24ba1f2c42.service"
+      }
+    },
+    {
+      "url": "http://crl3.digicert.com/DigiCertTrustedG4CodeSigningRSA4096SHA3842021CA1.crl",
+      "rawBytes": 188864,
+      "state": "RAW_COMPLETE",
+      "framing": {
+        "observationState": "OBSERVED",
+        "actualStatus": 200,
+        "responseURLMatchesExpected": true,
+        "contentLengthHeaderCount": 1,
+        "contentLengthShape": "DECIMAL",
+        "declaredContentLength": 188864,
+        "transferEncodingHeaderCount": 0,
+        "transferEncodingCategory": "ABSENT",
+        "contentEncodingHeaderCount": 0,
+        "contentEncodingCategory": "ABSENT",
+        "statusAllowed": true,
+        "urlAllowed": true,
+        "noTransferEncoding": true,
+        "headerCountsAllowed": true,
+        "applicationBodyBytesRead": 188864,
+        "primaryCode": "NONE",
+        "sourceOperation": "METADATA_GET",
+        "currentRequestIndex": 11,
+        "elapsedNs": 50001236
+      },
+      "operation": "SAVE",
+      "peerIP": "23.11.32.159",
+      "peerPort": 80,
+      "rawSHA256": "f46d22f778b465fcfaeface615e2e8a359af42a000246d6a420671ef654bf800",
+      "encoding": "identity",
+      "date": "Tue, 17 Nov 2026 12:23:16 GMT",
+      "lastModified": "Tue, 17 Nov 2026 02:53:35 GMT",
+      "cacheControl": "public, max-age=1602",
+      "ownedHTTP": {
+        "deadlineMonotonicNs": 100323319804,
+        "workDeadlineMonotonicNs": 100123319804,
+        "terminalReserveWithin10Ns": 200000000,
+        "originalStageDeadlineMonotonicNs": 487567000000,
+        "processReceiptSHA256": "eaf4cf648c8c54ab411f0ee685caed0bb31fd18f9286c79d4fb94acba1b55b0b",
+        "resultSHA256": "f7c1e4dcd79630a34ccecfe88640ca1c16c7781ff53d8069e96d668bf11acc5b",
+        "sourceSHA256": "1e6c0de6defcd72f948bad758b587566610cee5eb1ab3272e0a44b5415074d86",
+        "sameCgroup": "/system.slice/admission04-sdk11-ci-cfd1cbad603d44d39179ce24ba1f2c42.service"
+      }
+    },
+    {
+      "url": "http://crl3.digicert.com/DigiCertTrustedG4TimeStampingRSA4096SHA2562025CA1.crl",
+      "rawBytes": 929,
+      "state": "RAW_COMPLETE",
+      "framing": {
+        "observationState": "OBSERVED",
+        "actualStatus": 200,
+        "responseURLMatchesExpected": true,
+        "contentLengthHeaderCount": 1,
+        "contentLengthShape": "DECIMAL",
+        "declaredContentLength": 929,
+        "transferEncodingHeaderCount": 0,
+        "transferEncodingCategory": "ABSENT",
+        "contentEncodingHeaderCount": 0,
+        "contentEncodingCategory": "ABSENT",
+        "statusAllowed": true,
+        "urlAllowed": true,
+        "noTransferEncoding": true,
+        "headerCountsAllowed": true,
+        "applicationBodyBytesRead": 929,
+        "primaryCode": "NONE",
+        "sourceOperation": "METADATA_GET",
+        "currentRequestIndex": 12,
+        "elapsedNs": 33537813
+      },
+      "operation": "SAVE",
+      "peerIP": "23.11.32.159",
+      "peerPort": 80,
+      "rawSHA256": "41e687c3f7c0316762c0933d2475e7b5256e478042e87592d1fcfe926342f244",
+      "encoding": "identity",
+      "date": "Tue, 17 Nov 2026 12:23:16 GMT",
+      "lastModified": "Wed, 11 Nov 2026 17:53:40 GMT",
+      "cacheControl": "public, max-age=1461",
+      "ownedHTTP": {
+        "deadlineMonotonicNs": 100426729782,
+        "workDeadlineMonotonicNs": 100226729782,
+        "terminalReserveWithin10Ns": 200000000,
+        "originalStageDeadlineMonotonicNs": 487567000000,
+        "processReceiptSHA256": "36a07f2f9ec8518477fdc2bd750de289727833c7fc4fdd919e5285522e635aeb",
+        "resultSHA256": "2205848a41db2008919558aac9e1a3fe8ec1d413f1d8474659772b0e20ca04a9",
+        "sourceSHA256": "1e6c0de6defcd72f948bad758b587566610cee5eb1ab3272e0a44b5415074d86",
+        "sameCgroup": "/system.slice/admission04-sdk11-ci-cfd1cbad603d44d39179ce24ba1f2c42.service"
+      }
+    },
+    {
+      "url": "http://crl3.digicert.com/DigiCertTrustedRootG4.crl",
+      "rawBytes": 737,
+      "state": "RAW_COMPLETE",
+      "framing": {
+        "observationState": "OBSERVED",
+        "actualStatus": 200,
+        "responseURLMatchesExpected": true,
+        "contentLengthHeaderCount": 1,
+        "contentLengthShape": "DECIMAL",
+        "declaredContentLength": 737,
+        "transferEncodingHeaderCount": 0,
+        "transferEncodingCategory": "ABSENT",
+        "contentEncodingHeaderCount": 0,
+        "contentEncodingCategory": "ABSENT",
+        "statusAllowed": true,
+        "urlAllowed": true,
+        "noTransferEncoding": true,
+        "headerCountsAllowed": true,
+        "applicationBodyBytesRead": 737,
+        "primaryCode": "NONE",
+        "sourceOperation": "METADATA_GET",
+        "currentRequestIndex": 13,
+        "elapsedNs": 33895607
+      },
+      "operation": "SAVE",
+      "peerIP": "23.11.32.159",
+      "peerPort": 80,
+      "rawSHA256": "057cf252d73ef58e8188da588da4eccc7e7aa2b7708b9455da6e7b42c8c1c594",
+      "encoding": "identity",
+      "date": "Tue, 17 Nov 2026 12:23:16 GMT",
+      "lastModified": "Fri, 13 Nov 2026 18:53:30 GMT",
+      "cacheControl": "public, max-age=1638",
+      "ownedHTTP": {
+        "deadlineMonotonicNs": 100529945452,
+        "workDeadlineMonotonicNs": 100329945452,
+        "terminalReserveWithin10Ns": 200000000,
+        "originalStageDeadlineMonotonicNs": 487567000000,
+        "processReceiptSHA256": "28039a3b3a3c7f2b6c48cb08b802417d6928a1d299d8cce5bcabb49fd667accf",
+        "resultSHA256": "0167c551e121b52952ef5f47cd52baf37a57ce7354cc4f38417541191167182c",
+        "sourceSHA256": "1e6c0de6defcd72f948bad758b587566610cee5eb1ab3272e0a44b5415074d86",
+        "sameCgroup": "/system.slice/admission04-sdk11-ci-cfd1cbad603d44d39179ce24ba1f2c42.service"
+      }
+    },
+    {
+      "url": "http://crl4.digicert.com/DigiCertTrustedG4CodeSigningRSA4096SHA3842021CA1.crl",
+      "rawBytes": 188864,
+      "state": "RAW_COMPLETE",
+      "framing": {
+        "observationState": "OBSERVED",
+        "actualStatus": 200,
+        "responseURLMatchesExpected": true,
+        "contentLengthHeaderCount": 1,
+        "contentLengthShape": "DECIMAL",
+        "declaredContentLength": 188864,
+        "transferEncodingHeaderCount": 0,
+        "transferEncodingCategory": "ABSENT",
+        "contentEncodingHeaderCount": 0,
+        "contentEncodingCategory": "ABSENT",
+        "statusAllowed": true,
+        "urlAllowed": true,
+        "noTransferEncoding": true,
+        "headerCountsAllowed": true,
+        "applicationBodyBytesRead": 188864,
+        "primaryCode": "NONE",
+        "sourceOperation": "METADATA_GET",
+        "currentRequestIndex": 14,
+        "elapsedNs": 51165974
+      },
+      "operation": "SAVE",
+      "peerIP": "23.11.32.159",
+      "peerPort": 80,
+      "rawSHA256": "f46d22f778b465fcfaeface615e2e8a359af42a000246d6a420671ef654bf800",
+      "encoding": "identity",
+      "date": "Tue, 17 Nov 2026 12:23:16 GMT",
+      "lastModified": "Tue, 17 Nov 2026 02:53:35 GMT",
+      "cacheControl": "public, max-age=589",
+      "ownedHTTP": {
+        "deadlineMonotonicNs": 100633215047,
+        "workDeadlineMonotonicNs": 100433215047,
+        "terminalReserveWithin10Ns": 200000000,
+        "originalStageDeadlineMonotonicNs": 487567000000,
+        "processReceiptSHA256": "9cd9b4ab3fa3c55c58c5986fe73046fc93043b1a8a8f871e71d31f841f80f4b0",
+        "resultSHA256": "5f0d9907e91e74ed8dee30b2e7886c90422f5b22acc4e55e841d3bbc605a7783",
+        "sourceSHA256": "1e6c0de6defcd72f948bad758b587566610cee5eb1ab3272e0a44b5415074d86",
+        "sameCgroup": "/system.slice/admission04-sdk11-ci-cfd1cbad603d44d39179ce24ba1f2c42.service"
+      }
+    }
+  ],
+  "adapter": [
+    {
+      "method": "GET",
+      "routeSHA256": "9b3d87a2245c10677936035852371df2fc6b2ea7b4a969cf4c829ca98cf148e7",
+      "status": 200,
+      "bytes": 23,
+      "bodySHA256": "cf9d97aaaa3afe1e84fbece671f8ab7af5785b69ebff25647d3c931dfaea24af"
+    },
+    {
+      "method": "GET",
+      "routeSHA256": "96319af2f29b2e49727d5c4dc722b324905d7778df5dd5d72a1d584dc16f8628",
+      "status": 200,
+      "bytes": 929,
+      "bodySHA256": "41e687c3f7c0316762c0933d2475e7b5256e478042e87592d1fcfe926342f244"
+    },
+    {
+      "method": "GET",
+      "routeSHA256": "c5640c88dd1ffca3fe88d12730743e0a1d8482c7f8250457137919024f5b3099",
+      "status": 200,
+      "bytes": 737,
+      "bodySHA256": "057cf252d73ef58e8188da588da4eccc7e7aa2b7708b9455da6e7b42c8c1c594"
+    },
+    {
+      "method": "GET",
+      "routeSHA256": "431e905c428aa713d1540e09278ecc295201c00058f4e755688130ec1af32567",
+      "status": 200,
+      "bytes": 188864,
+      "bodySHA256": "f46d22f778b465fcfaeface615e2e8a359af42a000246d6a420671ef654bf800"
+    },
+    {
+      "method": "GET",
+      "routeSHA256": "23619418c404e340ddf24f31bc8aabbdd813095f9c5efa7a7aeca73a7e0df1ab",
+      "status": 200,
+      "bytes": 122,
+      "bodySHA256": "e07b1768a6a3f8438d746d6b9af9e2418517ee9ad470e31d32648b8c197bbb70"
+    },
+    {
+      "method": "GET",
+      "routeSHA256": "9499a097a4647184e99468b75ff5f863c3dc9b3404ceee9172dd90068d170069",
+      "status": 200,
+      "bytes": 393,
+      "bodySHA256": "06b275a612e33bafe08e688b0dbe92df771c2adc620d02adb9a3d59893373ba0"
+    },
+    {
+      "method": "GET",
+      "routeSHA256": "a1624c13ccf0ba06b25c7623e5a86669c15d4c2db6b4709c0af93186338e03d8",
+      "status": 200,
+      "bytes": 842176,
+      "bodySHA256": "290f263aff7519b36e1beb86c315334f3dadb4783152b91c360d17164c4a628b"
+    },
+    {
+      "method": "GET",
+      "routeSHA256": "87ebc61a547db5c889dfdc63e7309372b6fe5defa7d669e649fe56fd217d29e6",
+      "status": 200,
+      "bytes": 2,
+      "bodySHA256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    }
+  ],
+  "SDK_READY": false,
+  "WindowsQualification": false,
+  "productAdmission": false
+}

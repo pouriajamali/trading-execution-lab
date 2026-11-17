@@ -1,2 +1,5 @@
 accepted-linux-fact.json -text
 accepted-linux-acceptance.json -text
+accepted-windows-fact.json -text
+accepted-windows-acceptance.json -text
+native-linux/** -text -diff

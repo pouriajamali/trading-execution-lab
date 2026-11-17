@@ -1,7 +1,8 @@
 # v0.6.0-preview.1 â€” .NET 11 candidate
 
-Source preparation only, 14 November 2026. This version has **not** been built,
-tested, signed, tagged or published. No download is available for this candidate.
+Candidate source updated 17 November 2026. Product builds and native tests are
+still pending; no candidate tag, signed release assets or published download
+exist. Signed source commits are separate from release-asset signing.
 
 ## Intended source changes
 
@@ -27,17 +28,11 @@ The consumer handshake now binds the supervisor-generated current instance to
 the frozen admission fields and its exact own caps-evidence digest. The focused
 10-case data checks cover this correction; they are not SDK or product tests.
 
-04 must deliver the reviewed immutable SDK 11 handoff. Project02's own wrapper,
-control identity and actual Windows/Linux/hosted kernel containment must be
-reviewed before any SDK, native or helper execution. The existing single
-canonical lane remains unchanged; no project06 wrapper is suitable for02.
-
-The isolated Windows source checkout is separate from the accepted baseline.
-The proposed Linux checkout is /home/ubuntu/execution02-net11-20261114/repo
-inside the existing E-backed Ubuntu VHDX; it has not been created or qualified.
-The historical E/DrvFS SQLITE_BUSY failure and incomplete retry remain
-unresolved evidence. No old suite replay, timeout increase or system change
-is part of source preparation.
+Producer04's signed shared handoff now supplies accepted Linux and Windows
+SDK histories and three actually verified Linux framework nupkgs. Own current
+host, held kernel controls, ordinary dependency closure and product checks
+remain mandatory. The supported hosted rows reuse these inputs; historical
+local WSL/DrvFS failures are not a substitute for current native proof.
 
 Generate all six real NuGet locks only with the admitted SDK, then review their
 resolved/content-hash graph and current audit. No lock/native hashes are guessed
@@ -54,10 +49,12 @@ No benchmark or performance claim is included.
 
 ## Exact publication route
 
-1. Review one local candidate with source/tree, real locks/audit, caps, native
-   runtime evidence, matching-OS tests and both package identities.
-2. Obtain the exact coordinator public/CI gate and zero-additional-cost envelope.
-   No push, PR, CI trigger or tag is authorized by this source-preparation stage.
+1. Close the real package-input and six-lock gates, bind the complete signed
+   source/tree and preserve the current supported-host and own-control checks.
+2. The direct owner has authorized completing this existing upgrade through
+   tests and preview publication. Use task-only signed pushes and the existing
+   bounded source/tag pipeline; exact-source native tests and both package
+   identities must pass before release publication.
 3. Exact signed-tag CI must test both platforms and aggregate those same bytes,
    with no release rebuild. The workflow creates draft=true, prerelease=true.
 4. The existing authorized key holder downloads the draft's three archives and
@@ -89,28 +86,37 @@ This is a synthetic local sample, not an exchange adapter, HA service,
 network exactly-once guarantee, trading deployment or performance qualification.
 
 
-## Shared SDK11 normal input â€” inert source wiring
+## Shared SDK11 input and current consumer gates
 
-The private source candidate now binds the byte-identical producer04
-`transport(rid, directory, context)` / `inspect_sdk(rid, root, context)` API.
-Linux fact `757abf2d...` and acceptance `0452e1f3...` identify producer history;
-they grant no current Execution job admission. Windows normal input remains
-`DENIED_NO_ACCEPTED_PRODUCER_FACT` until its own accepted producer fact exists.
+The single common source is signed producer04 commit
+`4dab824c2b0b6fe00858f648d07fd8e9df9fafe1`. Its unchanged data-only
+`transport(rid, directory, context)` / `inspect_sdk(rid, root, context)` API
+has actual accepted Linux and Windows histories. Those histories establish
+input eligibility; each current Execution worker still needs its own source,
+profile, held-process, kernel-limit and original-deadline evidence.
 
-[Own route contract](SDK11-CONSUMER-CONTRACT.json) binds the tracked
-controller, profile and complete source-pin table. Linux's own stopped nonroot
-service MainPID, retained pidfd, kernel limits, bootstrap and original absolute
-deadline are observed by its supervisor before release. Frozen63e
-`consumerAdmission.currentExecution` records this current instance and its own
-caps digest; producer/current jobs may differ. No borrowed kernel evidence.
-The shared implementation uses `RUNNER_NAME` as instanceId; the tracking ID is
-retained separately. Missing/GCd terminal metadata yields HOLD.
+The [own route contract](SDK11-CONSUMER-CONTRACT.json) binds both per-RID
+profiles and a complete source-pin table. The additional ordinary SQLite,
+JWT, TestHost and xUnit closure, six real locks, full package signatures,
+notices and current applicable advisory checks remain pending. No producer
+kernel proof or old locks are borrowed. Existing .NET10 downloads remain the
+available release until actual candidate tests, signing and publication pass.
+The existing two native rows,720-second row,4GiB/CPU2/64-process limits and
+620-second controller including transport and teardown remain unchanged.
 
-The existing two native rows,12-minute row timeout,max-parallel1, scenarios,
-six committed locks, fresh audit, native prerequisites, notices and signing
-remain required. The620-second controller allocation includes input transport,
-product work and teardown; it receives no new540/900-second outer clock.
-The source-pin table must be regenerated and re-reviewed after real lock files
-and the final consolidated source commit are available. This inert overlay
-has no exact final HEAD, runtime admission, execution or publication authority.
-Existing .NET10 downloads remain the available release.
+Linux terminal capture retains the original nonroot ExecStopPost service result
+before collection. A missing unit alone cannot pass: original held-worker and
+launcher terminal proof, the generation-bound exit record and empty/absent own
+cgroup are all required. Fresh project02 native evidence is still pending.
+
+Native CI uses only a job-local Git autocrlf override so raw committed source
+and shared input/proof hashes agree across Windows and Linux. No global Git
+configuration or existing source line endings are changed.
+
+The existing package process now has source wiring to record its actually loaded
+CoreCLR and packaged SQLite module paths/hashes. This observation remains
+unexecuted until the native product gate; installed-runtime inventory alone
+does not establish which runtime the process loaded. Exact locked npm file-bin
+links are allowed only inside node_modules; workspace escapes and directory
+junctions remain denied. Windows includes the private SDK directory in the
+same aggregate workspace/log limits as product work.

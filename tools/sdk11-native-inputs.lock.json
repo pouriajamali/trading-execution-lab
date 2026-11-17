@@ -1,0 +1,388 @@
+{
+  "schema": "sdk11-native-input-facts-catalog/v1",
+  "state": "ACCEPTED_THREE_LINUX_NATIVE_FACTS_ONLY",
+  "sourceInputFactsSHA256": "b94a8d74cd6290b17c2e063d0d15ddab04c086f5a9b41120e5c53ee01c7671df",
+  "sourceRun": {
+    "id": 44082565011,
+    "attempt": 1,
+    "URL": "https://github.com/pouriajamali/data-admission-gate/actions/runs/44082565011",
+    "conclusion": "success",
+    "sourceHEAD": "793ec500b49f7358025b0e99d27d26746f18c91e",
+    "sourceTree": "48996a06ca9619dc4651a5d1e3a1b45ca4cac676",
+    "sourceProfileSHA256": "534c20918e2e28592ddcf0da3f94ccee7c25d7fc80ec9115344169da5c17d1ab"
+  },
+  "packages": [
+    {
+      "id": "Microsoft.AspNetCore.App.Runtime.linux-x64",
+      "version": "11.0.0",
+      "rid": "linux-x64",
+      "sourceURL": "https://api.nuget.org/v3-flatcontainer/microsoft.aspnetcore.app.runtime.linux-x64/11.0.0/microsoft.aspnetcore.app.runtime.linux-x64.11.0.0.nupkg",
+      "rawSignedArchive": {
+        "bytes": 13048557,
+        "sha256": "3f4bdd1255f9ccf02a3ad22656e165bd86e9f0179f18d88cf0fc7de02b230593",
+        "sha512": "ec6ed1b5be30b1acf04abe10f173b0c1f8df48f470da277685c2821aee7cb6e6ad21748c56a15b6c9a857e6758e0aba066048a644ccaeaad09ff82e3ee463814"
+      },
+      "normalizedNuGetContentHash": "yakDdyyMIIXJfCuuaGDt3lFQ/0J0SCISfvmZNQ0StQvG1scXFzfstv/JMFbeQgTM7xHbxAAwMeXz7gWI4s49YA==",
+      "normalizedHashAuthority": "Same actual SDK11.0.100 nuget verify --all command; distinct from raw signed archive SHA512, no local formula",
+      "declaredOriginalLicenseExpression": "MIT",
+      "redistributionCondition": "Retain original license and all third-party notices in any applicable redistributed package; consumer packaging/licensing gate remains required. No blanket legal determination.",
+      "cryptographicFacts": "Actual original signed nupkg author/repository/RFC3161 validation via NuGet plus actual current per-certificate CRL chains via OpenSSL. Structural parsing alone grants no trust.",
+      "archiveMemberInventory": {
+        "file": "sdk11-normal/native-linux/members-0.ndjson",
+        "bytes": 40422,
+        "sha256": "627a75db249945a08c77a107746b628e8186a1fc8f4949c02e72ec5140f7776a",
+        "rows": 144,
+        "expandedStreamBytes": 27330023,
+        "representation": "Full original signed ZIP namespace; distinct from unsigned normalized NuGet content hash"
+      },
+      "originalData": [
+        {
+          "file": "sdk11-normal/native-linux/original-0-1.data",
+          "bytes": 1250,
+          "sha256": "c510e4f45c01dd85947b02ddcc60b2c4a8a6e7030959c918399008d7436fc3a8",
+          "originalMemberPath": "Microsoft.AspNetCore.App.Runtime.linux-x64.nuspec",
+          "memberIndex": 1
+        },
+        {
+          "file": "sdk11-normal/native-linux/original-0-2.data",
+          "bytes": 56998,
+          "sha256": "fe970484b338399def0b81b24d8a6005122d5c9f559a257c2ad22cbb83644cab",
+          "originalMemberPath": "THIRD-PARTY-NOTICES.TXT",
+          "memberIndex": 2
+        },
+        {
+          "file": "sdk11-normal/native-linux/original-0-4.data",
+          "bytes": 1116,
+          "sha256": "cfc21f5e8bd655ae997eec916138b707b1d290b83272c02a95c9f821b8c87310",
+          "originalMemberPath": "LICENSE.txt",
+          "memberIndex": 4
+        },
+        {
+          "file": "sdk11-normal/native-linux/original-0-143.data",
+          "bytes": 26002,
+          "sha256": "f9d28824993ffe5f74052772ca7af0b827774c4a7810ee3bb984fc7ca9256155",
+          "originalMemberPath": ".signature.p7s",
+          "memberIndex": 143
+        }
+      ],
+      "actualNuGetVerification": {
+        "exitCode": 0,
+        "processReceiptSHA256": "ad6ecb4e54484fafb0897e2a921d85c4a1ba3f424ec6be0758f21e4c12a4fb00",
+        "argvSHA256": "1f85fa6c49f2b83196b1e1ce08a86ccd70cf31b9b6049b05a81856de9d1e56f7",
+        "retainedReport": {
+          "file": "sdk11-normal/native-linux/nuget-0.log",
+          "bytes": 7493,
+          "sha256": "605f072b2d71662da44f68178f11cd3024770a68a6f22aa36f87883065ff508e"
+        }
+      }
+    },
+    {
+      "id": "Microsoft.NETCore.App.Host.linux-x64",
+      "version": "11.0.0",
+      "rid": "linux-x64",
+      "sourceURL": "https://api.nuget.org/v3-flatcontainer/microsoft.netcore.app.host.linux-x64/11.0.0/microsoft.netcore.app.host.linux-x64.11.0.0.nupkg",
+      "rawSignedArchive": {
+        "bytes": 5085644,
+        "sha256": "a152b2d7ebb7fb9431ab96490e4c35c86af564419c20d81745e71760a4465469",
+        "sha512": "a7d54c6d254dd2f5807f5a23f8d4e6d98ba48b9954fbb7af26994f7a26760bcf41d762fa63626b4c0773bc44c5285cc73f19ffe1c466cb9b48e2d27f11de616c"
+      },
+      "normalizedNuGetContentHash": "TDrPTaVbpOUJI6n1tFlcPsFrvRAasdzJB9ZrkVQ6yNqc1FazgwbzxSFZlB2xjZPen3chGd8zWYB63QSNfF9vbQ==",
+      "normalizedHashAuthority": "Same actual SDK11.0.100 nuget verify --all command; distinct from raw signed archive SHA512, no local formula",
+      "declaredOriginalLicenseExpression": "MIT",
+      "redistributionCondition": "Retain original license and all third-party notices in any applicable redistributed package; consumer packaging/licensing gate remains required. No blanket legal determination.",
+      "cryptographicFacts": "Actual original signed nupkg author/repository/RFC3161 validation via NuGet plus actual current per-certificate CRL chains via OpenSSL. Structural parsing alone grants no trust.",
+      "archiveMemberInventory": {
+        "file": "sdk11-normal/native-linux/members-1.ndjson",
+        "bytes": 4533,
+        "sha256": "85783bebf9d0ea565708c3e976fdd2b5a220beca615a553160e00cb522910875",
+        "rows": 19,
+        "expandedStreamBytes": 11108295,
+        "representation": "Full original signed ZIP namespace; distinct from unsigned normalized NuGet content hash"
+      },
+      "originalData": [
+        {
+          "file": "sdk11-normal/native-linux/original-1-1.data",
+          "bytes": 1000,
+          "sha256": "d6cf0867b865f014b38f79408c7303c580eaa03736e114071f90c4ce6f96cadb",
+          "originalMemberPath": "Microsoft.NETCore.App.Host.linux-x64.nuspec",
+          "memberIndex": 1
+        },
+        {
+          "file": "sdk11-normal/native-linux/original-1-4.data",
+          "bytes": 1116,
+          "sha256": "cfc21f5e8bd655ae997eec916138b707b1d290b83272c02a95c9f821b8c87310",
+          "originalMemberPath": "LICENSE.TXT",
+          "memberIndex": 4
+        },
+        {
+          "file": "sdk11-normal/native-linux/original-1-6.data",
+          "bytes": 91918,
+          "sha256": "4790bb15f0edd1b105aecb05174fc6c589d4d9fad0c50616ef5f7dc365f1c8a6",
+          "originalMemberPath": "THIRD-PARTY-NOTICES.TXT",
+          "memberIndex": 6
+        },
+        {
+          "file": "sdk11-normal/native-linux/original-1-18.data",
+          "bytes": 25995,
+          "sha256": "e6b246d5bf927b4dcfc7655aa0605c8ed10885cbd708cc96ad21f0d55e21e6b7",
+          "originalMemberPath": ".signature.p7s",
+          "memberIndex": 18
+        }
+      ],
+      "actualNuGetVerification": {
+        "exitCode": 0,
+        "processReceiptSHA256": "e4058e040793be84ca545b8529f8b93f9b0b81b17152c37443d4a7df038e5aa9",
+        "argvSHA256": "446c3c43a6b10e9604edbba65c1b9abfdfd0cf9acc2b4a360358560eb90f1925",
+        "retainedReport": {
+          "file": "sdk11-normal/native-linux/nuget-1.log",
+          "bytes": 7467,
+          "sha256": "9072b7dce3db3a6210c80829172c3da5cea70d92dfb0d56da591ebfb36b1cc7e"
+        }
+      }
+    },
+    {
+      "id": "Microsoft.NETCore.App.Runtime.linux-x64",
+      "version": "11.0.0",
+      "rid": "linux-x64",
+      "sourceURL": "https://api.nuget.org/v3-flatcontainer/microsoft.netcore.app.runtime.linux-x64/11.0.0/microsoft.netcore.app.runtime.linux-x64.11.0.0.nupkg",
+      "rawSignedArchive": {
+        "bytes": 42270532,
+        "sha256": "458f0a7e0de107e4c08b3f375b920cd9427bbb5463870187b5f8afff0eb8664f",
+        "sha512": "f76bc258a41b896f53d90802453c221d51e9c69bfc7c300e8824549e53bd4242e1776a1618a26df7384737899b77b025fd6981c03fad17426df14c7939fa31ee"
+      },
+      "normalizedNuGetContentHash": "WTqFNKlUfzbporrlDrd4zKoddHECrKAh1I5Ms54ksoq/H6A5bfedZVefcRYrFiAlF0FBaOf0RCxSyuWmaNcq2w==",
+      "normalizedHashAuthority": "Same actual SDK11.0.100 nuget verify --all command; distinct from raw signed archive SHA512, no local formula",
+      "declaredOriginalLicenseExpression": "MIT",
+      "redistributionCondition": "Retain original license and all third-party notices in any applicable redistributed package; consumer packaging/licensing gate remains required. No blanket legal determination.",
+      "cryptographicFacts": "Actual original signed nupkg author/repository/RFC3161 validation via NuGet plus actual current per-certificate CRL chains via OpenSSL. Structural parsing alone grants no trust.",
+      "archiveMemberInventory": {
+        "file": "sdk11-normal/native-linux/members-2.ndjson",
+        "bytes": 56813,
+        "sha256": "ff90b05a7fba22c7f65332691367a8e14f6a83e772c8e4fca9e29208f8074695",
+        "rows": 211,
+        "expandedStreamBytes": 114548115,
+        "representation": "Full original signed ZIP namespace; distinct from unsigned normalized NuGet content hash"
+      },
+      "originalData": [
+        {
+          "file": "sdk11-normal/native-linux/original-2-1.data",
+          "bytes": 1003,
+          "sha256": "b018757b94b545a3e12a6e655541eec0af12fd425cf077191c5b13d023df8244",
+          "originalMemberPath": "Microsoft.NETCore.App.Runtime.linux-x64.nuspec",
+          "memberIndex": 1
+        },
+        {
+          "file": "sdk11-normal/native-linux/original-2-4.data",
+          "bytes": 1116,
+          "sha256": "cfc21f5e8bd655ae997eec916138b707b1d290b83272c02a95c9f821b8c87310",
+          "originalMemberPath": "LICENSE.TXT",
+          "memberIndex": 4
+        },
+        {
+          "file": "sdk11-normal/native-linux/original-2-6.data",
+          "bytes": 91918,
+          "sha256": "4790bb15f0edd1b105aecb05174fc6c589d4d9fad0c50616ef5f7dc365f1c8a6",
+          "originalMemberPath": "THIRD-PARTY-NOTICES.TXT",
+          "memberIndex": 6
+        },
+        {
+          "file": "sdk11-normal/native-linux/original-2-210.data",
+          "bytes": 25994,
+          "sha256": "e5d89bd848a1a32e8f18aa47dd04273d81fb045472ca5d6c6be4ddadf2003fbe",
+          "originalMemberPath": ".signature.p7s",
+          "memberIndex": 210
+        }
+      ],
+      "actualNuGetVerification": {
+        "exitCode": 0,
+        "processReceiptSHA256": "6d2829ad1ce17fd2a13b498b8ae637e10941628fe3708ce5545f1d7496913a85",
+        "argvSHA256": "b1e75c91ed6985c2b1e5bb9861ef433f94ce8a09f13f4127cd460c015eba0179",
+        "retainedReport": {
+          "file": "sdk11-normal/native-linux/nuget-2.log",
+          "bytes": 7476,
+          "sha256": "3d5343aa2b80d0eed1f2e337c6b4efcaebd05a1e677521af3026eca4ca6e21b7"
+        }
+      }
+    }
+  ],
+  "applicableAdvisory": {
+    "state": "NO_SELECTED_NUGET_ADVISORY_MATCH",
+    "selected": {
+      "microsoft.aspnetcore.app.runtime.linux-x64": "11.0.0",
+      "microsoft.netcore.app.host.linux-x64": "11.0.0",
+      "microsoft.netcore.app.runtime.linux-x64": "11.0.0"
+    },
+    "pageURLs": [
+      "https://api.nuget.org/v3-vulnerabilities/2026.11.14.05.29.55/vulnerability.base.json",
+      "https://api.nuget.org/v3-vulnerabilities/2026.11.14.05.29.55/2026.11.16.23.30.08/vulnerability.update.json"
+    ],
+    "completePageHashes": {
+      "https://api.nuget.org/v3-vulnerabilities/2026.11.14.05.29.55/vulnerability.base.json": "18260cc9c1e94e3ef4c6157d6159016e5e0377bff5cab8f4285e5b7aca93accb",
+      "https://api.nuget.org/v3-vulnerabilities/2026.11.14.05.29.55/2026.11.16.23.30.08/vulnerability.update.json": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    "scope": "All matching low+ native/actual graph dependencies; not OS/general security certification",
+    "sourceHandoffSHA256": "c49f46dde2e3e0b36e0cf8c50c882f60a8434d9f6ed8a0cb378dd7c6df2701ca"
+  },
+  "completeMetadataSnapshots": [
+    {
+      "file": "sdk11-normal/native-linux/metadata/pki-0.der",
+      "bytes": 955,
+      "sha256": "3e9099b5015e8f486c00bcea9d111ee721faba355a89bcf1df69561e3dc6325c"
+    },
+    {
+      "file": "sdk11-normal/native-linux/metadata/pki-1.der",
+      "bytes": 1716,
+      "sha256": "46011ede1c147eb2bc731a539b7c047b7ee93e48b9d3c3ba710ce132bbdfac6b"
+    },
+    {
+      "file": "sdk11-normal/native-linux/metadata/pki-2.der",
+      "bytes": 1720,
+      "sha256": "ca0b1554ecd901ea19dcad8749e9f2648c8d6dfcea1add9d2c2109415bb82ccd"
+    },
+    {
+      "file": "sdk11-normal/native-linux/metadata/pki-3.der",
+      "bytes": 1428,
+      "sha256": "552f7bdcf1a7af9e6ce672017f4f12abf77240c78e761ac203d1d9d20ac89988"
+    },
+    {
+      "file": "sdk11-normal/native-linux/metadata/pki-4.der",
+      "bytes": 1126,
+      "sha256": "ec80f6afd1fd52e7b59eedbaf07a24c33c622e208e4a7c3c21636962d30c62e9"
+    },
+    {
+      "file": "sdk11-normal/native-linux/metadata/pki-5.der",
+      "bytes": 188864,
+      "sha256": "f46d22f778b465fcfaeface615e2e8a359af42a000246d6a420671ef654bf800"
+    },
+    {
+      "file": "sdk11-normal/native-linux/metadata/pki-6.der",
+      "bytes": 929,
+      "sha256": "41e687c3f7c0316762c0933d2475e7b5256e478042e87592d1fcfe926342f244"
+    },
+    {
+      "file": "sdk11-normal/native-linux/metadata/pki-7.der",
+      "bytes": 737,
+      "sha256": "057cf252d73ef58e8188da588da4eccc7e7aa2b7708b9455da6e7b42c8c1c594"
+    },
+    {
+      "file": "sdk11-normal/native-linux/metadata/pki-8.der",
+      "bytes": 188864,
+      "sha256": "f46d22f778b465fcfaeface615e2e8a359af42a000246d6a420671ef654bf800"
+    },
+    {
+      "file": "sdk11-normal/native-linux/metadata/repository.json",
+      "bytes": 2007,
+      "sha256": "5f45cbf2d7f8a4b57fea6e43bb603d29a0682058a71eb61d900db74860d210b0"
+    },
+    {
+      "file": "sdk11-normal/native-linux/metadata/repository.json.wire",
+      "bytes": 596,
+      "sha256": "c572b43f8bf2e880ae6d20b4dcc6cbd9bf0579de129d7a72ca97bcdbf6619c00"
+    },
+    {
+      "file": "sdk11-normal/native-linux/metadata/service.json",
+      "bytes": 9431,
+      "sha256": "5e763505b0587d013ddda3ddb24e80d3c6590ac6ce60916d4278fb9df018e07f"
+    },
+    {
+      "file": "sdk11-normal/native-linux/metadata/service.json.wire",
+      "bytes": 1262,
+      "sha256": "d9c396850421800c9cbd379aab5ce69cdaff9a36aeab75b1ad5dbe63036071af"
+    },
+    {
+      "file": "sdk11-normal/native-linux/metadata/servicing.json",
+      "bytes": 594221,
+      "sha256": "5c40c300da0264784179b299169e8c15cb02f8a1e0363dede2a4f5046de1fcc0"
+    },
+    {
+      "file": "sdk11-normal/native-linux/metadata/servicing.json.wire",
+      "bytes": 111610,
+      "sha256": "894599ee4bcbe2766da9403a35f6b8af10931f8a190eac2a9c9b40709b20cccd"
+    },
+    {
+      "file": "sdk11-normal/native-linux/metadata/vulnerability-index.json",
+      "bytes": 505,
+      "sha256": "32aedfc995e5b6d37916e22401dbf70a11c5f320c9488c26753fcf4ae9d92558"
+    },
+    {
+      "file": "sdk11-normal/native-linux/metadata/vulnerability-index.json.wire",
+      "bytes": 266,
+      "sha256": "7b840b6e9ce6f7d328e9a57115a5aaf54478ac6dace0d084fb6e8d5b35b55321"
+    },
+    {
+      "file": "sdk11-normal/native-linux/metadata/vulnerability-page-0.json",
+      "bytes": 842176,
+      "sha256": "290f263aff7519b36e1beb86c315334f3dadb4783152b91c360d17164c4a628b"
+    },
+    {
+      "file": "sdk11-normal/native-linux/metadata/vulnerability-page-0.json.wire",
+      "bytes": 42711,
+      "sha256": "84e9938010713e92d67961adce10c5f8a24cb9b9d0807df849e98094198ffdac"
+    },
+    {
+      "file": "sdk11-normal/native-linux/metadata/vulnerability-page-1.json",
+      "bytes": 2,
+      "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    {
+      "file": "sdk11-normal/native-linux/metadata/vulnerability-page-1.json.wire",
+      "bytes": 22,
+      "sha256": "ca1436826f77887edb26d32b6a5853d0c83578cab2d0892484d8d99f95e138f1"
+    }
+  ],
+  "actualCurationEvidence": [
+    {
+      "file": "sdk11-normal/native-linux/FINAL-CANDIDATE.json",
+      "bytes": 55583,
+      "sha256": "411260d44b31935145d141a53b60b57e7d0acc5f566f3111685c10b310e61100"
+    },
+    {
+      "file": "sdk11-normal/native-linux/curation-worker.json",
+      "bytes": 53288,
+      "sha256": "3f8f4fcc52e4943602cdd66e97814404e6ac46226d76b59f0b3b614916364dc7"
+    },
+    {
+      "file": "sdk11-normal/native-linux/public-original-input-receipt.json",
+      "bytes": 3150,
+      "sha256": "9e0cd4c50e51d640cbebf9ec94903f2cd56a92531b6378eb8fc2aae9da08b6d3"
+    },
+    {
+      "file": "sdk11-normal/native-linux/curation-current-network-deny.json",
+      "bytes": 621,
+      "sha256": "f1fd41f5abac2f7dcf6bba89f7ee40421df933f270ffb9573c83eb1d459e32a0"
+    },
+    {
+      "file": "sdk11-normal/native-linux/cleanup-terminal.json",
+      "bytes": 1657,
+      "sha256": "607e2d703cbaa4655666c72c169fac071b2f7eb794b0338b05721ba02f1d0d61"
+    }
+  ],
+  "hiddenMetadataRecovery": [
+    {
+      "originalRelativePath": "curation/packages/microsoft.aspnetcore.app.runtime.linux-x64/11.0.0/.nupkg.metadata",
+      "recordedOriginalBytesSHA256": "31971d09fd6c58f9ebb0c70d2cc04e319405cf01a10671789c28fff18f144227",
+      "origin": "Reconstructed public NuGet version2 JSON from actual recorded normalized hash and exact retained config source; byte count217 and SHA256 match the actual original durable metadata manifest exactly. Not downloaded from CI artifact, not a new restore result.",
+      "retainedBytes": {
+        "file": "sdk11-normal/native-linux/recovered-metadata-0.json",
+        "bytes": 217,
+        "sha256": "31971d09fd6c58f9ebb0c70d2cc04e319405cf01a10671789c28fff18f144227"
+      }
+    },
+    {
+      "originalRelativePath": "curation/packages/microsoft.netcore.app.runtime.linux-x64/11.0.0/.nupkg.metadata",
+      "recordedOriginalBytesSHA256": "e08766fa5d8bd82ce74b2f31b9a1a128c3650f5a97fe304d0f2e95ed4bd9cc99",
+      "origin": "Reconstructed public NuGet version2 JSON from actual recorded normalized hash and exact retained config source; byte count217 and SHA256 match the actual original durable metadata manifest exactly. Not downloaded from CI artifact, not a new restore result.",
+      "retainedBytes": {
+        "file": "sdk11-normal/native-linux/recovered-metadata-1.json",
+        "bytes": 217,
+        "sha256": "e08766fa5d8bd82ce74b2f31b9a1a128c3650f5a97fe304d0f2e95ed4bd9cc99"
+      }
+    }
+  ],
+  "freshnessBoundary": "Advisory snapshot and CRLs are bound to this run/current check time; no perpetual freshness claim. Consumers must enforce their own current policy and exact source/input/caps/deadline gate.",
+  "graphBoundary": "Four actual own04 net11.0/linux-x64 graph restores passed; no claim that01/02/03 graphs or their extra NuGet dependencies are closed.",
+  "consumerRule": "Host/SDK fact is not native nupkg admission. Each consumer proves exact applicable graph/locks, raw+normalized/members/original notices/CMS/advisory and own source/caps/clock before product work. Extra02 package closure remains outside these three packages.",
+  "windowsNativeNuGetState": "NOT_ADMITTED_BY_WINDOWS_HOST_QUALIFICATION",
+  "SDK_READY": false,
+  "productAdmission": false
+}

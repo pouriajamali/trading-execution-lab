@@ -37,6 +37,54 @@ def verify_manifest(package, commit):
     return manifest
 
 
+def loaded_native_identity(process, package, dotnet):
+    """Observe modules of this already-required owned, ready package process."""
+    assert process.poll() is None, "Owned package process exited before module observation"
+    names = {"coreclr.dll", "libcoreclr.so", "e_sqlite3.dll", "libe_sqlite3.so"}
+    paths = set()
+    if os.name == "nt":
+        import ctypes
+        from ctypes import wintypes as W
+        psapi = ctypes.WinDLL("psapi", use_last_error=True)
+        enum = psapi.EnumProcessModulesEx
+        enum.argtypes = [W.HANDLE, ctypes.POINTER(W.HMODULE), W.DWORD, ctypes.POINTER(W.DWORD), W.DWORD]
+        enum.restype = W.BOOL
+        filename = psapi.GetModuleFileNameExW
+        filename.argtypes = [W.HANDLE, W.HMODULE, W.LPWSTR, W.DWORD]
+        filename.restype = W.DWORD
+        modules = (W.HMODULE * 2048)(); needed = W.DWORD()
+        handle = W.HANDLE(int(process._handle))  # Retained CreateProcess handle of our exact child.
+        assert enum(handle, modules, ctypes.sizeof(modules), ctypes.byref(needed), 3), "Owned module enumeration"
+        assert needed.value <= ctypes.sizeof(modules), "Owned module count bound"
+        for module in modules[:needed.value // ctypes.sizeof(W.HMODULE)]:
+            buffer = ctypes.create_unicode_buffer(32768)
+            count = filename(handle, module, buffer, len(buffer))
+            assert 0 < count < len(buffer), "Owned module filename"
+            path = Path(buffer.value)
+            if path.name.lower() in names: paths.add(path.resolve(strict=True))
+    else:
+        with Path("/proc", str(process.pid), "maps").open("rb") as stream:
+            raw = stream.read(8*1024*1024+1)
+        assert len(raw) <= 8*1024*1024, "Owned mapping observation bound"
+        for line in raw.decode("utf-8").splitlines():
+            parts = line.split(None, 5)
+            if len(parts) == 6 and Path(parts[5]).name in names:
+                paths.add(Path(parts[5]).resolve(strict=True))
+    core = [p for p in paths if p.name.lower() in {"coreclr.dll", "libcoreclr.so"}]
+    sqlite = [p for p in paths if p.name.lower() in {"e_sqlite3.dll", "libe_sqlite3.so"}]
+    assert len(core) == len(sqlite) == 1, "Actual loaded CoreCLR and SQLite modules required"
+    import shutil
+    host = Path(shutil.which(str(dotnet)) or str(dotnet)).resolve(strict=True)
+    runtime = core[0].parent
+    assert runtime.parent == host.parent/"shared/Microsoft.NETCore.App", "Loaded private framework root"
+    assert re.fullmatch(r"11\.0\.[0-9]+", runtime.name), "Actual loaded stable11 patch runtime"
+    assert sqlite[0].is_relative_to(package), "Loaded SQLite must be from the tested extracted package"
+    return {"ownedPid":process.pid,"runtimeVersion":runtime.name,
+            "dotnetHost":{"path":str(host),"sha256":digest(host)},
+            "coreclr":{"path":str(core[0]),"sha256":digest(core[0])},
+            "sqlite":{"packagePath":sqlite[0].relative_to(package).as_posix(),"sha256":digest(sqlite[0])},
+            "observation":"Retained owned process modules on Windows; current owned proc maps on Linux. No runtime inventory inference."}
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--package", type=Path, required=True)
@@ -152,6 +200,7 @@ def main():
         token = json.loads(login)["token"]; private_values.append(token)
         headers, raw = status_case("seeded authenticated state", 200, "/panel/api/state", token=token)
         assert headers.get("Cache-Control") == "no-store"
+        loaded_native = loaded_native_identity(host, package, args.dotnet)
         state = json.loads(raw)
         assert (state["position"], state["pending"], state["exposure"], state["sequence"]) == (4, 3, 7, 2)
         assert "frame-ancestors 'none'" in headers["Content-Security-Policy"]
@@ -202,6 +251,7 @@ def main():
     receipt = {"status": "ACTUAL_FRAMEWORK_DEPENDENT_PACKAGE_HTTP_SQLITE_PASS", "sourceCommit": args.commit,
                "packageManifest": manifest, "checks": observations, "ownedProcesses": len(processes),
                "apiAssemblySha256": digest(package / "ExecutionLab.Api.dll"),
+               "loadedNativeIdentity": loaded_native,
                "runtimeInventory": subprocess.check_output([args.dotnet, "--list-runtimes"], text=True).splitlines(),
                "scope": "Actual DLL on matching installed ASP.NET Core runtime; host may have SDK. Four owned processes, bounded HTTP/readiness, process reopen, no benchmark/power-loss/graceful-console claim. Random keys/code/JWT never written to receipt/log."}
     (work / "receipt.json").write_text(json.dumps(receipt, indent=2) + "\n", encoding="utf-8")

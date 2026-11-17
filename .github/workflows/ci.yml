@@ -49,16 +49,29 @@ jobs:
             rid: win-x64
     runs-on: ${{ matrix.os }}
     timeout-minutes: 12
+    # Preserve exact committed source/common proof bytes on either OS.
+    env:
+      GIT_CONFIG_COUNT: '1'
+      GIT_CONFIG_KEY_0: core.autocrlf
+      GIT_CONFIG_VALUE_0: 'false'
     steps:
       - uses: actions/checkout@v4
-      # Exact real manager policy/fact/input delivery is a REQUIRED next-gate attachment.
-      # No setup-dotnet/tool install or ambient SDK. Missing admission fails before SDK.
+      # Same preinstalled Python and signed own-source policy; no new tool setup.
       - name: Own typed CI host and bounded native row
         shell: pwsh
-        env:
-          EXE02_CI_POLICY_SHA256: ${{ vars.EXE02_CI_POLICY_SHA256 }}
         run: |
-          python -I -B scripts/run_bounded.py --ci --ci-rid '${{ matrix.rid }}' --ci-policy 'artifacts/ci-inputs/${{ matrix.rid }}/manager-admission.json' --ci-policy-sha256 "$env:EXE02_CI_POLICY_SHA256"
+          if ($IsWindows) {
+            $candidates = @(
+              (Join-Path $env:RUNNER_TOOL_CACHE 'Python/3.12.10/x64/python.exe'),
+              (Get-Command python -ErrorAction SilentlyContinue).Source
+            ) | Where-Object { $_ -and (Test-Path -LiteralPath $_ -PathType Leaf) }
+            $python = $candidates | Where-Object { (Get-FileHash -LiteralPath $_ -Algorithm SHA256).Hash.ToLowerInvariant() -eq '4d6f5f81a4bca11191c4c7c6b43632694d0a4ce74e068619d8fdc161d469859a' } | Select-Object -First 1
+            if (-not $python) { throw 'Existing admitted Python3.12.10 unavailable; no bootstrap fallback' }
+          } else {
+            $python = '/usr/bin/python3.12'
+            if (-not (Test-Path -LiteralPath $python -PathType Leaf)) { throw 'Existing Python3.12 unavailable' }
+          }
+          & $python -I -B scripts/run_bounded.py --ci --ci-rid '${{ matrix.rid }}'
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
       - uses: actions/upload-artifact@v4
         if: startsWith(github.ref, 'refs/tags/') || github.event_name == 'workflow_dispatch'

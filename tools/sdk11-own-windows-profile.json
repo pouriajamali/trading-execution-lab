@@ -1,0 +1,13 @@
+{
+  "schema": "sdk11-own-normal-input-profile/v1",
+  "state": "ADMITTED_SOURCE_PROFILE",
+  "projectId": "02",
+  "repository": "pouriajamali/trading-execution-lab",
+  "rid": "win-x64",
+  "rowSeconds": 620,
+  "memoryMaxBytes": 4294967296,
+  "swapMaxBytes": null,
+  "tasksMax": 64,
+  "cpuCores": 2,
+  "scratchMaxBytes": 8589934592
+}

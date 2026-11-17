@@ -1,0 +1,52 @@
+{
+  "schema": "owned-linux-cleanup/v1",
+  "launcherTerminal": true,
+  "workerPidfdTerminal": true,
+  "ownedPopulation": 0,
+  "workerExitCode": 0,
+  "cleanupResult": "OWNED_TERMINAL_OBSERVED",
+  "trustedOsToolIdentities": {
+    "systemctlSha256": "37ec607113f55f1b385b4fa75588a43402aec0de57927500763b267713f10f63",
+    "sudoSha256": "6ae6665cc51295ea8aaba94a3377dafa563f950aafc6296c0704fb33401a31ff"
+  },
+  "hadGenerationBoundUnit": false,
+  "actions": [],
+  "stopOutcome": {
+    "serviceResult": "success",
+    "exitCode": "exited",
+    "exitStatus": "0",
+    "observerPID": 2517,
+    "observerStart": "12152",
+    "actualCaps": {
+      "cgroup": "/system.slice/admission04-sdk11-ci-cfd1cbad603d44d39179ce24ba1f2c42.service",
+      "kernelLimits": {
+        "memory.max": "4294967296",
+        "memory.swap.max": "0",
+        "pids.max": "64",
+        "cpu.max": "200000 100000"
+      },
+      "uid": 1001,
+      "gid": 1001,
+      "bootId": "1e7433d0-b67c-4d56-9589-b599f44d8285",
+      "memoryPeak": 1229574144,
+      "pids": [
+        2517
+      ]
+    },
+    "remainingPopulationExcludingObserver": 0,
+    "boundary": "RecordednonrootExecStopPost beforecollect; observerterminal stillrequiresparentshow/cgroupabsence. No rootSDK."
+  },
+  "properties": {
+    "MainPID": "0",
+    "ControlPID": "0",
+    "Result": "success",
+    "ExecMainCode": "0",
+    "ExecMainStatus": "0",
+    "ControlGroup": "",
+    "Id": "admission04-sdk11-ci-cfd1cbad603d44d39179ce24ba1f2c42.service",
+    "Description": "admission04-sdk11-ci-cfd1cbad603d44d39179ce24ba1f2c42.service",
+    "LoadState": "not-found",
+    "ActiveState": "inactive"
+  },
+  "remainingBudgetMs": 845937
+}

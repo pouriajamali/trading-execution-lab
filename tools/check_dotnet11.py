@@ -122,7 +122,7 @@ def qualified(rid):
 
 
 import contextlib,importlib.util,signal,subprocess,sys,threading,platform,shutil
-PINS={'catalogSha256': '686c6c778f7841e6015fa401f3892b853df80e3341fbb5d02b27c682887c1c78', 'factSha256': '757abf2d3dde65d10cd895cfc97eaeccb7fc11e8685b94ad046e6a8ec8829007', 'acceptanceSha256': '0452e1f3b4f2662d57e9b273428bb37ab0c5a733551a92394ca2a4e8b9b4ac08', 'schemaSha256': '63e04fa5d270c87b93e6e1f4c38bfbcf336b950b39fe1854dc4e514f0661f14c', 'guardSha256': '7420b08d78d3b1476be41385d179a42212a2a7e1a965a8d8ea3b67bb14da7925', 'materializerSha256': '5f0dbb951cbe615d8c6dd9edbb63b11143cc457319bdcc9000ea9a486f660fb8', 'rawMembersSha256': '4cbad1f9f1e43430621f88567768b3d761efe47868b7e7045f72397274c2f9a3', 'linksSha256': 'cead0d3279d952d30088e4ca430af41ae3ad9c1578179d6b7d19564b82077d34'}
+PINS={'catalogSha256': '8995a4d296afbfcdf8e267e1923a4de5365b7fa1ef58457add433dfb6df33e23', 'factSha256': '757abf2d3dde65d10cd895cfc97eaeccb7fc11e8685b94ad046e6a8ec8829007', 'acceptanceSha256': '0452e1f3b4f2662d57e9b273428bb37ab0c5a733551a92394ca2a4e8b9b4ac08', 'schemaSha256': '63e04fa5d270c87b93e6e1f4c38bfbcf336b950b39fe1854dc4e514f0661f14c', 'guardSha256': '7420b08d78d3b1476be41385d179a42212a2a7e1a965a8d8ea3b67bb14da7925', 'materializerSha256': '5f0dbb951cbe615d8c6dd9edbb63b11143cc457319bdcc9000ea9a486f660fb8', 'rawMembersSha256': '4cbad1f9f1e43430621f88567768b3d761efe47868b7e7045f72397274c2f9a3', 'linksSha256': 'cead0d3279d952d30088e4ca430af41ae3ad9c1578179d6b7d19564b82077d34', 'windowsNormalHelperSha256': '5bab5ee0f8fdd724706fad0735a81aa1d89e747cf651e9bb0a4760052fed6312', 'windowsAdmissionAmendmentSha256': '21d186215b96b05944280ff986b93e3931cd5ed38322e009a4b9a58ac361f2b5', 'windowsFactHelperSha256': '6bb0fe5199377dfdb0caed76cf274bcef631205648d9dbf0d67e1f43433e9a7e'}
 def schema_check(v,s,path='$'):
  if 'const' in s:need(v==s['const'] and (not (isinstance(v,bool) or isinstance(s['const'],bool)) or type(v) is type(s['const'])),'FACT_SCHEMA_CONST:'+path)
  if 'enum' in s:need(v in s['enum'],'FACT_SCHEMA_ENUM:'+path)
@@ -173,7 +173,8 @@ def _load(name,pin):
 def validate_catalog_values(cat,fact,acceptance,schema):
  need(type(cat) is dict and cat.get('schema')=='sdk11-shared-normal-input-catalog/v1' and cat.get('state')=='SOURCE_HELD_NORMAL_ACCEPTED_RIDS_ONLY','NORMAL_CATALOG_STATE')
  need(cat.get('contractSha256')=='e092c4e8911c2b25f70fda3608d2c04212d3d81f6aaa1214688eea236cfbb089' and cat.get('SDK_READY') is False and set(cat.get('rids',{}))=={'linux-x64','win-x64'},'NORMAL_CATALOG_CONTRACT')
- need(cat.get('rids',{}).get('win-x64',{}).get('state')=='DENIED_NO_ACCEPTED_PRODUCER_FACT','NORMAL_WINDOWS_DENIED')
+ w=cat.get('rids',{}).get('win-x64',{});need(w.get('state')=='ACCEPTED_PRODUCER_FACT_FOR_OWN_ADMITTED_HOST' and w.get('factSha256')=='ec8e9b405ca74bd7bbc748575265de2555056d84ff5780a8979bbb01cbd27c48' and w.get('acceptanceSha256')=='9713a70f809ac7f50a1c73650fc6d3390bccda109e7a2d15c9be581ff91dc8f6','NORMAL_WINDOWS_FACT_AUTHORITY')
+ need(cat.get('windowsAdmissionAmendmentSha256')==PINS['windowsAdmissionAmendmentSha256'] and digest(HERE/'sdk11-normal-windows-admission.json')==PINS['windowsAdmissionAmendmentSha256'],'NORMAL_WINDOWS_AMENDMENT_IDENTITY')
  entry=cat.get('rids',{}).get('linux-x64');need(type(entry) is dict and entry.get('state')=='ACCEPTED_PRODUCER_FACT_FOR_OWN_ADMITTED_HOST','NORMAL_RID_FACT_MISSING')
  need(entry.get('factSha256')==FACT_SHA and entry.get('acceptanceSha256')==ACCEPT_SHA,'NORMAL_FACT_AUTHORITY')
  schema_check(fact,schema);q=fact['qualifiedOn'];need(q['rid']=='linux-x64' and q['hostClass']==HOST_CLASS and q['runId']=='43920284996' and fact['source']['commit']==entry['producerCommit']=='803eb71621bad8eb45e30aaf3d4560b8c058d07c' and fact['source']['tree']==entry['producerTree']=='66794c0d3f4e2b3e6b7bd2aedc98972745a0783d','NORMAL_PRODUCER_HISTORY')
@@ -187,6 +188,7 @@ def validate_catalog_values(cat,fact,acceptance,schema):
  need(len(c['members'])==len(c['rawMembers'])==7055 and len(c['links'])==1830,'NORMAL_NAMESPACE_COUNTS');return c
 
 def _documents(rid):
+ if rid=='win-x64':return _load('normal_windows_input',PINS['windowsNormalHelperSha256']).documents(sys.modules[__name__])
  need(rid=='linux-x64','NORMAL_RID_NOT_ACCEPTED')
  p=HERE/'sdk11-normal-inputs.lock.json';need(digest(p)==PINS['catalogSha256'],'NORMAL_CATALOG_SOURCE_BYTES');cat=_read(p)
  fp=HERE/'sdk11-normal/accepted-linux-fact.json';ap=HERE/'sdk11-normal/accepted-linux-acceptance.json';sp=HERE/'dotnet11-host-qualification.schema.json'
@@ -314,6 +316,7 @@ def transport(rid,directory,context):
  """Concrete shared API. Call inside the held own worker; returns (Path, receipt).
  context is the finite v1 dictionary in INTERFACE.md, never a callback/allow flag.
  """
+ if rid=='win-x64':return _load('normal_windows_input',PINS['windowsNormalHelperSha256']).execute(sys.modules[__name__],directory,context)
  started=time.monotonic_ns();end=_deadline_values(context,started);allocation=None;identity=None
  with absolute_deadline(context) as effective:
   try:
@@ -337,6 +340,7 @@ def transport(rid,directory,context):
 
 def inspect_sdk(rid,root,context):
  """Full data-only recheck for the same own capped caller/deadline, no fetch."""
+ if rid=='win-x64':return _load('normal_windows_input',PINS['windowsNormalHelperSha256']).execute(sys.modules[__name__],root,context,inspect=True)
  with absolute_deadline(context) as end:
   c,fact,admission,profile,current,hashes,a,lm=_preflight(rid,context,end);root=a.scoped(root,Path(os.environ['RUNNER_TEMP']));lm.verify_physical(root,c['members']);_remaining(end)
   return {'schema':'sdk11-shared-normal-recheck/v1','state':'OWN_CURRENT_FULL_INPUT_IDENTITY_VERIFIED','projectId':context['projectId'],'memberManifestSha256':MEMBERS_SHA,'producerFactSha256':FACT_SHA,'capsEvidenceSha256':hashes['capsEvidence'],'absoluteDeadlineNs':context['deadlineMonotonicNs'],'SDKExecutions':0}

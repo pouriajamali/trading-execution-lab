@@ -51,7 +51,7 @@ def main():
     npm = shutil.which("npm.cmd" if os.name == "nt" else "npm")
     assert npm
     run("panel-build", [npm, "--prefix", "OperatorPanel", "run", "build"])
-    switches = ["-p:SelfContained=false", "-p:EnableRuntimePackDownload=false", "-p:DisableTransitiveFrameworkReferenceDownloads=true"]
+    switches = ["-p:UseSharedCompilation=false", "-p:SelfContained=false", "-p:EnableRuntimePackDownload=false", "-p:DisableTransitiveFrameworkReferenceDownloads=true"]
     restore = [args.dotnet, "restore", "ExecutionLab.Api/ExecutionLab.Api.csproj", "--locked-mode", "--runtime", args.rid, *switches]
     if args.nuget_source: restore.extend(["--source", args.nuget_source, "-p:NuGetAudit=false"])
     run("restore", restore)
