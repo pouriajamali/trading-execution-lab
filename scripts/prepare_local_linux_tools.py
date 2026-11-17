@@ -19,14 +19,17 @@ def acquire(root,work,budget_receipt=None):
     import concurrent.futures,re
     prior=json.loads((Path(budget_receipt)/'receipt.json').read_bytes()) if budget_receipt else None
     need(prior and prior['purpose']=='LOCAL_PRIVATE_TOOL_DATA' and prior['terminal'] is True,'retained original transfer elapsed')
-    remaining=480-prior['elapsedSeconds']-10
+    transfers=[json.loads(p.read_bytes()) for p in (root/'artifacts/tech-refresh').glob('*/receipt.json')]
+    transfers=[p for p in transfers if p.get('purpose')=='LOCAL_PRIVATE_TOOL_DATA'];need(all(p['terminal'] is True for p in transfers),'all previous transfers terminal')
+    remaining=480-sum(p['elapsedSeconds'] for p in transfers)-10
     deadline=started+remaining
-    for name,row in data['tools'].items():
+    for name,row in sorted(data['tools'].items(),key=lambda x:x[0]!='pwsh'):
         target=dest/(name+'.tar.gz')
         if target.exists():need(sha(target)==row['sha256'],'retained exact tool input')
         else:
             headers={'User-Agent':'own02-private-tools','Accept-Encoding':'identity'}
-            with opener.open(urllib.request.Request(row['url'],headers=headers,method='HEAD'),timeout=10) as response:
+            url=row['url'].replace('https://nodejs.org/dist/','https://nodejs.org/download/release/')
+            with opener.open(urllib.request.Request(url,headers=headers,method='HEAD'),timeout=10) as response:
                 need(response.status==200 and response.headers.get('Accept-Ranges')=='bytes','official bounded range transfer support')
                 total=int(response.headers['Content-Length'])
             need(0<total<=row.get('bytes',row.get('maximumRawBytes')) and ('bytes' not in row or total==row['bytes']),'exact official transfer size')
@@ -34,12 +37,15 @@ def acquire(root,work,budget_receipt=None):
             need(0<=offset<total,'retained prefix bounds')
             step=(total-offset+7)//8;parts=[]
             def fetch(index,start,end):
-                part=dest/(name+'.range-'+str(index)+'.part');need(not part.exists(),'single resumed transfer; no hidden retry')
-                request=urllib.request.Request(row['url'],headers={**headers,'Range':'bytes='+str(start)+'-'+str(end)})
-                with opener.open(request,timeout=15) as response,part.open('xb') as output:
+                part=dest/(name+'.range-'+str(index)+'.part');retained=part.stat().st_size if part.exists() else 0
+                need(0<=retained<=end-start+1,'exact retained range extent')
+                if retained==end-start+1:return part
+                start+=retained
+                request=urllib.request.Request(url,headers={**headers,'Range':'bytes='+str(start)+'-'+str(end)})
+                with opener.open(request,timeout=10) as response,part.open('ab' if retained else 'xb') as output:
                     need(response.status==206 and response.headers.get('Content-Range')=='bytes '+str(start)+'-'+str(end)+'/'+str(total),'exact bounded range response')
                     count=0
-                    while chunk:=response.read(262144):
+                    while chunk:=response.read(16384):
                         count+=len(chunk);need(count<=end-start+1 and time.monotonic()<deadline,'approved cumulative data-transfer bounds');output.write(chunk)
                     need(count==end-start+1,'complete explicit range')
                 return part

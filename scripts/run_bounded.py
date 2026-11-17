@@ -439,9 +439,12 @@ def main():
                 and exception["explicitHumanConsent"] is True and exception["totalSeconds"] == 480,
                 "exact human private-tool data exception only")
         phase_limit = 480
+        transfers = [p for p in previous if p.get("purpose") == "LOCAL_PRIVATE_TOOL_DATA"]
+        require(transfers and all(p["terminal"] is True for p in transfers), "retained all own transfer attempts")
+        b["priorAttemptSeconds"] = sum(p["elapsedSeconds"] for p in transfers)
     prior_attempt = b.get("priorAttemptSeconds",0)
     require(type(prior_attempt) in (int,float) and 0 <= prior_attempt < phase_limit, "prior phase budget")
-    if prior_attempt:
+    if prior_attempt and not b.get("preparePrivateLinuxTools"):
         retained = b.get("retainedPhaseReceipt",b.get("retainedQualificationMetadata",{}))
         prior = load(Path(retained["directory"])/"receipt.json",retained["receiptSha256"])
         require(prior["terminal"] is True and prior["elapsedSeconds"] == prior_attempt, "actual retained phase budget")
