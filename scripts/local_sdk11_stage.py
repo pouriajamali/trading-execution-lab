@@ -153,13 +153,17 @@ def curate(b,work):
     thread=threading.Thread(target=server.serve_forever,daemon=True);thread.start();graphs=work/'graphs';graphs.mkdir()
     plan=factory.command_plan(b['dotnet'],ROOT,work,raw_paths);config=Path(plan['configPath']);config.write_bytes(factory.config_bytes(feed,cache,server.server_port,sorted(factory.OFFICIAL_REPOSITORY_CERTIFICATES)))
     os.environ['NUGET_CERT_REVOCATION_MODE']='online';os.environ['NUGET_PACKAGES']=str(cache)
-    locks=[ROOT/x/'packages.lock.json' for x in factory.PROJECTS];need(not any(p.exists() for p in locks),'no lock overwrite; first curation only')
+    locks=[ROOT/x/'packages.lock.json' for x in factory.PROJECTS]
+    locked=os.name!='nt'
+    baseline={str(p.relative_to(ROOT)):digest(p) for p in locks} if locked else None
+    need(all(p.exists() for p in locks) if locked else not any(p.exists() for p in locks),'signed existing locks on Linux; no Windows lock overwrite')
     normalized={};executed=[]
     try:
         for index,vector in enumerate(plan['commands']):
             need(time.monotonic()-started<300-5,'original curation active deadline')
             if index==7:need(len(normalized)==len(rows),'all enumerated signature/hash/current-online-trust guards before first restore')
             argv=vector['argv']
+            if locked and 7<=index<=12:argv=['--locked-mode' if x=='--use-lock-file' else x for x in argv]
             if index==13:argv=[*argv,'--config',str(config)]
             result=subprocess.run(argv,cwd=ROOT,capture_output=True,timeout=min(vector['maximumSeconds'],300-5-(time.monotonic()-started)))
             need(len(result.stdout)+len(result.stderr)<=1048576,'curation command output bound')
@@ -174,6 +178,7 @@ def curate(b,work):
         def clean(v):
             return all(not(k in ('vulnerabilities','errors','problems','warnings') and x) and clean(x) for k,x in v.items()) if isinstance(v,dict) else all(clean(x) for x in v) if isinstance(v,list) else True
         need(clean(report) and report.get('sources') and all(s in (str(feed),base+'/v3/index.json') for s in report['sources']) and all('/vuln/'+str(i)+'.json' in calls for i in range(2)),'applicable exact-snapshot audit no issues or unapproved sources')
+        need(not locked or baseline=={str(p.relative_to(ROOT)):digest(p) for p in locks},'Linux locked restore cannot mutate signed locks')
         selected={};targets={}
         for project,path in zip(factory.PROJECTS,locks):
             lock=json.loads(path.read_bytes());keys=set(lock['dependencies']);need({'net11.0','net11.0/win-x64','net11.0/linux-x64'}<=keys,'actual two-RID lock targets')
