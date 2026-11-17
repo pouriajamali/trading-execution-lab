@@ -1,10 +1,11 @@
 # Local operator panel — v0.6.0-preview.1 candidate
 
-Source preparation only: candidate0.6.0-preview.1 has not been built or tested.
-No11 archive is published. The prerequisites/run recipe below describe the intended
-new package after qualification. The old preview link requires its original
-.NET10 runtime, as recorded in [its release notes](RELEASE-v0.5.2-preview.1.md).
-See [candidate gates](RELEASE-v0.6.0-preview.1.md) before attempting this source.
+The .NET11 candidate's native package validation and publication are incomplete.
+Local Windows SDK11/runtime11 qualification and59 C# cases have passed; this is
+not yet a downloadable .NET11 release. The recipe below describes its runtime
+requirements. Existing .NET10 downloads retain their original requirements in
+[their release notes](RELEASE-v0.5.2-preview.1.md). See
+[candidate validation status](RELEASE-v0.6.0-preview.1.md).
 
 This is an independent **synthetic, loopback-only** C#/.NET sample. No broker,
 exchange, real account, market feed or real-order control is connected.
@@ -17,7 +18,7 @@ exchange, real account, market feed or real-order control is connected.
 - Install [PowerShell 7](https://learn.microsoft.com/powershell/scripting/install/installing-powershell).
 - Packages are **framework-dependent**, not self-contained. An SDK, Node.js and
   Python are unnecessary to run the panel. Native OS prerequisites still apply.
-  Intended targets are Windows x64 and Ubuntu 24.04/glibc x64; candidate11 is unqualified. Alpine/musl, ARM,
+  Intended targets are Windows x64 and Ubuntu 24.04/glibc x64; Windows26H2/build26300 is an explicitly accepted experimental test host; official vendor support is unconfirmed. Linux package validation is pending. Alpine/musl, ARM,
   macOS and other distributions are unverified. The preview is unsigned.
 
 The existing published .NET10 archive and `SHA256SUMS.txt` remain at the

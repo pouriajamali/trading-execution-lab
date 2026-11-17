@@ -27,7 +27,7 @@ implementations. For the transaction and recovery decisions, follow the
 
 ## Check the C# implementation
 
-The candidate targets SDK11.0.100; execution waits for the reviewed SDK/control and lock gates below. After qualification, run from a fresh source checkout:
+Candidate source targets SDK11.0.100 / net11.0 / C#15.0. The local validation status is recorded below; the published .NET10 download remains separate. From a source checkout with the required SDK:
 
 ```sh
 dotnet run --project ExecutionLab.Tests/ExecutionLab.Tests.csproj -c Release
@@ -70,7 +70,7 @@ Use Ctrl+C to stop. See [prerequisites and troubleshooting](docs/QUICKSTART.md).
 Unsigned developer preview; audited targets are Windows x64 and Ubuntu24.04/glibc
 x64. Other distributions, ARM, musl and macOS are unverified.
 
-**Build from source.** With Node.js 24 and the .NET 10 SDK, run:
+**Build candidate source.** With Node.js 24 and SDK 11.0.100, run:
 
 ```sh
 npm --prefix OperatorPanel ci
@@ -148,7 +148,7 @@ adapters or real-order controls.
 ## Run
 
 Candidate source requires **SDK 11.0.100 / stable runtime 11.0.0 / C# 15.0**.
-Execution remains blocked until SDK/control admission, real locks and audit.
+Use the exact SDK, committed locks and current dependency validation; local native validation status is below.
 Tests retain **xUnit v3 4.0.2**. JWT/TestHost target exact **11.0.0**;
 SQLite stays **10.0.14**. The core library has no external package dependency.
 
@@ -257,93 +257,40 @@ data or broker connection is included.
 
 [CI resource policy](docs/CI-POLICY.md): documentation-only changes get real lightweight document/pipeline checks; source, tag and manual runs retain native validation. Published runtime tags and release assets remain unchanged.
 
-## .NET 11 source candidate — not qualified
+## .NET 11 candidate: local validation in progress
 
-Candidate 0.6.0-preview.1 targets SDK11.0.100/net11.0/C#15 and runtime11.0.0.
-Source preparation adds two literal compatibility tests; their expected total
-is59 and no candidate test/build has run. The accepted57-case and published56-case
-evidence above remains historical. SQLite/frontend pins and application behavior
-are preserved. [Candidate notes and technical gates](docs/RELEASE-v0.6.0-preview.1.md)
-identify the pending shared SDK, actual project02 controls, locks/audit, native
-qualification, signing and exact public-review gates. The download links still
-refer to the existing .NET10 release; no11 download is published. The independent
-public browser demo/site remains unchanged.
+Candidate 0.6.0-preview.1 targets SDK11.0.100/net11.0/C#15 and stable runtime11.0.0.
+The original57 C# cases and application behavior remain intact; two new literal
+compatibility cases check persisted receipts, fingerprints, wire shape and the
+five-table schema. These are source-authored fixtures, not historical binary captures.
+SQLite10.0.14, xUnit4.0.2 and frontend pins remain unchanged.
 
+On17 November2026, the actual local Windows11 SDK/runtime probe and all14 input
+commands completed: six graphs, strict official online verification of33 exact
+NuGet originals, six real locks/assets for both RIDs, and an applicable complete
+advisory-snapshot audit. The actual Release Measurements build and all59 C# cases
+passed, with zero errors, failures, skips or not-run cases. No benchmark was run.
+Windows26H2/build26300 is an explicitly accepted experimental test host; official
+vendor support is unconfirmed. This observation does not establish shared host admission.
 
-## Shared SDK11 input and current consumer gates
+Remaining: protocol11, controlled-launcher16, matching Windows/Linux packaging and
+22 extracted-package/four-process checks per OS, native Linux qualification and
+C# tests, signing and publication. Official private Linux Node24/PowerShell input
+transfers stopped at their explicitly authorized cumulative eight-minute limit;
+incomplete archives have not been executed. No .NET11 release is published.
 
-The owner has suspended GitHub Actions because the available quota is exhausted
-(17 November 2026). The signed candidate source is pushed; candidate native
-tests, exact-commit CI and preview publication are pending. No .NET11 download
-is published, and existing release links below retain their original evidence.
+GitHub Actions is prohibited by the owner because quota is exhausted. CI was not
+run. Signed task commits use `[skip ci]`; authorized local builds, known-key
+signatures and direct GitHub publication replace the Actions delivery mechanism,
+without weakening branch protection, guards or tests. The unchanged producer04
+shared data guards are reused without borrowing its hosted-runner qualification.
+The old Linux checkout and partial SDK remain untouched; the local route uses a
+new ext4 checkout and real nonroot4GiB/CPU2/64-task/swap0 cgroups. Windows uses
+its own capped Job and retained process handles. Original per-phase and2100s/OS
+limits and the canonical shared lease remain in force; the human's private-tool
+transfer exception does not increase test limits.
 
-The candidate uses the single signed producer04 shared source
-[4dab824](https://github.com/pouriajamali/data-admission-gate/tree/4dab824c2b0b6fe00858f648d07fd8e9df9fafe1).
-Its unchanged API is `transport(rid, directory, context)` and
-`inspect_sdk(rid, root, context)`. Accepted Linux and Windows Server2025 producer
-histories establish input eligibility; they do not establish this product's
-current host, controls, dependencies or runtime acceptance.
-
-The [own route contract](docs/SDK11-CONSUMER-CONTRACT.json) binds the current
-signed source, full source table, per-RID profile and independently observed
-held worker. Linux retains its nonroot service MainPID and pidfd; Windows uses
-its own named, capped Job and retained creation handles. Each caller preserves
-the original720-second row,4GiB/CPU2/64-process limits and its original clock.
-The shared adapter executes no SDK commands and installs no global tools.
-
-Three Linux framework nupkgs have real producer evidence. The additional
-SQLite/JWT/TestHost/xUnit graph, six real net11/RID locks, complete signature,
-notice and current advisory checks remain a separate Execution input gate.
-The source correction checks are metadata evidence; actual product tests and
-both native packages remain pending. Existing .NET10 downloads above remain
-the available release until the candidate passes its full delivery gates.
-
-
-The [finite input-curation source delta](docs/INPUT-CURATION-14.md) prepares
-14 explicit SDK commands within the existing 300-second subbudget, including
-batch signature verification before cold restore and an audit with no restore.
-It is a planning/report-validation helper; actual input and runtime gates remain
-pending. CI was not run per the owner's 2026-11-17 no-GitHub-Actions instruction;
-this source-only topic uses [skip ci] and does not create a new release.
-
-
-The owner has now authorized the scoped local Windows/Linux validation route,
-with the original bounded launcher, input guards and resource limits. Windows
-26H2/build26300 is explicitly accepted as an experimental local test host;
-official vendor support is unconfirmed. Common SDK bytes are reused without
-borrowing hosted-runner qualification. Actual local SDK qualification and
-product tests are still pending; no Actions or new release is established by
-this source change. The old local Linux checkout and R3 partial SDK are retained.
-
-
-Local Windows validation has now observed SDK11.0.100 and the actually loaded
-private CoreCLR11.0.0 under the original Job caps. The experimental-host support
-limitation remains. The isolated runtime probe excludes product Directory.Build
-imports; its first four healthy SDK metadata results were retained after a
-probe-only RID-import correction. Full product validation is still pending.
-The ordinary33-package candidate is source-pinned and quarantined; its local
-executor retains the exact14-command/300-second ceiling. It performs current
-official online signature/trust verification for previously unclosed coverage
-before any cold restore. Apphost pack downloads are disabled consistently with
-UseAppHost=false; both declared product RIDs and all real lock/assets checks
-remain required. No Actions or public release has run.
-
-The curation vectors read both RIDs from the pinned project props; they no
-longer override the semicolon-separated value through MSBuild command-line
-property parsing. Exact actual lock/assets target checks remain mandatory.
-Local packaging can reuse the already validated frontend and restore assets
-only after their source, output and lock identities match; publish and actual
-extracted-package checks still execute on their matching native OS.
-
-The owner separately approved private Linux Node24/PowerShell prerequisites.
-Their exact official HTTPS metadata/digests are pinned in the local tool lock;
-no global installation or trust-store change is authorized. Materialization
-and actual tool/product execution remain separate, recorded stages.
-
-The local Windows input gate has now completed all14 actual SDK commands:
-six graphs, official strict online verification of33 exact originals, six real
-locks/assets with both RIDs, and the current applicable snapshot audit. The
-phase ended normally in29.594 seconds under its300-second allocation. The
-independent historical PKI method remains labeled separately; these are new
-current official SDK validation results. Full59-case/product and native package
-checks are still pending. No Actions or public preview release has run.
+See [candidate notes](docs/RELEASE-v0.6.0-preview.1.md),
+[local prerequisites](docs/QUICKSTART.md) and
+[the input-curation contract](docs/INPUT-CURATION-14.md).
+The .NET10 release and independent public browser demo retain their original evidence.

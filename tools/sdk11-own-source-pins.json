@@ -27,7 +27,7 @@
     {
       "path": "CHANGELOG.md",
       "mode": "100644",
-      "gitBlob": "4c5242e900ce8ae84684b384fb99b6c9e8464701"
+      "gitBlob": "68a575c69759cc0bfa24e57a990ddb47c6eb22b5"
     },
     {
       "path": "CONTRIBUTING.md",
@@ -222,7 +222,7 @@
     {
       "path": "README.md",
       "mode": "100644",
-      "gitBlob": "bc6ffc03eda887ab2bc47fcfd97cc3027551866b"
+      "gitBlob": "963bf777f9b780736d8525e13a655a55f3674757"
     },
     {
       "path": "SCOPE.md",
@@ -272,7 +272,7 @@
     {
       "path": "docs/QUICKSTART.md",
       "mode": "100644",
-      "gitBlob": "deb4ada4ea41887c8b8d2528c03d2b457818226d"
+      "gitBlob": "ad195ac12c3510dfc9b0dca393fcdd6586cca728"
     },
     {
       "path": "docs/RELEASE-v0.5.1-preview.1.md",
@@ -287,7 +287,7 @@
     {
       "path": "docs/RELEASE-v0.6.0-preview.1.md",
       "mode": "100644",
-      "gitBlob": "dedb3fc3a736ca3c840e92e7847e0edc169a5d77"
+      "gitBlob": "613b6164e435d27cb0311176c92d3d87f515c047"
     },
     {
       "path": "docs/SDK11-CONSUMER-CONTRACT.json",

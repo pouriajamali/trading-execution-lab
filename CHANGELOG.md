@@ -75,12 +75,13 @@ Existing source release and raw measurements remain available.
 Typed immutable order/risk model and 24 cases; v0.2.0 moved the public target to
 .NET10. Older source tags remain unchanged.
 
-## 0.6.0-preview.1 — source preparation only, 2026-11-14
+## 0.6.0-preview.1 — local validation in progress,17 November2026
 
-Retargeted candidate source to net11.0/C#15 with SDK11.0.100 and stable11.0.0
-framework floor; pinned JWT/TestHost11.0.0, retaining SQLite/xUnit/frontend pins.
-Added two unexecuted literal compatibility tests, strict11 launcher fixtures and
-archive checks, and changed the tag publication step to create a draft for later
-known-key signing. No locks generated, SDK/helper execution, tests/build/package,
-remote changes or release occurred. See [remaining technical and delivery gates](docs/RELEASE-v0.6.0-preview.1.md).
-Historical releases and measurements are immutable.
+- Target SDK11.0.100/net11.0/C#15/runtime11.0.0; retain SQLite/frontend pins and synthetic behavior.
+- Actual Windows native SDK/runtime and33-package/14-command/two-RID lock/audit gates passed.
+- Measurements Release build and all59 C# cases passed, zero failed/skipped/not-run.
+- Windows26H2/build26300 remains an explicitly accepted experimental host, official support unconfirmed.
+- Native Linux, remaining protocol/launcher/package checks and publication are pending.
+- Use authorized local/direct GitHub delivery; no Actions. Private Linux tool
+  transfer stopped at the approved cumulative480s limit; no partial tool executed.
+- See [the current validation and delivery notes](docs/RELEASE-v0.6.0-preview.1.md).
