@@ -99,12 +99,12 @@ public sealed class TechRefreshCompatibilityTests : IDisposable
             var before = ReadRows();
             using var replay = await Send(client, "legacy-key", "legacy-order", 2);
             Assert.Equal(HttpStatusCode.OK, replay.StatusCode);
-            Assert.Equal(WireReplay, await replay.Content.ReadAsStringAsync());
+            Assert.Equal(WireReplay, await replay.Content.ReadAsStringAsync(TestContext.Current.CancellationToken));
             Assert.Equal(before, ReadRows());
             using var next = await Send(client, "new-key", "new-order", 1);
             Assert.Equal(HttpStatusCode.OK, next.StatusCode);
             Assert.Equal("""{"accepted":true,"reason":"Applied","sequence":4,"exposure":3,"replayed":false}""",
-                await next.Content.ReadAsStringAsync());
+                await next.Content.ReadAsStringAsync(TestContext.Current.CancellationToken));
         }
         await using (var reopened = await Open())
         {
@@ -112,14 +112,14 @@ public sealed class TechRefreshCompatibilityTests : IDisposable
             var before = ReadRows();
             using var replay = await Send(client, "legacy-key", "legacy-order", 2);
             Assert.Equal(HttpStatusCode.OK, replay.StatusCode);
-            Assert.Equal(WireReplay, await replay.Content.ReadAsStringAsync());
+            Assert.Equal(WireReplay, await replay.Content.ReadAsStringAsync(TestContext.Current.CancellationToken));
             Assert.Equal(before, ReadRows());
             foreach (var intent in new[] { ("legacy-order", 1L), ("other", 2L) })
             {
                 using var conflict = await Send(client, "legacy-key", intent.Item1, intent.Item2);
                 Assert.Equal(HttpStatusCode.Conflict, conflict.StatusCode);
                 Assert.Equal("""{"error":"Key already used for different content."}""",
-                    await conflict.Content.ReadAsStringAsync());
+                    await conflict.Content.ReadAsStringAsync(TestContext.Current.CancellationToken));
                 Assert.Equal(before, ReadRows());
             }
             var current = new DurableGate(path, 10).ReadState();

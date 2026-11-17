@@ -98,6 +98,7 @@ def main():
                        "locks": {str(x.relative_to(ROOT)): digest(x) for x in locks}}, receipt)
     elif a.phase == "csharp":
         need(all(x.is_file() for x in locks), "real locks required")
+        run([dotnet, "build", "ExecutionLab.Measurements/ExecutionLab.Measurements.csproj", "--configuration", "Release", "--no-restore", "-p:UseSharedCompilation=false"])
         run([dotnet, "run", "--project", "ExecutionLab.Tests/ExecutionLab.Tests.csproj",
              "--configuration", "Release", "--no-restore","-p:UseSharedCompilation=false"])
     elif a.phase == "frontend":
@@ -137,10 +138,10 @@ def main():
             built = json.loads((work / "build/archive.json").read_text())
             need(built["sourceCommit"] == commit and built["rid"] == rid and digest(built["archive"]) == built["sha256"], "produced archive proof")
             with (ROOT / "artifacts/tech-refresh/package-admission.json").open("w") as receipt:
-                json.dump({"path": built["archive"], "sha256": built["sha256"], "commit": commit, "sdkBinding": a.binding_sha256}, receipt)
+                json.dump({"path": built["archive"], "sha256": built["sha256"], "commit": commit, "sdkBinding": b["sdkIdentity"] if b.get("mode") == "LOCAL_NATIVE_02_20261117" else a.binding_sha256}, receipt)
         else:
             package = json.loads((ROOT / "artifacts/tech-refresh/package-admission.json").read_text())
-            need(package["sdkBinding"] == a.binding_sha256, "archive consumer binding")
+            need(package["sdkBinding"] == (b["sdkIdentity"] if b.get("mode") == "LOCAL_NATIVE_02_20261117" else a.binding_sha256), "archive consumer SDK identity")
             need(digest(package["path"]) == package["sha256"] and package["commit"] == commit, "actual tested archive identity")
             spec = importlib.util.spec_from_file_location("releasecheck", ROOT / "scripts/check_release.py")
             checker = importlib.util.module_from_spec(spec)
