@@ -49,5 +49,13 @@
     "linux-x64": "tools/sdk11-own-profile.json",
     "win-x64": "tools/sdk11-own-windows-profile.json"
   },
-  "authority": "Direct owner authorized completion of existing02upgrade through tests and preview publication, within existing caps. Shared facts remain historical input proof; no coordinator approval or product PASS is fabricated."
+  "authority": "Direct owner authorized completion of existing02upgrade through tests and preview publication, within existing caps. Shared facts remain historical input proof; no coordinator approval or product PASS is fabricated.",
+  "currentOwnerRestriction": {
+    "state": "NO_GITHUB_ACTIONS_PER_OWNER_20261117",
+    "policySha256": "d1399e45f55ce24b6d9b4e53e7e7a608b73f14416bad297679f592a438f5b9cc",
+    "ci": "NOT_RUN_PER_OWNER_INSTRUCTION",
+    "publication": "BLOCKED_EXISTING_PIPELINE_REQUIRES_NATIVE_CI_AND_INPUT_GATES",
+    "local": "Only existing admitted local work; no new qualification, cap/trust bypass or healthy replay",
+    "sourceDelivery": "Signed task-only skip-ci push; no tag, PR, merge, dispatch or release trigger"
+  }
 }

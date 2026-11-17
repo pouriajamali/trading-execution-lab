@@ -24,6 +24,15 @@ exist. Signed source commits are separate from release-asset signing.
 
 ## Remaining technical gates
 
+Current owner instruction (17 November): no GitHub Actions, dispatch, rerun or
+action-triggering tag/release/merge until fresh permission. Task-owned local
+source work and signed `[skip ci]` pushes may continue. The ordinary02 package
+closure and six real locks are still pending. No admitted local substitute has
+produced the required Windows/Linux product evidence; the established preview
+pipeline depends on those native CI rows. CI was not run per owner instruction,
+and this candidate is not a tested or published release. Existing healthy
+metadata/control evidence is retained without replay.
+
 The consumer handshake now binds the supervisor-generated current instance to
 the frozen admission fields and its exact own caps-evidence digest. The focused
 10-case data checks cover this correction; they are not SDK or product tests.

@@ -192,7 +192,7 @@
     {
       "path": "README.md",
       "mode": "100644",
-      "gitBlob": "b140b5b7711ea8f1c2cdd1ea7fb1f1f39bac7aac"
+      "gitBlob": "666e84a36404fbb265bc82ee1721cda1806c6ee1"
     },
     {
       "path": "SCOPE.md",
@@ -252,12 +252,12 @@
     {
       "path": "docs/RELEASE-v0.6.0-preview.1.md",
       "mode": "100644",
-      "gitBlob": "4a3666524d63a06ddb8de9fa435acba7ff508e74"
+      "gitBlob": "05dd81dc74ef83b714bdffd387551f8e1ebf6a3e"
     },
     {
       "path": "docs/SDK11-CONSUMER-CONTRACT.json",
       "mode": "100644",
-      "gitBlob": "b2aca6d4ebfbc564641650482043f04fc769a764"
+      "gitBlob": "04cfd90dd08b36ad5c1148fec2c9f040e1c566ed"
     },
     {
       "path": "docs/SDK11_SHARED_INPUT_INTERFACE.json",

@@ -272,6 +272,11 @@ public browser demo/site remains unchanged.
 
 ## Shared SDK11 input and current consumer gates
 
+The owner has suspended GitHub Actions because the available quota is exhausted
+(17 November 2026). The signed candidate source is pushed; candidate native
+tests, exact-commit CI and preview publication are pending. No .NET11 download
+is published, and existing release links below retain their original evidence.
+
 The candidate uses the single signed producer04 shared source
 [4dab824](https://github.com/pouriajamali/data-admission-gate/tree/4dab824c2b0b6fe00858f648d07fd8e9df9fafe1).
 Its unchanged API is `transport(rid, directory, context)` and
