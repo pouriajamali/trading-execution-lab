@@ -70,17 +70,28 @@ def qualify(b,work):
     (p/'Program.cs').write_bytes(b'using System;using System.Diagnostics;using System.Runtime.InteropServices;using System.Text.Json;class Program{static void Main(){if(Environment.Version!=new Version(11,0,0)||RuntimeInformation.ProcessArchitecture!=Architecture.X64)throw new Exception("runtime or architecture");string? core=null;foreach(ProcessModule m in Process.GetCurrentProcess().Modules)if(m.ModuleName=="coreclr.dll"||m.ModuleName=="libcoreclr.so")core=m.FileName;if(core==null)throw new Exception("actual loaded coreclr");Console.WriteLine(JsonSerializer.Serialize(new {runtime=Environment.Version.ToString(),framework=RuntimeInformation.FrameworkDescription,os=RuntimeInformation.OSDescription,architecture=RuntimeInformation.ProcessArchitecture.ToString(),coreclr=core}));}}')
     commands=[['--version'],['--info'],['--list-sdks'],['--list-runtimes'],['restore',str(p/'Probe.csproj'),'--configfile',str(p/'NuGet.Config'),'-p:NuGetAudit=false','-p:UseSharedCompilation=false'],['build',str(p/'Probe.csproj'),'-c','Release','--no-restore','-p:UseSharedCompilation=false'],[str(p/'bin/Release/net11.0/Probe.dll')]]
     results=[]
+    retained=b.get('retainedQualificationMetadata')
+    if retained:
+        previous=Path(retained['directory']);terminal=json.loads((previous/'receipt.json').read_bytes());inputs=json.loads((previous/'current-local-inputs.json').read_bytes())
+        need(digest(previous/'receipt.json')==retained['receiptSha256'] and terminal['terminal'] is True
+             and terminal['bindingSha256']==retained['bindingSha256'] and inputs['catalogSha256']==digest(ROOT/'tools/sdk11-normal-inputs.lock.json')
+             and inputs['SDKRoot']==str(sdk) and b'actual local SDK qualification command 4 failed' in (previous/'phase.log').read_bytes(), 'retained exact incomplete probe cause')
+        need((previous/'sdk-0.log').read_text().strip()=='11.0.100','retained actual SDK metadata')
+        results=[{'argv':commands[i],'retainedLogSha256':digest(previous/('sdk-'+str(i)+'.log')),'source':'Exact prior guarded execution reached failure at command4; metadata0..3 are reused, not rerun'} for i in range(4)]
+    executed=0
     for index,args in enumerate(commands):
+        if retained and index<4:continue
+        if index in (4,5):args=[*args,'-p:ImportDirectoryBuildProps=false','-p:ImportDirectoryBuildTargets=false']
         result=subprocess.run([b['dotnet'],*args],cwd=p,capture_output=True,timeout=20)
         need(len(result.stdout)+len(result.stderr)<=1048576,'qualification log bound')
         (work/('sdk-'+str(index)+'.log')).write_bytes(result.stdout+result.stderr)
         need(result.returncode==0,'actual local SDK qualification command '+str(index)+' failed')
-        results.append({'argv':args,'exit':0,'stdoutSha256':hashlib.sha256(result.stdout).hexdigest()})
+        row={'argv':args,'exit':0,'stdoutSha256':hashlib.sha256(result.stdout).hexdigest()};results.append(row);write(work/('sdk-'+str(index)+'.json'),row);executed+=1
         if index==0:need(result.stdout.decode().strip()=='11.0.100','actual selected SDK11')
         if index==6:runtime=json.loads(result.stdout.decode().strip())
     core=Path(runtime['coreclr']).resolve();expected=(sdk/'shared/Microsoft.NETCore.App/11.0.0'/('coreclr.dll' if os.name=='nt' else 'libcoreclr.so')).resolve()
     need(core==expected,'actual local loaded private CoreCLR')
-    write(work/'host-qualification.json',{'state':'OWN_LOCAL_SDK11_RUNTIME_OBSERVED','rid':b['rid'],'SDKRoot':str(sdk),'catalogSha256':digest(ROOT/'tools/sdk11-normal-inputs.lock.json'),'runtime':runtime,'coreclrSha256':digest(core),'sourceCommit':b['sourceCommit'],'commands':results,'SDKCommands':len(commands),'vendorSupport':'UNCONFIRMED_EXPERIMENTAL_WINDOWS_WITH_EXPLICIT_HUMAN_CONSENT' if os.name=='nt' else 'Ubuntu24.04_LocalWSL2_ActualExt4AndCgroup','scope':'Current own local native runtime observation; not producer admission, actual product tests, CI or global SDK_READY'})
+    write(work/'host-qualification.json',{'state':'OWN_LOCAL_SDK11_RUNTIME_OBSERVED','rid':b['rid'],'SDKRoot':str(sdk),'catalogSha256':digest(ROOT/'tools/sdk11-normal-inputs.lock.json'),'runtime':runtime,'coreclrSha256':digest(core),'sourceCommit':b['sourceCommit'],'commands':results,'SDKCommands':executed,'retainedMetadataCommands':4 if retained else 0,'vendorSupport':'UNCONFIRMED_EXPERIMENTAL_WINDOWS_WITH_EXPLICIT_HUMAN_CONSENT' if os.name=='nt' else 'Ubuntu24.04_LocalWSL2_ActualExt4AndCgroup','scope':'Current own local native runtime observation; not producer admission, actual product tests, CI or global SDK_READY'})
 
 def curate(b,work):
     raise RuntimeError('Actual producer04 identity-bound ordinary raw/PKI/data handoff required before local curation; no implicit restore or fabricated locks')
