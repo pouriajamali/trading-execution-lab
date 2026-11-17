@@ -432,6 +432,14 @@ def main():
     require(all(p["terminal"] is True for p in previous), "nonterminal prior phase")
     spent = sum(p["elapsedSeconds"] for p in previous)
     require(spent < 2100, "OS local elapsed envelope exhausted")
+    prior_attempt = b.get("priorAttemptSeconds",0)
+    require(type(prior_attempt) in (int,float) and 0 <= prior_attempt < PHASES[args.phase], "prior phase budget")
+    if prior_attempt:
+        retained = b.get("retainedQualificationMetadata",{})
+        prior = load(Path(retained["directory"])/"receipt.json",retained["receiptSha256"])
+        require(prior["terminal"] is True and prior["elapsedSeconds"] == prior_attempt, "actual retained phase budget")
+    phase_budget = min(PHASES[args.phase]-prior_attempt,2100-spent)
+    require(phase_budget > 5, "remaining original local phase budget")
     token = uuid.uuid4().hex
     out = outroot / token
     out.mkdir()
@@ -470,7 +478,7 @@ def main():
             while (code := controller.poll()) is None:
                 _, logs = footprint(ROOT, ROOT, locked_npm_bin_links())
                 require(logs <= CAPS["logBytes"], "aggregate log cap exceeded")
-                require(time.monotonic() - start <= min(PHASES[args.phase], 2100 - spent) - 5, "phase deadline")
+                require(time.monotonic() - start <= phase_budget - 5, "phase deadline")
                 if os.name != "nt":
                     require(controller.inspect() == controller.readback, "kernel caps changed")
                     controller.capture_owned()
@@ -487,10 +495,11 @@ def main():
                 terminal = controller.finish()
             except BaseException as error:
                 failure = "terminal control failure: " + str(error)
-        if time.monotonic() - start > min(PHASES[args.phase], 2100 - spent):
+        if time.monotonic() - start > phase_budget:
             failure = "phase/OS deadline exceeded including teardown"
         receipt = {"status": "COMPLETED" if failure is None and terminal else "FAILED_OR_INCOMPLETE",
-                   "purpose": "CONTROL_PROBE" if args.phase == "probe" else "LOCAL_PHASE", "phase": args.phase,
+                   "purpose": "LOCAL_NATIVE_QUALIFICATION" if b["mode"] == "LOCAL_NATIVE_02_20261117" and args.phase == "probe" else "CONTROL_PROBE" if args.phase == "probe" else "LOCAL_PHASE", "phase": args.phase,
+                   "phaseBudgetSeconds":phase_budget,"priorAttemptSeconds":prior_attempt,
                    "project": "02", "checkout": str(ROOT), "launcherSha256": sha(__file__), "bindingSha256": args.binding_sha256,
                    "caps": CAPS, "readback": controller.readback if controller is not None else None, "exit": code,
                    "childTerminalProof": getattr(controller, "child_proof", None), "terminal": terminal, "elapsedSeconds": time.monotonic() - start,
