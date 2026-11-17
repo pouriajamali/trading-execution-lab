@@ -252,7 +252,7 @@
     {
       "path": "docs/RELEASE-v0.6.0-preview.1.md",
       "mode": "100644",
-      "gitBlob": "bafb10a77297e1f6c23e802d09b446606ddee380"
+      "gitBlob": "50c7b7e438e3d88b4bff7f4b0220a74f071ddaba"
     },
     {
       "path": "docs/SDK11-CONSUMER-CONTRACT.json",
@@ -332,7 +332,7 @@
     {
       "path": "scripts/qualify_tech_refresh.py",
       "mode": "100644",
-      "gitBlob": "b6eccdda6f02435c8b15405493cf2a1072ba3593"
+      "gitBlob": "6ddc76dcf9931afe4dc24eb0b7efb26ad72a2204"
     },
     {
       "path": "scripts/run_bounded.py",

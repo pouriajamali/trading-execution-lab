@@ -1,4 +1,4 @@
-# v0.6.0-preview.1 — .NET 11 candidate
+# v0.6.0-preview.1 â€” .NET 11 candidate
 
 Source preparation only, 14 November 2026. This version has **not** been built,
 tested, signed, tagged or published. No download is available for this candidate.
@@ -22,6 +22,10 @@ tested, signed, tagged or published. No download is available for this candidate
   signed checksums and actual bytes have been verified and authorized.
 
 ## Remaining technical gates
+
+The consumer handshake now binds the supervisor-generated current instance to
+the frozen admission fields and its exact own caps-evidence digest. The focused
+10-case data checks cover this correction; they are not SDK or product tests.
 
 04 must deliver the reviewed immutable SDK 11 handoff. Project02's own wrapper,
 control identity and actual Windows/Linux/hosted kernel containment must be
@@ -85,7 +89,7 @@ This is a synthetic local sample, not an exchange adapter, HA service,
 network exactly-once guarantee, trading deployment or performance qualification.
 
 
-## Shared SDK11 normal input — inert source wiring
+## Shared SDK11 normal input â€” inert source wiring
 
 The private source candidate now binds the byte-identical producer04
 `transport(rid, directory, context)` / `inspect_sdk(rid, root, context)` API.

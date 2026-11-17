@@ -131,11 +131,28 @@ def main():
         raise RuntimeError("fixed phase only")
 
 
+def current_consumer_policy(policy, work):
+    """Bind the supervisor's generated current evidence to the frozen policy."""
+    path = work / "consumer-admission.json"
+    need(path.is_file() and not path.is_symlink() and path.stat().st_size <= 65536,
+         "current admission file bounds")
+    current = json.loads(path.read_bytes())
+    frozen = policy["consumerAdmission"]
+    stable = {"schema", "state", "projectId", "producerFactSha256", "admittedFor", "identityRule"}
+    need(set(current) == stable | {"currentExecution"}
+         and set(frozen) == set(current)
+         and all(current[k] == frozen[k] for k in stable), "frozen admission changed")
+    need(current["currentExecution"]["ownCapsEvidenceSha256"] == digest(work / "own-caps.json"),
+         "current caps evidence digest")
+    return {**policy, "consumerAdmission": current}
+
+
 def ci_products(args, wrapper_binding, work, normal=None):
     """Own main service worker; shared transport remains data only."""
     root = ROOT
     policy = json.loads(Path(wrapper_binding["policyPath"]).read_text())
     need(digest(wrapper_binding["policyPath"]) == wrapper_binding["policySha256"], "policy identity")
+    policy = current_consumer_policy(policy, work)
     context = wrapper_binding["current"]
     control = json.loads((work/"containment.json").read_text())
     need(control["child"]["pid"] == os.getpid() and control["child"]["suspendedMember"]
