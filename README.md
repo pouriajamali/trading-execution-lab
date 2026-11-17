@@ -292,3 +292,11 @@ notice and current advisory checks remain a separate Execution input gate.
 The source correction checks are metadata evidence; actual product tests and
 both native packages remain pending. Existing .NET10 downloads above remain
 the available release until the candidate passes its full delivery gates.
+
+
+The [finite input-curation source delta](docs/INPUT-CURATION-14.md) prepares
+14 explicit SDK commands within the existing 300-second subbudget, including
+batch signature verification before cold restore and an audit with no restore.
+It is a planning/report-validation helper; actual input and runtime gates remain
+pending. CI was not run per the owner's 2026-11-17 no-GitHub-Actions instruction;
+this source-only topic uses [skip ci] and does not create a new release.
