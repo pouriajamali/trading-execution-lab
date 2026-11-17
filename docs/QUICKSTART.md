@@ -1,7 +1,8 @@
 # Local operator panel — v0.6.0-preview.1 candidate
 
 The .NET11 candidate's native package validation and publication are incomplete.
-Local Windows SDK11/runtime11 qualification and59 C# cases have passed; this is
+Local Windows SDK11/runtime11 qualification,59 C# cases,11 protocol tests,
+the panel build and16 controlled launcher scenarios have passed; this is
 not yet a downloadable .NET11 release. The recipe below describes its runtime
 requirements. Existing .NET10 downloads retain their original requirements in
 [their release notes](RELEASE-v0.5.2-preview.1.md). See

@@ -1,6 +1,6 @@
 # Trading Execution Lab — C# order state and reserved exposure
 
-[![C# synthetic invariants](https://github.com/pouriajamali/trading-execution-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/pouriajamali/trading-execution-lab/actions/workflows/ci.yml)
+[![Historical .NET10 baseline CI](https://github.com/pouriajamali/trading-execution-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/pouriajamali/trading-execution-lab/actions/workflows/ci.yml)
 
 [Try the browser demo](https://pouriajamali.site/demo/operator-panel/) · [Download the local panel](https://github.com/pouriajamali/trading-execution-lab/releases/tag/v0.5.2-preview.1) · [Engineering proof](docs/CASE-STUDY.md) · [Scope](SCOPE.md)
 
@@ -273,9 +273,12 @@ passed, with zero errors, failures, skips or not-run cases. No benchmark was run
 Windows26H2/build26300 is an explicitly accepted experimental test host; official
 vendor support is unconfirmed. This observation does not establish shared host admission.
 
-Remaining: protocol11, controlled-launcher16, matching Windows/Linux packaging and
-22 extracted-package/four-process checks per OS, native Linux qualification and
-C# tests, signing and publication. Official private Linux Node24/PowerShell input
+The corrected offline Windows run passed all11 protocol tests and the TypeScript/Vite
+build. All16 controlled launcher scenarios passed both modes. Matching native
+packaging and22 extracted-package/four-process checks, native Linux qualification
+and tests, signing and publication remain incomplete. The Windows package attempt
+waited120s for the canonical shared lane and stopped before starting an SDK;
+no failed package build is being relabeled as a passing test. Official private Linux Node24/PowerShell input
 transfers stopped at their explicitly authorized cumulative eight-minute limit;
 incomplete archives have not been executed. No .NET11 release is published.
 

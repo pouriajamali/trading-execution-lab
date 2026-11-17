@@ -81,7 +81,9 @@ Typed immutable order/risk model and 24 cases; v0.2.0 moved the public target to
 - Actual Windows native SDK/runtime and33-package/14-command/two-RID lock/audit gates passed.
 - Measurements Release build and all59 C# cases passed, zero failed/skipped/not-run.
 - Windows26H2/build26300 remains an explicitly accepted experimental host, official support unconfirmed.
-- Native Linux, remaining protocol/launcher/package checks and publication are pending.
+- Windows11 protocol tests, TypeScript/Vite build and16 controlled launcher scenarios passed.
+- Native Linux, both native packages/extracted checks and publication are pending;
+  the package phase stopped after120s of canonical-lane contention before any SDK command.
 - Use authorized local/direct GitHub delivery; no Actions. Private Linux tool
   transfer stopped at the approved cumulative480s limit; no partial tool executed.
 - See [the current validation and delivery notes](docs/RELEASE-v0.6.0-preview.1.md).

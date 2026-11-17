@@ -27,10 +27,18 @@ five-table schema compatibility; they are not historical binary captures.
   with TestContext cancellation; no warning suppression or product behavior change.
 - The original frontend network attempt timed out before tests. Exact retained
   Windows npm inputs were independently checked against lock SRI and copied to
-  the project's private cache for an offline corrected execution.
+  the project's private cache. The corrected offline npm install, all11 protocol
+  tests and the TypeScript/Vite build passed. All16 controlled launcher scenarios
+  passed both modes; these are controlled host outputs, not16 real OS installs.
 - Private official Linux Node24/PowerShell archive transfer hit its approved
-  cumulative eight-minute limit. Partial files remain unexecuted. No global
+  cumulative eight-minute limit (475.453s actually spent). Partial files remain unexecuted. No global
   installation, trust-store, OS service configuration or security change occurred.
+
+- The Windows package phase waited120.438s for the canonical lane and stopped
+  before starting any SDK command. No archive was produced. The latest lane
+  observation was project05/own05-local-inputs; no foreign lease was removed.
+- Linux source was fast-forwarded in the separate ext4 checkout as UID1000.
+  No Linux SDK or product test was executed: required phase starts returned busy.
 
 ## Remaining delivery gates
 
