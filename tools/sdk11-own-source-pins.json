@@ -192,7 +192,7 @@
     {
       "path": "README.md",
       "mode": "100644",
-      "gitBlob": "666e84a36404fbb265bc82ee1721cda1806c6ee1"
+      "gitBlob": "4a39f26457f47446e7ec6bc8b423e7f04f82bcaf"
     },
     {
       "path": "SCOPE.md",
@@ -230,6 +230,11 @@
       "gitBlob": "72c506709485f1010465214a11ad99c3e37a67ab"
     },
     {
+      "path": "docs/INPUT-CURATION-14.md",
+      "mode": "100644",
+      "gitBlob": "b8c500b2b0f8976a4ed0a5c9a7dcaa3c34bd6a8d"
+    },
+    {
       "path": "docs/MEASUREMENTS.md",
       "mode": "100644",
       "gitBlob": "186137c99c5ce9d70cd056179202e7ab9dff7451"
@@ -252,12 +257,12 @@
     {
       "path": "docs/RELEASE-v0.6.0-preview.1.md",
       "mode": "100644",
-      "gitBlob": "05dd81dc74ef83b714bdffd387551f8e1ebf6a3e"
+      "gitBlob": "335e81630b35e14c1c0776bb4bb050488692822e"
     },
     {
       "path": "docs/SDK11-CONSUMER-CONTRACT.json",
       "mode": "100644",
-      "gitBlob": "04cfd90dd08b36ad5c1148fec2c9f040e1c566ed"
+      "gitBlob": "ddad5cc9e785678b2e7506d56a8ffe533c3fb2b8"
     },
     {
       "path": "docs/SDK11_SHARED_INPUT_INTERFACE.json",
@@ -330,6 +335,11 @@
       "gitBlob": "7d80297698822f4f3a82650ec6a308e40f92ed82"
     },
     {
+      "path": "scripts/input02_sdk14_delta.py",
+      "mode": "100644",
+      "gitBlob": "b8929a48b58bb3bb2f763b3662926292774e2a33"
+    },
+    {
       "path": "scripts/package_panel.py",
       "mode": "100644",
       "gitBlob": "3e617d438eefad199dc4c205ea78cd5089807ecf"
@@ -343,6 +353,11 @@
       "path": "scripts/run_bounded.py",
       "mode": "100644",
       "gitBlob": "aeb64f110e8aa421c5869b1d517753e0c3bcf0a6"
+    },
+    {
+      "path": "scripts/test_input_curation14.py",
+      "mode": "100644",
+      "gitBlob": "4e5596574e564a198bc21adfd6af186e989ac24a"
     },
     {
       "path": "tools/check_dotnet11.py",

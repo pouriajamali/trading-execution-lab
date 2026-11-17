@@ -129,3 +129,10 @@ does not establish which runtime the process loaded. Exact locked npm file-bin
 links are allowed only inside node_modules; workspace escapes and directory
 junctions remain denied. Windows includes the private SDK directory in the
 same aggregate workspace/log limits as product work.
+
+
+Input-curation source now includes a finite 14-command planning/report helper
+with unchanged 300-second and native resource limits. See [the source delta](INPUT-CURATION-14.md).
+The helper launches no SDK or product work; actual input closure remains pending.
+CI was not run per the owner's 2026-11-17 instruction. No new release or binary
+is claimed by this source-only [skip ci] change.

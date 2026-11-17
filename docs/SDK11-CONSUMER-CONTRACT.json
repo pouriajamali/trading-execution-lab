@@ -57,5 +57,25 @@
     "publication": "BLOCKED_EXISTING_PIPELINE_REQUIRES_NATIVE_CI_AND_INPUT_GATES",
     "local": "Only existing admitted local work; no new qualification, cap/trust bypass or healthy replay",
     "sourceDelivery": "Signed task-only skip-ci push; no tag, PR, merge, dispatch or release trigger"
+  },
+  "inputCurationSource": {
+    "helper": "scripts/input02_sdk14_delta.py",
+    "documentation": "docs/INPUT-CURATION-14.md",
+    "helperSourceCommit": "dda89b61af3a882ee9f5ba3f455615152768cdcf",
+    "scope": "Finite command/config/report factory only; no executor, runtime entrypoint or accepted input",
+    "SDKCommandsMax": 14,
+    "graphCommands": 6,
+    "batchVerifyCommands": 1,
+    "coldRestoreCommands": 6,
+    "auditCommands": 1,
+    "commandCeilingsSeconds": 270,
+    "dataAndTerminalSeconds": 30,
+    "curationSubbudgetSeconds": 300,
+    "originalRowClockOnly": true,
+    "ownProfiles": {
+      "linux-x64": "tools/sdk11-own-profile.json",
+      "win-x64": "tools/sdk11-own-windows-profile.json"
+    },
+    "executionGate": "Current owner no-Actions restriction and own admitted host/caps/source plus full raw/PKI/notices/advisory/actual graph/six-lock gates remain mandatory. Original missing-lock product gate is unchanged."
   }
 }
