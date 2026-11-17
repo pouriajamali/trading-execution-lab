@@ -19,7 +19,7 @@ describe the broken invariant as well as the visible symptom.
 
 ## Run the checks
 
-With the .NET 10 SDK installed, from the repository root:
+With the candidate's exact .NET SDK 11.0.100 installed, from the repository root:
 
 ```sh
 dotnet run --project ExecutionLab.Tests/ExecutionLab.Tests.csproj --configuration Release

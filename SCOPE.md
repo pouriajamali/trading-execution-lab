@@ -31,7 +31,7 @@ The repository is not a TT adapter, a reconstruction of a private project or
 evidence of historical production incidents/performance. It contains no SDK
 integration, credentials, real account/market data, external network calls or order
 submission. The optional API binds only to loopback; integration tests use an
-in-memory HTTP test server. The .NET 10 target and dependencies describe this public
+in-memory HTTP test server. The .NET11 candidate and retained .NET10 release dependencies describe this public
 sample, not a workplace stack.
 
 The additive host serializes admitted commands through one consumer and assigns

@@ -32,7 +32,7 @@
     {
       "path": "CONTRIBUTING.md",
       "mode": "100644",
-      "gitBlob": "f861359a25628396c09e5851034d24e68b89c516"
+      "gitBlob": "d3e59e2f3b8d273fa14051cac8794f1d998215e5"
     },
     {
       "path": "Directory.Build.props",
@@ -227,7 +227,7 @@
     {
       "path": "SCOPE.md",
       "mode": "100644",
-      "gitBlob": "f0dd8f03e70063d258cea90c1b58a386253f86dc"
+      "gitBlob": "763e38a17e32f681439ba13cdccf63a66a3f86a9"
     },
     {
       "path": "SIGNING-PUBLIC-KEY.pub",
