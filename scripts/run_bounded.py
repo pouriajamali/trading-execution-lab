@@ -423,6 +423,7 @@ def main():
     parser.add_argument("--binding", required=True, type=Path)
     parser.add_argument("--binding-sha256", required=True)
     parser.add_argument("--phase", required=True, choices=PHASES)
+    parser.add_argument("--wait-lease", action="store_true")
     args = parser.parse_args()
     invocation_start = time.monotonic()
     b = binding(args)
@@ -464,8 +465,17 @@ def main():
         footprint(ROOT, ROOT, locked_npm_bin_links())
         controller = windows_class()(b) if os.name == "nt" else Linux(b)
         lease["ownerProcessStartIdentity"] = controller.owner_start
-        save(Path(MANAGER) / "LOCAL-FIXTURE-LEASE.json", lease)
-        claimed = True
+        wait_until = min(start + phase_budget - 10, time.monotonic() + 120)
+        while True:
+            try:
+                save(Path(MANAGER) / "LOCAL-FIXTURE-LEASE.json", lease)
+                claimed = True
+                break
+            except FileExistsError:
+                require(args.wait_lease and b["mode"] == "LOCAL_NATIVE_02_20261117"
+                        and time.monotonic() < wait_until, "canonical lane busy; no SDK started")
+                time.sleep(.05)
+        lease_wait_seconds = time.monotonic() - start
         env = {n: v for n, v in os.environ.items() if not n.upper().startswith(("DOTNET_", "COMPLUS_", "CORECLR_", "MSBUILD", "NUGET_", "EXECUTION_LAB_", "ASPNETCORE_", "KESTREL__"))}
         env.update(DOTNET_MULTILEVEL_LOOKUP="0", DOTNET_CLI_TELEMETRY_OPTOUT="1", DOTNET_NOLOGO="1",
                    DOTNET_CLI_HOME=str(ROOT / "artifacts/private-cli"), NUGET_PACKAGES=str(ROOT / "artifacts/private-nuget"),
@@ -510,6 +520,7 @@ def main():
         receipt = {"status": "COMPLETED" if failure is None and terminal else "FAILED_OR_INCOMPLETE",
                    "purpose": "LOCAL_PRIVATE_TOOL_DATA" if b.get("preparePrivateLinuxTools") is True else "LOCAL_NATIVE_QUALIFICATION" if b["mode"] == "LOCAL_NATIVE_02_20261117" and args.phase == "probe" else "CONTROL_PROBE" if args.phase == "probe" else "LOCAL_PHASE", "phase": args.phase,
                    "phaseBudgetSeconds":phase_budget,"priorAttemptSeconds":prior_attempt,
+                   "leaseWaitSeconds":locals().get("lease_wait_seconds"),
                    "project": "02", "checkout": str(ROOT), "launcherSha256": sha(__file__), "bindingSha256": args.binding_sha256,
                    "caps": CAPS, "readback": controller.readback if controller is not None else None, "exit": code,
                    "childTerminalProof": getattr(controller, "child_proof", None), "terminal": terminal, "elapsedSeconds": time.monotonic() - start,
