@@ -37,5 +37,12 @@
     "storage": "fresh native ext4 checkout; old R3 partial SDK/source untouched",
     "containment": "own nonroot systemd service,cgroup4GiB,CPU2,tasks64,swap0,finite RuntimeMax/stop5"
   },
-  "authority": "Direct current owner instruction to finish via local Windows/Linux route; explicit separate experimental Windows consent. No Actions, global SDK, OS/security changes or borrowed host facts."
+  "authority": "Direct current owner instruction to finish via local Windows/Linux route; explicit separate experimental Windows consent. No Actions, global SDK, OS/security changes or borrowed host facts.",
+  "privateLinuxPrerequisites": {
+    "explicitHumanConsent": true,
+    "consentText": "بله؛ فقط نسخهٔ خصوصی پروژه",
+    "sourceLock": "tools/local-linux-tools.lock.json",
+    "scope": "Official Node24 and PowerShell7 private project directories only; no global install/trust/security changes",
+    "materialization": "Exact archive SHA256; regular-file aliases or declared private shell shims, no physical links; no execution before local host/caps admission"
+  }
 }

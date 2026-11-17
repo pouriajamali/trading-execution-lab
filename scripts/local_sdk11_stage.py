@@ -46,6 +46,10 @@ def current_inputs(b,work,phase):
             need(not sdk.exists(),'fresh local Linux SDK allocation; old partials untouched')
             copy=module('own_local_linux_copy',tools/'materialize_qualification_linux.py');copy.materialize(catalog,archive,sdk)
     guard.verify_tree(sdk,catalog['members'],b['rid'],full=True)
+    if os.name!='nt' and b.get('privateLinuxToolInputs'):
+        helper=module('own_private_linux_tools',ROOT/'scripts/prepare_local_linux_tools.py')
+        if phase=='probe':helper.materialize(ROOT,input_path(b['privateLinuxToolInputs']),guard)
+        else:helper.verify(ROOT)
     write(work/'current-local-inputs.json',{'rid':b['rid'],'catalogSha256':digest(tools/'sdk11-normal-inputs.lock.json'),'memberManifestSha256':catalog['memberManifestSha256'],'caps':caps,'SDKRoot':str(sdk),'producerHostFactBorrowed':False,'SDKExecutions':0})
     if phase!='probe':
         q=Path(b['localQualification']);proof=json.loads(q.read_bytes());terminal=json.loads(q.with_name('receipt.json').read_bytes())
@@ -169,7 +173,7 @@ def curate(b,work):
         report=json.loads(result.stdout);need(report.get('projects'),'actual applicable audit project coverage')
         def clean(v):
             return all(not(k in ('vulnerabilities','errors','problems','warnings') and x) and clean(x) for k,x in v.items()) if isinstance(v,dict) else all(clean(x) for x in v) if isinstance(v,list) else True
-        need(clean(report) and all(s in (str(feed),base+'/v3/index.json') for s in report.get('sources',[])),'applicable exact-snapshot audit no issues or unapproved sources')
+        need(clean(report) and report.get('sources') and all(s in (str(feed),base+'/v3/index.json') for s in report['sources']) and all('/vuln/'+str(i)+'.json' in calls for i in range(2)),'applicable exact-snapshot audit no issues or unapproved sources')
         selected={};targets={}
         for project,path in zip(factory.PROJECTS,locks):
             lock=json.loads(path.read_bytes());keys=set(lock['dependencies']);need({'net11.0','net11.0/win-x64','net11.0/linux-x64'}<=keys,'actual two-RID lock targets')

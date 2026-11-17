@@ -101,6 +101,10 @@ def main():
         run([dotnet, "run", "--project", "ExecutionLab.Tests/ExecutionLab.Tests.csproj",
              "--configuration", "Release", "--no-restore","-p:UseSharedCompilation=false"])
     elif a.phase == "frontend":
+        if b.get("preparePrivateLinuxTools") is True:
+            need(b.get("mode") == "LOCAL_NATIVE_02_20261117" and os.name == "nt", "exact authorized private tool-data stage")
+            helper=local.module("own_private_linux_tools",ROOT/"scripts/prepare_local_linux_tools.py")
+            return helper.acquire(ROOT,work)
         version=subprocess.check_output([tool("node"),"--version"],text=True,timeout=5).strip()
         need(re.fullmatch(r"v24\.[0-9]+\.[0-9]+",version),"actual local Node24 required")
         if b.get("mode") == "LOCAL_NATIVE_02_20261117":

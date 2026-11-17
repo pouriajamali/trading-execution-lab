@@ -334,3 +334,8 @@ property parsing. Exact actual lock/assets target checks remain mandatory.
 Local packaging can reuse the already validated frontend and restore assets
 only after their source, output and lock identities match; publish and actual
 extracted-package checks still execute on their matching native OS.
+
+The owner separately approved private Linux Node24/PowerShell prerequisites.
+Their exact official HTTPS metadata/digests are pinned in the local tool lock;
+no global installation or trust-store change is authorized. Materialization
+and actual tool/product execution remain separate, recorded stages.

@@ -1,0 +1,25 @@
+{
+  "schema": "execution02-private-local-linux-tools/v1",
+  "state": "OFFICIAL_HTTPS_METADATA_AND_EXACT_DIGEST_PINNED_NOT_EXECUTED",
+  "scope": "Explicit user authorized private project-only Linux Node24 and PowerShell, no global installation",
+  "tools": {
+    "node": {
+      "version": "24.19.0",
+      "url": "https://nodejs.org/dist/v24.19.0/node-v24.19.0-linux-x64.tar.gz",
+      "sha256": "f625d97cd707df4ff96254916fbc5ff014f09c09effe5a1e0ca8f6d41a8789d4",
+      "checksumSource": "https://nodejs.org/dist/v24.19.0/SHASUMS256.txt",
+      "checksumSourceSHA256": "be0629ee2bcd8e40bb856abdd3407f0762101b76bd60a36b8867f637733631c0",
+      "maximumRawBytes": 100663296
+    },
+    "pwsh": {
+      "version": "7.6.9",
+      "url": "https://github.com/PowerShell/PowerShell/releases/download/v7.6.9/powershell-7.6.9-linux-x64.tar.gz",
+      "sha256": "1da6d6d6035d651f20e70ddee7c4c15ac6ab8b9fb40ee92240d91263f28a884b",
+      "bytes": 73399520,
+      "metadataSource": "https://api.github.com/repos/PowerShell/PowerShell/releases/tags/v7.6.9",
+      "metadataSourceSHA256": "47baf93b2d46c81e0410902c275e1edab7140ee9f3e2aa000c84079f20ee0c74"
+    }
+  },
+  "publisherAuthentication": "Official vendor HTTPS metadata and exact SHA256. Detached vendor signature verification is not claimed.",
+  "globalSettingsOrTrustStoreChanges": false
+}

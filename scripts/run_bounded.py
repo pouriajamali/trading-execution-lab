@@ -435,7 +435,7 @@ def main():
     prior_attempt = b.get("priorAttemptSeconds",0)
     require(type(prior_attempt) in (int,float) and 0 <= prior_attempt < PHASES[args.phase], "prior phase budget")
     if prior_attempt:
-        retained = b.get("retainedQualificationMetadata",{})
+        retained = b.get("retainedPhaseReceipt",b.get("retainedQualificationMetadata",{}))
         prior = load(Path(retained["directory"])/"receipt.json",retained["receiptSha256"])
         require(prior["terminal"] is True and prior["elapsedSeconds"] == prior_attempt, "actual retained phase budget")
     phase_budget = min(PHASES[args.phase]-prior_attempt,2100-spent)
@@ -498,7 +498,7 @@ def main():
         if time.monotonic() - start > phase_budget:
             failure = "phase/OS deadline exceeded including teardown"
         receipt = {"status": "COMPLETED" if failure is None and terminal else "FAILED_OR_INCOMPLETE",
-                   "purpose": "LOCAL_NATIVE_QUALIFICATION" if b["mode"] == "LOCAL_NATIVE_02_20261117" and args.phase == "probe" else "CONTROL_PROBE" if args.phase == "probe" else "LOCAL_PHASE", "phase": args.phase,
+                   "purpose": "LOCAL_PRIVATE_TOOL_DATA" if b.get("preparePrivateLinuxTools") is True else "LOCAL_NATIVE_QUALIFICATION" if b["mode"] == "LOCAL_NATIVE_02_20261117" and args.phase == "probe" else "CONTROL_PROBE" if args.phase == "probe" else "LOCAL_PHASE", "phase": args.phase,
                    "phaseBudgetSeconds":phase_budget,"priorAttemptSeconds":prior_attempt,
                    "project": "02", "checkout": str(ROOT), "launcherSha256": sha(__file__), "bindingSha256": args.binding_sha256,
                    "caps": CAPS, "readback": controller.readback if controller is not None else None, "exit": code,

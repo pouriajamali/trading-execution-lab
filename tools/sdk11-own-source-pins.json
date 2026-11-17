@@ -192,7 +192,7 @@
     {
       "path": "README.md",
       "mode": "100644",
-      "gitBlob": "b8a0c43d4c034f21552d121d0b58789e22ae5c01"
+      "gitBlob": "0b184bd1449edd82f708ef20004188537bda2959"
     },
     {
       "path": "SCOPE.md",
@@ -257,7 +257,7 @@
     {
       "path": "docs/RELEASE-v0.6.0-preview.1.md",
       "mode": "100644",
-      "gitBlob": "ba056964c2b4aede4667f131bea608128e8f3fda"
+      "gitBlob": "43d2cfe07e84710a50de4687ac85ae7f65598415"
     },
     {
       "path": "docs/SDK11-CONSUMER-CONTRACT.json",
@@ -342,7 +342,7 @@
     {
       "path": "scripts/local_sdk11_stage.py",
       "mode": "100644",
-      "gitBlob": "004c8b3f2315f6735eb9175dd89814b1f9ba44bf"
+      "gitBlob": "92a7fd07fed52fa708ed5720cc263c4de04eaa88"
     },
     {
       "path": "scripts/package_panel.py",
@@ -350,14 +350,19 @@
       "gitBlob": "68e3a38e2307e2046d895c493ad356f0bacff575"
     },
     {
+      "path": "scripts/prepare_local_linux_tools.py",
+      "mode": "100644",
+      "gitBlob": "6e0b928bdd7fdbe34a4cdb8864de84a77cb6a3e5"
+    },
+    {
       "path": "scripts/qualify_tech_refresh.py",
       "mode": "100644",
-      "gitBlob": "64392a272ec3554fb776c2ff3c057f4e1e3da05e"
+      "gitBlob": "d43c883492aec5e9987b3cfcd63e5b1d4aaec134"
     },
     {
       "path": "scripts/run_bounded.py",
       "mode": "100644",
-      "gitBlob": "54dc4a55a5da100de8c192855308eefc8db4e41c"
+      "gitBlob": "db528034dc7fcbc1122bcd319f283ad2d73259c0"
     },
     {
       "path": "scripts/test_input_curation14.py",
@@ -373,6 +378,11 @@
       "path": "tools/dotnet11-host-qualification.schema.json",
       "mode": "100644",
       "gitBlob": "4c505869b03dbf79c194bf8c7ca7b376ceee0223"
+    },
+    {
+      "path": "tools/local-linux-tools.lock.json",
+      "mode": "100644",
+      "gitBlob": "2174be80470fa3f0e503f9056b6cf117c8fd36a2"
     },
     {
       "path": "tools/materialize_qualification_linux.py",
@@ -667,7 +677,7 @@
     {
       "path": "tools/sdk11-own-local-profile.json",
       "mode": "100644",
-      "gitBlob": "75681f6f0f7d873688400c1e3bd76a9726a0cb98"
+      "gitBlob": "082a51e30802b1ef65dc85291f9377d158270dcb"
     },
     {
       "path": "tools/sdk11-own-profile.json",
