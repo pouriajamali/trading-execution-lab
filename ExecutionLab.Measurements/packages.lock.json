@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "dependencies": {
+    "net11.0": {
+      "executionlab": {
+        "type": "Project"
+      },
+      "executionlab.hosting": {
+        "type": "Project",
+        "dependencies": {
+          "ExecutionLab": "[1.0.0, )"
+        }
+      }
+    },
+    "net11.0/linux-x64": {},
+    "net11.0/win-x64": {}
+  }
+}

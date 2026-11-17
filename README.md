@@ -339,3 +339,11 @@ The owner separately approved private Linux Node24/PowerShell prerequisites.
 Their exact official HTTPS metadata/digests are pinned in the local tool lock;
 no global installation or trust-store change is authorized. Materialization
 and actual tool/product execution remain separate, recorded stages.
+
+The local Windows input gate has now completed all14 actual SDK commands:
+six graphs, official strict online verification of33 exact originals, six real
+locks/assets with both RIDs, and the current applicable snapshot audit. The
+phase ended normally in29.594 seconds under its300-second allocation. The
+independent historical PKI method remains labeled separately; these are new
+current official SDK validation results. Full59-case/product and native package
+checks are still pending. No Actions or public preview release has run.

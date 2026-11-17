@@ -60,6 +60,11 @@
       "gitBlob": "9b26ba3bdc86fa281759632a3acd9af53898b3e8"
     },
     {
+      "path": "ExecutionLab.Api/packages.lock.json",
+      "mode": "100644",
+      "gitBlob": "37780a9345f5223f75a5caa55618f9fe4a1bb490"
+    },
+    {
       "path": "ExecutionLab.Hosting/ExecutionLab.Hosting.csproj",
       "mode": "100644",
       "gitBlob": "448564cb2fec9ad9a57648dcf92586937be619a7"
@@ -70,6 +75,11 @@
       "gitBlob": "bc8e160911441cb5d72217053e74d48259aaa65b"
     },
     {
+      "path": "ExecutionLab.Hosting/packages.lock.json",
+      "mode": "100644",
+      "gitBlob": "8c659aaab6e26406cedd759944c242425a0a378c"
+    },
+    {
       "path": "ExecutionLab.Measurements/ExecutionLab.Measurements.csproj",
       "mode": "100644",
       "gitBlob": "87e467ba0bb7c9ea31b1d2fb0f688f6ecc157df1"
@@ -78,6 +88,11 @@
       "path": "ExecutionLab.Measurements/Program.cs",
       "mode": "100644",
       "gitBlob": "906a1dac7c0485f6382c027fb8ffdf95917a4c8a"
+    },
+    {
+      "path": "ExecutionLab.Measurements/packages.lock.json",
+      "mode": "100644",
+      "gitBlob": "5de85c6ff43b11e47ac7004adc84f971c873985c"
     },
     {
       "path": "ExecutionLab.Persistence/AssemblyInfo.cs",
@@ -93,6 +108,11 @@
       "path": "ExecutionLab.Persistence/ExecutionLab.Persistence.csproj",
       "mode": "100644",
       "gitBlob": "5764dbe52abd7c0be6670d3dc7c8b03293ff8f50"
+    },
+    {
+      "path": "ExecutionLab.Persistence/packages.lock.json",
+      "mode": "100644",
+      "gitBlob": "e6abf97f8c5497c00ea2aafa07d3c0fc26d49304"
     },
     {
       "path": "ExecutionLab.Tests/BoundaryTests.cs",
@@ -125,6 +145,11 @@
       "gitBlob": "814a92fbfb6a340d5f0cfcf3dcada333ebc3573d"
     },
     {
+      "path": "ExecutionLab.Tests/packages.lock.json",
+      "mode": "100644",
+      "gitBlob": "d78d8e355b26f158b26fffa3c5e357d2b6ea2033"
+    },
+    {
       "path": "ExecutionLab/ExecutionLab.csproj",
       "mode": "100644",
       "gitBlob": "d5770ef791f87521037d4460c184637d5ea43978"
@@ -133,6 +158,11 @@
       "path": "ExecutionLab/OrderGate.cs",
       "mode": "100644",
       "gitBlob": "2e8dc67ff026e4a5c52dd3c1fcfb390c164a81d2"
+    },
+    {
+      "path": "ExecutionLab/packages.lock.json",
+      "mode": "100644",
+      "gitBlob": "e2714bc19a2e8d59bf7742279d4545d1be0646ab"
     },
     {
       "path": "LICENSE",
@@ -192,7 +222,7 @@
     {
       "path": "README.md",
       "mode": "100644",
-      "gitBlob": "0b184bd1449edd82f708ef20004188537bda2959"
+      "gitBlob": "bc6ffc03eda887ab2bc47fcfd97cc3027551866b"
     },
     {
       "path": "SCOPE.md",
@@ -257,7 +287,7 @@
     {
       "path": "docs/RELEASE-v0.6.0-preview.1.md",
       "mode": "100644",
-      "gitBlob": "43d2cfe07e84710a50de4687ac85ae7f65598415"
+      "gitBlob": "dedb3fc3a736ca3c840e92e7847e0edc169a5d77"
     },
     {
       "path": "docs/SDK11-CONSUMER-CONTRACT.json",
