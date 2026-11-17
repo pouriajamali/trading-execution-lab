@@ -56,6 +56,14 @@ def main():
             need(output.stat().st_size <= 1048576, "audit receipt cap")
         else:
             subprocess.run(command, cwd=ROOT, check=True, timeout=180)
+    if b.get("mode") == "LOCAL_NATIVE_02_20261117":
+        spec = importlib.util.spec_from_file_location("own_local_sdk11",ROOT/"scripts/local_sdk11_stage.py")
+        local = importlib.util.module_from_spec(spec);sys.modules[spec.name]=local;spec.loader.exec_module(local)
+        local.current_inputs(b,work,a.phase)
+        if a.phase == "probe":
+            return local.qualify(b,work)
+        if a.phase == "restoreAudit":
+            return local.curate(b,work)
     dotnet = b["dotnet"]
     locks = [ROOT / x / "packages.lock.json" for x in PROJECTS]
     if a.phase in ("csharp", "package"):

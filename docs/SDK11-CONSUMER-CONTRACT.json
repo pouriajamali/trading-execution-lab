@@ -39,7 +39,7 @@
     "Actual admitted ordinary02 package closure, six real locks and applicable current advisory evidence; no implicit package downloads",
     "Exact known-key signed own HEAD, complete source table and immutable shared-source pins",
     "Own supported host, current held worker, actual kernel limits, original deadline and durable terminal proof",
-    "Full preserved per-OS product checks, exact-commit CI, known-key signed checksums, public downloads and current delivery pages"
+    "Full preserved per-OS product checks from exact signed source, known-key signed checksums, public downloads and current delivery pages. No GitHub Actions; scoped local evidence must remain accurately labeled."
   ],
   "forbidden": "No broker/live/account/feed/order actions, global SDK configuration, security or host repair, new qualification/bootstrap framework, expanded caps or new milestone.",
   "sharedInterface": "docs/SDK11_SHARED_INPUT_INTERFACE.json",
@@ -54,8 +54,8 @@
     "state": "NO_GITHUB_ACTIONS_PER_OWNER_20261117",
     "policySha256": "d1399e45f55ce24b6d9b4e53e7e7a608b73f14416bad297679f592a438f5b9cc",
     "ci": "NOT_RUN_PER_OWNER_INSTRUCTION",
-    "publication": "BLOCKED_EXISTING_PIPELINE_REQUIRES_NATIVE_CI_AND_INPUT_GATES",
-    "local": "Only existing admitted local work; no new qualification, cap/trust bypass or healthy replay",
+    "publication": "Direct local release only after actual complete native/source/signature gates and proof it creates no Actions.",
+    "local": "Current owner explicitly authorizes scoped local validation with original caps and experimental Windows consent; no borrowed or fabricated input/host facts.",
     "sourceDelivery": "Signed task-only skip-ci push; no tag, PR, merge, dispatch or release trigger"
   },
   "inputCurationSource": {
@@ -77,5 +77,17 @@
       "win-x64": "tools/sdk11-own-windows-profile.json"
     },
     "executionGate": "Current owner no-Actions restriction and own admitted host/caps/source plus full raw/PKI/notices/advisory/actual graph/six-lock gates remain mandatory. Original missing-lock product gate is unchanged."
+  },
+  "localExecutionRoute": {
+    "authority": "Direct current owner: finish upgrade using local Windows/Linux build/test/sign/direct release without Actions; explicit Windows26H2 experimental-host consent",
+    "profile": "tools/sdk11-own-local-profile.json",
+    "controller": "scripts/run_bounded.py",
+    "stage": "scripts/local_sdk11_stage.py",
+    "CIImpersonation": false,
+    "sharedData": "Exact common4dab data guards and SDK identities reused; producer host facts do not admit this local host",
+    "windowsSupport": "Experimental local26H2 build26300; official support unconfirmed and explicitly accepted",
+    "linuxSource": "Fresh native ext4 /home/ubuntu/execution02-local-net11-20261117/repo; prior dirty checkout/partial SDK preserved",
+    "limits": "Original local per-phase caps and cumulative2100s/OS, fair canonical lease; no new infrastructure or services/security changes",
+    "inputGate": "Ordinary data/PKI/real graphs/locks still mandatory. Curation remains fail-closed until real handoff."
   }
 }

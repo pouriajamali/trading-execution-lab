@@ -1,0 +1,41 @@
+{
+  "schema": "execution02-local-native-profile/v1",
+  "projectId": "02",
+  "repository": "pouriajamali/trading-execution-lab",
+  "caps": {
+    "memoryBytes": 4294967296,
+    "cpuCores": 2,
+    "tasks": 64,
+    "swapBytesLinux": 0,
+    "workspaceBytes": 8589934592,
+    "logBytes": 33554432,
+    "receiptBytes": 1048576
+  },
+  "phaseDeadlines": {
+    "probe": 120,
+    "restoreAudit": 300,
+    "csharp": 480,
+    "frontend": 180,
+    "launcher": 120,
+    "package": 480,
+    "extracted": 180
+  },
+  "perOSSeconds": 2100,
+  "windows": {
+    "displayVersion": "26H2",
+    "build": "26300",
+    "explicitHumanExperimentalConsent": true,
+    "consentText": "بله؛ همین میزبان با ثبت محدودیت",
+    "vendorSupport": "UNCONFIRMED_NOT_IN_CURRENT_OFFICIAL_MATRIX",
+    "scope": "Local project02 preview tests only; not a supported-OS or shared producer admission"
+  },
+  "linux": {
+    "distribution": "Ubuntu24.04",
+    "hosting": "LocalWSL2",
+    "uid": 1000,
+    "gid": 1000,
+    "storage": "fresh native ext4 checkout; old R3 partial SDK/source untouched",
+    "containment": "own nonroot systemd service,cgroup4GiB,CPU2,tasks64,swap0,finite RuntimeMax/stop5"
+  },
+  "authority": "Direct current owner instruction to finish via local Windows/Linux route; explicit separate experimental Windows consent. No Actions, global SDK, OS/security changes or borrowed host facts."
+}

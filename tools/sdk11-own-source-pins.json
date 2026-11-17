@@ -192,7 +192,7 @@
     {
       "path": "README.md",
       "mode": "100644",
-      "gitBlob": "4a39f26457f47446e7ec6bc8b423e7f04f82bcaf"
+      "gitBlob": "9652b62dcdeafe99d4cb8d822b32b7b9c8971d32"
     },
     {
       "path": "SCOPE.md",
@@ -257,12 +257,12 @@
     {
       "path": "docs/RELEASE-v0.6.0-preview.1.md",
       "mode": "100644",
-      "gitBlob": "335e81630b35e14c1c0776bb4bb050488692822e"
+      "gitBlob": "6b8496069e1f190d28dbc1fcd4310421fc13f402"
     },
     {
       "path": "docs/SDK11-CONSUMER-CONTRACT.json",
       "mode": "100644",
-      "gitBlob": "ddad5cc9e785678b2e7506d56a8ffe533c3fb2b8"
+      "gitBlob": "0c1fc87104f19575f967a33b13ac19ec2db9ce8a"
     },
     {
       "path": "docs/SDK11_SHARED_INPUT_INTERFACE.json",
@@ -340,6 +340,11 @@
       "gitBlob": "b8929a48b58bb3bb2f763b3662926292774e2a33"
     },
     {
+      "path": "scripts/local_sdk11_stage.py",
+      "mode": "100644",
+      "gitBlob": "a6ffe0affa9dfecfbc6188b7951bbf63cd130b40"
+    },
+    {
       "path": "scripts/package_panel.py",
       "mode": "100644",
       "gitBlob": "3e617d438eefad199dc4c205ea78cd5089807ecf"
@@ -347,12 +352,12 @@
     {
       "path": "scripts/qualify_tech_refresh.py",
       "mode": "100644",
-      "gitBlob": "29a16af7d7563c769ea553736547d6f51999ae5a"
+      "gitBlob": "c4a973fec300baa6bdfc69b8711b0dbbc58588f7"
     },
     {
       "path": "scripts/run_bounded.py",
       "mode": "100644",
-      "gitBlob": "aeb64f110e8aa421c5869b1d517753e0c3bcf0a6"
+      "gitBlob": "25e7d55b44011b1d39c5ce13b9cc486d75ec5cda"
     },
     {
       "path": "scripts/test_input_curation14.py",
@@ -653,6 +658,11 @@
       "path": "tools/sdk11-normal/native-linux/recovered-metadata-1.json",
       "mode": "100644",
       "gitBlob": "58f63c9fb8faadd9931a812a3307b80622eb39ea"
+    },
+    {
+      "path": "tools/sdk11-own-local-profile.json",
+      "mode": "100644",
+      "gitBlob": "75681f6f0f7d873688400c1e3bd76a9726a0cb98"
     },
     {
       "path": "tools/sdk11-own-profile.json",

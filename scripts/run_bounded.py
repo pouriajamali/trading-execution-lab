@@ -18,7 +18,7 @@ APPROVAL = "142dac81ae7f6e05f52319d3521d4825d5df028e37542b7623d16316ff7dd077"
 PROTOCOL = "9120ca49a0d46673053aa0ec0cdbbc6f00731d71ea0b57ddab09e8fc3ac3ac8b"
 ROOT = Path(__file__).resolve().parents[1]
 WINROOT = "E:/Codex WorkSpace/Git Projects/trading-execution-lab/workspace-local/tech-refresh-net11-20261114/repo"
-LINROOT = "/home/ubuntu/execution02-net11-20261114/repo"
+LINROOT = "/home/ubuntu/execution02-local-net11-20261117/repo"
 MANAGER = ("E:/Codex WorkSpace/Git Projects/" if os.name == "nt" else "/mnt/e/Codex WorkSpace/Git Projects/") + "portfolio-management/development-management-20261110/wave2-state/"
 CAPS = {"memoryBytes": 4294967296, "cpuCores": 2, "tasks": 64, "swapBytesLinux": 0,
         "workspaceBytes": 8589934592, "logBytes": 33554432, "receiptBytes": 1048576}
@@ -120,8 +120,31 @@ def binding(args):
         p = safe_path(ROOT / row["path"], ROOT)
         require(p.is_file() and p.stat().st_size == row["bytes"] and sha(p) == row["sha256"], "source input mismatch")
     require(sha(sys.executable) == b["pythonSha256"], "bootstrap interpreter identity")
-    require(os.name == "nt", "local Linux R3 STOP; supported CI only")
-    require(args.phase == "probe" and b["mode"] == "CONTROL_PROBE_ONLY", "local SDK targets excluded; supported CI route required")
+    if b["mode"] == "LOCAL_NATIVE_02_20261117":
+        require(b["sourceCommit"] == subprocess.check_output(["git","rev-parse","HEAD"],cwd=ROOT,text=True,timeout=5).strip()
+                and b["sourceTree"] == subprocess.check_output(["git","rev-parse","HEAD^{tree}"],cwd=ROOT,text=True,timeout=5).strip()
+                and not subprocess.check_output(["git","status","--porcelain"],cwd=ROOT,timeout=5), "exact clean local source")
+        require(names == set(subprocess.check_output(["git","ls-files","--cached","-z"],cwd=ROOT,timeout=5).decode().rstrip("\0").split("\0")), "complete current local source inventory")
+        require(b["localProfileSha256"] == sha(ROOT/"tools/sdk11-own-local-profile.json"), "own local profile")
+        profile = load(ROOT/"tools/sdk11-own-local-profile.json")
+        require(profile["projectId"] == "02" and profile["caps"] == CAPS
+                and profile["phaseDeadlines"] == PHASES and profile["perOSSeconds"] == 2100,
+                "original local limits")
+        if os.name == "nt":
+            import winreg
+            with winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE,r"SOFTWARE\Microsoft\Windows NT\CurrentVersion") as key:
+                version, build = [winreg.QueryValueEx(key,name)[0] for name in ("DisplayVersion","CurrentBuildNumber")]
+            require(version == profile["windows"]["displayVersion"] == "26H2" and build == profile["windows"]["build"] == "26300"
+                    and profile["windows"]["explicitHumanExperimentalConsent"] is True, "exact experimental Windows consent")
+        else:
+            release = dict(line.split("=",1) for line in Path("/etc/os-release").read_text().splitlines() if "=" in line)
+            require(release.get("ID") == "ubuntu" and release.get("VERSION_ID","").strip('"') == "24.04"
+                    and os.getuid() == b["uid"] == 1000 and os.getgid() == b["gid"] == 1000
+                    and Path("/proc/1/comm").read_text().strip() == "systemd", "own actual Ubuntu local host")
+        require(sha(ROOT/"tools/sdk11-normal-inputs.lock.json") == NORMAL_PINS["tools/sdk11-normal-inputs.lock.json"], "common catalog unchanged")
+    else:
+        require(os.name == "nt", "legacy local Linux R3 STOP")
+        require(args.phase == "probe" and b["mode"] == "CONTROL_PROBE_ONLY", "legacy scope remains control-only")
     require(time.monotonic() - admitted_at <= 120, "input guard deadline")
     return b
 
@@ -420,7 +443,7 @@ def main():
     code = None
     failure = None
     try:
-        footprint()
+        footprint(ROOT, ROOT, locked_npm_bin_links())
         controller = windows_class()(b) if os.name == "nt" else Linux(b)
         lease["ownerProcessStartIdentity"] = controller.owner_start
         save(Path(MANAGER) / "LOCAL-FIXTURE-LEASE.json", lease)
@@ -432,7 +455,7 @@ def main():
         temporary = ROOT / "artifacts/private-tmp"
         temporary.mkdir(exist_ok=True)
         env.update(TEMP=str(temporary), TMP=str(temporary), TMPDIR=str(temporary))
-        if args.phase == "probe":
+        if args.phase == "probe" and b["mode"] == "CONTROL_PROBE_ONLY":
             command = [sys.executable, "-I", "-B", "-c", "import os,json;print(json.dumps({'probe':'execution02','pid':os.getpid(),'uid':getattr(os,'getuid',lambda:None)()}))"]
         else:
             env["DOTNET_ROOT"] = b["sdkRoot"]
@@ -445,7 +468,7 @@ def main():
                                            "launcherSha256": sha(__file__), "bindingSha256": args.binding_sha256})
             controller.resume()
             while (code := controller.poll()) is None:
-                _, logs = footprint(out)
+                _, logs = footprint(ROOT, ROOT, locked_npm_bin_links())
                 require(logs <= CAPS["logBytes"], "aggregate log cap exceeded")
                 require(time.monotonic() - start <= min(PHASES[args.phase], 2100 - spent) - 5, "phase deadline")
                 if os.name != "nt":
@@ -453,7 +476,7 @@ def main():
                     controller.capture_owned()
                 time.sleep(.2)
             require(code == 0, "completed child failure")
-            _, logs = footprint(out)
+            _, logs = footprint(ROOT, ROOT, locked_npm_bin_links())
             require(logs <= CAPS["logBytes"], "aggregate log cap exceeded")
     except BaseException as error:
         failure = type(error).__name__ + ": " + str(error)

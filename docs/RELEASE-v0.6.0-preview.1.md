@@ -136,3 +136,12 @@ with unchanged 300-second and native resource limits. See [the source delta](INP
 The helper launches no SDK or product work; actual input closure remains pending.
 CI was not run per the owner's 2026-11-17 instruction. No new release or binary
 is claimed by this source-only [skip ci] change.
+
+
+The owner has now authorized the scoped local Windows/Linux validation route,
+with the original bounded launcher, input guards and resource limits. Windows
+26H2/build26300 is explicitly accepted as an experimental local test host;
+official vendor support is unconfirmed. Common SDK bytes are reused without
+borrowing hosted-runner qualification. Actual local SDK qualification and
+product tests are still pending; no Actions or new release is established by
+this source change. The old local Linux checkout and R3 partial SDK are retained.
