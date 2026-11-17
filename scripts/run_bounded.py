@@ -432,13 +432,20 @@ def main():
     require(all(p["terminal"] is True for p in previous), "nonterminal prior phase")
     spent = sum(p["elapsedSeconds"] for p in previous)
     require(spent < 2100, "OS local elapsed envelope exhausted")
+    phase_limit = PHASES[args.phase]
+    if b.get("preparePrivateLinuxTools") is True:
+        exception = load(ROOT/"tools/local-linux-tools.lock.json")["transferException"]
+        require(b["mode"] == "LOCAL_NATIVE_02_20261117" and os.name == "nt" and args.phase == "frontend"
+                and exception["explicitHumanConsent"] is True and exception["totalSeconds"] == 480,
+                "exact human private-tool data exception only")
+        phase_limit = 480
     prior_attempt = b.get("priorAttemptSeconds",0)
-    require(type(prior_attempt) in (int,float) and 0 <= prior_attempt < PHASES[args.phase], "prior phase budget")
+    require(type(prior_attempt) in (int,float) and 0 <= prior_attempt < phase_limit, "prior phase budget")
     if prior_attempt:
         retained = b.get("retainedPhaseReceipt",b.get("retainedQualificationMetadata",{}))
         prior = load(Path(retained["directory"])/"receipt.json",retained["receiptSha256"])
         require(prior["terminal"] is True and prior["elapsedSeconds"] == prior_attempt, "actual retained phase budget")
-    phase_budget = min(PHASES[args.phase]-prior_attempt,2100-spent)
+    phase_budget = min(phase_limit-prior_attempt,2100-spent)
     require(phase_budget > 5, "remaining original local phase budget")
     token = uuid.uuid4().hex
     out = outroot / token

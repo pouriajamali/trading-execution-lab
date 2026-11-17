@@ -21,5 +21,11 @@
     }
   },
   "publisherAuthentication": "Official vendor HTTPS metadata and exact SHA256. Detached vendor signature verification is not claimed.",
-  "globalSettingsOrTrustStoreChanges": false
+  "globalSettingsOrTrustStoreChanges": false,
+  "transferException": {
+    "explicitHumanConsent": true,
+    "consentText": "بله؛ فقط همین انتقال، مجموع ۸ دقیقه",
+    "totalSeconds": 480,
+    "scope": "This private official Node/PowerShell data transfer only; all prior transfer elapsed retained, original product/test/OS/kernel caps unchanged"
+  }
 }

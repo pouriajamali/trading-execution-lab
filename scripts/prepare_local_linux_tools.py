@@ -8,7 +8,7 @@ def need(ok,why):
 def sha(path):
     with Path(path).open('rb') as stream:return hashlib.file_digest(stream,'sha256').hexdigest()
 
-def acquire(root,work):
+def acquire(root,work,budget_receipt=None):
     lock=root/'tools/local-linux-tools.lock.json';data=json.loads(lock.read_bytes());dest=root/'artifacts/linux-tool-inputs';dest.mkdir(parents=True,exist_ok=True);outputs=[];started=time.monotonic()
     class Redirect(urllib.request.HTTPRedirectHandler):
         def redirect_request(self,req,fp,code,msg,headers,newurl):
@@ -16,19 +16,43 @@ def acquire(root,work):
             u=urlparse(newurl);need(u.scheme=='https' and (u.hostname in ('github.com','nodejs.org','release-assets.githubusercontent.com','objects.githubusercontent.com') or u.hostname.endswith('.githubusercontent.com')),'official tool redirect only')
             return super().redirect_request(req,fp,code,msg,headers,newurl)
     opener=urllib.request.build_opener(urllib.request.ProxyHandler({}),Redirect())
+    import concurrent.futures,re
+    prior=json.loads((Path(budget_receipt)/'receipt.json').read_bytes()) if budget_receipt else None
+    need(prior and prior['purpose']=='LOCAL_PRIVATE_TOOL_DATA' and prior['terminal'] is True,'retained original transfer elapsed')
+    remaining=480-prior['elapsedSeconds']-10
+    deadline=started+remaining
     for name,row in data['tools'].items():
         target=dest/(name+'.tar.gz')
         if target.exists():need(sha(target)==row['sha256'],'retained exact tool input')
         else:
-            temporary=target.with_suffix('.part');need(not temporary.exists(),'incomplete tool body retained; diagnose before retry')
-            request=urllib.request.Request(row['url'],headers={'User-Agent':'own02-private-linux-tools','Accept-Encoding':'identity'})
-            size=0;h=hashlib.sha256();maximum=row.get('bytes',row.get('maximumRawBytes'))
-            with opener.open(request,timeout=15) as response,temporary.open('xb') as output:
-                need(response.status==200 and response.headers.get('Content-Encoding','identity')=='identity','exact tool archive response')
-                while chunk:=response.read(1048576):
-                    size+=len(chunk);need(size<=maximum and time.monotonic()-started<170,'private tool body/time limits');h.update(chunk);output.write(chunk)
+            headers={'User-Agent':'own02-private-tools','Accept-Encoding':'identity'}
+            with opener.open(urllib.request.Request(row['url'],headers=headers,method='HEAD'),timeout=10) as response:
+                need(response.status==200 and response.headers.get('Accept-Ranges')=='bytes','official bounded range transfer support')
+                total=int(response.headers['Content-Length'])
+            need(0<total<=row.get('bytes',row.get('maximumRawBytes')) and ('bytes' not in row or total==row['bytes']),'exact official transfer size')
+            prefix=target.with_suffix('.part');offset=prefix.stat().st_size if prefix.exists() else 0
+            need(0<=offset<total,'retained prefix bounds')
+            step=(total-offset+7)//8;parts=[]
+            def fetch(index,start,end):
+                part=dest/(name+'.range-'+str(index)+'.part');need(not part.exists(),'single resumed transfer; no hidden retry')
+                request=urllib.request.Request(row['url'],headers={**headers,'Range':'bytes='+str(start)+'-'+str(end)})
+                with opener.open(request,timeout=15) as response,part.open('xb') as output:
+                    need(response.status==206 and response.headers.get('Content-Range')=='bytes '+str(start)+'-'+str(end)+'/'+str(total),'exact bounded range response')
+                    count=0
+                    while chunk:=response.read(262144):
+                        count+=len(chunk);need(count<=end-start+1 and time.monotonic()<deadline,'approved cumulative data-transfer bounds');output.write(chunk)
+                    need(count==end-start+1,'complete explicit range')
+                return part
+            with concurrent.futures.ThreadPoolExecutor(max_workers=8) as pool:
+                futures=[pool.submit(fetch,i,start,min(start+step,total)-1) for i,start in enumerate(range(offset,total,step))]
+                parts=[f.result(timeout=max(.01,deadline-time.monotonic())) for f in futures]
+            temporary=dest/(name+'.assembled.part');need(not temporary.exists(),'fresh full-body assembly')
+            with temporary.open('xb') as output:
+                for part in ([prefix] if offset else [])+parts:
+                    with part.open('rb') as source:shutil.copyfileobj(source,output,1048576)
                 output.flush();os.fsync(output.fileno())
-            need(h.hexdigest()==row['sha256'] and ('bytes' not in row or size==row['bytes']),'official exact tool digest/size');temporary.rename(target)
+            need(temporary.stat().st_size==total and sha(temporary)==row['sha256'],'official exact full archive identity after ranged transfer')
+            temporary.rename(target)
         outputs.append({'name':name,'path':str(target),'bytes':target.stat().st_size,'sha256':sha(target)})
     (work/'private-tool-inputs.json').write_bytes((json.dumps({'state':'OFFICIAL_EXACT_PRIVATE_TOOL_ARCHIVES_ACQUIRED_NOT_EXECUTED','sourceLockSHA256':sha(lock),'archives':outputs,'globalChanges':False,'SDK':0},indent=2)+'\n').encode())
 

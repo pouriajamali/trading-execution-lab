@@ -105,7 +105,7 @@ def main():
         if b.get("preparePrivateLinuxTools") is True:
             need(b.get("mode") == "LOCAL_NATIVE_02_20261117" and os.name == "nt", "exact authorized private tool-data stage")
             helper=local.module("own_private_linux_tools",ROOT/"scripts/prepare_local_linux_tools.py")
-            return helper.acquire(ROOT,work)
+            return helper.acquire(ROOT,work,b["retainedPhaseReceipt"]["directory"])
         version=subprocess.check_output([tool("node"),"--version"],text=True,timeout=5).strip()
         need(re.fullmatch(r"v24\.[0-9]+\.[0-9]+",version),"actual local Node24 required")
         if b.get("mode") == "LOCAL_NATIVE_02_20261117":
@@ -116,7 +116,7 @@ def main():
             need(config.read_bytes()==b"registry=https://registry.npmjs.org/\n","private exact npm config")
             os.environ.update(NPM_CONFIG_USERCONFIG=str(config),NPM_CONFIG_GLOBALCONFIG=str(ROOT/"artifacts/no-global-npmrc"),NPM_CONFIG_CACHE=str(ROOT/"artifacts/private-npm-cache"))
         npm = [tool("node"), tool("npmCli"), "--prefix", "OperatorPanel"]
-        for action in (["ci"], ["test"], ["run", "build"]):
+        for action in (["ci", "--offline", "--no-audit", "--no-fund"], ["test"], ["run", "build"]):
             run(npm + action)
         if b.get("mode") == "LOCAL_NATIVE_02_20261117":
             source={x["path"]:x["sha256"] for x in b["sourceFiles"] if x["path"].startswith("OperatorPanel/")}
