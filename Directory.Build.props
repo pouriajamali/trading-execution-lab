@@ -5,6 +5,7 @@
     <RollForward>LatestPatch</RollForward>
     <RuntimeIdentifiers>win-x64;linux-x64</RuntimeIdentifiers>
     <UseAppHost>false</UseAppHost>
+    <EnableAppHostPackDownload>false</EnableAppHostPackDownload>
     <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
     <PublishAot>false</PublishAot>
     <PublishReadyToRun>false</PublishReadyToRun>

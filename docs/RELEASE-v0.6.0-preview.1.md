@@ -145,3 +145,23 @@ official vendor support is unconfirmed. Common SDK bytes are reused without
 borrowing hosted-runner qualification. Actual local SDK qualification and
 product tests are still pending; no Actions or new release is established by
 this source change. The old local Linux checkout and R3 partial SDK are retained.
+
+
+Local Windows validation has now observed SDK11.0.100 and the actually loaded
+private CoreCLR11.0.0 under the original Job caps. The experimental-host support
+limitation remains. The isolated runtime probe excludes product Directory.Build
+imports; its first four healthy SDK metadata results were retained after a
+probe-only RID-import correction. Full product validation is still pending.
+The ordinary33-package candidate is source-pinned and quarantined; its local
+executor retains the exact14-command/300-second ceiling. It performs current
+official online signature/trust verification for previously unclosed coverage
+before any cold restore. Apphost pack downloads are disabled consistently with
+UseAppHost=false; both declared product RIDs and all real lock/assets checks
+remain required. No Actions or public release has run.
+
+The curation vectors read both RIDs from the pinned project props; they no
+longer override the semicolon-separated value through MSBuild command-line
+property parsing. Exact actual lock/assets target checks remain mandatory.
+Local packaging can reuse the already validated frontend and restore assets
+only after their source, output and lock identities match; publish and actual
+extracted-package checks still execute on their matching native OS.

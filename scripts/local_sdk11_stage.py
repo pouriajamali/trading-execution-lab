@@ -93,5 +93,96 @@ def qualify(b,work):
     need(core==expected,'actual local loaded private CoreCLR')
     write(work/'host-qualification.json',{'state':'OWN_LOCAL_SDK11_RUNTIME_OBSERVED','rid':b['rid'],'SDKRoot':str(sdk),'catalogSha256':digest(ROOT/'tools/sdk11-normal-inputs.lock.json'),'runtime':runtime,'coreclrSha256':digest(core),'sourceCommit':b['sourceCommit'],'commands':results,'SDKCommands':executed,'retainedMetadataCommands':4 if retained else 0,'vendorSupport':'UNCONFIRMED_EXPERIMENTAL_WINDOWS_WITH_EXPLICIT_HUMAN_CONSENT' if os.name=='nt' else 'Ubuntu24.04_LocalWSL2_ActualExt4AndCgroup','scope':'Current own local native runtime observation; not producer admission, actual product tests, CI or global SDK_READY'})
 
+def input_path(value):
+    if os.name!='nt' and len(value)>2 and value[1]==':':
+        return Path('/mnt/'+value[0].lower()+'/'+value[3:].replace('\\','/'))
+    return Path(value)
+
+def dependency_source():
+    return {str(p.relative_to(ROOT)):digest(p) for p in [ROOT/'Directory.Build.props',ROOT/'global.json',*(ROOT/x/(x+'.csproj') for x in ('ExecutionLab','ExecutionLab.Hosting','ExecutionLab.Persistence','ExecutionLab.Api','ExecutionLab.Tests','ExecutionLab.Measurements'))]}
+
 def curate(b,work):
-    raise RuntimeError('Actual producer04 identity-bound ordinary raw/PKI/data handoff required before local curation; no implicit restore or fabricated locks')
+    """Actual finite14 factory, fully quarantined originals, current official trust.
+
+    Earlier03 signatures are retained; their explicitly UNKNOWN current-PKI
+    scope requires this new local online validation before our first restore.
+    No prior success is relabeled as independent CRL verification.
+    """
+    import shutil,time,threading,http.server
+    started=time.monotonic();factory=module('own_input14_factory',ROOT/'scripts/input02_sdk14_delta.py')
+    handoff=input_path(b['ordinaryHandoff']);need(digest(handoff)==b['ordinaryHandoffSha256'],'exact producer ordinary data handoff')
+    pin=json.loads((ROOT/'tools/sdk11-own-input-candidate.json').read_bytes());need(digest(handoff)==pin['producerDataSha256'],'source-pinned producer identity')
+    data=json.loads(handoff.read_bytes());rows=data['ordinary02CandidatePackages'];need(len(rows)==33 and len({(x['id'].casefold(),x['version']) for x in rows})==33,'finite actual candidate originals')
+    advisory=data['advisoryReuse'];need(0<=time.time()-advisory['observedAtUnix']<=advisory['maxAgeSeconds']==86400,'current retained applicable advisory horizon')
+    old=input_path(b['testInputHandoff']);need(digest(old)==b['testInputHandoffSha256'],'exact retained advisory identity');snapshot=json.loads(old.read_bytes())['advisory'];need(snapshot['observedAtUnix']==advisory['observedAtUnix'] and len(snapshot['pages'])==2,'same complete advisory snapshot')
+    pages=[]
+    for item in snapshot['pages']:
+        path=input_path(item['actualBytePath']);raw=path.read_bytes();need(len(raw)==item['bytes'] and hashlib.sha256(raw).hexdigest()==item['actualDecodedBodySHA256'],'actual complete advisory bytes');pages.append(raw)
+    feed=work/'raw';feed.mkdir();cache=ROOT/'artifacts/private-nuget';cache.mkdir(parents=True,exist_ok=True)
+    need(not any(cache.iterdir()),'cold private curation cache required; diagnose retained attempt before retry')
+    raw_paths=[];expected=[]
+    for row in rows:
+        source=input_path(row['rawArchive']['path']);rawrow=row['rawArchive'];target=feed/(row['id'].lower()+'.'+row['version']+'.nupkg')
+        h=hashlib.sha256();h512=hashlib.sha512();size=0
+        with source.open('rb') as src,target.open('xb') as dst:
+            while chunk:=src.read(1048576):
+                size+=len(chunk);need(size<=rawrow['bytes'],'original byte bound while copying');h.update(chunk);h512.update(chunk);dst.write(chunk)
+            dst.flush();os.fsync(dst.fileno())
+        need(size==rawrow['bytes'] and h.hexdigest()==rawrow['sha256'] and h512.hexdigest()==rawrow['sha512'],'exact quarantined original copied')
+        for proof in [row['memberManifest'],*row['originalData']]:
+            path=input_path(proof['path']);need(path.is_file() and path.stat().st_size==proof['bytes'] and digest(path)==proof['sha256'],'retained member/CMS/notices identity')
+        raw_paths.append(target);item={'id':row['id'],'version':row['version'],'sha256':rawrow['sha256']}
+        value=row['normalizedNuGetContentHash']
+        if value!='UNKNOWN':item['expectedNormalizedContentHash']=value
+        expected.append(item)
+    bodies={};calls=[]
+    class Handler(http.server.BaseHTTPRequestHandler):
+        def do_GET(self):
+            need(len(calls)<128 and len(self.path)<=512,'finite snapshot request bound');calls.append(self.path);body=bodies.get(self.path)
+            self.send_response(200 if body is not None else 404);self.send_header('Content-Type','application/json');self.send_header('Content-Length',str(len(body or b'')));self.send_header('Cache-Control','no-store');self.end_headers()
+            if body is not None:self.wfile.write(body)
+        def log_message(self,*args):pass
+    server=http.server.ThreadingHTTPServer(('127.0.0.1',0),Handler);base='http://127.0.0.1:'+str(server.server_port)
+    bodies['/v3/index.json']=json.dumps({'version':'3.0.0','resources':[{'@id':base+'/vuln/index.json','@type':'VulnerabilityInfo/6.7.0'}]}).encode()
+    bodies['/vuln/index.json']=json.dumps([{'@name':'base' if i==0 else 'updates','@id':base+'/vuln/'+str(i)+'.json','@updated':'2026-11-16T23:30:08Z'} for i in range(2)]).encode()
+    for i,raw in enumerate(pages):bodies['/vuln/'+str(i)+'.json']=raw
+    thread=threading.Thread(target=server.serve_forever,daemon=True);thread.start();graphs=work/'graphs';graphs.mkdir()
+    plan=factory.command_plan(b['dotnet'],ROOT,work,raw_paths);config=Path(plan['configPath']);config.write_bytes(factory.config_bytes(feed,cache,server.server_port,sorted(factory.OFFICIAL_REPOSITORY_CERTIFICATES)))
+    os.environ['NUGET_CERT_REVOCATION_MODE']='online';os.environ['NUGET_PACKAGES']=str(cache)
+    locks=[ROOT/x/'packages.lock.json' for x in factory.PROJECTS];need(not any(p.exists() for p in locks),'no lock overwrite; first curation only')
+    normalized={};executed=[]
+    try:
+        for index,vector in enumerate(plan['commands']):
+            need(time.monotonic()-started<300-5,'original curation active deadline')
+            if index==7:need(len(normalized)==len(rows),'all enumerated signature/hash/current-online-trust guards before first restore')
+            argv=vector['argv']
+            if index==13:argv=[*argv,'--config',str(config)]
+            result=subprocess.run(argv,cwd=ROOT,capture_output=True,timeout=min(vector['maximumSeconds'],300-5-(time.monotonic()-started)))
+            need(len(result.stdout)+len(result.stderr)<=1048576,'curation command output bound')
+            (work/('curation-'+str(index)+'.stdout.log')).write_bytes(result.stdout);(work/('curation-'+str(index)+'.stderr.log')).write_bytes(result.stderr)
+            need(result.returncode==0,'curation command '+str(index)+' failed; retained logs, no retry or product target')
+            executed.append({'id':vector['id'],'exit':0,'stdoutSha256':hashlib.sha256(result.stdout).hexdigest(),'stderrSha256':hashlib.sha256(result.stderr).hexdigest()})
+            if index==6:
+                verified=factory.verification_report(result.stdout,result.stderr,expected,0)
+                normalized={(x['id'].casefold(),x['version']):x['normalizedNuGetContentHash'] for x in verified}
+                write(work/'official-online-verification.json',{'packages':verified,'newRequiredScope':'Current own local online chain/revocation/timestamp policy; legacy independent UNKNOWN is not relabeled','revocationMode':'online','legacy03NormalizedHashesCompared':17})
+        report=json.loads(result.stdout);need(report.get('projects'),'actual applicable audit project coverage')
+        def clean(v):
+            return all(not(k in ('vulnerabilities','errors','problems','warnings') and x) and clean(x) for k,x in v.items()) if isinstance(v,dict) else all(clean(x) for x in v) if isinstance(v,list) else True
+        need(clean(report) and all(s in (str(feed),base+'/v3/index.json') for s in report.get('sources',[])),'applicable exact-snapshot audit no issues or unapproved sources')
+        selected={};targets={}
+        for project,path in zip(factory.PROJECTS,locks):
+            lock=json.loads(path.read_bytes());keys=set(lock['dependencies']);need({'net11.0','net11.0/win-x64','net11.0/linux-x64'}<=keys,'actual two-RID lock targets')
+            targets[project]=sorted(keys)
+            for entries in lock['dependencies'].values():
+                for identity,entry in entries.items():
+                    if entry['type']=='Project':continue
+                    need(entry['type'] in ('Direct','Transitive'),'known lock node type')
+                    key=(identity.casefold(),entry['resolved']);need(key in normalized and entry['contentHash']==normalized[key],'actual resolved lock closure equals official normalized bytes')
+                    selected[key]=entry['contentHash']
+        need(0<=time.time()-advisory['observedAtUnix']<=86400 and time.monotonic()-started<=300,'curation original time/freshness bounds')
+        write(work/'curation-admission.json',{'state':'ACTUAL_LOCAL_SDK14_GRAPH_LOCK_ASSET_AUDIT_COMPLETED','commands':executed,'SDKCommands':len(executed),'selected':[{ 'id':k[0],'version':k[1],'contentHash':v} for k,v in sorted(selected.items())],'targets':targets,'candidateCount':len(rows),'selectedCount':len(selected),'extraCandidateNodesQuarantined':len(rows)-len(selected),'advisorySource':advisory,'snapshotRequests':calls,'seconds':time.monotonic()-started,'inputGuardMethod':'exact original/member/CMS/notices data plus own official NuGet all+online strict report, then all actual locks/assets/current audit; no independent PKI claim borrowed'})
+        audit=work/'curation-13.stdout.log'
+        write(ROOT/'artifacts/tech-refresh/audit-admission.json',{'sdkBinding':b['sdkIdentity'],'sdkCatalogSha256':digest(ROOT/'tools/sdk11-normal-inputs.lock.json'),'dependencySource':dependency_source(),'audit':str(audit),'auditSha256':digest(audit),'locks':{str(p.relative_to(ROOT)):digest(p) for p in locks},'assets':{str((ROOT/x/'obj/project.assets.json').relative_to(ROOT)):digest(ROOT/x/'obj/project.assets.json') for x in factory.PROJECTS},'localFeed':str(feed),'config':str(config),'curationReceipt':str(work/'curation-admission.json')})
+    finally:
+        server.shutdown();server.server_close();thread.join(timeout=2)

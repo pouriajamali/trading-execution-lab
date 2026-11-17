@@ -4,6 +4,7 @@ import hashlib
 import importlib.util
 import json
 import os
+import re
 from pathlib import Path
 import subprocess
 import sys
@@ -68,7 +69,10 @@ def main():
     locks = [ROOT / x / "packages.lock.json" for x in PROJECTS]
     if a.phase in ("csharp", "package"):
         verified = json.loads((ROOT / "artifacts/tech-refresh/audit-admission.json").read_text())
-        need(verified["sdkBinding"] == a.binding_sha256 and digest(verified["audit"]) == verified["auditSha256"]
+        binding_match = verified["sdkBinding"] == (b["sdkIdentity"] if b.get("mode") == "LOCAL_NATIVE_02_20261117" else a.binding_sha256)
+        if b.get("mode") == "LOCAL_NATIVE_02_20261117":
+            need(verified["dependencySource"] == local.dependency_source(), "same actual dependency source after lock commit")
+        need(binding_match and digest(verified["audit"]) == verified["auditSha256"]
              and verified["locks"] == {str(x.relative_to(ROOT)): digest(x) for x in locks}, "fresh audit/lock identity required")
     if a.phase == "restoreAudit":
         run([sys.executable, "-I", "-B", str(ROOT / "scripts/check_tech_refresh.py"),
@@ -97,9 +101,24 @@ def main():
         run([dotnet, "run", "--project", "ExecutionLab.Tests/ExecutionLab.Tests.csproj",
              "--configuration", "Release", "--no-restore","-p:UseSharedCompilation=false"])
     elif a.phase == "frontend":
+        version=subprocess.check_output([tool("node"),"--version"],text=True,timeout=5).strip()
+        need(re.fullmatch(r"v24\.[0-9]+\.[0-9]+",version),"actual local Node24 required")
+        if b.get("mode") == "LOCAL_NATIVE_02_20261117":
+            for name in list(os.environ):
+                if name.upper().startswith("NPM_CONFIG_") or name.upper() in ("NODE_OPTIONS","NODE_PATH","NPM_TOKEN","NODE_AUTH_TOKEN"):del os.environ[name]
+            config=ROOT/"artifacts/private-npmrc"
+            if not config.exists():config.write_bytes(b"registry=https://registry.npmjs.org/\n")
+            need(config.read_bytes()==b"registry=https://registry.npmjs.org/\n","private exact npm config")
+            os.environ.update(NPM_CONFIG_USERCONFIG=str(config),NPM_CONFIG_GLOBALCONFIG=str(ROOT/"artifacts/no-global-npmrc"),NPM_CONFIG_CACHE=str(ROOT/"artifacts/private-npm-cache"))
         npm = [tool("node"), tool("npmCli"), "--prefix", "OperatorPanel"]
         for action in (["ci"], ["test"], ["run", "build"]):
             run(npm + action)
+        if b.get("mode") == "LOCAL_NATIVE_02_20261117":
+            source={x["path"]:x["sha256"] for x in b["sourceFiles"] if x["path"].startswith("OperatorPanel/")}
+            panel=ROOT/"ExecutionLab.Api/wwwroot/panel"
+            files={x.relative_to(panel).as_posix():digest(x) for x in panel.rglob("*") if x.is_file()}
+            need(files and all(not x.is_symlink() for x in panel.rglob("*")), "actual frontend output")
+            local.write(ROOT/"artifacts/tech-refresh/frontend-admission.json",{"sourceCommit":b["sourceCommit"],"sourceFingerprints":source,"builtFiles":files,"nodeVersion":version,"nodeSha256":b["tools"]["node"]["sha256"],"protocolTests":"ACTUAL_CURRENT_NPM_TEST_EXIT0","build":"ACTUAL_CURRENT_NPM_BUILD_EXIT0"})
     elif a.phase == "launcher":
         run([sys.executable, "-I", "-B", str(ROOT / "scripts/check_launcher.py"), "--work", str(work / "launcher")])
     elif a.phase in ("package", "extracted"):
@@ -107,8 +126,10 @@ def main():
         rid = "win-x64" if os.name == "nt" else "linux-x64"
         if a.phase == "package":
             need(not subprocess.check_output([tool("git"), "status", "--porcelain"], cwd=ROOT, timeout=10), "signed clean source required before packaging")
-            run([sys.executable, "-I", "-B", str(ROOT / "scripts/package_panel.py"), "--work", str(work / "build"),
-                 "--out", str(work / "delivery"), "--rid", rid, "--commit", commit, "--dotnet", dotnet])
+            package_args = [sys.executable, "-I", "-B", str(ROOT / "scripts/package_panel.py"), "--work", str(work / "build"),
+                 "--out", str(work / "delivery"), "--rid", rid, "--commit", commit, "--dotnet", dotnet]
+            if b.get("mode") == "LOCAL_NATIVE_02_20261117":package_args += ["--nuget-source",verified["localFeed"],"--local-audit-admission",str(ROOT/"artifacts/tech-refresh/audit-admission.json"),"--local-frontend-admission",str(ROOT/"artifacts/tech-refresh/frontend-admission.json")]
+            run(package_args)
             built = json.loads((work / "build/archive.json").read_text())
             need(built["sourceCommit"] == commit and built["rid"] == rid and digest(built["archive"]) == built["sha256"], "produced archive proof")
             with (ROOT / "artifacts/tech-refresh/package-admission.json").open("w") as receipt:

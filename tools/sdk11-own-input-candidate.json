@@ -1,0 +1,310 @@
+{
+  "schema": "execution02-quarantined-input-candidate/v1",
+  "state": "SOURCE_PINNED_CANDIDATE_NOT_RUNTIME_ADMITTED",
+  "projectId": "02",
+  "producerDataSha256": "24198fabc6838202132829f88513206f180053d1e204135e80fc5e235d80df43",
+  "packages": [
+    {
+      "id": "xunit.v3",
+      "version": "4.0.2",
+      "bytes": 32099,
+      "rawSHA256": "5b166770769b3d2aa7164b7c10200e4094c1e959a0914ee64617a81e0b70541e",
+      "rawSHA512": "8cfa8928c4278560b2b109003e353c138b777a397f10e09ddc435c53f6e2cafb4db919dc2be7c3143130e08c69e8687cde4e5fe450531ff4734f1698d7c8d242",
+      "expectedNormalizedNuGetHash": "TdjM2OAx7w/0E88E6PgaigLoTbQaxbSR3HF/8p92plchTjf29jPHW27ylvEOz+Nx8CvPwWKGQlOR1fDv6/Qh5A==",
+      "memberManifestSHA256": "32c06064b4d617cd927b6f76fc2f03d5d8f9f810d4e2fefb95c07a39d2b64005"
+    },
+    {
+      "id": "Microsoft.ApplicationInsights",
+      "version": "2.23.0",
+      "bytes": 1737910,
+      "rawSHA256": "e6c7f76e0ec26598c7b1e2be1777e839c84486655e8a878fc4c655bd2e918dbd",
+      "rawSHA512": "dd497bfad0c65e54a4f78d2a1644f3d0854d4cd01dd83ba506f8d5d53635e28152c7c13210dd5dd3985780aab146a7620de3ebaead8ef12c6f87088676c2157f",
+      "expectedNormalizedNuGetHash": "nWArUZTdU7iqZLycLKWe0TDms48KKGE6pONH2terYNa8REXiqixrMOkf1sk5DHGMaUTqONU2YkS4SAXBhLStgw==",
+      "memberManifestSHA256": "2472c3bc1b85fd1e7f5ca69631815fad34a3285785a34370faad466dabdf08b8"
+    },
+    {
+      "id": "Microsoft.Bcl.AsyncInterfaces",
+      "version": "6.0.0",
+      "bytes": 76354,
+      "rawSHA256": "e3df87fe2170a7e01f0880af59caa8f6eb380b3c40a4f282dfb43912aaf0f895",
+      "rawSHA512": "221a05a0c910f7a87b620d8f3831ed392b4eb95d112bee274d35f27009ad2a26445de9d7cd235fe6fb4a03f2550874bda3be3dddd96edaf9c0852a9c23d7b099",
+      "expectedNormalizedNuGetHash": "UcSjPsst+DfAdJGVDsu346FX0ci0ah+lw3WRtn18NUwEqRt70HaOQ7lI72vy3+1LxtqI3T5GWwV39rQSrCzAeg==",
+      "memberManifestSHA256": "28c30eabfc28e2aac2c8d0e70e1accbcef32abfa5c5c2fd1633b576f4e7aff4f"
+    },
+    {
+      "id": "Microsoft.Testing.Extensions.Telemetry",
+      "version": "2.5.1",
+      "bytes": 517730,
+      "rawSHA256": "a147dea733de14c70e2127ad993a563ca352cad5c8e930aba727fe4c04f38d94",
+      "rawSHA512": "1fc22b325681e4f5a582ae432b5d1c0e579dc87d4ab957f75bb689c60fc7eefa120c6f6fcfe6be4e783bf9797393c24bc270fbeaf78cd5544f5fed16ed2ea3fe",
+      "expectedNormalizedNuGetHash": "mu2iyoHovwl0q1mGeeRU0h8+LALXC7HqbxniLa1shTKYdJGl+KPoCEgjWIQ8MLzk1tlTGPOfg1JsxdH3RxhMCA==",
+      "memberManifestSHA256": "f526ca247daea02767925bfbe6baf1dfa67b1561fd4417289c242f33c1f3ba8d"
+    },
+    {
+      "id": "Microsoft.Testing.Extensions.TrxReport.Abstractions",
+      "version": "2.5.1",
+      "bytes": 114290,
+      "rawSHA256": "4523b0a92743a53399cdbd54a46dd7b441fb802e514b32313b778db0c1d074bb",
+      "rawSHA512": "fcfb4af97bdeb8fd616cfa0bf5db8e7e7fdd8feba18f2c44233cb3a60d6eda5c394f4f3c4dc275423f1a2bb662c3ab3464880b4916c3d4d4435bef7f4a0393db",
+      "expectedNormalizedNuGetHash": "DYTZAguaHz0wNJdHDTTGYOXtnlDoLoIbTMDKSApNNcytm55DJcnwpwELfQGLk5DB5QlgaEjNhnGo1Pu5QvL5VA==",
+      "memberManifestSHA256": "da305dd97e63254b4bdd5a9c2e1c45a96d23c7bf23b89bd87051e589b3c8f590"
+    },
+    {
+      "id": "Microsoft.Testing.Platform",
+      "version": "2.5.1",
+      "bytes": 3775300,
+      "rawSHA256": "7d35092c70b86599314adf05bf4a7061da03fc08c8e493f029da6bd4da6ef369",
+      "rawSHA512": "acdaad90c6dc7382edcd993523bf64e64de3f3394de5494ecf4ba629e702aca7dedafe148233170d6b698e5de9cce90fc20b99408cd0d6a2af38a625ab47d523",
+      "expectedNormalizedNuGetHash": "FAMaFFWnULW+hDHMb40Qzhcgz9cAU2/EtgRCBNX/DdQoKo0sPG2EiY+w7bQdl/BgHnf/DbpXLbf5Xy0o15M8NA==",
+      "memberManifestSHA256": "f1b09b9a7ebad2021740e4ef3ea73a8caf9b42b363729c9b097d9219043270ab"
+    },
+    {
+      "id": "Microsoft.Testing.Platform.MSBuild",
+      "version": "2.5.1",
+      "bytes": 2276133,
+      "rawSHA256": "335136824e7f9bc8bc77f6700ddf536a264f2b27a307c32143bdfbac12a98f69",
+      "rawSHA512": "7ea7f8a4756be88d940d9a1ef346bf97b8c667b0537ef319b3df0fc565858c66bc2f5442f85786445c0d8226ec850f17980bfc7f4aef61eb7631ef3632e7fd6d",
+      "expectedNormalizedNuGetHash": "lYawcAwY+h76rQmpma2n0HaL8zkOFbbKapso0Eb+uOAUQn7333pIByLftEuiO67csAoZufHNMwi6PqhNemWQXA==",
+      "memberManifestSHA256": "4d003e17e04653917ba052a57707286f74a4222773dfa18820e29c7b25f038a4"
+    },
+    {
+      "id": "Microsoft.Win32.Registry",
+      "version": "5.0.0",
+      "bytes": 354731,
+      "rawSHA256": "f64ca53c67ca65ce7cc85a8d29aefbb2da2672836731e1115e8cd62730dc5080",
+      "rawSHA512": "471e66567ce59cc86475aece7815d05261264ce114e0c1688ba2551dd51494901fa72dd7a8f74f8e8f0f3dba74af8595f177552f3c06abb4bfce76692197076e",
+      "expectedNormalizedNuGetHash": "dDoKi0PnDz31yAyETfRntsLArTlVAVzUzCIvvEDsDsucrl33Dl8pIJG06ePTJTI3tGpeyHS9Cq7Foc/s4EeKcg==",
+      "memberManifestSHA256": "d3f214631b949e6a7548627cef86ad3912d264a40e4c49e462c0c5b625f05387"
+    },
+    {
+      "id": "System.Security.AccessControl",
+      "version": "6.0.1",
+      "bytes": 235270,
+      "rawSHA256": "462e26f796417e8a4350655a85bbd4233b94cbd0f7150c1c5e9acfd88e885141",
+      "rawSHA512": "e1beba70b45f8cc5ae06fdecf365f0bb5b58b9af6d7c79accfef15b5a7c7bbef65e10cf9f299418eb413aac86ffefaa0eab9d91650ce77cc398d390f0597ed42",
+      "expectedNormalizedNuGetHash": "IQ4NXP/B3Ayzvw0rDQzVTYsCKyy0Jp9KI6aYcK7UnGVlR9+Awz++TIPCQtPYfLJfOpm8ajowMR09V7quD3sEHw==",
+      "memberManifestSHA256": "1a66bc3f2ddf8246108e51ba21b73ab407b89a2d34902df083f61616e73920f2"
+    },
+    {
+      "id": "xunit.analyzers",
+      "version": "2.2.0",
+      "bytes": 339308,
+      "rawSHA256": "66d3c3b642e1f1ceaa702c0e1d8901d918268bf177690bc270a34d680b23d225",
+      "rawSHA512": "a06370aae1301168d9f98d479249fcf4d5c765f67cf504f6956438a99eb6ab94a535700dc0c7dd4fb14ad2fffb00c4768073abce5429829d461caa5986609b87",
+      "expectedNormalizedNuGetHash": "dXMIIztipcAyL3a19gtUrih/RLrE33/4VJdICoinYqIXXo1KLtsMPsaQ9dO2pE8xajDguwE2kqVbBqE5/EoJ0Q==",
+      "memberManifestSHA256": "c7ba63f44063571ec7055eb133748af42aef9f1f772f94c07749467ea931a2f3"
+    },
+    {
+      "id": "xunit.v3.assert",
+      "version": "4.0.2",
+      "bytes": 293797,
+      "rawSHA256": "f82e735f8fd36464a979ca954bd67ac231bc6788c68f72e60c0c8fd1442f1648",
+      "rawSHA512": "fcb34f33f7e59a2add09e429be70631be72a9a625fc0399930e70474f4cea5efe6e47e1852142abd9a6deea73a2d9ed164c1f720bc4345640fba235031d192b7",
+      "expectedNormalizedNuGetHash": "5PKRexYlvufWFdXenRcRGKqvaJBBZFJZpqUGlUs9p13eKEgVdOrLpkPknjzUvLY5kEUicK9871DIUDcCPA6AXA==",
+      "memberManifestSHA256": "94644b567c64fc821eb65f7b0b55e7635695141eee39939e44faf86fd7bf9902"
+    },
+    {
+      "id": "xunit.v3.common",
+      "version": "4.0.2",
+      "bytes": 169782,
+      "rawSHA256": "16796161ae73e4fcae92fc255cccfea7e4253d36a8776711cd237bb96f8d2179",
+      "rawSHA512": "0d44f39beb6c1d292c6c51e9c1eaa6b99cc92dd506b9bff77804d0b2e313ee718640b4db840a269056c9f294c2d417d58d3325759bc9b262bcf3561136203260",
+      "expectedNormalizedNuGetHash": "++CtT8daIf6qfieQev/8V88U3zViIDWou5cj+oWps1/Hf73UoaY/L0hKyi3v7Zlt3BmbU0pUc73zCB1GiB4nYA==",
+      "memberManifestSHA256": "37f0bfb3fdc1ab13c47bc5ea9de6d3a9353fc5533543dd5aa14ca5c4edb6c109"
+    },
+    {
+      "id": "xunit.v3.core.mtp-v2",
+      "version": "4.0.2",
+      "bytes": 433321,
+      "rawSHA256": "784ed0c6555880636dc3dcf84b27559bcd27f150242c7eff79e6a50d19913d72",
+      "rawSHA512": "bb97e7ddb1764d9c2f2621c0d749c32fc16e9483d919d53368584fe0adad70ad517fe8a81193d1db3471c1a975c7a04bf2a9c12d89230774a386e0993aaef595",
+      "expectedNormalizedNuGetHash": "XyPMcQRsnUQLhmBBRRgYWsuPc8TyiANzcXtqfzyWfDpPuyh3Q0K4oWozZYQKZRNGnqJ97ifD6qUDWhsEEe32uw==",
+      "memberManifestSHA256": "59d8c0294219fbc3c65b4d6353be41ebea6384936ccf01772dec1d9747629ad5"
+    },
+    {
+      "id": "xunit.v3.extensibility.core",
+      "version": "4.0.2",
+      "bytes": 383303,
+      "rawSHA256": "d48b164079004ca0507e16bae2756de9239f803999ac723957d377d49e319b7b",
+      "rawSHA512": "ca4c16226c975789d10dc78b9b29729d84a80fe80ffc2b3c2930c88621be9fc1f48e53895ec782de84d851a08e399b67d91d178860adf7fa93ee071f165aaa85",
+      "expectedNormalizedNuGetHash": "ARTt+pGyd86mdtiFBkKpyBQvRC3u0rr8oidBlII2GsAg7D6TfOsDFCsoQtFij83V5pE57m3whUIqT4xjiARXbQ==",
+      "memberManifestSHA256": "dff7663b5b186e92a1514cfdd86b643bb26ea71f5076eca77e9029351bc07552"
+    },
+    {
+      "id": "xunit.v3.mtp-v2",
+      "version": "4.0.2",
+      "bytes": 32228,
+      "rawSHA256": "e8d378854775e4787114eb9a411b55f2a3e4020792d7c633113e26d9438cbfa5",
+      "rawSHA512": "39eb0589555edfc42700edd6ed6852bead65eeb3454bf29ff62a105e6438ce457a7d102c23e4615b3d5aa51c3ab3bd0ad812e4e25abaaa5d7414a35e0243b251",
+      "expectedNormalizedNuGetHash": "XLV32FhkuvheBStvX0DvjfPEtI+4SOVcIhnlTS+549r8VfVwsjpWdkJtQmQ7D23PA+Zoaqo+sTjBkRSkidC6Tw==",
+      "memberManifestSHA256": "e80cec3230f5f3dccce78c46d6162b156c37cf843dc27ded81e98c570e45ac37"
+    },
+    {
+      "id": "xunit.v3.runner.common",
+      "version": "4.0.2",
+      "bytes": 531712,
+      "rawSHA256": "d4e4d47314f4a7b8f5690ae3cb3b2e36899443f097173c40764a97bd072d80e3",
+      "rawSHA512": "caa00a127c68cd7ef838a45151c846fd054577085c86a50a8b29bac267ba853cdb1e11b2d648260591d7807d32f9eb54c4b245098d90f85f2f93871ed1103196",
+      "expectedNormalizedNuGetHash": "YlYKVhTJVcwEgJ6rm59Pjf71lQqKwKxEHqVRxWUuwrwm/nxB/mNFP/lP4vlntDO3GclNnLT9BjYOpJH9gViGQg==",
+      "memberManifestSHA256": "fc2a6a86565ff6d85c9ed75aa03ece640f9b3427ca7f49d535a38822b0fe05e6"
+    },
+    {
+      "id": "xunit.v3.runner.inproc.console",
+      "version": "4.0.2",
+      "bytes": 134639,
+      "rawSHA256": "240090d90d5229d9782185425f889307edcabfe683c589d1e7856fd630c076cd",
+      "rawSHA512": "c72f702083d1aa46b1bb773a44805df6f6443d22dff2664ffe45acf2075a308370a4164db62b3a71e291d206241d5101b735b8eb8d2be7c6fda8ef3b861b06f2",
+      "expectedNormalizedNuGetHash": "cg4XNpCN4Ry9nswutknpreN3ckSUBwtjMRmEQSNK/sIKPo6KN5tDGGGCaHDm5HGA4yFVVtTJX65tLCsZArUNfQ==",
+      "memberManifestSHA256": "09ce9208a294981e992e011683d32bfae8cf0a58a3a590e1ae3f52bd83c34f96"
+    },
+    {
+      "id": "SQLitePCLRaw.bundle_e_sqlite3",
+      "version": "2.1.13",
+      "bytes": 34062,
+      "rawSHA256": "89a216f8059d09cabcb45ab75ac2f180b733323c27d41cf9a981dc5f5b5c6c0f",
+      "rawSHA512": "b1e7faaaedc7b8a76e5ce83bdcb3afaaa68cd7c589f781d5c0285618c96c8055bfe16ef6b6aa4c86c3cf7559100a5d581c3af17ee6237f266914c6450a105d8a",
+      "expectedNormalizedNuGetHash": "UNKNOWN",
+      "memberManifestSHA256": "6c2930dd7f5ddec846857e42c574f8d3957db4e7969fc5fbdb971c15c7c334a7"
+    },
+    {
+      "id": "SQLitePCLRaw.core",
+      "version": "2.1.13",
+      "bytes": 36010,
+      "rawSHA256": "d93d5f7ab3f864c47722a2d90048c31a1aac743e153d87b9f4a07589ee2f9daf",
+      "rawSHA512": "0cd8e19fb092ed60e7067adc211fba88a2d66602233318ffd579cf335dc8b9d146935223ab8d409bd7c14e26b22aeff37c80524ad6eebafc807ab67c8d43f175",
+      "expectedNormalizedNuGetHash": "UNKNOWN",
+      "memberManifestSHA256": "1da99bce8704768a3b75e84cb1bd76baf77e5ae4588a2d0449957e23869a57f3"
+    },
+    {
+      "id": "SQLitePCLRaw.lib.e_sqlite3",
+      "version": "2.1.13",
+      "bytes": 18762900,
+      "rawSHA256": "d07d13b4779123cfa56b3348b504d57a2ab6fc10c764fb6e2c9d787987e39201",
+      "rawSHA512": "daf6cf72b2f4d33d41c4029897db8600f8435dd04f03e7fc74d34569159b8e58db997efe57ea6634b32d3def254e245d23393ae82b849bea1bd3a8e89651123d",
+      "expectedNormalizedNuGetHash": "UNKNOWN",
+      "memberManifestSHA256": "7c68868b38083f609d671026eeca8a0082481606bb46242ebdb60f8a0195ff48"
+    },
+    {
+      "id": "SQLitePCLRaw.provider.e_sqlite3",
+      "version": "2.1.13",
+      "bytes": 60221,
+      "rawSHA256": "513ef2ba5d01c14d1e8032d9d2ca2c8985df7ec7d351f0e40917476114ac1f9c",
+      "rawSHA512": "c3d74c078d2045e30bccec5f083baf8d48544ee488f78e374361f1ae9f125bfbc81a1eaa3fc4e390e4d9f69e7d987e74369cd033b177861a7c300076a72f4da3",
+      "expectedNormalizedNuGetHash": "UNKNOWN",
+      "memberManifestSHA256": "02912e80a72dfd83221d29b078f5108bae28cfab2657358fe295513f7561cb3a"
+    },
+    {
+      "id": "Microsoft.Data.Sqlite",
+      "version": "10.0.14",
+      "bytes": 30469,
+      "rawSHA256": "34ee7848923872dcbf341e89b6c192170f222815cb9cb2604ac707b25b7fb0b4",
+      "rawSHA512": "2b7eee7505367688d866e0944fd17c4e5653031cc4d173a4a947e020cdbed8b8fbc899dfa0d8692e6c40a7a7922f6f3547a9dc738ba1200bd3c52a6fd6a8e054",
+      "expectedNormalizedNuGetHash": "UNKNOWN",
+      "memberManifestSHA256": "1f483d27dce5e3d1bc7dc5e5080c362f139cce290a3d7bed2a2efada720549af"
+    },
+    {
+      "id": "Microsoft.Data.Sqlite.Core",
+      "version": "10.0.14",
+      "bytes": 208438,
+      "rawSHA256": "df0828e3861a1e0240c9a3ec1891cdc1942cdc47b61c8d2fb36ce2542f02b092",
+      "rawSHA512": "fc38cf6d151d909bcd2964797fe3a68f13778d3dd606535cfd3970257564834081a4a72859946b259486b1d98c811d20de735043d7b5090740ad7ea3ae1c627c",
+      "expectedNormalizedNuGetHash": "UNKNOWN",
+      "memberManifestSHA256": "c97cbcfa8226c16e5c2aa4d643b14aa7c0d353c0c9371805ebf32956a2a6b4c8"
+    },
+    {
+      "id": "Microsoft.IdentityModel.Protocols.OpenIdConnect",
+      "version": "8.19.2",
+      "bytes": 425215,
+      "rawSHA256": "b92acde71946f925e5c60e0d002154d854a50b7577858a2376153c95473af3ba",
+      "rawSHA512": "24c8a8a345df0ba1a4e948b949bb3d952ce4164a7bf2f8dcc5beeab734602b793505707c05a7a0abf4abfd13a0d34aa4abdf4cb19659b779a00c67400854efd3",
+      "expectedNormalizedNuGetHash": "UNKNOWN",
+      "memberManifestSHA256": "9c4769d9d8cb9d6124708da6f334a055d2cf34dc0d0bcecbdeb20bb8a08c4f42"
+    },
+    {
+      "id": "Microsoft.IdentityModel.Protocols",
+      "version": "8.19.2",
+      "bytes": 246017,
+      "rawSHA256": "b2800311442c3a9d47cadb75a8ba3e8ce39eabbbb2ec8eed50e5a88177905c56",
+      "rawSHA512": "f8e4d1898afd9310efb8668db4f6e54b466551c326805d3b6243dafb9959d702fb3979d70deca6dbd5d05a2b8a9e299f9e190eed3e229ad900f1dcb8ea9e3839",
+      "expectedNormalizedNuGetHash": "UNKNOWN",
+      "memberManifestSHA256": "2a58d1ef9254b5402129f43cc02c62709489392293067c1ca1b93da49edc41f1"
+    },
+    {
+      "id": "Microsoft.IdentityModel.Tokens",
+      "version": "8.19.2",
+      "bytes": 1380100,
+      "rawSHA256": "3ce8b74b370adfe881df5d38c17621de8a150f519b96dc1351ff8a323fff5185",
+      "rawSHA512": "e2b1827165af92dace1b57ac38faf60cc2c9a7197d0e32000fde372fc0bc2bc45cb2adf4be7386d08705325724b8e328b6cfc51cd494243c6ab26a3f106e9e07",
+      "expectedNormalizedNuGetHash": "UNKNOWN",
+      "memberManifestSHA256": "3ec06e40589f9b87bf9cd6624c6c8895b83caf72fdfb653f0939c2338528587e"
+    },
+    {
+      "id": "Microsoft.IdentityModel.JsonWebTokens",
+      "version": "8.19.2",
+      "bytes": 554318,
+      "rawSHA256": "8fd6a2d0dae0cad0ec7d08888a3a7521be234465fd960444401a04e975bd48e7",
+      "rawSHA512": "f64a24cd6e4c56c1e300d10b4e285cbeb238f1ace1ce1745416fa868471edab0ffb067b955fe7b05141d5c52320e85a5bb1621def85ef1a2d0de683704ff7cdf",
+      "expectedNormalizedNuGetHash": "UNKNOWN",
+      "memberManifestSHA256": "a28e7a9888ecb84f5ba4c0ca871da990071bc4bff9421acdd776769da65f5a88"
+    },
+    {
+      "id": "Microsoft.IdentityModel.Logging",
+      "version": "8.19.2",
+      "bytes": 197620,
+      "rawSHA256": "8daf0f01850dc257c8ae42fa10eb99ed28197d127020e4461bf1130c3d41b511",
+      "rawSHA512": "d7906bc6760415a13edecbd4ffc181ec461090e77ec7451d96a98d168577818eaf37fbb8760d7436e5cba03492521c473dd734d5cbca7a8cedc06bc0c3a5619e",
+      "expectedNormalizedNuGetHash": "UNKNOWN",
+      "memberManifestSHA256": "7dd456e56f7481a90d1e5684cecd2d4f0aeef2b76820ad7b7a61391b11738ab6"
+    },
+    {
+      "id": "Microsoft.IdentityModel.Abstractions",
+      "version": "8.19.2",
+      "bytes": 128864,
+      "rawSHA256": "bcd18aeaee95f92d0c21a61383eb129111785d48ccd4af9c2ae4756bd69108bb",
+      "rawSHA512": "01244907fa0720a876378e5f4edfedffea7659a2b15947ef8d3ac752ad8ddfd98e37ac094d04d7da0c1f64eb70581338159f48eee362f2b14d6b29d76cc60db1",
+      "expectedNormalizedNuGetHash": "UNKNOWN",
+      "memberManifestSHA256": "bcac5aead8e76211eec39ca2ae023be76ff745566e29c961ffdde7c086ec2b62"
+    },
+    {
+      "id": "System.IdentityModel.Tokens.Jwt",
+      "version": "8.19.2",
+      "bytes": 392265,
+      "rawSHA256": "904a9f1225a4a2d7c3503a619f432c32a84e73cdaa40b5e56e8e57620e7cfe2a",
+      "rawSHA512": "0d77b02929b1c5106ebd439dd9a1bf4c065a7c2551e9572a2c3d002401bbe30c280cbaae9304cf19ad08d92388b597615eecf8dcc7e2a20d414a91c00bc49592",
+      "expectedNormalizedNuGetHash": "UNKNOWN",
+      "memberManifestSHA256": "f586dc1135a6d0108fe611d3da632d61111acce5b88823f1cb84fa01a018124d"
+    },
+    {
+      "id": "Microsoft.Bcl.Cryptography",
+      "version": "10.0.2",
+      "bytes": 771019,
+      "rawSHA256": "f8e62d716b1dd6a65c11769d61e038b7afa9c800e0d403d00b1a4a52d3f4d363",
+      "rawSHA512": "adb3ff92b45d5d7546d74432587d2b59ae7ed2a3f94686fc5590ca9e8f75d241e70dc987f577456c1b5d79d3b9a55565a40d72d8c5d6c77eb4ccb2cd2dcb49f9",
+      "expectedNormalizedNuGetHash": "UNKNOWN",
+      "memberManifestSHA256": "80d7fdf5ade81a2a683e586dcc4192e2e4a5125050f923226e9d448a0190c4a1"
+    },
+    {
+      "id": "Microsoft.AspNetCore.Authentication.JwtBearer",
+      "version": "11.0.0",
+      "bytes": 69690,
+      "rawSHA256": "050d307c41ee699627f9dbcedb3754f42e8fba70ba14c3b8718f3d10bd522145",
+      "rawSHA512": "88fa245f860aea82465ad45571609c892f546be74e93ac1bb05433de86ed51736bae1139331ecc8483969bf6531af19bcb23a18ff27975df56379102edb8cddc",
+      "expectedNormalizedNuGetHash": "UNKNOWN",
+      "memberManifestSHA256": "a410eb2162f86a48d515c10c6b48a7618efc06824ef09a7d58b87863db850664"
+    },
+    {
+      "id": "Microsoft.AspNetCore.TestHost",
+      "version": "11.0.0",
+      "bytes": 83216,
+      "rawSHA256": "3f6b020fda5573a7cfce6406d9ac384854aae7119c0836065824eb36e55495c2",
+      "rawSHA512": "f490b4532b4053ff30f20497b069ad376aaf57b4ee7febe283d0f5d2735764fa44b07f800807051ebf8741c8ddc042f113f61d1f3a9c145b0225353a67914176",
+      "expectedNormalizedNuGetHash": "UNKNOWN",
+      "memberManifestSHA256": "15f220dc15227a30630c9d05831ec374c660641c18603ed6235f9631c3d22edd"
+    }
+  ],
+  "advisoryObservedAtUnix": 1794918196,
+  "advisoryMaxAgeSeconds": 86400,
+  "actualSDKGraphOrLockAdmission": false,
+  "currentTrustRule": "New local official NuGet all/online validation is needed for the previously UNKNOWN current-PKI coverage; prior independent scope is not relabeled",
+  "apphost": "UseAppHostfalse and EnableAppHostPackDownloadfalse; actual graphs must prove no undeclared downloads"
+}

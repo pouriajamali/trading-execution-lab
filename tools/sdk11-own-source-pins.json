@@ -37,7 +37,7 @@
     {
       "path": "Directory.Build.props",
       "mode": "100644",
-      "gitBlob": "ffa92dcf0525082c9a44ae2298ce8dcaf20b5fde"
+      "gitBlob": "a6c32f25efea61063d1e750b1f230e57577fd287"
     },
     {
       "path": "ExecutionLab.Api/ExecutionLab.Api.csproj",
@@ -192,7 +192,7 @@
     {
       "path": "README.md",
       "mode": "100644",
-      "gitBlob": "9652b62dcdeafe99d4cb8d822b32b7b9c8971d32"
+      "gitBlob": "b8a0c43d4c034f21552d121d0b58789e22ae5c01"
     },
     {
       "path": "SCOPE.md",
@@ -257,7 +257,7 @@
     {
       "path": "docs/RELEASE-v0.6.0-preview.1.md",
       "mode": "100644",
-      "gitBlob": "6b8496069e1f190d28dbc1fcd4310421fc13f402"
+      "gitBlob": "ba056964c2b4aede4667f131bea608128e8f3fda"
     },
     {
       "path": "docs/SDK11-CONSUMER-CONTRACT.json",
@@ -337,27 +337,27 @@
     {
       "path": "scripts/input02_sdk14_delta.py",
       "mode": "100644",
-      "gitBlob": "b8929a48b58bb3bb2f763b3662926292774e2a33"
+      "gitBlob": "e632084030c922e9cbcec584fb12c13ca5cf9532"
     },
     {
       "path": "scripts/local_sdk11_stage.py",
       "mode": "100644",
-      "gitBlob": "10ca70814a7b23864e6c037009254fc76d35ed24"
+      "gitBlob": "004c8b3f2315f6735eb9175dd89814b1f9ba44bf"
     },
     {
       "path": "scripts/package_panel.py",
       "mode": "100644",
-      "gitBlob": "3e617d438eefad199dc4c205ea78cd5089807ecf"
+      "gitBlob": "68e3a38e2307e2046d895c493ad356f0bacff575"
     },
     {
       "path": "scripts/qualify_tech_refresh.py",
       "mode": "100644",
-      "gitBlob": "c4a973fec300baa6bdfc69b8711b0dbbc58588f7"
+      "gitBlob": "64392a272ec3554fb776c2ff3c057f4e1e3da05e"
     },
     {
       "path": "scripts/run_bounded.py",
       "mode": "100644",
-      "gitBlob": "3654a367bfdbbfed330d0bb39090543218c729f3"
+      "gitBlob": "54dc4a55a5da100de8c192855308eefc8db4e41c"
     },
     {
       "path": "scripts/test_input_curation14.py",
@@ -658,6 +658,11 @@
       "path": "tools/sdk11-normal/native-linux/recovered-metadata-1.json",
       "mode": "100644",
       "gitBlob": "58f63c9fb8faadd9931a812a3307b80622eb39ea"
+    },
+    {
+      "path": "tools/sdk11-own-input-candidate.json",
+      "mode": "100644",
+      "gitBlob": "81d88f98318abf7c648f1fe461fbb8395ec32e93"
     },
     {
       "path": "tools/sdk11-own-local-profile.json",

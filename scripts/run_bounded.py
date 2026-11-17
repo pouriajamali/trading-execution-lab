@@ -1026,9 +1026,20 @@ def ci_entry():
     require(args.ci_policy is not None and args.ci_policy_sha256, "exact parent policy required")
     return ci_row(args, observed)
 
+def local_stop_entry():
+    import re
+    from types import SimpleNamespace
+    require(os.name != "nt" and len(sys.argv) == 5, "fixed local stop observer")
+    context=Path(sys.argv[2]).resolve();expected=sys.argv[3];unit=sys.argv[4]
+    require(context.is_relative_to(ROOT/"artifacts/local-service")
+            and re.fullmatch(r"execution02-local-[a-z]+-[a-f0-9]{16}[.]service",unit), "owned local stop identity")
+    current=load(context,expected)
+    require(current.get("kind") == "LOCAL_PROJECT02" and current["profileSha256"] == sha(ROOT/"tools/sdk11-own-local-profile.json"), "local observer source/profile")
+    return ci_stop_post(None,SimpleNamespace(ci_context=context,ci_context_sha256=expected,ci_unit=unit))
+
 if __name__ == "__main__":
     try:
-        sys.exit(ci_entry() if "--ci" in sys.argv else main())
+        sys.exit(local_stop_entry() if "--local-stop-post" in sys.argv else ci_entry() if "--ci" in sys.argv else main())
     except Hold as error:
         print(json.dumps({"status": "COMPLETED_INPUT_DENIAL", "reason": str(error)}))
         sys.exit(2)

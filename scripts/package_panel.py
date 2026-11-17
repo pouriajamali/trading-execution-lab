@@ -32,6 +32,8 @@ def main():
     parser.add_argument("--commit", required=True)
     parser.add_argument("--dotnet", default="dotnet")
     parser.add_argument("--nuget-source")
+    parser.add_argument("--local-audit-admission",type=Path)
+    parser.add_argument("--local-frontend-admission",type=Path)
     args = parser.parse_args()
     assert platform.machine().lower() in {"amd64", "x86_64"}
     assert args.rid == ("win-x64" if os.name == "nt" else "linux-x64")
@@ -48,13 +50,23 @@ def main():
         with (work / (name + ".log")).open("wb") as log:
             subprocess.run(command, cwd=ROOT, stdout=log, stderr=subprocess.STDOUT, check=True, timeout=180)
 
-    npm = shutil.which("npm.cmd" if os.name == "nt" else "npm")
-    assert npm
-    run("panel-build", [npm, "--prefix", "OperatorPanel", "run", "build"])
+    reuse = args.local_audit_admission is not None or args.local_frontend_admission is not None
+    if reuse:
+        assert args.local_audit_admission and args.local_frontend_admission
+        audit=json.loads(args.local_audit_admission.read_bytes());front=json.loads(args.local_frontend_admission.read_bytes())
+        assert audit["localFeed"] == args.nuget_source and sha(Path(audit["audit"])) == audit["auditSha256"]
+        for name,expected in {**audit["locks"],**audit["assets"],**audit["dependencySource"],**front["sourceFingerprints"]}.items():assert sha(ROOT/name) == expected,name
+        panel=ROOT/"ExecutionLab.Api/wwwroot/panel"
+        assert {p.relative_to(panel).as_posix():sha(p) for p in panel.rglob("*") if p.is_file()} == front["builtFiles"]
+        assert sha(Path(shutil.which("node"))) == front["nodeSha256"]
+    else:
+        npm = shutil.which("npm.cmd" if os.name == "nt" else "npm")
+        assert npm
+        run("panel-build", [npm, "--prefix", "OperatorPanel", "run", "build"])
     switches = ["-p:UseSharedCompilation=false", "-p:SelfContained=false", "-p:EnableRuntimePackDownload=false", "-p:DisableTransitiveFrameworkReferenceDownloads=true"]
     restore = [args.dotnet, "restore", "ExecutionLab.Api/ExecutionLab.Api.csproj", "--locked-mode", "--runtime", args.rid, *switches]
     if args.nuget_source: restore.extend(["--source", args.nuget_source, "-p:NuGetAudit=false"])
-    run("restore", restore)
+    if not reuse:run("restore", restore)
     published = work / "publish"
     run("publish", [args.dotnet, "publish", "ExecutionLab.Api/ExecutionLab.Api.csproj", "-c", "Release",
                     "--runtime", args.rid, "--no-self-contained", "--no-restore", *switches,
