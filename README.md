@@ -2,12 +2,13 @@
 
 [![Historical .NET10 baseline CI](https://github.com/pouriajamali/trading-execution-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/pouriajamali/trading-execution-lab/actions/workflows/ci.yml)
 
-[Try the browser demo](https://pouriajamali.site/demo/operator-panel/) · [Download the local panel](https://github.com/pouriajamali/trading-execution-lab/releases/tag/v0.5.2-preview.1) · [Engineering proof](docs/CASE-STUDY.md) · [Scope](SCOPE.md)
+[Try the browser demo](https://pouriajamali.site/demo/operator-panel/) · [Download the local panel](https://github.com/pouriajamali/trading-execution-lab/releases/tag/v0.6.0-preview.1) · [Engineering proof](docs/CASE-STUDY.md) · [Scope](SCOPE.md)
 
 Explore order-risk decisions and retry-safe request processing in C#/.NET.
 The sample combines an order-state model, a single-writer host and an ASP.NET Core
 API that commits SQLite state, an idempotency receipt and an audit outbox together.
-The accepted .NET10 baseline has 57 cases; the original 24 model cases remain intact.
+The .NET11 preview passes 59 local C# cases on both native platforms; the original
+24 model cases remain intact. The accepted .NET10 baseline retains 57 cases.
 The immutable v0.5.2-preview.1 runtime release retains its historical 56-case evidence.
 
 ## Try it in one minute
@@ -27,7 +28,7 @@ implementations. For the transaction and recovery decisions, follow the
 
 ## Check the C# implementation
 
-Candidate source targets SDK11.0.100 / net11.0 / C#15.0. The local validation status is recorded below; the published .NET10 download remains separate. From a source checkout with the required SDK:
+Version0.6.0-preview.1 targets SDK 11.0.100 / net11.0 / C# 15.0. Local validation and its limits are recorded below. From a source checkout with the required SDK:
 
 ```sh
 dotnet run --project ExecutionLab.Tests/ExecutionLab.Tests.csproj -c Release
@@ -49,15 +50,15 @@ the same request to inspect its original receipt. The live state and a receipt
 are shown separately because a historical replay can differ from current state.
 
 **Windows / Ubuntu quick start.** Download the matching x64 archive and checksums
-from [v0.5.2-preview.1](https://github.com/pouriajamali/trading-execution-lab/releases/tag/v0.5.2-preview.1):
-[Windows ZIP](https://github.com/pouriajamali/trading-execution-lab/releases/download/v0.5.2-preview.1/trading-execution-lab-v0.5.2-preview.1-win-x64.zip) ·
-[Ubuntu/glibc tar.gz](https://github.com/pouriajamali/trading-execution-lab/releases/download/v0.5.2-preview.1/trading-execution-lab-v0.5.2-preview.1-linux-x64.tar.gz) ·
-[SHA256SUMS](https://github.com/pouriajamali/trading-execution-lab/releases/download/v0.5.2-preview.1/SHA256SUMS.txt).
-Extract the whole folder. Install x64 **ASP.NET Core Runtime 10.0.14 or a later
-10.0 patch** and **PowerShell 7**; these packages are framework-dependent.
+from [v0.6.0-preview.1](https://github.com/pouriajamali/trading-execution-lab/releases/tag/v0.6.0-preview.1):
+[Windows ZIP](https://github.com/pouriajamali/trading-execution-lab/releases/download/v0.6.0-preview.1/trading-execution-lab-v0.6.0-preview.1-win-x64.zip) ·
+[Ubuntu/glibc tar.gz](https://github.com/pouriajamali/trading-execution-lab/releases/download/v0.6.0-preview.1/trading-execution-lab-v0.6.0-preview.1-linux-x64.tar.gz) ·
+[SHA256SUMS](https://github.com/pouriajamali/trading-execution-lab/releases/download/v0.6.0-preview.1/SHA256SUMS.txt).
+Extract the whole folder. Install x64 **ASP.NET Core Runtime 11.0.0 or a later
+11.0 patch** and **PowerShell 7**; these packages are framework-dependent.
 No SDK, Node.js or Python is required to run the panel. Before asking for an
 operator code or creating temporary state, the launcher checks the selected
-`dotnet` host for x64 and the required stable 10.0.14-or-later 10.0 frameworks.
+`dotnet` host for x64 and the required stable 11.0.0-or-later 11.0 frameworks.
 A failure explains the prerequisite; it does not install software or change PATH.
 
 Windows: `pwsh -NoProfile -File .\Start-OperatorPanel.ps1`
@@ -67,10 +68,10 @@ Ubuntu: `pwsh -NoProfile -File ./Start-OperatorPanel.ps1`
 Choose a run-only operator code, then open <http://127.0.0.1:5087/panel/>.
 A new ID and 2 lots move 7→9; replay stays9; a different ID and2 lots are denied.
 Use Ctrl+C to stop. See [prerequisites and troubleshooting](docs/QUICKSTART.md).
-Unsigned developer preview; audited targets are Windows x64 and Ubuntu24.04/glibc
+Application binaries are unsigned; tested targets are Windows x64 and Ubuntu 24.04/glibc
 x64. Other distributions, ARM, musl and macOS are unverified.
 
-**Build candidate source.** With Node.js 24 and SDK 11.0.100, run:
+**Build from source.** With Node.js 24 and SDK 11.0.100, run:
 
 ```sh
 npm --prefix OperatorPanel ci
@@ -257,51 +258,37 @@ data or broker connection is included.
 
 [CI resource policy](docs/CI-POLICY.md): documentation-only changes get real lightweight document/pipeline checks; source, tag and manual runs retain native validation. Published runtime tags and release assets remain unchanged.
 
-## .NET 11 candidate: local validation in progress
+## .NET 11 preview and local validation
 
-Candidate 0.6.0-preview.1 targets SDK11.0.100/net11.0/C#15 and stable runtime11.0.0.
-The original57 C# cases and application behavior remain intact; two new literal
-compatibility cases check persisted receipts, fingerprints, wire shape and the
-five-table schema. These are source-authored fixtures, not historical binary captures.
+Version0.6.0-preview.1 uses SDK 11.0.100, net11.0, C# 15 and stable runtime 11.0.0.
+The original 57 C# cases and synthetic API/UI behavior remain intact. Two new
+source-authored literal cases check persisted receipts, fingerprints, wire shape
+and the five-table schema; they are not historical binary captures.
 SQLite10.0.14, xUnit4.0.2 and frontend pins remain unchanged.
 
-On17 November2026, the actual local Windows11 SDK/runtime probe and all14 input
-commands completed: six graphs, strict official online verification of33 exact
-NuGet originals, six real locks/assets for both RIDs, and an applicable complete
-advisory-snapshot audit. The actual Release Measurements build and all59 C# cases
-passed, with zero errors, failures, skips or not-run cases. No benchmark was run.
-Windows26H2/build26300 is an explicitly accepted experimental test host; official
-vendor support is unconfirmed. This observation does not establish shared host admission.
+Both local native platforms passed the Release Measurements build, all 59 C#
+cases, all 11 JavaScript protocol cases, the TypeScript/Vite build and 16 controlled
+launcher scenarios. Windows 26H2/build 26300 is an explicitly accepted experimental
+host; official vendor support is unconfirmed. Linux is Ubuntu 24.04 on ext4/WSL2.
+Actual native package checks and signed delivery details are recorded in the
+[release notes](docs/RELEASE-v0.6.0-preview.1.md).
 
-The corrected offline Windows run passed all11 protocol tests and the TypeScript/Vite
-build. All16 controlled launcher scenarios passed both modes. On18 November2026,
-the matching Windows archive was built from signed source8a2ddb1 and all22 actual
-HTTP/SQLite checks passed in four owned processes on its extracted bytes. Loaded
-CoreCLR11.0.0 and the package's e_sqlite3.dll were observed directly; the archive
-SHA256 is6366852107c346ed910e450c3d53fcadeb127a9c5ddd9f379b9a5eea72e59dee.
-This is a locally tested candidate, not a public release or a runtime-only-machine claim.
+Each platform independently qualified its private SDK/runtime and completed the
+14-command finite dependency factory: strict official all/online verification of
+33 exact NuGet originals, six two-RID lock/asset restores and complete applicable
+current advisory-snapshot audit. Historical independent-PKI UNKNOWN fields are
+not relabeled as successful independent checks. No benchmark or runtime-only
+machine installation is claimed. The public browser demo is a separate JavaScript
+implementation and retains its original evidence.
 
-Linux qualification/tests/package, final aggregation, signing and publication are
-pending. Ubuntu-24.04 recovery belongs solely to owner05; no fresh heavy work in
-that distro starts before its one-time completion notice. No distro reset or
-foreign lease change is performed here. Official private Linux Node24/PowerShell
-transfers stopped at their explicitly authorized cumulative eight-minute limit;
-complete archives are still absent and partial tools remain unexecuted. No .NET11
-release is published. Healthy Windows evidence is retained when input identities match.
+GitHub Actions was not run per owner instruction. Local native tests, known-key
+SSH provenance signatures and direct GitHub preview publication are the authorized
+delivery path. Capped Jobs/nonroot cgroups retain 4 GiB/two CPU/64 processes; Linux
+swap is disabled. Canonical leases are acquired atomically and released only after
+actual owned-process termination. Failed attempts and approved continuation
+windows remain in private delivery evidence. Healthy tests are reused only
+when their exact source/tool/input identities match.
 
-GitHub Actions is prohibited by the owner because quota is exhausted. CI was not
-run. Signed task commits use `[skip ci]`; authorized local builds, known-key
-signatures and direct GitHub publication replace the Actions delivery mechanism,
-without weakening branch protection, guards or tests. The unchanged producer04
-shared data guards are reused without borrowing its hosted-runner qualification.
-The old Linux checkout and partial SDK remain untouched; the local route uses a
-new ext4 checkout and requires its own actual nonroot4GiB/CPU2/64-task/swap0
-service proof after recovery. Windows uses
-its own capped Job and retained process handles. Original per-phase and2100s/OS
-limits and the canonical shared lease remain in force; the human's private-tool
-transfer exception does not increase test limits.
-
-See [candidate notes](docs/RELEASE-v0.6.0-preview.1.md),
-[local prerequisites](docs/QUICKSTART.md) and
+See [local prerequisites](docs/QUICKSTART.md),
+[release notes](docs/RELEASE-v0.6.0-preview.1.md) and
 [the input-curation contract](docs/INPUT-CURATION-14.md).
-The .NET10 release and independent public browser demo retain their original evidence.

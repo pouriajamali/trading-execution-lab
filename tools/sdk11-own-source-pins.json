@@ -27,12 +27,12 @@
     {
       "path": "CHANGELOG.md",
       "mode": "100644",
-      "gitBlob": "6b4c8283f400fe31af9f731aba382b816db6780e"
+      "gitBlob": "74a2482bc6e135e54fed96555f4847587a02b8b3"
     },
     {
       "path": "CONTRIBUTING.md",
       "mode": "100644",
-      "gitBlob": "d3e59e2f3b8d273fa14051cac8794f1d998215e5"
+      "gitBlob": "acb6f4545f5c871f0a8073bde643080e74e7f278"
     },
     {
       "path": "Directory.Build.props",
@@ -222,7 +222,7 @@
     {
       "path": "README.md",
       "mode": "100644",
-      "gitBlob": "d12cce25e8933335ee0e650a6a8121ff1aa49c67"
+      "gitBlob": "1d2c759a5ea62f80054699f9d92736d2ac7b9b3e"
     },
     {
       "path": "SCOPE.md",
@@ -242,7 +242,7 @@
     {
       "path": "docs/CASE-STUDY.md",
       "mode": "100644",
-      "gitBlob": "40d1fca2ff3422f15fd4af6aeadfba44714c43a9"
+      "gitBlob": "6caf29fb812bf718bbf36ef8f52e04b0a3106d10"
     },
     {
       "path": "docs/CI-POLICY.md",
@@ -262,7 +262,7 @@
     {
       "path": "docs/INPUT-CURATION-14.md",
       "mode": "100644",
-      "gitBlob": "b8c500b2b0f8976a4ed0a5c9a7dcaa3c34bd6a8d"
+      "gitBlob": "2a883c541ae78f1d4a654084421109323afe59fe"
     },
     {
       "path": "docs/MEASUREMENTS.md",
@@ -272,7 +272,7 @@
     {
       "path": "docs/QUICKSTART.md",
       "mode": "100644",
-      "gitBlob": "2463fe7c497de6c711a26d066f3a260091cf3f78"
+      "gitBlob": "b2144f25002d2e07e42ae48cbbc0815398075d04"
     },
     {
       "path": "docs/RELEASE-v0.5.1-preview.1.md",
@@ -287,7 +287,7 @@
     {
       "path": "docs/RELEASE-v0.6.0-preview.1.md",
       "mode": "100644",
-      "gitBlob": "0135b11ee029a532469aa16835952db3f7bb0378"
+      "gitBlob": "5ac94cfe855e46144e6b7e4f51701c1ef365a70c"
     },
     {
       "path": "docs/SDK11-CONSUMER-CONTRACT.json",

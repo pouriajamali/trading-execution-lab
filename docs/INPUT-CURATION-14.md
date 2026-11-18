@@ -46,3 +46,13 @@ CI was not run per owner instruction. The source-only topic commit uses
 unchanged. No target SDK graph/restore, product build/test or new distributable
 is established by this source delta. Runtime input closure and release remain
 pending an actually admitted execution route and all original delivery gates.
+
+## 18 November 2026 local delivery
+
+Both native local platforms independently completed the 14-command factory with
+strict official all/online verification of33 exact originals, six real two-RID
+lock/asset restores and complete applicable current advisory audit. Linux used
+signed existing locks in locked mode. No legacy independent-PKI UNKNOWN field is
+relabeled. GitHub Actions remains forbidden; see the
+[current release evidence](RELEASE-v0.6.0-preview.1.md) for the direct signed
+preview delivery and experimental Windows support limitation.

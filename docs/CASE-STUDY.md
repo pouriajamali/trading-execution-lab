@@ -42,7 +42,7 @@ is another local transaction illustration, not a broker transport or order sende
 | API-only and panel modes reject foreign Host/peer; configured Kestrel endpoints cannot widen binding | `Program.cs` | actual extracted-package `check_package.py`: bad Host and reject-configured-endpoint/no-DB checks |
 | A response/schema error means an unknown receipt, not rollback; stale state is labelled and new requests blocked | `OperatorPanel/src/main.tsx`, `protocol.ts` | protocol lost/unreadable response tests; real-backend browser audit with one deliberately truncated response after actual commit |
 | Launcher propagates child failure, restores environment and deletes only its own temporary directory | `Start-OperatorPanel.ps1` | `check_launcher.py`, clean/exit17/invalid-code cases; standalone exit probe substitutes only secure input acquisition |
-| Selected-host x64 and 10.0.14-or-later 10.0 framework checks precede prompt/key/temp | `Start-OperatorPanel.ps1` | `check_launcher.py`: 16 controlled host cases, including missing/below-floor/prerelease/other-major/architecture and probe failures; no real runtime or browser claim from these stubs |
+| Selected-host x64 and11.0.0-or-later11.0 framework checks precede prompt/key/temp | `Start-OperatorPanel.ps1` | `check_launcher.py`: 16 controlled host cases, including missing/below-floor/prerelease/other-major/architecture and probe failures; no real runtime or browser claim from these stubs |
 
 The current source suite has **57 C# cases** (original 24 model and 9 hosting
 cases retained) and **11 JavaScript protocol tests**. The frozen runtime-tag
@@ -189,15 +189,20 @@ is excluded from that claim.
 See [ADR 0001](decisions/0001-single-writer.md),
 [ADR 0002](decisions/0002-transactional-control-plane.md) and [scope](../SCOPE.md).
 
-## .NET 11 candidate source preparation — 14 November 2026
+## .NET11 compatibility and initialization —18 November 2026
 
-Two new source-authored literal tests are in
-[TechRefreshCompatibilityTests.cs](../ExecutionLab.Tests/TechRefreshCompatibilityTests.cs).
-They compare legacy-shaped receipt/fingerprint bytes and exact public response
-shape, table columns and no-effect replay/conflicts across reopening. They are
-unexecuted, not captured historical runtime fixtures. The existing57 tests and
-M1 oracle remain unchanged. Runtime11, native SQLite, actual caps and matching-OS
-compatibility remain UNKNOWN. The historical E/DrvFS contention failure is not
-relabelled as resolved. [Candidate notes](RELEASE-v0.6.0-preview.1.md) bind the
-remaining SDK/control/lock/audit, CI and signed-download obligations. No benchmark
-or public-site change is part of this candidate.
+Two source-authored literal cases in
+[TechRefreshCompatibilityTests.cs](../ExecutionLab.Tests/TechRefreshCompatibilityTests.cs)
+compare legacy-shaped receipt/fingerprint bytes and exact public response shape,
+table columns and no-effect replay/conflicts across reopening. All original 57
+cases and the two new cases passed locally on both native platforms. These are
+source-authored fixtures, not captured historical runtime binary fixtures.
+
+The original20-way independent-connection test exposed SQLITE_BUSY during Linux
+constructor schema creation. Schema DDL now acquires the same immediate writer
+transaction before any statements, with seed/configuration initialization in that
+transaction. No test was removed; DefaultTimeout 10,20 competing requests,30-second
+assertion boundary and all persistence/schema/wire expectations remain unchanged.
+The existing failing regression and full59-case suites verify the correction.
+See [release evidence and limits](RELEASE-v0.6.0-preview.1.md). No benchmark or
+public-site change is part of this upgrade.

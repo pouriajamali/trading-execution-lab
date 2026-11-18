@@ -1,13 +1,4 @@
-# Local operator panel — v0.6.0-preview.1 candidate
-
-The .NET11 candidate's native package validation and publication are incomplete.
-Local Windows SDK11/runtime11 qualification,59 C# cases,11 protocol tests,
-the panel build,16 controlled launcher scenarios and22 actual extracted-package
-HTTP/SQLite checks in four owned processes have passed; this is
-not yet a downloadable .NET11 release. The recipe below describes its runtime
-requirements. Existing .NET10 downloads retain their original requirements in
-[their release notes](RELEASE-v0.5.2-preview.1.md). See
-[candidate validation status](RELEASE-v0.6.0-preview.1.md).
+# Local operator panel — v0.6.0-preview.1
 
 This is an independent **synthetic, loopback-only** C#/.NET sample. No broker,
 exchange, real account, market feed or real-order control is connected.
@@ -20,11 +11,11 @@ exchange, real account, market feed or real-order control is connected.
 - Install [PowerShell 7](https://learn.microsoft.com/powershell/scripting/install/installing-powershell).
 - Packages are **framework-dependent**, not self-contained. An SDK, Node.js and
   Python are unnecessary to run the panel. Native OS prerequisites still apply.
-  Intended targets are Windows x64 and Ubuntu 24.04/glibc x64; Windows26H2/build26300 is an explicitly accepted experimental test host; official vendor support is unconfirmed. Linux package validation is pending. Alpine/musl, ARM,
-  macOS and other distributions are unverified. The preview is unsigned.
+  Intended targets are Windows x64 and Ubuntu 24.04/glibc x64; Windows 26H2/build 26300 is an explicitly accepted experimental test host; official vendor support is unconfirmed. Alpine/musl, ARM,
+  macOS and other distributions are unverified. Application binaries are not Authenticode-signed.
 
-The existing published .NET10 archive and `SHA256SUMS.txt` remain at the
-[preview release](https://github.com/pouriajamali/trading-execution-lab/releases/tag/v0.5.2-preview.1).
+The matching Windows/Linux archives, checksums, SSH checksum signature and public key are available at the
+[preview release](https://github.com/pouriajamali/trading-execution-lab/releases/tag/v0.6.0-preview.1).
 Check its SHA256 before extracting the **whole folder**, including native SQLite
 and `wwwroot` assets. `BUILD-MANIFEST.json` identifies its source commit and files.
 Git commit/tag and any detached checksum signatures use SSH provenance signing;
@@ -86,6 +77,6 @@ Each new launch starts a **fresh** demo; it does not resume the previous demo DB
 - Use `127.0.0.1`, not a LAN address or reverse-proxy/public hostname.
 - Keep keys/codes/tokens and non-synthetic data out of bug reports.
 
-See [the engineering case study](https://github.com/pouriajamali/trading-execution-lab/blob/v0.5.2-preview.1/docs/CASE-STUDY.md)
+See [the engineering case study](https://github.com/pouriajamali/trading-execution-lab/blob/v0.6.0-preview.1/docs/CASE-STUDY.md)
 for the claim-to-code/test mapping and evidence limits. The separately hosted
 JavaScript browser demo is a different implementation, not a .NET runtime test.

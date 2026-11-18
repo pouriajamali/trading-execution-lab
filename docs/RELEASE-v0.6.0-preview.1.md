@@ -1,77 +1,59 @@
-# v0.6.0-preview.1 — .NET11 candidate
+# v0.6.0-preview.1 — .NET11 local operator panel
 
-Updated18 November2026. Linux native validation and publication remain incomplete;
-no new tag or .NET11 release download exists. The immutable v0.5.2-preview.1
-release and its signed assets retain their historical evidence.
-
-## Source and contract
-
-Six managed projects target net11.0, SDK11.0.100, C#15.0 and stable Core/ASP.NET11.0.0,
+Six managed projects target net11.0, SDK 11.0.100, C# 15.0 and stable Core/ASP.NET11.0.0,
 with patch-only roll-forward and framework-dependent win-x64/linux-x64 packages.
 JWT and TestHost use11.0.0; SQLite10.0.14, xUnit4.0.2 and frontend pins are retained.
-The original57 tests and synthetic API/UI behavior are preserved. Two additional
-source-authored literal fixtures check persisted receipt, fingerprint, wire and
-five-table schema compatibility; they are not historical binary captures.
+The original 57 tests remain; two source-authored literal cases additionally cover
+persisted receipts, fingerprints, wire shape and the five-table schema.
 
-## Actual local evidence
+## Actual local validation
 
-- Windows SDK11.0.100 and actually loaded private CoreCLR11.0.0 were observed
-  under the original Job caps. Windows26H2/build26300 is explicitly accepted as
-  an experimental local host; official vendor support is unconfirmed.
-- All14 input commands passed in29.594s: six graphs, strict official all/online
-  verification of33 originals, six real two-RID lock/asset restores and a full
-  applicable advisory-snapshot audit. Historical independent-PKI UNKNOWN fields
-  remain distinct; they have not been relabeled as successful independent checks.
-- Release Measurements build passed. All59 C# tests passed: zero errors, failed,
-  skipped or not-run. The four analyzer errors in the new fixture were corrected
-  with TestContext cancellation; no warning suppression or product behavior change.
-- The original frontend network attempt timed out before tests. Exact retained
-  Windows npm inputs were independently checked against lock SRI and copied to
-  the project's private cache. The corrected offline npm install, all11 protocol
-  tests and the TypeScript/Vite build passed. All16 controlled launcher scenarios
-  passed both modes; these are controlled host outputs, not16 real OS installs.
-- Private official Linux Node24/PowerShell archive transfer hit its approved
-  cumulative eight-minute limit (475.453s actually spent). Partial files remain unexecuted. No global
-  installation, trust-store, OS service configuration or security change occurred.
+Both Windows and Ubuntu 24.04/ext4/WSL2 independently passed SDK/runtime qualification,
+Release Measurements build,59 C# tests (zero failed, skipped or not-run),11 protocol
+tests, TypeScript/Vite build and 16 controlled launcher scenarios in both modes.
+Controlled launcher scenarios use controlled host output; they are not16 OS installs.
+Windows 26H2/build 26300 is an explicitly accepted experimental host; official vendor
+support is unconfirmed. A private SDK supplies the observed runtime on each host;
+no runtime-only machine installation or browser UI interaction is claimed.
 
-- On18 November2026, the canonical lane was actually free. The Windows package
-  built from signed8a2ddb11349e10a0ab26fc247c807bafb507b4aa; its1842242-byte ZIP has
-  SHA2566366852107c346ed910e450c3d53fcadeb127a9c5ddd9f379b9a5eea72e59dee.
-  All22 actual extracted-package HTTP/SQLite checks passed across four owned
-  processes. Direct module observation confirmed private CoreCLR11.0.0 and the
-  extracted package's e_sqlite3.dll. No runtime-only installation or browser UI
-  interaction is claimed. Both phase receipts are terminal, within original caps.
-- Already validated frontend output and actual restore assets were reused only
-  after their source/byte/lock/tool identities matched. The retained advisory was
-  still within its original24h horizon for this Windows build. Later native
-  admission must check freshness again. Healthy59/11/16 results were not replayed.
-- The earlier120.438s lane wait stopped before any SDK and remains historical;
-  it was not converted into a pass. The successful build consumed only the
-  remainder of its original480s package allocation, with all earlier OS time kept.
-- Linux source was fast-forwarded in the separate ext4 checkout as UID1000.
-  No Linux SDK or product test has executed. The18 November owner instruction
-  assigns Ubuntu-24.04 recovery solely to05; this chat starts no fresh heavy distro
-  work before its one-time completion notice, makes no reset/config/lease changes,
-  and receives no extra download/resource allowance from that notice.
+Both platforms completed all14 dependency-factory commands: six graphs, strict
+NuGet all/online validation of33 exact original archives, six real two-RID
+lock/asset restores and an applicable complete current advisory-snapshot audit.
+Linux uses signed existing locks in locked mode. After the previous Windows
+advisory snapshot expired, only the applicable audit command was refreshed
+against the current complete snapshot; exact admitted graphs, original signature
+reports and six unchanged locks/assets were retained without replay. Historical independent-PKI
+UNKNOWN fields remain distinct. Official Node 24/PowerShell 7 were materialized
+only in the private project; exact locked npm originals were SRI-checked and npm
+install/tests/build ran offline. No global installation or trust/security change.
 
-## Remaining delivery gates
+Native delivery requires22 extracted-package HTTP/SQLite checks across four owned
+processes for each exact archive, including direct loaded CoreCLR 11.0.0 and packaged
+SQLite module observation. The downloadable BUILD-MANIFEST.json binds payload
+hashes, source commit/tree, RID, SDK and framework requirements. Public release
+metadata records the completed native archive checks and archive hashes.
 
-Actual per-OS59 C# /11 protocol /16 controlled launcher /22 extracted-package
-checks, matching native packages, loaded CoreCLR/SQLite identities, exact source,
-known-key checksum/tag signatures and accessible public assets are mandatory.
-Linux uses the fresh ext4 checkout with its own nonroot capped systemd service;
-the old checkout and partial SDK remain untouched. No performance claim is added.
+## Download, provenance and scope
 
-The owner explicitly authorized local testing, packaging, signing and direct
-GitHub preview publication instead of GitHub Actions. CI was not run per the
-owner's no-Actions instruction. Original controls, per-phase and2100s/OS caps,
-fair lease, real dependencies, branch protection and production boundaries remain.
-Only the private-tool transfer has an explicit cumulative480s human exception.
+Use the [preview release](https://github.com/pouriajamali/trading-execution-lab/releases/tag/v0.6.0-preview.1)
+and [quick start](QUICKSTART.md). Install x64 ASP.NET Core Runtime11.0.0 or a later
+11.0 patch and PowerShell 7. Packages are framework-dependent; no SDK/Node/Python is
+needed to run them. Extract the entire matching archive.
 
-After both platforms pass, aggregate those exact tested archives without rebuild,
-add exact-commit source, sign SHA256SUMS in SSH namespace file with the independently
-known key, verify all bytes, and directly publish a prerelease through GitHub's
-API only after confirming that no configured Actions event will run. Keep the
-old tag/assets/signatures unchanged. Signed source commits alone are not a release.
+The release contains matching Windows/Linux packages, exact-commit source ZIP,
+SHA256SUMS.txt, its SSH signature and portfolio-signing.pub. Check every checksum
+and verify the signature in SSH namespace file against the independently known
+key fingerprint SHA256:AgU5bZlJSjUu0KsWMmVEEr+BfXpcMVNroTA33bHcQdU,
+principal pouriajamali. SSH provenance is distinct from Authenticode; application
+binaries are unsigned. Earlier tags/assets/signatures remain immutable.
 
-Synthetic loopback-only sample: no exchange, broker, real account or live orders.
+GitHub Actions was not run per owner instruction. Actual local native tests,
+known-key signatures and direct GitHub preview publication replace that delivery
+mechanism without weakening branch protection or validation. Kernel4 GiB/two CPU/
+64-task limits, Linux swap0, canonical atomic ownership and actual terminal
+teardown remain enforced. Prior failed attempts, sole-owner Ubuntu recovery and
+explicit bounded continuation windows remain in private delivery receipts; no
+failed attempt is converted into a pass. No performance claim is added.
+
+Independent synthetic loopback-only sample: no exchange, broker, real account,
+market feed or live order control. The separately hosted browser demo is unchanged.
