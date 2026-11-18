@@ -26,14 +26,16 @@ public sealed class DurableGate
             DataSource = Path.GetFullPath(databasePath), Pooling = false, DefaultTimeout = 10
         }.ToString();
         using var db = Open();
-        Execute(db, null, """
+        // Serialize schema creation with seed/configuration initialization.
+        // Acquire the writer reservation before any DDL can read then upgrade.
+        using var tx = db.BeginTransaction(deferred: false);
+        Execute(db, tx, """
             CREATE TABLE IF NOT EXISTS gate(id INTEGER PRIMARY KEY CHECK(id=1), exposure_limit INTEGER NOT NULL, state TEXT NOT NULL);
             CREATE TABLE IF NOT EXISTS receipts(id TEXT PRIMARY KEY, fingerprint TEXT NOT NULL, decision TEXT NOT NULL);
             CREATE TABLE IF NOT EXISTS outbox(id TEXT PRIMARY KEY, payload TEXT NOT NULL, delivered INTEGER NOT NULL DEFAULT 0);
             CREATE TABLE IF NOT EXISTS inbox(id TEXT PRIMARY KEY, fingerprint TEXT NOT NULL);
             CREATE TABLE IF NOT EXISTS projection(id INTEGER PRIMARY KEY CHECK(id=1), applied INTEGER NOT NULL);
             """);
-        using var tx = db.BeginTransaction(deferred: false);
         Execute(db, tx, "INSERT OR IGNORE INTO gate VALUES(1,$limit,$state)",
             ("$limit", limit), ("$state", JsonSerializer.Serialize(GateState.Empty)));
         using var read = Command(db, tx, "SELECT exposure_limit FROM gate WHERE id=1");
