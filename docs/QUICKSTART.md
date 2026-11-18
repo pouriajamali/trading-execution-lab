@@ -2,7 +2,8 @@
 
 The .NET11 candidate's native package validation and publication are incomplete.
 Local Windows SDK11/runtime11 qualification,59 C# cases,11 protocol tests,
-the panel build and16 controlled launcher scenarios have passed; this is
+the panel build,16 controlled launcher scenarios and22 actual extracted-package
+HTTP/SQLite checks in four owned processes have passed; this is
 not yet a downloadable .NET11 release. The recipe below describes its runtime
 requirements. Existing .NET10 downloads retain their original requirements in
 [their release notes](RELEASE-v0.5.2-preview.1.md). See

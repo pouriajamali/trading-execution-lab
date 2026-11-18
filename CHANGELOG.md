@@ -75,15 +75,21 @@ Existing source release and raw measurements remain available.
 Typed immutable order/risk model and 24 cases; v0.2.0 moved the public target to
 .NET10. Older source tags remain unchanged.
 
-## 0.6.0-preview.1 — local validation in progress,17 November2026
+## 0.6.0-preview.1 — local validation in progress,18 November2026
 
 - Target SDK11.0.100/net11.0/C#15/runtime11.0.0; retain SQLite/frontend pins and synthetic behavior.
 - Actual Windows native SDK/runtime and33-package/14-command/two-RID lock/audit gates passed.
 - Measurements Release build and all59 C# cases passed, zero failed/skipped/not-run.
 - Windows26H2/build26300 remains an explicitly accepted experimental host, official support unconfirmed.
 - Windows11 protocol tests, TypeScript/Vite build and16 controlled launcher scenarios passed.
-- Native Linux, both native packages/extracted checks and publication are pending;
-  the package phase stopped after120s of canonical-lane contention before any SDK command.
+- The Windows archive at signed8a2ddb1 was built and all22 real extracted-package
+  HTTP/SQLite checks passed across four owned processes; actual CoreCLR11.0.0 and
+  the packaged SQLite module were observed. Existing valid frontend/restore inputs
+  were reused after identity checks; healthy Windows tests were not replayed.
+- Linux qualification/tests/package and publication remain pending. Ubuntu recovery
+  is owner05-only; no heavy distro work starts before its completion notice.
+- The earlier120s Windows package lane wait remains historical failure evidence;
+  the changed, actually free resource enabled the later successful build.
 - Use authorized local/direct GitHub delivery; no Actions. Private Linux tool
   transfer stopped at the approved cumulative480s limit; no partial tool executed.
 - See [the current validation and delivery notes](docs/RELEASE-v0.6.0-preview.1.md).

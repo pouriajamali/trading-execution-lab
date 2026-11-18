@@ -1,6 +1,6 @@
 # v0.6.0-preview.1 — .NET11 candidate
 
-Updated17 November2026. Native package validation and publication remain incomplete;
+Updated18 November2026. Linux native validation and publication remain incomplete;
 no new tag or .NET11 release download exists. The immutable v0.5.2-preview.1
 release and its signed assets retain their historical evidence.
 
@@ -34,11 +34,25 @@ five-table schema compatibility; they are not historical binary captures.
   cumulative eight-minute limit (475.453s actually spent). Partial files remain unexecuted. No global
   installation, trust-store, OS service configuration or security change occurred.
 
-- The Windows package phase waited120.438s for the canonical lane and stopped
-  before starting any SDK command. No archive was produced. The latest lane
-  observation was project05/own05-local-inputs; no foreign lease was removed.
+- On18 November2026, the canonical lane was actually free. The Windows package
+  built from signed8a2ddb11349e10a0ab26fc247c807bafb507b4aa; its1842242-byte ZIP has
+  SHA2566366852107c346ed910e450c3d53fcadeb127a9c5ddd9f379b9a5eea72e59dee.
+  All22 actual extracted-package HTTP/SQLite checks passed across four owned
+  processes. Direct module observation confirmed private CoreCLR11.0.0 and the
+  extracted package's e_sqlite3.dll. No runtime-only installation or browser UI
+  interaction is claimed. Both phase receipts are terminal, within original caps.
+- Already validated frontend output and actual restore assets were reused only
+  after their source/byte/lock/tool identities matched. The retained advisory was
+  still within its original24h horizon for this Windows build. Later native
+  admission must check freshness again. Healthy59/11/16 results were not replayed.
+- The earlier120.438s lane wait stopped before any SDK and remains historical;
+  it was not converted into a pass. The successful build consumed only the
+  remainder of its original480s package allocation, with all earlier OS time kept.
 - Linux source was fast-forwarded in the separate ext4 checkout as UID1000.
-  No Linux SDK or product test was executed: required phase starts returned busy.
+  No Linux SDK or product test has executed. The18 November owner instruction
+  assigns Ubuntu-24.04 recovery solely to05; this chat starts no fresh heavy distro
+  work before its one-time completion notice, makes no reset/config/lease changes,
+  and receives no extra download/resource allowance from that notice.
 
 ## Remaining delivery gates
 

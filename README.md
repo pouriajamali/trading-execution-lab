@@ -274,13 +274,20 @@ Windows26H2/build26300 is an explicitly accepted experimental test host; officia
 vendor support is unconfirmed. This observation does not establish shared host admission.
 
 The corrected offline Windows run passed all11 protocol tests and the TypeScript/Vite
-build. All16 controlled launcher scenarios passed both modes. Matching native
-packaging and22 extracted-package/four-process checks, native Linux qualification
-and tests, signing and publication remain incomplete. The Windows package attempt
-waited120s for the canonical shared lane and stopped before starting an SDK;
-no failed package build is being relabeled as a passing test. Official private Linux Node24/PowerShell input
+build. All16 controlled launcher scenarios passed both modes. On18 November2026,
+the matching Windows archive was built from signed source8a2ddb1 and all22 actual
+HTTP/SQLite checks passed in four owned processes on its extracted bytes. Loaded
+CoreCLR11.0.0 and the package's e_sqlite3.dll were observed directly; the archive
+SHA256 is6366852107c346ed910e450c3d53fcadeb127a9c5ddd9f379b9a5eea72e59dee.
+This is a locally tested candidate, not a public release or a runtime-only-machine claim.
+
+Linux qualification/tests/package, final aggregation, signing and publication are
+pending. Ubuntu-24.04 recovery belongs solely to owner05; no fresh heavy work in
+that distro starts before its one-time completion notice. No distro reset or
+foreign lease change is performed here. Official private Linux Node24/PowerShell
 transfers stopped at their explicitly authorized cumulative eight-minute limit;
-incomplete archives have not been executed. No .NET11 release is published.
+complete archives are still absent and partial tools remain unexecuted. No .NET11
+release is published. Healthy Windows evidence is retained when input identities match.
 
 GitHub Actions is prohibited by the owner because quota is exhausted. CI was not
 run. Signed task commits use `[skip ci]`; authorized local builds, known-key
@@ -288,7 +295,8 @@ signatures and direct GitHub publication replace the Actions delivery mechanism,
 without weakening branch protection, guards or tests. The unchanged producer04
 shared data guards are reused without borrowing its hosted-runner qualification.
 The old Linux checkout and partial SDK remain untouched; the local route uses a
-new ext4 checkout and real nonroot4GiB/CPU2/64-task/swap0 cgroups. Windows uses
+new ext4 checkout and requires its own actual nonroot4GiB/CPU2/64-task/swap0
+service proof after recovery. Windows uses
 its own capped Job and retained process handles. Original per-phase and2100s/OS
 limits and the canonical shared lease remain in force; the human's private-tool
 transfer exception does not increase test limits.
