@@ -161,7 +161,7 @@ def curate(b,work):
         need(completed['state']=='ACTUAL_LOCAL_SDK14_GRAPH_LOCK_ASSET_AUDIT_COMPLETED' and completed['SDKCommands']==14 and terminal['status']=='COMPLETED' and terminal['terminal'] is True,'actual completed own original14 retained, no failed result promotion')
         need(digest(retained['audit'])==retained['auditSha256'],'retained actual applicable audit identity')
         write(work/'retained-audit-admission.json',retained)
-        feed=Path(retained['localFeed'])
+        feed=work/'raw';feed.mkdir()
     else:
         feed=work/'raw';feed.mkdir()
     cache=ROOT/'artifacts/private-nuget';cache.mkdir(parents=True,exist_ok=True)
@@ -171,9 +171,11 @@ def curate(b,work):
         source=input_path(row['rawArchive']['path']);rawrow=row['rawArchive'];target=feed/(row['id'].lower()+'.'+row['version']+'.nupkg')
         h=hashlib.sha256();h512=hashlib.sha512();size=0
         if refresh:
-            need(target.is_file() and not target.is_symlink() and target.stat().st_size==rawrow['bytes'],'same retained original extent')
-            with target.open('rb') as src:
-                while chunk:=src.read(1048576):size+=len(chunk);h.update(chunk);h512.update(chunk)
+            original=Path(retained['localFeed'])/target.name
+            need(original.is_file() and not original.is_symlink() and original.stat().st_size==rawrow['bytes'],'same retained original extent')
+            with original.open('rb') as src,target.open('xb') as dst:
+                while chunk:=src.read(1048576):size+=len(chunk);h.update(chunk);h512.update(chunk);dst.write(chunk)
+                dst.flush();os.fsync(dst.fileno())
             need(digest(source)==rawrow['sha256'],'same source-pinned producer original')
         else:
             with source.open('rb') as src,target.open('xb') as dst:

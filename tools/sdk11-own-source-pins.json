@@ -372,7 +372,7 @@
     {
       "path": "scripts/local_sdk11_stage.py",
       "mode": "100644",
-      "gitBlob": "14ee93fc814b3afaad220b0457723e36a583e97a"
+      "gitBlob": "5c12fde5714acd35aeff4231369ec25d59ee32a7"
     },
     {
       "path": "scripts/package_panel.py",
