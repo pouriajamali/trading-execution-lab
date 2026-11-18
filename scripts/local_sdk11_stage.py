@@ -151,16 +151,35 @@ def curate(b,work):
         for item in snapshot['pages']:
             path=input_path(item['actualBytePath']);raw=path.read_bytes();need(len(raw)==item['bytes'] and hashlib.sha256(raw).hexdigest()==item['actualDecodedBodySHA256'],'actual complete advisory bytes');pages.append(raw)
     need(0<=time.time()-advisory['observedAtUnix']<=advisory['maxAgeSeconds']==86400,'current applicable advisory horizon')
-    feed=work/'raw';feed.mkdir();cache=ROOT/'artifacts/private-nuget';cache.mkdir(parents=True,exist_ok=True)
-    need(not any(cache.iterdir()),'cold private curation cache required; diagnose retained attempt before retry')
+    refresh=b.get('refreshApplicableAudit') is True
+    retained=None
+    if refresh:
+        admission=ROOT/'artifacts/tech-refresh/audit-admission.json';old_bytes=admission.read_bytes();retained=json.loads(old_bytes)
+        need(retained['sdkBinding']==b['sdkIdentity'] and retained['dependencySource']==dependency_source(),'same own qualified SDK and dependency source')
+        for name,expected_hash in {**retained['locks'],**retained['assets']}.items():need(digest(ROOT/name)==expected_hash,'retained exact six locks/assets before audit-only refresh')
+        previous=Path(retained['curationReceipt']);completed=json.loads(previous.read_bytes());terminal=json.loads(previous.with_name('receipt.json').read_bytes())
+        need(completed['state']=='ACTUAL_LOCAL_SDK14_GRAPH_LOCK_ASSET_AUDIT_COMPLETED' and completed['SDKCommands']==14 and terminal['status']=='COMPLETED' and terminal['terminal'] is True,'actual completed own original14 retained, no failed result promotion')
+        need(digest(retained['audit'])==retained['auditSha256'],'retained actual applicable audit identity')
+        write(work/'retained-audit-admission.json',retained)
+        feed=Path(retained['localFeed'])
+    else:
+        feed=work/'raw';feed.mkdir()
+    cache=ROOT/'artifacts/private-nuget';cache.mkdir(parents=True,exist_ok=True)
+    need(any(cache.iterdir()) if refresh else not any(cache.iterdir()),'reuse only admitted own retained cache; first curation remains cold')
     raw_paths=[];expected=[]
     for row in rows:
         source=input_path(row['rawArchive']['path']);rawrow=row['rawArchive'];target=feed/(row['id'].lower()+'.'+row['version']+'.nupkg')
         h=hashlib.sha256();h512=hashlib.sha512();size=0
-        with source.open('rb') as src,target.open('xb') as dst:
-            while chunk:=src.read(1048576):
-                size+=len(chunk);need(size<=rawrow['bytes'],'original byte bound while copying');h.update(chunk);h512.update(chunk);dst.write(chunk)
-            dst.flush();os.fsync(dst.fileno())
+        if refresh:
+            need(target.is_file() and not target.is_symlink() and target.stat().st_size==rawrow['bytes'],'same retained original extent')
+            with target.open('rb') as src:
+                while chunk:=src.read(1048576):size+=len(chunk);h.update(chunk);h512.update(chunk)
+            need(digest(source)==rawrow['sha256'],'same source-pinned producer original')
+        else:
+            with source.open('rb') as src,target.open('xb') as dst:
+                while chunk:=src.read(1048576):
+                    size+=len(chunk);need(size<=rawrow['bytes'],'original byte bound while copying');h.update(chunk);h512.update(chunk);dst.write(chunk)
+                dst.flush();os.fsync(dst.fileno())
         need(size==rawrow['bytes'] and h.hexdigest()==rawrow['sha256'] and h512.hexdigest()==rawrow['sha512'],'exact quarantined original copied')
         for proof in [row['memberManifest'],*row['originalData']]:
             path=input_path(proof['path']);need(path.is_file() and path.stat().st_size==proof['bytes'] and digest(path)==proof['sha256'],'retained member/CMS/notices identity')
@@ -183,12 +202,18 @@ def curate(b,work):
     plan=factory.command_plan(b['dotnet'],ROOT,work,raw_paths);config=Path(plan['configPath']);config.write_bytes(factory.config_bytes(feed,cache,server.server_port,sorted(factory.OFFICIAL_REPOSITORY_CERTIFICATES)))
     os.environ['NUGET_CERT_REVOCATION_MODE']='online';os.environ['NUGET_PACKAGES']=str(cache)
     locks=[ROOT/x/'packages.lock.json' for x in factory.PROJECTS]
-    locked=os.name!='nt'
+    locked=os.name!='nt' or refresh
     baseline={str(p.relative_to(ROOT)):digest(p) for p in locks} if locked else None
     need(all(p.exists() for p in locks) if locked else not any(p.exists() for p in locks),'signed existing locks on Linux; no Windows lock overwrite')
     normalized={};executed=[]
+    if refresh:
+        old_dir=Path(retained['curationReceipt']).parent
+        verified=factory.verification_report((old_dir/'curation-6.stdout.log').read_bytes(),(old_dir/'curation-6.stderr.log').read_bytes(),expected,0)
+        normalized={(x['id'].casefold(),x['version']):x['normalizedNuGetContentHash'] for x in verified}
+        need(len(normalized)==len(rows),'all exact original signature/hash results retained; no new PKI claim')
     try:
         for index,vector in enumerate(plan['commands']):
+            if refresh and index<13:continue
             need(time.monotonic()-started<300-5,'original curation active deadline')
             if index==7:need(len(normalized)==len(rows),'all enumerated signature/hash/current-online-trust guards before first restore')
             argv=vector['argv']
@@ -219,8 +244,20 @@ def curate(b,work):
                     key=(identity.casefold(),entry['resolved']);need(key in normalized and entry['contentHash']==normalized[key],'actual resolved lock closure equals official normalized bytes')
                     selected[key]=entry['contentHash']
         need(0<=time.time()-advisory['observedAtUnix']<=86400 and time.monotonic()-started<=300,'curation original time/freshness bounds')
-        write(work/'curation-admission.json',{'state':'ACTUAL_LOCAL_SDK14_GRAPH_LOCK_ASSET_AUDIT_COMPLETED','commands':executed,'SDKCommands':len(executed),'selected':[{ 'id':k[0],'version':k[1],'contentHash':v} for k,v in sorted(selected.items())],'targets':targets,'candidateCount':len(rows),'selectedCount':len(selected),'extraCandidateNodesQuarantined':len(rows)-len(selected),'advisorySource':advisory,'snapshotRequests':calls,'seconds':time.monotonic()-started,'inputGuardMethod':'exact original/member/CMS/notices data plus own official NuGet all+online strict report, then all actual locks/assets/current audit; no independent PKI claim borrowed'})
+        write(work/'curation-admission.json',{'state':'ACTUAL_CURRENT_AUDIT_REFRESH_REUSING_EXACT_COMPLETED_SDK14' if refresh else 'ACTUAL_LOCAL_SDK14_GRAPH_LOCK_ASSET_AUDIT_COMPLETED','retainedOriginalSDK14':{'path':retained['curationReceipt'],'sha256':digest(retained['curationReceipt'])} if refresh else None,'commands':executed,'SDKCommands':len(executed),'selected':[{ 'id':k[0],'version':k[1],'contentHash':v} for k,v in sorted(selected.items())],'targets':targets,'candidateCount':len(rows),'selectedCount':len(selected),'extraCandidateNodesQuarantined':len(rows)-len(selected),'advisorySource':advisory,'snapshotRequests':calls,'seconds':time.monotonic()-started,'inputGuardMethod':'Exact retained original/member/normalized/own prior online report and six unchanged locks/assets; one actual fresh applicable audit, no new PKI validation claim' if refresh else 'exact original/member/CMS/notices data plus own official NuGet all+online strict report, then all actual locks/assets/current audit; no independent PKI claim borrowed'})
         audit=work/'curation-13.stdout.log'
-        write(ROOT/'artifacts/tech-refresh/audit-admission.json',{'sdkBinding':b['sdkIdentity'],'sdkCatalogSha256':digest(ROOT/'tools/sdk11-normal-inputs.lock.json'),'dependencySource':dependency_source(),'audit':str(audit),'auditSha256':digest(audit),'locks':{str(p.relative_to(ROOT)):digest(p) for p in locks},'assets':{str((ROOT/x/'obj/project.assets.json').relative_to(ROOT)):digest(ROOT/x/'obj/project.assets.json') for x in factory.PROJECTS},'localFeed':str(feed),'config':str(config),'curationReceipt':str(work/'curation-admission.json')})
+        admission_value={'advisorySource':advisory,'sdkBinding':b['sdkIdentity'],'sdkCatalogSha256':digest(ROOT/'tools/sdk11-normal-inputs.lock.json'),'dependencySource':dependency_source(),'audit':str(audit),'auditSha256':digest(audit),'locks':{str(p.relative_to(ROOT)):digest(p) for p in locks},'assets':{str((ROOT/x/'obj/project.assets.json').relative_to(ROOT)):digest(ROOT/x/'obj/project.assets.json') for x in factory.PROJECTS},'localFeed':str(feed),'config':str(config),'curationReceipt':str(work/'curation-admission.json')}
+        target=ROOT/'artifacts/tech-refresh/audit-admission.json'
+        if refresh:
+            need(target.read_bytes()==old_bytes,'own audit admission changed concurrently')
+            temporary=work/'new-audit-admission.json';write(temporary,admission_value);os.replace(temporary,target)
+        else:write(target,admission_value)
     finally:
         server.shutdown();server.server_close();thread.join(timeout=2)
+
+
+def audit_is_current():
+    import time
+    admission=json.loads((ROOT/'artifacts/tech-refresh/audit-admission.json').read_bytes())
+    snapshot=admission.get('advisorySource') or json.loads(Path(admission['curationReceipt']).read_bytes())['advisorySource']
+    return 0<=time.time()-snapshot['observedAtUnix']<=snapshot['maxAgeSeconds']==86400

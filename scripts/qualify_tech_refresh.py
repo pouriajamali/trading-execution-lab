@@ -67,7 +67,10 @@ def main():
             return local.curate(b,work)
     dotnet = b["dotnet"]
     locks = [ROOT / x / "packages.lock.json" for x in PROJECTS]
+    if b.get("mode") == "LOCAL_NATIVE_02_20261117" and a.phase == "csharp" and not local.audit_is_current():
+        local.curate({**b,"refreshApplicableAudit":True},work)
     if a.phase in ("csharp", "package"):
+        if b.get("mode") == "LOCAL_NATIVE_02_20261117":need(local.audit_is_current(), "current applicable advisory horizon required before product build")
         verified = json.loads((ROOT / "artifacts/tech-refresh/audit-admission.json").read_text())
         binding_match = verified["sdkBinding"] == (b["sdkIdentity"] if b.get("mode") == "LOCAL_NATIVE_02_20261117" else a.binding_sha256)
         if b.get("mode") == "LOCAL_NATIVE_02_20261117":
