@@ -1,0 +1,165 @@
+{
+  "schema": "producer04-existing-linux-sdk-data-candidate-handoff/v1",
+  "state": "HISTORICALLY_QUALIFIED_FULL_NORMAL_TREE_CURRENT_READ_ONLY_CHECK_UNOBSERVED",
+  "recordedAtUtc": "2026-11-18T13:25:49.751895+00:00",
+  "producer": "04 sole shared SDK/input owner",
+  "consumerProjectId": "02",
+  "historicalCandidateRoot": "/home/ubuntu/.frl01-sdk-qja56iv8/sdk",
+  "distribution": "Ubuntu-24.04",
+  "currentTreeExistence": "NOT_CONFIRMED_BY_THIS_ATTEMPT",
+  "currentTreeEligibility": "UNKNOWN_NO_LINUX_OUTPUT",
+  "priorAcceptedLocalQualification": {
+    "path": "E:\\Codex WorkSpace\\Git Projects\\portfolio-management\\development-management-20261110\\wave4-state\\project04-shared-normal-final-20261117\\LOCAL-LINUX-HOST-FACT.json",
+    "bytes": 35753,
+    "sha256": "ad63c4ad44af1844e1c937152294b07cdce9faccf2e2e7899cc221f2e485fb3c"
+  },
+  "historicalQualification": {
+    "outcome": "LOCAL_NATIVE_HOST_QUALIFICATION_OBSERVED",
+    "source": {
+      "commit": "d3d0c91a360d237d7d48379ddf08104fc3a6804c",
+      "controllerSha256": "5c1b0644007416d2455bc7090db4c12e428730693e9cc4bcd39957b09b60906b",
+      "existingSupervisorSha256": "cdf1773d1d672fe78d214dd9a35616aaea0b3beade1578aa9a216e88e87a43ca",
+      "jobSha256": "0d63594368cb6839145d4b1798730fe8fab05f6a94d86834f3a82d52475e7227",
+      "runtimeSha256": "d64ba8ffdf1d7ee0743d29cfb4fbdb8e9fe8c3c58428a7557cdabc7aec8f244f",
+      "tree": "7508df10f8541d92eea0e36a72d80c467eaec6a1",
+      "worktreePointerSha256": "4488419b035d3ad750b76916aacf1413505aca88b849d38a131388747d10c778"
+    },
+    "SDKPath": "/home/ubuntu/.frl01-sdk-qja56iv8/sdk",
+    "qualifiedOn": {
+      "CI": false,
+      "WSL2Observed": true,
+      "architecture": "x86_64",
+      "gid": 1000,
+      "hostClass": "LocalUbuntu24.04x64",
+      "kernelBuild": "6.18.33.2-microsoft-standard-WSL2",
+      "osRelease": {
+        "BUG_REPORT_URL": "\"https://bugs.launchpad.net/ubuntu/\"",
+        "HOME_URL": "\"https://www.ubuntu.com/\"",
+        "ID": "ubuntu",
+        "ID_LIKE": "debian",
+        "LOGO": "ubuntu-logo",
+        "NAME": "\"Ubuntu\"",
+        "PRETTY_NAME": "\"Ubuntu 24.04.5 LTS\"",
+        "PRIVACY_POLICY_URL": "\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\"",
+        "SUPPORT_URL": "\"https://help.ubuntu.com/\"",
+        "UBUNTU_CODENAME": "noble",
+        "VERSION": "\"24.04.5 LTS (Noble Numbat)\"",
+        "VERSION_CODENAME": "noble",
+        "VERSION_ID": "\"24.04\""
+      },
+      "pid1": "systemd",
+      "rid": "linux-x64",
+      "supportBoundary": "Ubuntu24.04 is listed by dotnet11 supported-os.json; WSL kernel is recorded separately. This is an observed local qualification, not a CI or vendor certification.",
+      "uid": 1000
+    },
+    "fullPhysicalVerificationBeforeAndAfter": true,
+    "physicalRegularFiles": 6015,
+    "terminal": {
+      "actualKernelLimits": {
+        "cpu.max": "200000 100000",
+        "memory.max": "4294967296",
+        "memory.swap.max": "0",
+        "pids.max": "64"
+      },
+      "cgroup": "/admission04-sdk11-ci-1f07b7e9134445e389f3af695f872122.service",
+      "cleanupResult": "OWNED_TERMINAL_OBSERVED",
+      "existingDirectMethodReused": true,
+      "launcherTerminal": true,
+      "ownedPopulation": 0,
+      "peakMemoryBytes": 975106048,
+      "rootSDKExecutions": 0,
+      "schema": "owned-local-linux-direct-cleanup/v1",
+      "workerExitCode": 0,
+      "workerPidfdTerminal": true
+    }
+  },
+  "identityBoundDeclaredNormalCatalog": {
+    "producerCatalog": {
+      "path": "E:\\Codex WorkSpace\\Git Projects\\data-admission-gate\\shared-normal-windows-20261117\\repo\\tools\\sdk11-normal-inputs.lock.json",
+      "bytes": 8203490,
+      "sha256": "8995a4d296afbfcdf8e267e1923a4de5365b7fa1ef58457add433dfb6df33e23"
+    },
+    "consumerSameCatalog": {
+      "path": "E:\\Codex WorkSpace\\Git Projects\\trading-execution-lab\\workspace-local\\tech-refresh-net11-20261114\\repo\\tools\\sdk11-normal-inputs.lock.json",
+      "bytes": 8203490,
+      "sha256": "8995a4d296afbfcdf8e267e1923a4de5365b7fa1ef58457add433dfb6df33e23"
+    },
+    "qualificationCatalog": {
+      "path": "E:\\Codex WorkSpace\\Git Projects\\data-admission-gate\\shared-normal-windows-20261117\\repo\\tools\\dotnet11-linux-qualification-inputs.lock.json",
+      "bytes": 5618449,
+      "sha256": "307d56b0590f5adf8bfdc03ca22d151b987774c2e49934598cfd0ac0700c0571"
+    },
+    "sdk": "11.0.100",
+    "runtime": "11.0.0",
+    "memberManifestSha256": "d411111d23492b4d101dd62851d1d1fedf3a4badc057d999aedc155ae4cc103a",
+    "membersSelector": "rids.linux-x64.input.members",
+    "rootRow": {
+      "path": "",
+      "type": "directory",
+      "bytes": 0,
+      "mode": 448
+    },
+    "entries": 7055,
+    "regularFiles": 6015,
+    "directories": 1040,
+    "regularAliases": 1830,
+    "fullRegularFileBytes": 733424833,
+    "rawArchiveBytes": 211463422,
+    "rawArchiveSHA512": "1bec9cca2ec689b1e80245b84f2b53c9441d1aa6daccf2ceb27490768bffa95954fa585bd275def31069d874d543d9ba9e6591fe9ade2dbd9f34ec5c0fd0050c",
+    "tableBoundary": "This is the exact existing declared full normal member/type/mode/size/SHA256 table bound to the historical accepted qualification. It is not a new observation of current disk contents."
+  },
+  "currentReadOnlyAttempt": {
+    "intent": {
+      "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\existing-linux-sdk-readonly-tree-once-20261118\\INTENT.json",
+      "bytes": 801,
+      "sha256": "8ffafafbb3c564ef1589656d497560343e540cb5aca012ee16d401b7059bc863"
+    },
+    "actualTerminalReceipt": {
+      "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\existing-linux-sdk-readonly-tree-once-20261118\\ACTUAL-TERMINAL-RECEIPT.json",
+      "bytes": 578,
+      "sha256": "5c28a5c3b30596df64a58611744095d7686685cd83ebd7fe00a3124d46602ef9"
+    },
+    "stdout": {
+      "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\existing-linux-sdk-readonly-tree-once-20261118\\observer.stdout.json",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stderr": {
+      "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\existing-linux-sdk-readonly-tree-once-20261118\\observer.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "source": {
+      "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\inspect_existing_linux_sdk_tree_readonly_20261118.py",
+      "bytes": 5750,
+      "sha256": "5d87ee54c85b14d843358bf27aa80c617f895498431facced88f6e0175e74847"
+    },
+    "outerSeconds": 35.01500000001397,
+    "WindowsLauncherTerminal": true,
+    "LinuxObserverStarted": "UNKNOWN",
+    "LinuxObserverTerminal": "UNKNOWN",
+    "actualInventoryRowsReceived": 0,
+    "treeMissingOrMismatchClaim": "NONE; WSL transport produced no evidence, not evidence of a missing/bad SDK"
+  },
+  "validReuseBoundary": [
+    "The historical full normal SDK tree identity matches catalog8995 and manifestd411; if this exact existing root becomes readable, consumer02 must fullverify all7055 entries/types/modes/6015 physical file hashes/1830 regular aliases and its own current source/cgroup/deadline before any SDK target.",
+    "The04 historical qualification does not transfer host, current kernel/caps, admission or SDK_READY to02. No current qualified existing tree is certified by this packet.",
+    "The existing pinned archive and frozen normal-catalog/materializer remain the same valid input data; this packet grants no new materialization attempt/budget, algorithm change, guard/fsync removal, tree write/copy or SDK invocation.",
+    "Leave02partial untouched. No replacement, download, new SDK tree/framework, source/schema/common62 change or probing/recovery was performed or requested."
+  ],
+  "effects": {
+    "readOnlyWSLLaunchAttempts": 1,
+    "newSDKCommands": 0,
+    "qualificationReplays": 0,
+    "downloads": 0,
+    "materialization": 0,
+    "partialOrSDKTreeWrites": 0,
+    "canonicalLeaseWrites": 0,
+    "recoveryOrDistroTermination": 0,
+    "Actions": 0
+  },
+  "SDK_READY": false,
+  "hostAdmission": false,
+  "inputAdmission": false,
+  "productAdmission": false
+}

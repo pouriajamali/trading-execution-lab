@@ -372,7 +372,7 @@
     {
       "path": "scripts/local_sdk11_stage.py",
       "mode": "100644",
-      "gitBlob": "d5efffb44eed1910c63c8a6cee84ef041d42a9c7"
+      "gitBlob": "150c606d7efa4a44f75660a88ddbce98723e08d8"
     },
     {
       "path": "scripts/package_panel.py",
@@ -387,12 +387,12 @@
     {
       "path": "scripts/qualify_tech_refresh.py",
       "mode": "100644",
-      "gitBlob": "73ac46cc80ca15de018d1d62b53718b896f5e5b2"
+      "gitBlob": "d9334b94eb5d16b8898c53d4fe28710bf6040230"
     },
     {
       "path": "scripts/run_bounded.py",
       "mode": "100644",
-      "gitBlob": "e63f45872e0965d572ab9c68eaf392c312632a10"
+      "gitBlob": "8962fac8a775ca0de6a0ee9621596d90bfd79b6a"
     },
     {
       "path": "scripts/test_input_curation14.py",
@@ -428,6 +428,11 @@
       "path": "tools/qualification_input_guard.py",
       "mode": "100644",
       "gitBlob": "ebc36eade0d00b3d419aa995f4913117ba64abd6"
+    },
+    {
+      "path": "tools/sdk11-existing-linux-data-candidate.json",
+      "mode": "100644",
+      "gitBlob": "6ef447f91a47365efab95c281d8ebfb0662083b6"
     },
     {
       "path": "tools/sdk11-native-inputs.lock.json",
@@ -700,9 +705,19 @@
       "gitBlob": "58f63c9fb8faadd9931a812a3307b80622eb39ea"
     },
     {
+      "path": "tools/sdk11-own-current-advisory.json",
+      "mode": "100644",
+      "gitBlob": "601e9f0493b7d1d56ccb53fe913e7fa5480beb30"
+    },
+    {
       "path": "tools/sdk11-own-input-candidate.json",
       "mode": "100644",
       "gitBlob": "81d88f98318abf7c648f1fe461fbb8395ec32e93"
+    },
+    {
+      "path": "tools/sdk11-own-linux-resume-20261118.json",
+      "mode": "100644",
+      "gitBlob": "e126cd6661b9095b462cae612e9e5a1e63c60bb7"
     },
     {
       "path": "tools/sdk11-own-local-profile.json",

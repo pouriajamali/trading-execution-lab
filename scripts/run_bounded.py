@@ -428,6 +428,17 @@ def main():
     invocation_start = time.monotonic()
     b = binding(args)
     outroot = safe_path(ROOT / "artifacts/tech-refresh", ROOT)
+    epoch = None
+    if os.name != "nt" and b.get("linuxBudgetEpoch"):
+        epoch = load(ROOT/"tools/sdk11-own-linux-resume-20261118.json")
+        require(epoch["state"] == "APPROVED_DIRECT_OWNER" and epoch["epochId"] == b["linuxBudgetEpoch"]
+                and epoch["phaseDeadlines"] == PHASES and epoch["caps"] == CAPS and epoch["perOSSeconds"] == 2100,
+                "direct approved fresh Linux epoch with unchanged hard caps")
+        prior_terminal = load(b["priorNamespaceTerminal"]["path"], b["priorNamespaceTerminal"]["sha256"])
+        require(prior_terminal["allOldOwnedProcessesAndServiceTerminal"] is True
+                and prior_terminal["oldPIDAndUnitCgroupAbsentInFreshNamespace"] is True,
+                "old failed lifetime must be actually terminal before fresh epoch")
+        outroot = outroot/("epoch-"+epoch["epochId"])
     outroot.mkdir(parents=True, exist_ok=True)
     previous = [load(p) for p in outroot.glob("*/receipt.json")]
     require(all(p["terminal"] is True for p in previous), "nonterminal prior phase")
@@ -450,6 +461,9 @@ def main():
         prior = load(Path(retained["directory"])/"receipt.json",retained["receiptSha256"])
         require(prior["terminal"] is True and prior["elapsedSeconds"] == prior_attempt, "actual retained phase budget")
     phase_budget = min(phase_limit-prior_attempt,2100-spent)
+    if epoch:
+        require(0 < b["supervisorRemainingOSSeconds"] <= 2100, "actual supervisor remaining Linux OS budget")
+        phase_budget = min(phase_budget,b["supervisorRemainingOSSeconds"])
     require(phase_budget > 5, "remaining original local phase budget")
     token = uuid.uuid4().hex
     out = outroot / token
@@ -464,9 +478,17 @@ def main():
     try:
         footprint(ROOT, ROOT, locked_npm_bin_links())
         controller = windows_class()(b) if os.name == "nt" else Linux(b)
-        lease["ownerProcessStartIdentity"] = controller.owner_start
+        external = b.get("canonicalSupervisor")
+        if external:
+            require(os.name != "nt" and epoch is not None and external["lease"]["projectId"] == "02"
+                    and external["lease"]["ownerOS"] == "nt" and external["lease"]["phase"] == args.phase
+                    and load(Path(MANAGER)/"LOCAL-FIXTURE-LEASE.json",external["sha256"]) == external["lease"],
+                    "actual canonical Windows supervisor owns this Linux phase")
+            lease = external["lease"]
+        else:
+            lease["ownerProcessStartIdentity"] = controller.owner_start
         wait_until = min(start + phase_budget - 10, time.monotonic() + 120)
-        while True:
+        while not external:
             try:
                 save(Path(MANAGER) / "LOCAL-FIXTURE-LEASE.json", lease)
                 claimed = True
@@ -525,6 +547,9 @@ def main():
                    "caps": CAPS, "readback": controller.readback if controller is not None else None, "exit": code,
                    "childTerminalProof": getattr(controller, "child_proof", None), "terminal": terminal, "elapsedSeconds": time.monotonic() - start,
                    "lease": lease, "failure": failure, "ownerOS": os.name,
+                   "linuxBudgetEpoch":epoch["epochId"] if epoch else None,
+                   "canonicalSupervisorOwnsRelease":bool(b.get("canonicalSupervisor")),
+                   "kernelWorker":{"pid":os.getpid(),"processStartIdentity":getattr(controller,"owner_start",None)},
                    "kernelLocation": None if controller is None else (str(controller.path) if os.name != "nt" else "owned Windows Job"),
                    "containmentSha256": sha(out / "containment.json") if (out / "containment.json").exists() else None,
                    "outputEnforcement": "Memory/CPU/tasks kernel bounded; workspace/log bytes monitored and fail on observed excess, not a filesystem quota."}

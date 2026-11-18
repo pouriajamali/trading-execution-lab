@@ -1,0 +1,29 @@
+{
+  "state": "APPROVED_DIRECT_OWNER",
+  "epochId": "linux02-resume-20261118-01",
+  "directHumanReply": "بله؛ بازیابی دقیق و ادامهٔ محدود۳۵دقیقه",
+  "perOSSeconds": 2100,
+  "phaseDeadlines": {
+    "probe": 120,
+    "restoreAudit": 300,
+    "csharp": 480,
+    "frontend": 180,
+    "launcher": 120,
+    "package": 480,
+    "extracted": 180
+  },
+  "caps": {
+    "memoryBytes": 4294967296,
+    "cpuCores": 2,
+    "tasks": 64,
+    "swapBytesLinux": 0,
+    "workspaceBytes": 8589934592,
+    "logBytes": 33554432,
+    "receiptBytes": 1048576
+  },
+  "clock": "Actual canonical Windows supervisor claim to actual terminal release, accumulated per phase; no waiting clock reset",
+  "priorFailure": "Preserved separately; typed recovery03 namespace termination and exact-own release mandatory",
+  "existingSDKRoot": "/home/ubuntu/.frl01-sdk-qja56iv8/sdk",
+  "existingSDKDataHandoffSHA256": "c46607cbe689986e5748bcb7106e157c47a42379915c41eb12fee8499a4d740e",
+  "scope": "Same project02, no Actions/newGoal/feature/infra/security or phase cap increase. Existing SDK data only; current own full verification and controls remain mandatory."
+}

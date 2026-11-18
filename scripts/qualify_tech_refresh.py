@@ -102,6 +102,9 @@ def main():
         run([dotnet, "run", "--project", "ExecutionLab.Tests/ExecutionLab.Tests.csproj",
              "--configuration", "Release", "--no-restore","-p:UseSharedCompilation=false"])
     elif a.phase == "frontend":
+        if b.get("materializePrivateLinuxTools") is True:
+            need(os.name != "nt" and b.get("mode") == "LOCAL_NATIVE_02_20261117", "private Linux materialization under own actual controls")
+            return
         if b.get("preparePrivateLinuxTools") is True:
             need(b.get("mode") == "LOCAL_NATIVE_02_20261117" and os.name == "nt", "exact authorized private tool-data stage")
             helper=local.module("own_private_linux_tools",ROOT/"scripts/prepare_local_linux_tools.py")

@@ -43,12 +43,19 @@ def current_inputs(b,work,phase):
     if phase=='probe':
         need(archive.is_file() and archive.stat().st_size==catalog['bytes'] and digest(archive,'sha512')==catalog['sha512'],'existing exact SDK archive')
         if os.name!='nt':
-            need(not sdk.exists(),'fresh local Linux SDK allocation; old partials untouched')
-            copy=module('own_local_linux_copy',tools/'materialize_qualification_linux.py');copy.materialize(catalog,archive,sdk)
+            if b.get('reuseExistingSDKData'):
+                policy=json.loads((tools/'sdk11-own-linux-resume-20261118.json').read_bytes())
+                need(str(sdk)==policy['existingSDKRoot'] and digest(tools/'sdk11-existing-linux-data-candidate.json')==policy['existingSDKDataHandoffSHA256'],'identity-bound existing SDK data candidate only')
+                need(sdk.is_dir(),'existing SDK data present; current full verification still mandatory')
+            else:
+                need(not sdk.exists(),'fresh local Linux SDK allocation; old partials untouched')
+                copy=module('own_local_linux_copy',tools/'materialize_qualification_linux.py');copy.materialize(catalog,archive,sdk)
+    print(json.dumps({'ownStage':'SDK_FULL_DATA_VERIFY','rid':b['rid'],'root':str(sdk)}),flush=True)
     guard.verify_tree(sdk,catalog['members'],b['rid'],full=True)
+    print(json.dumps({'ownStage':'SDK_FULL_DATA_VERIFIED','members':len(catalog['members'])}),flush=True)
     if os.name!='nt' and b.get('privateLinuxToolInputs'):
         helper=module('own_private_linux_tools',ROOT/'scripts/prepare_local_linux_tools.py')
-        if phase=='probe':helper.materialize(ROOT,input_path(b['privateLinuxToolInputs']),guard)
+        if phase=='probe' or b.get('materializePrivateLinuxTools') is True:helper.materialize(ROOT,input_path(b['privateLinuxToolInputs']),guard)
         else:helper.verify(ROOT)
     write(work/'current-local-inputs.json',{'rid':b['rid'],'catalogSha256':digest(tools/'sdk11-normal-inputs.lock.json'),'memberManifestSha256':catalog['memberManifestSha256'],'caps':caps,'SDKRoot':str(sdk),'producerHostFactBorrowed':False,'SDKExecutions':0})
     if phase!='probe':
@@ -117,11 +124,30 @@ def curate(b,work):
     handoff=input_path(b['ordinaryHandoff']);need(digest(handoff)==b['ordinaryHandoffSha256'],'exact producer ordinary data handoff')
     pin=json.loads((ROOT/'tools/sdk11-own-input-candidate.json').read_bytes());need(digest(handoff)==pin['producerDataSha256'],'source-pinned producer identity')
     data=json.loads(handoff.read_bytes());rows=data['ordinary02CandidatePackages'];need(len(rows)==33 and len({(x['id'].casefold(),x['version']) for x in rows})==33,'finite actual candidate originals')
-    advisory=data['advisoryReuse'];need(0<=time.time()-advisory['observedAtUnix']<=advisory['maxAgeSeconds']==86400,'current retained applicable advisory horizon')
-    old=input_path(b['testInputHandoff']);need(digest(old)==b['testInputHandoffSha256'],'exact retained advisory identity');snapshot=json.loads(old.read_bytes())['advisory'];need(snapshot['observedAtUnix']==advisory['observedAtUnix'] and len(snapshot['pages'])==2,'same complete advisory snapshot')
+    fresh_ref=json.loads((ROOT/'tools/sdk11-own-current-advisory.json').read_bytes()) if (ROOT/'tools/sdk11-own-current-advisory.json').exists() else None
     pages=[]
-    for item in snapshot['pages']:
-        path=input_path(item['actualBytePath']);raw=path.read_bytes();need(len(raw)==item['bytes'] and hashlib.sha256(raw).hexdigest()==item['actualDecodedBodySHA256'],'actual complete advisory bytes');pages.append(raw)
+    if fresh_ref:
+        import gzip
+        fp=input_path(fresh_ref['path']);need(digest(fp)==fresh_ref['sha256'],'current additive producer advisory identity')
+        fresh=json.loads(fp.read_bytes());snapshot=fresh['completeAdvisory']
+        need(fresh['consumerProjectId']=='02' and fresh['oldImmutableHandoff']['sha256']==b['ordinaryHandoffSha256']
+             and fresh['consumerSourcePin']['sha256']==digest(ROOT/'tools/sdk11-own-input-candidate.json'),'same immutable exact candidate set')
+        need({(x['id'].casefold(),x['version']) for x in snapshot['exactSelectedPackages']}=={(x['id'].casefold(),x['version']) for x in rows},'fresh advisory exact33 identities')
+        responses=snapshot['responses'];need(len(responses)==4,'all service/index/base/update observations')
+        decoded=[]
+        for item in responses:
+            bodies=[]
+            for key in ('rawBody','decodedBody'):
+                proof=item[key];path=input_path(proof['path']);raw=path.read_bytes();need(len(raw)==proof['bytes'] and hashlib.sha256(raw).hexdigest()==proof['sha256'],'actual complete advisory bytes');bodies.append(raw)
+            need(item['encoding']=='gzip' and gzip.decompress(bodies[0])==bodies[1],'wire/decoded identity')
+            decoded.append(bodies[1])
+        index=json.loads(decoded[1]);need(len(index)==2 and [x['@id'] for x in index]==[x['url'] for x in responses[2:]],'all declared fresh snapshot pages')
+        pages=decoded[2:];advisory={'source':fresh_ref,'observedAtUnix':fresh['observedAtUnix'],'maxAgeSeconds':fresh['maxAgeSeconds'],'scope':'Additive current advisory only; no legacy PKI or host fact renewed'}
+    else:
+        advisory=data['advisoryReuse'];old=input_path(b['testInputHandoff']);need(digest(old)==b['testInputHandoffSha256'],'retained advisory identity');snapshot=json.loads(old.read_bytes())['advisory'];need(snapshot['observedAtUnix']==advisory['observedAtUnix'] and len(snapshot['pages'])==2,'same complete advisory snapshot')
+        for item in snapshot['pages']:
+            path=input_path(item['actualBytePath']);raw=path.read_bytes();need(len(raw)==item['bytes'] and hashlib.sha256(raw).hexdigest()==item['actualDecodedBodySHA256'],'actual complete advisory bytes');pages.append(raw)
+    need(0<=time.time()-advisory['observedAtUnix']<=advisory['maxAgeSeconds']==86400,'current applicable advisory horizon')
     feed=work/'raw';feed.mkdir();cache=ROOT/'artifacts/private-nuget';cache.mkdir(parents=True,exist_ok=True)
     need(not any(cache.iterdir()),'cold private curation cache required; diagnose retained attempt before retry')
     raw_paths=[];expected=[]
@@ -148,7 +174,7 @@ def curate(b,work):
         def log_message(self,*args):pass
     server=http.server.ThreadingHTTPServer(('127.0.0.1',0),Handler);base='http://127.0.0.1:'+str(server.server_port)
     bodies['/v3/index.json']=json.dumps({'version':'3.0.0','resources':[{'@id':base+'/vuln/index.json','@type':'VulnerabilityInfo/6.7.0'}]}).encode()
-    bodies['/vuln/index.json']=json.dumps([{'@name':'base' if i==0 else 'updates','@id':base+'/vuln/'+str(i)+'.json','@updated':'2026-11-16T23:30:08Z'} for i in range(2)]).encode()
+    bodies['/vuln/index.json']=json.dumps([{**item,'@id':base+'/vuln/'+str(i)+'.json'} for i,item in enumerate(index)] if fresh_ref else [{'@name':'base' if i==0 else 'updates','@id':base+'/vuln/'+str(i)+'.json','@updated':'2026-11-16T23:30:08Z'} for i in range(2)]).encode()
     for i,raw in enumerate(pages):bodies['/vuln/'+str(i)+'.json']=raw
     thread=threading.Thread(target=server.serve_forever,daemon=True);thread.start();graphs=work/'graphs';graphs.mkdir()
     plan=factory.command_plan(b['dotnet'],ROOT,work,raw_paths);config=Path(plan['configPath']);config.write_bytes(factory.config_bytes(feed,cache,server.server_port,sorted(factory.OFFICIAL_REPOSITORY_CERTIFICATES)))
