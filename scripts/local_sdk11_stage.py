@@ -55,7 +55,10 @@ def current_inputs(b,work,phase):
     print(json.dumps({'ownStage':'SDK_FULL_DATA_VERIFIED','members':len(catalog['members'])}),flush=True)
     if os.name!='nt' and b.get('privateLinuxToolInputs'):
         helper=module('own_private_linux_tools',ROOT/'scripts/prepare_local_linux_tools.py')
-        if phase=='probe' or b.get('materializePrivateLinuxTools') is True:helper.materialize(ROOT,input_path(b['privateLinuxToolInputs']),guard)
+        if phase=='probe' or b.get('materializePrivateLinuxTools') is True:
+            helper.materialize(ROOT,input_path(b['privateLinuxToolInputs']),guard)
+            copied=helper.copy_npm(ROOT,input_path(b['privateLinuxToolInputs']).parent/'private-npm-cache')
+            write(work/'linux-npm-cache-inputs.json',{'packages':copied,'lockSha256':digest(ROOT/'OperatorPanel/package-lock.json')})
         else:helper.verify(ROOT)
     write(work/'current-local-inputs.json',{'rid':b['rid'],'catalogSha256':digest(tools/'sdk11-normal-inputs.lock.json'),'memberManifestSha256':catalog['memberManifestSha256'],'caps':caps,'SDKRoot':str(sdk),'producerHostFactBorrowed':False,'SDKExecutions':0})
     if phase!='probe':

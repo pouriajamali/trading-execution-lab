@@ -120,3 +120,47 @@ def verify(root):
         need({p.relative_to(base).as_posix() for p in base.rglob('*') if p.is_file()}=={x['path'] for x in rows},'private tool complete current namespace')
         for row in rows:
             path=base/row['path'];need(path.is_file() and not path.is_symlink() and path.stat().st_size==row['bytes'] and sha(path)==row['sha256'],'private tool exact current bytes')
+
+
+def linux_npm_rows(root):
+    import base64
+    lock=json.loads((root/'OperatorPanel/package-lock.json').read_bytes());rows=[]
+    for name,row in lock['packages'].items():
+        if not name or not all(not row.get(k) or value in row[k] for k,value in [('os','linux'),('cpu','x64'),('libc','glibc')]):continue
+        need(row['integrity'].startswith('sha512-') and row['resolved'].startswith('https://registry.npmjs.org/'),'exact official lock input')
+        digest=base64.b64decode(row['integrity'][7:],validate=True).hex();need(len(digest)==128,'SHA512 lock')
+        relative=Path('_cacache/content-v2/sha512')/digest[:2]/digest[2:4]/digest[4:]
+        rows.append((name,row,digest,relative))
+    need(len(rows)==23,'complete Linux x64 glibc frontend closure');return rows
+
+def verify_npm_blob(path,digest):
+    need(path.is_file() and not path.is_symlink() and 0<path.stat().st_size<=67108864,'bounded regular npm original')
+    with path.open('rb') as stream:need(hashlib.file_digest(stream,'sha512').hexdigest()==digest,'exact lock SRI')
+
+def acquire_npm(root,work):
+    import concurrent.futures,subprocess,uuid
+    from urllib.parse import urlparse
+    curl=json.loads((root/'tools/local-linux-tools.lock.json').read_bytes())['transferException']['curl'];need(sha(curl['path'])==curl['sha256'],'pinned curl')
+    cache=root/'artifacts/private-npm-cache';rows=linux_npm_rows(root);started=time.monotonic();deadline=started+150
+    env={k:v for k,v in os.environ.items() if k.upper() not in ('CURL_HOME','CURL_CA_BUNDLE','CURL_SSL_BACKEND','SSL_CERT_FILE','SSL_CERT_DIR','HTTP_PROXY','HTTPS_PROXY','ALL_PROXY')}
+    def one(item):
+        name,row,digest,relative=item;target=cache/relative
+        if not target.exists():
+            url=urlparse(row['resolved']);need(url.scheme=='https' and url.hostname=='registry.npmjs.org' and not url.username and not url.fragment,'official exact registry URL')
+            target.parent.mkdir(parents=True,exist_ok=True);part=target.with_name(target.name+'.'+uuid.uuid4().hex+'.part');left=deadline-time.monotonic();need(left>1,'frontend data clock')
+            p=subprocess.run([curl['path'],'-q','--ipv4','--silent','--show-error','--fail','--proto','=https','--proxy','','--noproxy','*','--connect-timeout','10','--max-time',str(left),'--max-filesize','67108864','--output',str(part),row['resolved']],env=env,capture_output=True,timeout=left+1)
+            need(p.returncode==0 and len(p.stderr)<16384,'exact registry download failed, no implicit retry');verify_npm_blob(part,digest);part.rename(target)
+        verify_npm_blob(target,digest);return {'name':name,'sha512':digest,'bytes':target.stat().st_size}
+    with concurrent.futures.ThreadPoolExecutor(max_workers=3) as pool:proof=list(pool.map(one,rows))
+    need(time.monotonic()<deadline,'frontend data deadline')
+    (work/'linux-npm-inputs.json').write_bytes((json.dumps({'state':'EXACT_LOCKED_LINUX_NPM_RAW_INPUTS_NOT_EXECUTED','packages':proof,'lockSha256':sha(root/'OperatorPanel/package-lock.json'),'globalChanges':False},indent=2)+'\n').encode())
+
+def copy_npm(root,source):
+    dest=root/'artifacts/private-npm-cache';proof=[]
+    for name,row,digest,relative in linux_npm_rows(root):
+        original=source/relative;verify_npm_blob(original,digest);target=dest/relative
+        if not target.exists():
+            target.parent.mkdir(parents=True,exist_ok=True)
+            with original.open('rb') as a,target.open('xb') as b:shutil.copyfileobj(a,b,1048576)
+        verify_npm_blob(target,digest);proof.append({'name':name,'sha512':digest,'bytes':target.stat().st_size})
+    return proof

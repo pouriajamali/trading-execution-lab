@@ -372,7 +372,7 @@
     {
       "path": "scripts/local_sdk11_stage.py",
       "mode": "100644",
-      "gitBlob": "150c606d7efa4a44f75660a88ddbce98723e08d8"
+      "gitBlob": "b857fe957a6d6084a7b0f5c047c9faec366cc460"
     },
     {
       "path": "scripts/package_panel.py",
@@ -382,12 +382,12 @@
     {
       "path": "scripts/prepare_local_linux_tools.py",
       "mode": "100644",
-      "gitBlob": "81089a35c1b2a816db36ac933a0a94397dee508c"
+      "gitBlob": "c2ba61d22fd1b7b6785f597ea8b9349ae70cbad5"
     },
     {
       "path": "scripts/qualify_tech_refresh.py",
       "mode": "100644",
-      "gitBlob": "d9334b94eb5d16b8898c53d4fe28710bf6040230"
+      "gitBlob": "8a0c5d870375dc8a8f1a2dabb34bbe40f33b44c1"
     },
     {
       "path": "scripts/run_bounded.py",
