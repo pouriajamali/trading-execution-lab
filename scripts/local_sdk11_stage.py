@@ -208,6 +208,7 @@ def curate(b,work):
     normalized={};executed=[]
     if refresh:
         old_dir=Path(retained['curationReceipt']).parent
+        need(digest(old_dir/'curation-6.stdout.log')==completed['commands'][6]['stdoutSha256'] and digest(old_dir/'curation-6.stderr.log')==completed['commands'][6]['stderrSha256'],'exact originally executed own signature report bytes')
         verified=factory.verification_report((old_dir/'curation-6.stdout.log').read_bytes(),(old_dir/'curation-6.stderr.log').read_bytes(),expected,0)
         normalized={(x['id'].casefold(),x['version']):x['normalizedNuGetContentHash'] for x in verified}
         need(len(normalized)==len(rows),'all exact original signature/hash results retained; no new PKI claim')
