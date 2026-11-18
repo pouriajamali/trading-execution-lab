@@ -437,9 +437,9 @@ def main():
     if b.get("preparePrivateLinuxTools") is True:
         exception = load(ROOT/"tools/local-linux-tools.lock.json")["transferException"]
         require(b["mode"] == "LOCAL_NATIVE_02_20261117" and os.name == "nt" and args.phase == "frontend"
-                and exception["explicitHumanConsent"] is True and exception["totalSeconds"] == 480,
+                and exception["explicitHumanConsent"] is True and exception["totalSeconds"] == 1200,
                 "exact human private-tool data exception only")
-        phase_limit = 480
+        phase_limit = 1200
         transfers = [p for p in previous if p.get("purpose") == "LOCAL_PRIVATE_TOOL_DATA"]
         require(transfers and all(p["terminal"] is True for p in transfers), "retained all own transfer attempts")
         b["priorAttemptSeconds"] = sum(p["elapsedSeconds"] for p in transfers)

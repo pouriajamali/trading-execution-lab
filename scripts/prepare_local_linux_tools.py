@@ -9,58 +9,72 @@ def sha(path):
     with Path(path).open('rb') as stream:return hashlib.file_digest(stream,'sha256').hexdigest()
 
 def acquire(root,work,budget_receipt=None):
-    lock=root/'tools/local-linux-tools.lock.json';data=json.loads(lock.read_bytes());dest=root/'artifacts/linux-tool-inputs';dest.mkdir(parents=True,exist_ok=True);outputs=[];started=time.monotonic()
-    class Redirect(urllib.request.HTTPRedirectHandler):
-        def redirect_request(self,req,fp,code,msg,headers,newurl):
-            from urllib.parse import urlparse
-            u=urlparse(newurl);need(u.scheme=='https' and (u.hostname in ('github.com','nodejs.org','release-assets.githubusercontent.com','objects.githubusercontent.com') or u.hostname.endswith('.githubusercontent.com')),'official tool redirect only')
-            return super().redirect_request(req,fp,code,msg,headers,newurl)
-    opener=urllib.request.build_opener(urllib.request.ProxyHandler({}),Redirect())
-    import concurrent.futures,re
-    prior=json.loads((Path(budget_receipt)/'receipt.json').read_bytes()) if budget_receipt else None
-    need(prior and prior['purpose']=='LOCAL_PRIVATE_TOOL_DATA' and prior['terminal'] is True,'retained original transfer elapsed')
+    """Approved data-only continuation: original bytes, IPv4, no hidden retry."""
+    import concurrent.futures,re,subprocess,uuid
+    from urllib.parse import urlparse,urljoin
+    lock=root/'tools/local-linux-tools.lock.json';data=json.loads(lock.read_bytes());policy=data['transferException']
+    need(policy['explicitHumanConsent'] is True and policy['totalSeconds']==1200,'exact direct human cumulative transfer permission')
+    curl=Path(policy['curl']['path']);need(curl.is_file() and sha(curl)==policy['curl']['sha256'],'pinned existing Microsoft Windows curl')
+    prior=json.loads((Path(budget_receipt)/'receipt.json').read_bytes());need(prior['purpose']=='LOCAL_PRIVATE_TOOL_DATA' and prior['terminal'] is True,'retained actual transfer')
     transfers=[json.loads(p.read_bytes()) for p in (root/'artifacts/tech-refresh').glob('*/receipt.json')]
-    transfers=[p for p in transfers if p.get('purpose')=='LOCAL_PRIVATE_TOOL_DATA'];need(all(p['terminal'] is True for p in transfers),'all previous transfers terminal')
-    remaining=480-sum(p['elapsedSeconds'] for p in transfers)-10
-    deadline=started+remaining
+    transfers=[p for p in transfers if p.get('purpose')=='LOCAL_PRIVATE_TOOL_DATA'];need(all(p['terminal'] is True for p in transfers),'previous transfers terminal')
+    spent=sum(p['elapsedSeconds'] for p in transfers);started=time.monotonic();deadline=started+1200-spent-10
+    need(deadline>started,'remaining approved cumulative budget')
+    dest=root/'artifacts/linux-tool-inputs';dest.mkdir(parents=True,exist_ok=True);attempt=uuid.uuid4().hex;outputs=[];requests=[]
+    env={k:v for k,v in os.environ.items() if k.upper() not in ('CURL_HOME','CURL_CA_BUNDLE','CURL_SSL_BACKEND','SSL_CERT_FILE','SSL_CERT_DIR','HTTP_PROXY','HTTPS_PROXY','ALL_PROXY')}
+    def allowed(url):
+        x=urlparse(url);need(x.scheme=='https' and (x.hostname in ('nodejs.org','github.com','objects.githubusercontent.com','release-assets.githubusercontent.com') or (x.hostname or '').endswith('.githubusercontent.com')),'official HTTPS host only')
+    def request(url,label,extra):
+        allowed(url);left=deadline-time.monotonic();need(left>1,'original approved transfer deadline')
+        header=dest/(label+'.'+attempt+'.headers');need(not header.exists(),'fresh header record')
+        argv=[str(curl),'-q','--ipv4','--silent','--show-error','--fail','--proto','=https','--proxy','','--noproxy','*','--connect-timeout','10','--max-time',str(left),'--dump-header',str(header),*extra,'--write-out','%{http_code}',url]
+        result=subprocess.run(argv,capture_output=True,env=env,timeout=left+1)
+        need(len(result.stdout)<=1024 and len(result.stderr)<=16384 and header.is_file() and header.stat().st_size<=16384,'bounded curl metadata')
+        raw=header.read_bytes();blocks=[b for b in re.split(br'\r?\n\r?\n',raw) if b.startswith(b'HTTP/')];need(blocks,'typed HTTP response')
+        lines=blocks[-1].decode('iso-8859-1').splitlines();status=int(lines[0].split()[1]);headers={}
+        for line in lines[1:]:
+            key,sep,value=line.partition(':');need(sep,'typed header');key=key.strip().lower();need(key not in headers or key not in ('location','content-length','content-range'),'no ambiguous authority/range headers');headers[key]=value.strip()
+        requests.append({'label':label,'host':urlparse(url).hostname,'status':status,'curlExit':result.returncode,'headerSha256':sha(header)})
+        return result,status,headers
+    def resolve(url,name):
+        for hop in range(4):
+            result,status,headers=request(url,name+'-head'+str(hop),['--head','--output',os.devnull])
+            need(result.returncode==0,'official HEAD transport failed; no implicit retry')
+            if status in (301,302,303,307,308):url=urljoin(url,headers['location']);allowed(url);continue
+            need(status==200 and headers.get('accept-ranges','').lower()=='bytes','official byte range support');return url,int(headers['content-length'])
+        raise RuntimeError('official redirect bound')
     for name,row in sorted(data['tools'].items(),key=lambda x:x[0]!='pwsh'):
         target=dest/(name+'.tar.gz')
-        if target.exists():need(sha(target)==row['sha256'],'retained exact tool input')
+        if target.exists():need(sha(target)==row['sha256'],'complete retained exact official archive')
         else:
-            headers={'User-Agent':'own02-private-tools','Accept-Encoding':'identity'}
-            url=row['url'].replace('https://nodejs.org/dist/','https://nodejs.org/download/release/')
-            with opener.open(urllib.request.Request(url,headers=headers,method='HEAD'),timeout=10) as response:
-                need(response.status==200 and response.headers.get('Accept-Ranges')=='bytes','official bounded range transfer support')
-                total=int(response.headers['Content-Length'])
-            need(0<total<=row.get('bytes',row.get('maximumRawBytes')) and ('bytes' not in row or total==row['bytes']),'exact official transfer size')
-            prefix=target.with_suffix('.part');offset=prefix.stat().st_size if prefix.exists() else 0
-            need(0<=offset<total,'retained prefix bounds')
-            step=(total-offset+7)//8;parts=[]
+            url,total=resolve(row['url'],name)
+            need(0<total<=row.get('bytes',row.get('maximumRawBytes')) and ('bytes' not in row or total==row['bytes']),'exact official byte extent')
+            prefix=target.with_suffix('.part');offset=prefix.stat().st_size if prefix.exists() else 0;need(0<=offset<total,'retained prefix extent')
+            step=(total-offset+7)//8
             def fetch(index,start,end):
-                part=dest/(name+'.range-'+str(index)+'.part');retained=part.stat().st_size if part.exists() else 0
-                need(0<=retained<=end-start+1,'exact retained range extent')
+                part=dest/(name+'.range-'+str(index)+'.part');retained=part.stat().st_size if part.exists() else 0;need(0<=retained<=end-start+1,'retained range bound')
                 if retained==end-start+1:return part
-                start+=retained
-                request=urllib.request.Request(url,headers={**headers,'Range':'bytes='+str(start)+'-'+str(end)})
-                with opener.open(request,timeout=10) as response,part.open('ab' if retained else 'xb') as output:
-                    need(response.status==206 and response.headers.get('Content-Range')=='bytes '+str(start)+'-'+str(end)+'/'+str(total),'exact bounded range response')
-                    count=0
-                    while chunk:=response.read(16384):
-                        count+=len(chunk);need(count<=end-start+1 and time.monotonic()<deadline,'approved cumulative data-transfer bounds');output.write(chunk)
-                    need(count==end-start+1,'complete explicit range')
+                begin=start+retained;tail=dest/(name+'.range-'+str(index)+'.'+attempt+'.tail');need(not tail.exists(),'fresh missing-byte destination')
+                expected=end-begin+1
+                result,status,headers=request(url,name+'-range'+str(index),['--range',str(begin)+'-'+str(end),'--max-filesize',str(expected),'--output',str(tail)])
+                need(status==206 and headers.get('content-range')=='bytes '+str(begin)+'-'+str(end)+'/'+str(total),'exact missing range response')
+                count=tail.stat().st_size if tail.exists() else 0;need(count<=expected,'range response size')
+                if count:
+                    with tail.open('rb') as src,part.open('ab' if retained else 'xb') as dst:shutil.copyfileobj(src,dst,1048576);dst.flush();os.fsync(dst.fileno())
+                need(result.returncode==0 and count==expected,'curl missing-range transport incomplete; retained only actual received prefix, no retry')
                 return part
             with concurrent.futures.ThreadPoolExecutor(max_workers=8) as pool:
                 futures=[pool.submit(fetch,i,start,min(start+step,total)-1) for i,start in enumerate(range(offset,total,step))]
                 parts=[f.result(timeout=max(.01,deadline-time.monotonic())) for f in futures]
-            temporary=dest/(name+'.assembled.part');need(not temporary.exists(),'fresh full-body assembly')
-            with temporary.open('xb') as output:
+            assembly=dest/(name+'.'+attempt+'.assembled.part');need(not assembly.exists(),'fresh assembly')
+            with assembly.open('xb') as output:
                 for part in ([prefix] if offset else [])+parts:
                     with part.open('rb') as source:shutil.copyfileobj(source,output,1048576)
                 output.flush();os.fsync(output.fileno())
-            need(temporary.stat().st_size==total and sha(temporary)==row['sha256'],'official exact full archive identity after ranged transfer')
-            temporary.rename(target)
+            need(assembly.stat().st_size==total and sha(assembly)==row['sha256'],'official full SHA256 after exact ranged continuation');assembly.rename(target)
         outputs.append({'name':name,'path':str(target),'bytes':target.stat().st_size,'sha256':sha(target)})
-    (work/'private-tool-inputs.json').write_bytes((json.dumps({'state':'OFFICIAL_EXACT_PRIVATE_TOOL_ARCHIVES_ACQUIRED_NOT_EXECUTED','sourceLockSHA256':sha(lock),'archives':outputs,'globalChanges':False,'SDK':0},indent=2)+'\n').encode())
+    need(time.monotonic()<deadline,'approved original cumulative transfer clock')
+    (work/'private-tool-inputs.json').write_bytes((json.dumps({'state':'OFFICIAL_EXACT_PRIVATE_TOOL_ARCHIVES_ACQUIRED_NOT_EXECUTED','sourceLockSHA256':sha(lock),'archives':outputs,'requests':requests,'curlSha256':sha(curl),'previousActiveSeconds':spent,'thisTransferSeconds':time.monotonic()-started,'cumulativeMaximumSeconds':1200,'globalChanges':False,'SDK':0},indent=2)+'\n').encode())
 
 def materialize(root,source,guard):
     need(os.name!='nt' and os.getuid()==os.getgid()==1000,'private nonroot Linux tools only')

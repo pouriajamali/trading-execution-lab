@@ -24,8 +24,16 @@
   "globalSettingsOrTrustStoreChanges": false,
   "transferException": {
     "explicitHumanConsent": true,
-    "consentText": "بله؛ فقط همین انتقال، مجموع ۸ دقیقه",
-    "totalSeconds": 480,
-    "scope": "This private official Node/PowerShell data transfer only; all prior transfer elapsed retained, original product/test/OS/kernel caps unchanged"
+    "consentText": "بله؛ مجموع انتقال حداکثر ۲۰ دقیقه",
+    "totalSeconds": 1200,
+    "scope": "This private official Node/PowerShell data transfer only; all prior transfer elapsed retained, original product/test/OS/kernel caps unchanged",
+    "previousSecondsRetained": 475.453,
+    "transport": "Existing Windows curl.exe, IPv4, HTTPS/vendor-host restriction, exact missing ranges, no automatic retry",
+    "curl": {
+      "path": "C:/Windows/System32/curl.exe",
+      "sha256": "a6092ef37a7f41cc7cf1a8ff1192aa294e82c73fda0fd2143d813c46b81e55a2",
+      "publisherValidation": "Current native Authenticode Status Valid; signer Microsoft Windows"
+    },
+    "executionCondition": "Only after actual terminal proof for existing Linux unit and canonical lane acquired"
   }
 }
