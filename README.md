@@ -1,5 +1,17 @@
 # Trading Execution Lab — C# order state and reserved exposure
 
+<!-- reviewer-entry:begin -->
+## Start with the implementation
+
+The C# model and persistence layer carry the order-state and exposure rules. Python scripts exercise packaging and independent checks; they are not the application implementation.
+
+[OrderGate.cs](ExecutionLab/OrderGate.cs) → [DurableGate.cs](ExecutionLab.Persistence/DurableGate.cs) → [DurabilityTests.cs](ExecutionLab.Tests/DurabilityTests.cs)
+
+[Open the browser demo](https://pouriajamali.site/demo/operator-panel/) · [Preview releases](https://github.com/pouriajamali/trading-execution-lab/releases)
+
+The existing setup, validation results and release boundaries continue below.
+<!-- reviewer-entry:end -->
+
 [![Historical .NET10 baseline CI](https://github.com/pouriajamali/trading-execution-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/pouriajamali/trading-execution-lab/actions/workflows/ci.yml)
 
 [Try the browser demo](https://pouriajamali.site/demo/operator-panel/) · [Download the local panel](https://github.com/pouriajamali/trading-execution-lab/releases/tag/v0.6.0-preview.1) · [Engineering proof](docs/CASE-STUDY.md) · [Scope](SCOPE.md)
