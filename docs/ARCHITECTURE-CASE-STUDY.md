@@ -4,6 +4,8 @@ Documentation edition: 10 November 2026. Original synthetic/local work prepared 
 
 Runtime: [`v0.5.2-preview.1`](https://github.com/pouriajamali/trading-execution-lab/releases/tag/v0.5.2-preview.1) at `779f654dec7efe07c0e106dba9c438c6b5775eb2`. The later documentation branch does not replace that runtime identity.
 
+**Later .NET 11 release:** This study's 10 November baseline and runtime evidence remain historical. For the subsequent .NET 11 upgrade, SQLite initialization correction and separate local validation, see [v0.6.0-preview.1](https://github.com/pouriajamali/trading-execution-lab/releases/tag/v0.6.0-preview.1), its [release notes](https://github.com/pouriajamali/trading-execution-lab/blob/03b5a35e96197fe19398acc048088666eb8d8e81/docs/RELEASE-v0.6.0-preview.1.md) and [exact released source](https://github.com/pouriajamali/trading-execution-lab/tree/03b5a35e96197fe19398acc048088666eb8d8e81).
+
 [Machine-readable evidence](FLAGSHIP-EVIDENCE.json) · [30-minute four-project review](https://github.com/pouriajamali/trading-execution-lab/blob/main/docs/FLAGSHIP-REVIEW.md) · [Installation](../README.md)
 
 ## Problem: a missing response does not identify the transaction outcome
