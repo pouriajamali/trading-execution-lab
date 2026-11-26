@@ -6,6 +6,10 @@ export type Snapshot = {
   orders: { id: string; remaining: number; cancelRequested: boolean }[];
 };
 export type Session = { token: string };
+export type PanelSession = Session & { instance: string };
+export const instanceHeader = 'X-Execution-Lab-Instance';
+export const validInstance = (value: unknown): value is string =>
+  typeof value === 'string' && /^[0-9a-f]{32}$/.test(value);
 
 function object(value: unknown, keys: string[]): Record<string, unknown> {
   if (typeof value !== 'object' || value === null || Array.isArray(value) ||
@@ -76,10 +80,12 @@ export function commandFrom(key: string, id: string, quantity: string): Command 
   return { key, orderId, quantity: amount };
 }
 
-export function requestFor(command: Command): RequestInit {
+export function requestFor(command: Command, instance?: string): RequestInit {
+  const headers: Record<string, string> = { 'Idempotency-Key': command.key };
+  if (instance !== undefined) headers[instanceHeader] = instance;
   return {
     method: 'POST',
-    headers: { 'Idempotency-Key': command.key },
+    headers,
     body: JSON.stringify({ orderId: command.orderId, quantity: command.quantity })
   };
 }
@@ -114,10 +120,10 @@ async function boundedJson(response: Response): Promise<unknown> {
   } finally { reader.releaseLock(); }
 }
 
-export function call(path: '/panel/api/session', token?: string, init?: RequestInit): Promise<Session>;
+export function call(path: '/panel/api/session', token?: string, init?: RequestInit): Promise<PanelSession>;
 export function call(path: '/panel/api/state', token?: string, init?: RequestInit): Promise<Snapshot>;
 export function call(path: '/reservations', token?: string, init?: RequestInit): Promise<Decision>;
-export async function call(path: '/panel/api/session' | '/panel/api/state' | '/reservations', token?: string, init: RequestInit = {}): Promise<Session | Snapshot | Decision> {
+export async function call(path: '/panel/api/session' | '/panel/api/state' | '/reservations', token?: string, init: RequestInit = {}): Promise<PanelSession | Snapshot | Decision> {
   const headers = new Headers(init.headers);
   if (init.body) headers.set('Content-Type', 'application/json');
   if (token) headers.set('Authorization', 'Bearer ' + token);
@@ -133,13 +139,18 @@ export async function call(path: '/panel/api/session' | '/panel/api/state' | '/r
       401: 'Access was rejected. Check the operator code or sign in again.',
       403: 'The operator role is required.',
       409: 'This idempotency key is already bound to different content.',
+      412: 'This reservation is bound to a different local API process.',
       429: 'Too many sign-in attempts. Try again in a minute.'
     };
     throw new HttpError(response.status, message[response.status] ?? `The local API returned HTTP ${response.status}.`);
   }
   try {
     const value = await boundedJson(response);
-    if (path === '/panel/api/session') return parseSession(value);
+    if (path === '/panel/api/session') {
+      const instance = response.headers.get(instanceHeader);
+      if (!validInstance(instance)) throw new Error('Invalid local API process identity.');
+      return { ...parseSession(value), instance };
+    }
     if (path === '/panel/api/state') return parseSnapshot(value);
     return parseDecision(value);
   } catch {

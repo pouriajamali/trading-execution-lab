@@ -32,11 +32,15 @@ public static class GateApi
                 context.User.FindAll("sub").Any(claim => !string.IsNullOrWhiteSpace(claim.Value)))));
     }
 
-    public static void Map(WebApplication app, DurableGate store)
+    public static void Map(WebApplication app, DurableGate store, string? panelInstance = null)
     {
         app.UseAuthentication(); app.UseAuthorization();
         app.MapPost("/reservations", (HttpContext context, ReserveRequest request) =>
         {
+            if (context.Request.Headers.TryGetValue(PanelApi.InstanceHeader, out var instance)
+                && (panelInstance is null || instance.Count != 1
+                    || !string.Equals(instance[0], panelInstance, StringComparison.Ordinal)))
+                return Results.StatusCode(StatusCodes.Status412PreconditionFailed);
             var key = context.Request.Headers["Idempotency-Key"].ToString();
             if (string.IsNullOrWhiteSpace(key) || key.Length > 64 || key.Any(c => !char.IsAsciiLetterOrDigit(c) && c is not '-' and not '_') ||
                 string.IsNullOrWhiteSpace(request.OrderId) || request.OrderId.Length > 64 || request.Quantity <= 0)

@@ -1,6 +1,7 @@
 import { createRoot } from 'react-dom/client';
 import { useState, type FormEvent } from 'react';
 import { call, commandFrom, HttpError, requestFor, type Command, type Decision, type Snapshot } from './protocol';
+import { clearPending, loadRecovery, savePending, type Pending } from './recovery';
 import './styles.css';
 
 function App() {
@@ -8,21 +9,22 @@ function App() {
   const [code, setCode] = useState('');
   const [state, setState] = useState<Snapshot>();
   const [fresh, setFresh] = useState(false);
-  const [unresolved, setUnresolved] = useState(false);
+  const [initialRecovery] = useState(loadRecovery);
+  const [pending, setPending] = useState<Pending | undefined>(initialRecovery.pending);
+  const [instance, setInstance] = useState('');
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
   const [id, setId] = useState('sample-001');
   const [quantity, setQuantity] = useState('2');
-  const [last, setLast] = useState<Command>();
+  const [last, setLast] = useState<Pending>();
   const [decision, setDecision] = useState<Decision>();
 
   function signOut() {
     setToken('');
+    setInstance('');
     setCode('');
     setState(undefined);
     setFresh(false);
-    // Preserve the in-memory exact retry across token expiry / reauthentication.
-    // It is not persisted across page reloads or browser closure.
     setError('');
   }
 
@@ -47,6 +49,7 @@ function App() {
       setCode('');
       const snapshot = await call('/panel/api/state', session.token);
       setToken(session.token);
+      setInstance(session.instance);
       setState(snapshot);
       setFresh(true);
     });
@@ -59,13 +62,22 @@ function App() {
   }
 
   async function submit(command: Command) {
-    setLast(command);
-    setUnresolved(true);
+    if (initialRecovery.blocked || !instance || (pending && pending.instance !== instance))
+      throw new Error('The original reservation cannot be retried against this local API process.');
+    const recovery = { instance, command };
+    try { savePending(recovery); } catch {
+      throw new Error('The reservation was not sent because tab recovery storage is unavailable.');
+    }
+    setLast(recovery);
+    setPending(recovery);
     setFresh(false);
     setDecision(undefined);
-    const result = await call('/reservations', token, requestFor(command));
+    const result = await call('/reservations', token, requestFor(command, instance));
     setDecision(result);
-    setUnresolved(false);
+    try { clearPending(); } catch {
+      throw new Error('The receipt was verified. Tab recovery storage could not be cleared.');
+    }
+    setPending(undefined);
     // A denied command can still consume a cursor, and a replay is historical.
     // Always read current state separately from the receipt.
     await refresh(token);
@@ -74,11 +86,13 @@ function App() {
   function reserve(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     // Form/Enter submission must obey the same guard as the visible button.
-    if (busy || !fresh || unresolved || !state?.reconciled || state.stopped) return;
+    if (busy || !fresh || pending || initialRecovery.blocked || !state?.reconciled || state.stopped) return;
     void action(() => submit(commandFrom(crypto.randomUUID(), id, quantity)));
   }
 
   const ready = state?.reconciled && !state.stopped;
+  const differentInstance = pending !== undefined && pending.instance !== instance;
+  const retry = pending?.command ?? (last?.instance === instance ? last.command : undefined);
   return <main>
     <header className="brand"><span className="logo" aria-hidden="true">EL</span><span>Execution Lab</span><span className="env">SYNTHETIC · LOOPBACK</span></header>
     <section className="intro">
@@ -87,9 +101,11 @@ function App() {
       <p>Review order exposure and test reservation decisions in a single-instrument sandbox.</p>
     </section>
     {error && <p className="notice" role="alert">{error}</p>}
+    {initialRecovery.blocked && <p className="notice" role="alert">{initialRecovery.blocked}</p>}
     {!token ? <section className="surface login" aria-labelledby="login-title">
       <h2 id="login-title">Operator sign-in</h2>
       <p>Use the operator code configured when starting the local lab.</p>
+      {pending && <p className="notice" role="status">A reservation awaits confirmation. Sign in again to recover its receipt.</p>}
       <form onSubmit={login}>
         <label htmlFor="code">Operator code</label>
         <input id="code" type="password" autoComplete="off" value={code} onChange={e => setCode(e.target.value)} required minLength={16} maxLength={128} />
@@ -114,11 +130,11 @@ function App() {
         <section className="surface" aria-labelledby="reservation-title">
           <h2 id="reservation-title">Test a reservation</h2>
           <p>Only the local synthetic risk gate evaluates this request.</p>
-          {unresolved && <p className="notice" role="status">{busy ? 'Request pending. The API may commit before its response arrives.' : 'Receipt unknown. Replay the exact request before starting a new one. Signing out keeps this retry in the tab; reloading or closing the tab loses it.'}</p>}
+          {pending && <p className="notice" role="status">{differentInstance ? 'The local API process changed. Reservations are disabled until the original outcome is resolved.' : busy ? 'Request pending. The API may commit before its response arrives.' : 'Receipt unknown. Replay the exact request before starting a new one. The same tab keeps it across refresh and sign-in.'}</p>}
           <form onSubmit={reserve}>
             <div className="fields"><div><label htmlFor="id">Order ID</label><input id="id" value={id} onChange={e => setId(e.target.value)} maxLength={64} required /></div>
             <div><label htmlFor="quantity">Lots</label><input id="quantity" value={quantity} onChange={e => setQuantity(e.target.value)} type="number" min={1} step={1} required /></div></div>
-            <div className="actions"><button disabled={busy || !fresh || unresolved || !ready} type="submit">Evaluate reservation</button>{last && <button type="button" className="secondary" disabled={busy} onClick={() => void action(() => submit(last))}>Replay last request</button>}</div>
+            <div className="actions"><button disabled={busy || !fresh || !!pending || !!initialRecovery.blocked || !ready} type="submit">Evaluate reservation</button>{retry && <button type="button" className="secondary" disabled={busy || differentInstance || !!initialRecovery.blocked} onClick={() => void action(() => submit(retry))}>Replay last request</button>}</div>
           </form>
           {decision && <div className="receipt" role="status">
             <strong className={decision.accepted ? 'ok' : 'halt'}>{decision.accepted ? 'Accepted' : 'Denied'}</strong> <span>{decision.replayed ? '· Replayed receipt' : '· New receipt'}</span>

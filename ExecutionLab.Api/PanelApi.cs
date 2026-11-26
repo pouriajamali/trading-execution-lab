@@ -14,6 +14,8 @@ public sealed record OperatorLogin(string? Code);
 // panel disabled, and enabling it never exposes recovery, fills or venue commands.
 public static class PanelApi
 {
+    public const string InstanceHeader = "X-Execution-Lab-Instance";
+
     public static void Configure(WebApplicationBuilder builder) =>
         builder.Services.AddRateLimiter(options =>
         {
@@ -26,9 +28,10 @@ public static class PanelApi
             });
         });
 
-    public static void Map(WebApplication app, DurableGate store, int limit, byte[] signingKey, string code)
+    public static string Map(WebApplication app, DurableGate store, int limit, byte[] signingKey, string code)
     {
         var expected = Digest(code);
+        var instance = Guid.NewGuid().ToString("N");
         app.UseRateLimiter();
         app.MapPost("/panel/api/session", (HttpContext context, OperatorLogin request) =>
         {
@@ -41,6 +44,7 @@ public static class PanelApi
                 [new Claim("sub", "local-panel"), new Claim("role", "operator")],
                 now, now.AddMinutes(15),
                 new SigningCredentials(new SymmetricSecurityKey(signingKey), SecurityAlgorithms.HmacSha256));
+            context.Response.Headers[InstanceHeader] = instance;
             return Results.Ok(new { token = new JwtSecurityTokenHandler().WriteToken(token) });
         }).RequireRateLimiting("operator-login");
 
@@ -56,6 +60,7 @@ public static class PanelApi
                     .Select(order => new { id = order.Key, order.Value.Remaining, order.Value.CancelRequested })
             });
         }).RequireAuthorization("operator");
+        return instance;
     }
 
     private static byte[] Digest(string value) => SHA256.HashData(Encoding.UTF8.GetBytes(value));

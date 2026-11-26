@@ -50,13 +50,14 @@ app.Use(async (context, next) =>
     context.Response.Headers["Referrer-Policy"] = "no-referrer";
     await next();
 });
+string? panelInstance = null;
 if (panelEnabled)
 {
     app.UseDefaultFiles();
     app.UseStaticFiles();
-    PanelApi.Map(app, store, limit, signingKey, operatorCode);
+    panelInstance = PanelApi.Map(app, store, limit, signingKey, operatorCode);
 }
-GateApi.Map(app, store);
+GateApi.Map(app, store, panelInstance);
 // Deliberately fail-closed: a fresh database is stopped/unreconciled. The local
 // tests seed a synthetic snapshot/resume; HTTP cannot authorize restart or fill.
 app.Run("http://127.0.0.1:5087");

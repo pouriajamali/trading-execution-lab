@@ -55,6 +55,12 @@ boundary. For a reproducible issue or a focused change, see
 
 ## Operator Panel preview
 
+The `v0.6.0-preview.2` source adds recovery of an unresolved reservation after
+refreshing the same tab. Sign in again and choose **Replay last request** against
+the same running local API. The panel keeps the exact command and process identity
+until it receives a verified receipt. A different API process is refused before
+the reservation can reach the database. See the [reload recovery notes](docs/RELEASE-v0.6.0-preview.2.md).
+
 The opt-in [React and TypeScript panel](OperatorPanel) uses the same .NET API
 and SQLite gate as the existing reservation sample. Sign in locally, read the
 current exposure and working orders, evaluate a synthetic reservation and replay

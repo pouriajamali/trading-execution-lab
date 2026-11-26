@@ -1,4 +1,4 @@
-# Local operator panel — v0.6.0-preview.1
+# Local operator panel — v0.6.0-preview.2
 
 This is an independent **synthetic, loopback-only** C#/.NET sample. No broker,
 exchange, real account, market feed or real-order control is connected.
@@ -14,8 +14,7 @@ exchange, real account, market feed or real-order control is connected.
   Intended targets are Windows x64 and Ubuntu 24.04/glibc x64; Windows 26H2/build 26300 is an explicitly accepted experimental test host; official vendor support is unconfirmed. Alpine/musl, ARM,
   macOS and other distributions are unverified. Application binaries are not Authenticode-signed.
 
-The matching Windows/Linux archives, checksums, SSH checksum signature and public key are available at the
-[preview release](https://github.com/pouriajamali/trading-execution-lab/releases/tag/v0.6.0-preview.1).
+Consult the [release notes](RELEASE-v0.6.0-preview.2.md) for the published archive scope.
 Check its SHA256 before extracting the **whole folder**, including native SQLite
 and `wwwroot` assets. `BUILD-MANIFEST.json` identifies its source commit and files.
 Git commit/tag and any detached checksum signatures use SSH provenance signing;
@@ -54,8 +53,11 @@ rejected before database creation. This is not a public deployment recipe.
 The panel distinguishes a receipt from the last fetched state. It does not poll;
 use **Refresh state** to observe later changes. A failed fetch marks values stale
 and blocks new requests. After a lost/unreadable response, the receipt is unknown:
-replay the exact request before starting a new one. The in-memory request/key
-survives sign-out/relogin in the same tab, but **not page reload or tab closure**.
+sign in again if needed and choose **Replay last request** before starting a new
+one. Refreshing the same tab preserves its unresolved command until a verified
+receipt arrives. No reservation is sent automatically after refresh. Recovery
+requires the same running local API process and remains scoped to that tab.
+If the API process changed, the pending state blocks new reservations and replay.
 Tokens and operator codes are not put in URLs, browser storage or application logs.
 All authorized operators share one fictitious gate; there is no tenant isolation.
 
