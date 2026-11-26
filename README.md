@@ -14,7 +14,7 @@ The existing setup, validation results and release boundaries continue below.
 
 [![Historical .NET10 baseline CI](https://github.com/pouriajamali/trading-execution-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/pouriajamali/trading-execution-lab/actions/workflows/ci.yml)
 
-[Try the browser demo](https://pouriajamali.site/demo/operator-panel/) · [Download the local panel](https://github.com/pouriajamali/trading-execution-lab/releases/tag/v0.6.0-preview.1) · [Engineering proof](docs/CASE-STUDY.md) · [Scope](SCOPE.md)
+[Try the browser demo](https://pouriajamali.site/demo/operator-panel/) · [Download the local panel](https://github.com/pouriajamali/trading-execution-lab/releases/tag/v0.6.0-preview.2) · [Engineering proof](docs/CASE-STUDY.md) · [Scope](SCOPE.md)
 
 Explore order-risk decisions and retry-safe request processing in C#/.NET.
 The sample combines an order-state model, a single-writer host and an ASP.NET Core
@@ -40,7 +40,7 @@ implementations. For the transaction and recovery decisions, follow the
 
 ## Check the C# implementation
 
-Version0.6.0-preview.1 targets SDK 11.0.100 / net11.0 / C# 15.0. Local validation and its limits are recorded below. From a source checkout with the required SDK:
+Version 0.6.0-preview.2 targets SDK 11.0.100 / net11.0 / C# 15.0. Local validation and its limits are recorded below. From a source checkout with the required SDK:
 
 ```sh
 dotnet run --project ExecutionLab.Tests/ExecutionLab.Tests.csproj -c Release
@@ -68,10 +68,10 @@ the same request to inspect its original receipt. The live state and a receipt
 are shown separately because a historical replay can differ from current state.
 
 **Windows / Ubuntu quick start.** Download the matching x64 archive and checksums
-from [v0.6.0-preview.1](https://github.com/pouriajamali/trading-execution-lab/releases/tag/v0.6.0-preview.1):
-[Windows ZIP](https://github.com/pouriajamali/trading-execution-lab/releases/download/v0.6.0-preview.1/trading-execution-lab-v0.6.0-preview.1-win-x64.zip) ·
-[Ubuntu/glibc tar.gz](https://github.com/pouriajamali/trading-execution-lab/releases/download/v0.6.0-preview.1/trading-execution-lab-v0.6.0-preview.1-linux-x64.tar.gz) ·
-[SHA256SUMS](https://github.com/pouriajamali/trading-execution-lab/releases/download/v0.6.0-preview.1/SHA256SUMS.txt).
+from [v0.6.0-preview.2](https://github.com/pouriajamali/trading-execution-lab/releases/tag/v0.6.0-preview.2):
+[Windows ZIP](https://github.com/pouriajamali/trading-execution-lab/releases/download/v0.6.0-preview.2/trading-execution-lab-v0.6.0-preview.2-win-x64.zip) ·
+[Ubuntu/glibc tar.gz](https://github.com/pouriajamali/trading-execution-lab/releases/download/v0.6.0-preview.2/trading-execution-lab-v0.6.0-preview.2-linux-x64.tar.gz) ·
+[SHA256SUMS](https://github.com/pouriajamali/trading-execution-lab/releases/download/v0.6.0-preview.2/SHA256SUMS.txt).
 Extract the whole folder. Install x64 **ASP.NET Core Runtime 11.0.0 or a later
 11.0 patch** and **PowerShell 7**; these packages are framework-dependent.
 No SDK, Node.js or Python is required to run the panel. Before asking for an

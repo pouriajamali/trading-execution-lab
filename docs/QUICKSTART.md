@@ -14,7 +14,8 @@ exchange, real account, market feed or real-order control is connected.
   Intended targets are Windows x64 and Ubuntu 24.04/glibc x64; Windows 26H2/build 26300 is an explicitly accepted experimental test host; official vendor support is unconfirmed. Alpine/musl, ARM,
   macOS and other distributions are unverified. Application binaries are not Authenticode-signed.
 
-Consult the [release notes](RELEASE-v0.6.0-preview.2.md) for the published archive scope.
+Get the archive and verification files from the
+[v0.6.0-preview.2 release](https://github.com/pouriajamali/trading-execution-lab/releases/tag/v0.6.0-preview.2).
 Check its SHA256 before extracting the **whole folder**, including native SQLite
 and `wwwroot` assets. `BUILD-MANIFEST.json` identifies its source commit and files.
 Git commit/tag and any detached checksum signatures use SSH provenance signing;
